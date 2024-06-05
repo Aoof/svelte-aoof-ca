@@ -4,10 +4,6 @@ import axios from "axios";
 
 import { user, BACKEND_URL } from "./auth";
 
-user.subscribe((value) => {
-    axios.defaults.headers.common["x-auth-token"] = value.token;
-});
-
 interface Ingredient {
     ingredient: string;
     amount: string;
@@ -95,14 +91,40 @@ export const updateRecipes = (recipe: Recipe) => {
     recipes.update((all) => all.map((r) => (r._id === recipe._id ? recipe : r)));
 };
 
+export const searchRecipes = async (query: string) => { 
+    return new Promise(async (resolve, reject) => {
+        await fetchRecipes();
+        recipes.subscribe((all) => {
+            recipes.set(all.filter((r) => {
+                return (
+                    r.title.toLowerCase().includes(query.toLowerCase()) ||
+                    r.ingredients.some((i) => i.ingredient.toLowerCase().includes(query.toLowerCase())) ||
+                    r.tags.some((t) => t.toLowerCase().includes(query.toLowerCase())) ||
+                    r.foodType.toLowerCase().includes(query.toLowerCase()) ||
+                    r.cookTime.toLowerCase().includes(query.toLowerCase()) ||
+                    r.vegetarian.toString().toLowerCase().includes(query.toLowerCase())
+                );
+            }))
+        });
+
+        resolve(recipes);
+    });
+}
+
 export const fetchRecipes = async () => {
     try {
+        user.subscribe((value) => {
+            axios.defaults.headers.common["x-auth-token"] = value.token;
+        });
         const response = await axios.get(BACKEND_URL + "/api/recipes");
 
         const data = response.data;
 
         if (data.ok) {
             recipes.set(data.recipes);
+            return true;
+        } else {
+            return false;
         }
     } catch (error: any) {
         return false;
@@ -111,6 +133,9 @@ export const fetchRecipes = async () => {
 
 export const fetchRecipe = async (id: string) => {
     try {
+        user.subscribe((value) => {
+            axios.defaults.headers.common["x-auth-token"] = value.token;
+        });
         const response = await axios.get(BACKEND_URL + "/api/recipes/" + id);
 
         const data = response.data;
@@ -125,6 +150,9 @@ export const fetchRecipe = async (id: string) => {
 
 export const addNewRecipe = async (recipe: Recipe) => {
     try {
+        user.subscribe((value) => {
+            axios.defaults.headers.common["x-auth-token"] = value.token;
+        });
         const response = await axios.post(BACKEND_URL + "/api/recipes", recipe);
 
         const data = response.data;
@@ -139,6 +167,9 @@ export const addNewRecipe = async (recipe: Recipe) => {
 
 export const updateExistingRecipe = async (id: string, recipe: Recipe) => {
     try {
+        user.subscribe((value) => {
+            axios.defaults.headers.common["x-auth-token"] = value.token;
+        });
         const response = await axios.put(BACKEND_URL + "/api/recipes/" + id, recipe);
 
         const data = response.data;
@@ -153,6 +184,9 @@ export const updateExistingRecipe = async (id: string, recipe: Recipe) => {
 
 export const deleteRecipe = async (id: string) => {
     try {
+        user.subscribe((value) => {
+            axios.defaults.headers.common["x-auth-token"] = value.token;
+        });
         const response = await axios.delete(BACKEND_URL + "/api/recipes/" + id);
 
         const data = response.data;

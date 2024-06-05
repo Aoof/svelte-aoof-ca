@@ -2,9 +2,9 @@
     // User is logged in this is the page that will be displayed
     import { logout } from '$lib/../stores/auth';
     import { addToast } from '$lib/../stores/toasts';
-    import { recipes } from '$lib/../stores/recipes';
 
-    import Button from '../../components/Button.svelte';
+    import Button from '$lib/../components/Button.svelte';
+    import Recipes from '$lib/../components/Recipes.svelte';
 
     async function handleLogout() {
         await logout();
@@ -33,5 +33,8 @@
     <div class="actions-wrapper flex justify-between">
         <Button text="Add" callback={() => {window.location.href = '/fae-sparkles/add-recipe'}} />
         <Button text="Logout" callback={handleLogout} />
+    </div>
+    <div class="recipes-wrapper">
+        <Recipes />
     </div>
 </main>

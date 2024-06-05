@@ -24,8 +24,9 @@ exports.createRecipe = async (req, res) => {
 
 // Get all recipes
 exports.getRecipes = async (req, res) => {
-  try {
-    const recipes = await Recipe.find();
+  try { 
+    let recipe = new Recipe();
+    const recipes = await recipe.getRecipes();
     res.json({ recipes, ok: true, msg: ['Recipes found']});
   } catch (err) {
     res.send({ ok: false, msg: ['Server error'] });
@@ -35,7 +36,8 @@ exports.getRecipes = async (req, res) => {
 // Get a recipe by ID
 exports.getRecipeById = async (req, res) => {
   try {
-    const recipe = await Recipe.findById(req.params.id);
+    let recipe = new Recipe();
+    recipe = await recipe.findById(req.params.id);
 
     if (!recipe) {
       return res.json({ ok: false, msg: ['Recipe not found'] });

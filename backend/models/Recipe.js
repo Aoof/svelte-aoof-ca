@@ -1,4 +1,4 @@
-const recipeCollection = require('../config/db');
+const recipeCollection = require('../config/db').collection("recipes");
 const { ObjectId } = require('mongodb');
 
 let Recipe = function (data, updateMode = false) {
@@ -49,6 +49,23 @@ Recipe.prototype.validate = function () {
     });
 }
 
+Recipe.prototype.findById = function (id) {
+    return new Promise(async (resolve, reject) => {
+        if (typeof (id) != "string") {
+            reject();
+            return;
+        }
+
+        let recipe = await recipeCollection.findOne({ _id: ObjectId(id) });
+
+        if (recipe) {
+            resolve(recipe);
+        } else {
+            reject();
+        }
+    });
+}
+
 Recipe.prototype.addRecipe = function () {
     return new Promise(async (resolve, reject) => {
         this.cleanUp();
@@ -74,7 +91,7 @@ Recipe.prototype.editRecipe = function () {
 
         if (!this.errors.length) {
             try {
-                await recipeCollection.updateOne({ _id: new ObjectId(this.data._id) }, { $set: {
+                await recipeCollection.updateOne({ _id: ObjectId(this.data._id) }, { $set: {
                     title: this.data.title,
                     instructions: this.data.instructions,
                     ingredients: this.data.ingredients,
@@ -97,7 +114,7 @@ Recipe.prototype.editRecipe = function () {
 Recipe.prototype.deleteRecipe = function () {
     return new Promise(async (resolve, reject) => {
         try {
-            await recipeCollection.deleteOne({ _id: new ObjectId(this.data._id) });
+            await recipeCollection.deleteOne({ _id: ObjectId(this.data._id) });
             resolve();
         } catch (err) {
             reject(err);
