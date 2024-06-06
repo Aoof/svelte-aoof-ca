@@ -1,24 +1,11 @@
 import { writable } from "svelte/store";
 
+import { BACKEND_URL } from "$lib/constants";
+import type { Recipe, Ingredient } from "$lib/types";
+
 import axios from "axios";
 
-import { user, BACKEND_URL } from "./auth";
-
-interface Ingredient {
-    ingredient: string;
-    amount: string;
-}
-
-interface Recipe {
-    _id: string;
-    title: string;
-    instructions: string;
-    cookTime: string;
-    foodType: string;
-    tags: string[];
-    vegetarian: boolean;
-    ingredients: Ingredient[];
-}
+import { user } from "./auth";
 
 export const recipes = writable<Recipe[]>([]);
 export const selectedRecipe = writable<Recipe | null>(null);
@@ -32,40 +19,8 @@ export const newRecipe = writable<Recipe>({
     tags: [],
     vegetarian: false,
     ingredients: [],
+    createdDate: new Date().toISOString(),
 });
-
-export const clearSelectedRecipe = () => {
-    selectedRecipe.set(null);
-};
-
-export const selectRecipe = (id: string) => {
-    recipes.subscribe((all) => {
-        selectedRecipe.set(all.find((r) => r._id === id) || null);
-    });
-};
-
-export const addIngredient = (ingredient: Ingredient) => {
-    selectedRecipe.update((recipe) => {
-        if (recipe) {
-            return { ...recipe, ingredients: [...recipe.ingredients, ingredient] };
-        }
-        return null;
-    });
-}
-
-export const addRecipe = () => {
-    newRecipe.subscribe((recipe) => {
-        recipes.update((all) => [recipe, ...all]);
-    });
-};
-
-export const removeRecipe = (id: string) => {
-    recipes.update((all) => all.filter((r) => r._id !== id));
-};
-
-export const updateRecipe = (id: string, recipe: Recipe) => {
-    recipes.update((all) => all.map((r) => (r._id === id ? recipe : r)));
-};
 
 export const getRecipe = (id: string) => {
     recipes.subscribe((all) => {
@@ -73,23 +28,37 @@ export const getRecipe = (id: string) => {
     });
 };
 
-export const getRecipes = () => {
+export const getAllIngredients = (query? : string) => {
     recipes.subscribe((all) => {
-        return all;
+        const ingredients: Ingredient[] = [];
+        all.forEach((r) => {
+            r.ingredients.forEach((i) => {
+                if (query && !i.ingredient.toLowerCase().includes(query.toLowerCase())) { return; }
+
+                if (!ingredients.some((ing) => ing.ingredient === i.ingredient)) {
+                    ingredients.push(i);
+                }
+            });
+        });
+        return ingredients;
     });
-};
+}
 
-export const updateSelectedRecipe = (recipe: Recipe) => {
-    selectedRecipe.set(recipe);
-};
+export const getAllTags = (query? : string) => {
+    recipes.subscribe((all) => {
+        const tags: string[] = [];
+        all.forEach((r) => {
+            r.tags.forEach((t) => {
+                if (query && !t.toLowerCase().includes(query.toLowerCase())) { return; }
 
-export const updateNewRecipe = (recipe: Recipe) => {
-    newRecipe.set(recipe);
-};
-
-export const updateRecipes = (recipe: Recipe) => {
-    recipes.update((all) => all.map((r) => (r._id === recipe._id ? recipe : r)));
-};
+                if (!tags.includes(t)) {
+                    tags.push(t);
+                }
+            });
+        });
+        return tags;
+    });
+}
 
 export const searchRecipes = async (query: string) => { 
     return new Promise(async (resolve, reject) => {
@@ -112,7 +81,7 @@ export const searchRecipes = async (query: string) => {
 }
 
 export const fetchRecipes = async () => {
-    try {
+    return new Promise(async (resolve, reject) => {
         user.subscribe((value) => {
             axios.defaults.headers.common["x-auth-token"] = value.token;
         });
@@ -122,17 +91,15 @@ export const fetchRecipes = async () => {
 
         if (data.ok) {
             recipes.set(data.recipes);
-            return true;
+            resolve(data);
         } else {
-            return false;
+            reject(data);
         }
-    } catch (error: any) {
-        return false;
-    }
+    });
 };
 
 export const fetchRecipe = async (id: string) => {
-    try {
+    return new Promise(async (resolve, reject) => {
         user.subscribe((value) => {
             axios.defaults.headers.common["x-auth-token"] = value.token;
         });
@@ -142,31 +109,34 @@ export const fetchRecipe = async (id: string) => {
 
         if (data.ok) {
             selectedRecipe.set(data.recipe);
+            resolve(data);
+        } else {
+            reject(data);
         }
-    } catch (error: any) {
-        return false;
-    }
+    });
 };
 
-export const addNewRecipe = async (recipe: Recipe) => {
-    try {
-        user.subscribe((value) => {
-            axios.defaults.headers.common["x-auth-token"] = value.token;
+export const addRecipe = async () => {
+    return new Promise(async (resolve, reject) => {
+        newRecipe.subscribe(async (recipe) => {
+            user.subscribe((value) => {
+                axios.defaults.headers.common["x-auth-token"] = value.token;
+            });
+            const response = await axios.post(BACKEND_URL + "/api/recipes", recipe);
+
+            const data = response.data;
+
+            if (data.ok) {
+                resolve(data);
+            } else {
+                reject(data);
+            }
         });
-        const response = await axios.post(BACKEND_URL + "/api/recipes", recipe);
-
-        const data = response.data;
-
-        if (data.ok) {
-            newRecipe.set(data.recipe);
-        }
-    } catch (error: any) {
-        return false;
-    }
+    });
 };
 
 export const updateExistingRecipe = async (id: string, recipe: Recipe) => {
-    try {
+    return new Promise(async (resolve, reject) => {
         user.subscribe((value) => {
             axios.defaults.headers.common["x-auth-token"] = value.token;
         });
@@ -175,15 +145,15 @@ export const updateExistingRecipe = async (id: string, recipe: Recipe) => {
         const data = response.data;
 
         if (data.ok) {
-            recipes.update((all) => all.map((r) => (r._id === id ? recipe : r)));
+            resolve(data);
+        } else {
+            reject(data);
         }
-    } catch (error: any) {
-        return false;
-    }
+    });
 };
 
 export const deleteRecipe = async (id: string) => {
-    try {
+    return new Promise(async (resolve, reject) => {
         user.subscribe((value) => {
             axios.defaults.headers.common["x-auth-token"] = value.token;
         });
@@ -192,9 +162,9 @@ export const deleteRecipe = async (id: string) => {
         const data = response.data;
 
         if (data.ok) {
-            recipes.update((all) => all.filter((r) => r._id !== id));
+            resolve(data);
+        } else {
+            reject(data);
         }
-    } catch (error: any) {
-        return false;
-    }
+    });
 };

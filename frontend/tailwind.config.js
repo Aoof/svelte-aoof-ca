@@ -19,7 +19,7 @@ export default {
       'gray': '#8492a6',
       'gray-light': '#d3dce6',
       'white': '#ffffff',
-      'black': '#000000',
+      'dark': '#282828', // dark is 40, 40, 40 in rgb and #282828 in hex
     },
     fontFamily: {
       sans: ['Raleway', 'sans-serif'],

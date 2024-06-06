@@ -1,6 +1,10 @@
 <script>
-  import { login, register, user } from "../stores/auth";
-  import { addToast } from "../stores/toasts";
+  import { goto } from "$app/navigation";
+  import { login, register, user } from "$lib/../stores/auth";
+  import { addToast } from "$lib/../stores/toasts";
+
+  import Button from "./Button.svelte";
+  import Input from "./Input.svelte";
 
   let username = "";
   let password = "";
@@ -8,6 +12,7 @@
   let registerMode = false;
 
   async function handleSubmit() {
+
     let response;
     if (registerMode) {
       response = await register(username, password);
@@ -23,10 +28,11 @@
       addToast({
         message: response.msg[0],
         type: "success",
-        dismissible: true
+        dismissible: true,
+        timeout: 3000
       });
 
-      window.location.href = "/fae-sparkles";
+      goto("/fae-sparkles");
     } else {
       Array.of(response.msg).forEach((msg) => {
         addToast({
@@ -42,7 +48,7 @@
 
 <style lang="scss">
   main#login {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     width: -webkit-fill-available;
@@ -59,40 +65,23 @@
     form {
       max-width: 700px;
       margin: auto;
-      text-align: left;
+      text-align: right;
+
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      background-color: rgba(40, 40, 40, 0.5);
+      border-radius: 10px;
+
+      padding: 3rem 2rem;
 
       * {
-        font-size: 1.2em;
+        font-size: 1em;
       }
 
       .form-group {
-        padding: 10px 0;
+        text-align: left;
         label {
           user-select: none;
         }
-
-        input {
-          padding: 10px 20px;
-          margin: 5px 0;
-          border-radius: 7px;
-          color: #fff;
-          background-color: rgba(70, 63, 58, 0.2078431373);
-          border: 1px solid rgb(255, 255, 255);
-          width: -webkit-fill-available;
-          width: -moz-available;
-          width: stretch;
-        }
-      }
-
-      .btn {
-        border: none;
-        border-radius: 9px;
-        padding: 10px 25px;
-        cursor: pointer;
-        background-color: #e0afa0;
-        color: #463f3a;
-        font-weight: 600;
-        margin: 20px 0;
       }
     }
 
@@ -110,12 +99,12 @@
   <form on:submit|preventDefault>
     <div class="form-group">
       <label for="username">Username</label><br />
-      <input type="text" id="username" name="username" bind:value={username} />
+      <Input type="text" placeholder="Username" id="username" name="username" bind:value={username} />
     </div>
     <div class="form-group">
       <label for="password">Password</label><br />
-      <input type="password" id="password" name="password" bind:value={password} />
+      <Input type="password" placeholder="Password" id="password" name="password" bind:value={password} />
     </div>
-    <input type="submit" value="{registerMode ? 'Register' : 'Login'}" class="btn btn-submit" on:click={handleSubmit} />
+    <Button className="px-5" text={registerMode ? "Register" : "Login"} on:click={handleSubmit} />
   </form>
 </main>

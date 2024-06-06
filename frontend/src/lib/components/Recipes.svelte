@@ -4,8 +4,11 @@
     import { onMount } from 'svelte';
     import { writable } from 'svelte/store';
 
-    import Loader from '$lib/../components/Loader.svelte';
+    import Loader from '$lib/components/Loader.svelte';
     import { addToast } from '$lib/../stores/toasts';
+    
+    import RecipeCard from './RecipeCard.svelte';
+    import Input from './Input.svelte';
 
     const isLoaded = writable(false);
 
@@ -28,6 +31,8 @@
     const limit = writable(10);
 
     let searchQuery = '';
+    let tagsQuery = [];
+    let ingredientsQuery = [];
 
     async function handleSearchEvents(event : KeyboardEvent) {
         if (event.key === 'Enter') {
@@ -37,34 +42,14 @@
     }
 </script>
 
-<style>
-    input.search {
-        width: 100%;
-        padding: 0.75rem 1.5rem;
-        margin: 1rem 0;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #fff;
-        background-color: rgba(138, 129, 124, 0.3450980392);
-        background-clip: padding-box;
-        border: 1px solid #ced4da;
-        border-radius: 0.25rem;
-        font-size: 1rem;
-    }
-</style>
-
 <article>
-    <input type="text" placeholder="Search" class="search" on:keydown={handleSearchEvents} bind:value={searchQuery} />
+    <Input type="text" placeholder="Search" className="search" on:input={(event) => handleSearchEvents(event.detail)} bind:value={searchQuery} />
     <div class="recipes-wrapper">
         {#if !$isLoaded}
             <Loader />
         {:else if $recipes.length > 0}
             {#each $recipes as recipe}
-                <div class="recipe-card">
-                    <h2>{recipe.title}</h2>
-                    <p>{recipe.ingredients}</p>
-                    <p>{recipe.instructions}</p>
-                </div>
+                <RecipeCard recipe={recipe} />
             {/each}
         {:else}
             <p>No recipes found</p>

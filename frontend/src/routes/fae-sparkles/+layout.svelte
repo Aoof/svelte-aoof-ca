@@ -1,7 +1,7 @@
 <script>
     import { isLoggedIn, user, loggedIn } from '$lib/../stores/auth';
-    import Login from '$lib/../components/Login.svelte';
-    import Loader from '$lib/../components/Loader.svelte';
+    import Login from '$lib/components/Login.svelte';
+    import Loader from '$lib/components/Loader.svelte';
 
     import favicon from '$lib/media/fae_favicon.png'
 
@@ -10,9 +10,7 @@
 
     onMount(async () => {
         user.set({ username: localStorage.getItem('username') || '', token: localStorage.getItem('token') || '' });
-        loggedIn.subscribe(async (value) => {
-            if (value != 1)  loggedIn.set(await isLoggedIn() ? 1 : 0);
-        });
+        loggedIn.set(await isLoggedIn() ? 1 : 0);
     });
 </script>
 

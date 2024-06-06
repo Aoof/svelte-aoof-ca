@@ -1,21 +1,29 @@
-<script>
+<script lang="ts">
     // User is logged in this is the page that will be displayed
     import { addToast } from '$lib/../stores/toasts';
-    import { newRecipe as recipe, addRecipe, getRecipes } from '$lib/../stores/recipes';
-    import { navigate } from 'svelte-routing';
+    import { newRecipe as recipe, addRecipe } from '$lib/../stores/recipes';
     import { onMount } from 'svelte';
 
-    import Button from '$lib/../components/Button.svelte';
+    import Button from '$lib/components/Button.svelte';
+    import Input from '$lib/components/Input.svelte';
+    
+    import { goto } from '$app/navigation';
 
-    function handleSubmission() {
-        addRecipe();
-        addToast({
-            message: "Recipe added",
-            type: "success",
-            dismissible: true
+    async function handleSubmission() {
+        addRecipe().then(() => {
+            addToast({
+                message: "Recipe added",
+                type: "success",
+                dismissible: true
+            });
+            goto('/fae-sparkles');
+        }).catch(e => {
+            addToast({
+                message: "Failed to add recipe",
+                type: "error",
+                dismissible: true
+            });
         });
-
-        console.log(getRecipes());
     }
 
     onMount(() => {
@@ -27,30 +35,23 @@
             ingredients: [],
             instructions: '',
             tags: [],
-            vegetarian: false
+            vegetarian: true,
+            createdDate: '',
         });
     });
 
-    /**
-     * Handle keystrokes for adding ingredients
-     * @param {KeyboardEvent} event
-     */
-    function handleKeystrokes(event) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
+    function handleIngredientKeydown(event : CustomEvent<KeyboardEvent>) {
+        if (event.detail.key === 'Enter') {
+            event.detail.preventDefault();
             handleAddIngredient();
         }
-        if (event.key === 'Backspace' && currentIngredient.ingredient === '') {
-            event.preventDefault();
+        if (event.detail.key === 'Backspace' && currentIngredient.ingredient === '') {
+            if (currentIngredient.amount == '') event.detail.preventDefault();
             removeIngredient();
         }
     }
-
-    /**
-     * Remove the last ingredient from the recipe
-     * @param {string} ingredient
-     */
-    function removeIngredient(ingredient = '') {
+    
+    function removeIngredient(ingredient : string = '') {
             recipe.update(currentRecipe => {
                 if (currentRecipe.ingredients.length === 0) {
                     return currentRecipe;
@@ -66,6 +67,10 @@
     }
 
     function handleAddIngredient() {
+        if (!currentIngredient.ingredient) {
+            return;
+        }
+
         recipe.update(currentRecipe => {
             currentRecipe.ingredients.push(currentIngredient);
             return currentRecipe;
@@ -89,37 +94,45 @@
         text-align: left;
         padding-top: 70px;
 
-        .mb-4 {
-            .input-label {
-                user-select: none;
-                width: stretch;
-                font-size: 1.2em;
-                line-height: 1.5em;
-                padding-bottom: 2rem;
-            }
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        background-color: rgba(40, 40, 40, 0.5);
+        border-radius: 10px;
 
-            input, select, textarea {    
-                width: 100%;
-                padding: 0.75rem 1.5rem;
-                font-weight: 400;
-                line-height: 1.5;
-                color: #fff;
-                background-color: rgba(138, 129, 124, 0.3450980392);
-                background-clip: padding-box;
-                border: 1px solid #ced4da;
-                border-radius: 0.25rem;
-                font-size: 1.5rem;
-            }
+        padding: 3rem 2rem;
+        margin: 2rem auto;
+
+        .ingredients-container {
+
+        }
+
+        select {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            margin: 1rem 0;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #fff;
+            background-color: rgba(40, 40, 40);
+            background-clip: padding-box;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+        }
+
+        .input-label {
+            user-select: none;
+            width: stretch;
+            font-size: 1.2em;
+            line-height: 1.5em;
         }
     }
 </style>
 
 <form on:submit|preventDefault>
-    <div class="mb-4">
+    <div class='pt-2 pb-1'>
         <label class="input-label" for="title">Title</label>
-        <input type="text" name="title" id="title" bind:value={$recipe.title}>
+        <Input type="text" name="title" id="title" bind:value={$recipe.title} />
     </div>
-    <div class="mb-4">
+    <div class='pt-2 pb-1'>
         <label class="input-label" for="cookTime">Cook Time</label>
         <select name="cookTime" id="cookTime" bind:value={$recipe.cookTime}>
             <option value="Under 10 minutes">Under 10 minutes</option>
@@ -128,7 +141,7 @@
             <option value="Over an hour">Over an hour</option>
         </select>
     </div>
-    <div class="mb-4">
+    <div class='pt-2 pb-1'>
         <label class="input-label" for="foodType">Food Type</label>
         <select name="foodType" id="foodType" bind:value={$recipe.foodType}>
             <option value="Appetizer">Appetizer</option>
@@ -139,59 +152,43 @@
             <option value="Drink">Drink</option>
         </select>
     </div>
-    <div class="mb-4">
+    <div class='pt-2 pb-1'>
         <label class="input-label" for="">Ingredients</label>
         <div>
-            <div class="grid grid-cols-12 gap-2">
+            <div class="grid grid-cols-12 gap-2 mt-3">
                 <div class="col-span-3 text-sm">Amount</div>
                 <div class="col-span-9 text-sm">Name</div>
             </div>
         </div>
-        <div class="grid grid-cols-12 gap-2">
+        <div class="grid grid-cols-12 gap-2 ingredients-container">
             {#each $recipe.ingredients as ingredient, i}
-                <input type="text" class="col-span-3" bind:value={ingredient.amount}>
-                <div class="col-span-8">
-                    <input type="text" bind:value={ingredient.ingredient}>
-                    <div id="results-container-1">
-                        <ul class="results-list"></ul>
-                    </div>
-                </div>
-                <Button text="-" callback={() => removeIngredient(ingredient.ingredient)} className="col-span-1" />
+                <Input type="text" className="col-span-3" bind:value={ingredient.amount} />
+                <Input type="text" className="col-span-8" bind:value={ingredient.ingredient} autofill={true} />
+
+                <Button text="-" className="col-span-1 text-center" on:click={() => removeIngredient(ingredient.ingredient)} />
             {/each}
-            <input type="text" class="col-span-3" bind:value={currentIngredient.amount} on:keydown={handleKeystrokes}>
-            <div class="col-span-9">
-                <input type="text" bind:value={currentIngredient.ingredient} on:keydown={handleKeystrokes}>
-                <div id="results-container-1">
-                    <ul class="results-list"></ul>
-                </div>
-            </div>
-            <Button text="+" callback={handleAddIngredient} className="col-span-12" />
+            <Input type="text" className="col-span-3" bind:value={currentIngredient.amount} on:keydown={handleIngredientKeydown} />
+            <Input type="text" className="col-span-9" bind:value={currentIngredient.ingredient} on:keydown={handleIngredientKeydown} autofill={true} />
+
+            <Button text="+" className="col-span-12" style='background-color: #E0AFA0;' on:click={handleAddIngredient} />
         </div>
     </div>
-    <div class="mb-4">
+    <div class='pt-4 pb-1'>
         <label class="input-label" for="instructions">Instructions</label>
-        <textarea name="instructions" id="instructions" ></textarea>
+        <Input type="textarea" name="instructions" id="instructions" bind:value={$recipe.instructions} />
     </div>
-    <div class="mb-4">
+    <div class='pt-2 pb-1'>
         <label class="input-label" for="tags">Tags</label>
-        <div>
-            <div>
-                <input type="text" id="tags">
-                <div id="results-container-2">
-                    <ul class="results-list"></ul>
-                </div>
-            </div>
-        </div>
+        <Input type="text" id="tags" autofill={true} />
     </div>
 
-    <div class="mb-4">
+    <div>
         <label for="vegetarian">Vegetarian?</label>
-        <input type="checkbox" name="vegetarian" id="vegetarian">
+        <Input type="checkbox" name="vegetarian" id="vegetarian" bind:value={$recipe.vegetarian} />
     </div>
     
-    <div class="mb-4">
-        <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>">
-        <Button text="Cancel" callback={() => window.location.href = '/fae-sparkles'} />
-        <Button text="Add" callback={handleSubmission} />
+    <div class="text-right">
+        <Button text="Cancel" on:click={() => goto('/fae-sparkles')} />
+        <Button text="Add" on:click={handleSubmission} style='background-color: #E0AFA0' />
     </div>
 </form>

@@ -1,14 +1,9 @@
 import { writable } from 'svelte/store';
 
+import { BACKEND_URL } from '$lib/constants';
+import type { User } from '$lib/types';
+
 import axios from 'axios';
-
-export const BACKEND_URL = 'http://127.0.0.1:8080';
-
-interface User {
-    id?: string;
-    username: string;
-    token: string;
-}
 
 export const user = writable({ username: '', token: '' } as User);
 
