@@ -1,5 +1,6 @@
 <script lang="ts">
     import { recipes, searchRecipes, fetchRecipes } from '$lib/../stores/recipes';
+    import { RECIPES_LIMIT } from '$lib/constants';
 
     import { onMount } from 'svelte';
     import { writable } from 'svelte/store';
@@ -9,6 +10,12 @@
     
     import RecipeCard from './RecipeCard.svelte';
     import Input from './Input.svelte';
+    import Button from './Button.svelte';
+    import SearchBar from './SearchBar.svelte';
+
+    const page = writable(1);
+    const pages = writable(3);
+    const limit = RECIPES_LIMIT;
 
     const isLoaded = writable(false);
 
@@ -23,34 +30,36 @@
             return;
         } else {
             isLoaded.set(true);
+            recipes.subscribe(r => {
+                pages.set(Math.ceil(r.length / limit));
+            });
         }
     });
-
-    const page = writable(1);
-    const pages = writable(1);
-    const limit = writable(10);
-
-    let searchQuery = '';
-    let tagsQuery = [];
-    let ingredientsQuery = [];
-
-    async function handleSearchEvents(event : KeyboardEvent) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            searchRecipes(searchQuery);
-        }
-    }
 </script>
 
 <article>
-    <Input type="text" placeholder="Search" className="search" on:input={(event) => handleSearchEvents(event.detail)} bind:value={searchQuery} />
+    {#if $pages > 1}
+        <div class="pagination text-center mt-4">
+            <Button on:click={() => $page - 1 > 0 ? page.update(n => n - 1) : null} text="&lt;" />
+            <Button text={`${$page} / ${$pages}`} />
+            <Button on:click={() => $page + 1 <= $pages ? page.update(n => n + 1) : null} text="&gt;" />
+        </div>
+    {/if}
+    <SearchBar />
     <div class="recipes-wrapper">
         {#if !$isLoaded}
             <Loader />
         {:else if $recipes.length > 0}
-            {#each $recipes as recipe}
+            {#each $recipes.slice(($page - 1) * limit, $page * limit) as recipe, i}
                 <RecipeCard recipe={recipe} />
             {/each}
+            {#if $pages > 1}
+                <div class="pagination text-center">
+                    <Button on:click={() => $page - 1 > 0 ? page.update(n => n - 1) : null} text="&lt;" />
+                    <Button text={`${$page} / ${$pages}`} />
+                    <Button on:click={() => $page + 1 <= $pages ? page.update(n => n + 1) : null} text="&gt;" />
+                </div>
+            {/if}
         {:else}
             <p>No recipes found</p>
         {/if}

@@ -1,5 +1,6 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
+  import type { ChangeEventHandler } from "svelte/elements";
 
     import { writable } from "svelte/store";
 

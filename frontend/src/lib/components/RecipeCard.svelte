@@ -47,6 +47,7 @@
     
     padding: 1rem;
     margin: 1rem 0;
+    padding-top: 2rem;
     cursor: pointer;
 
     * {
@@ -65,14 +66,17 @@
         &:hover {
           background-color: #e0afa0d3;
         }
+
+        @media (max-width: 768px) {
+            font-size: 0.75rem;
+        }
     }
 
     .created-date {
         margin-top: 1rem;
         font-size: 0.75rem;
-        position: absolute; 
-        bottom: 1rem;
-        right: 1rem;
+        width: stretch;
+        text-align: right;
     }
 
     .vegetarian {
@@ -92,7 +96,7 @@
   }
 </style>
 
-<div class="recipe select-none relative">
+<a class="recipe select-none relative" href="/fae-sparkles/recipes/{recipe._id}">
     {#if recipe.vegetarian}
       <div class="vegetarian">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -103,7 +107,7 @@
     {/if}
     <h2 class="w-full text-3xl my-3">{recipe.title}</h2>
     <p class="w-full text-xl my-3">{recipe.foodType} - {recipe.cookTime}</p>
-    <div class="flex flex-row w-full">
+    <div class="flex flex-row w-full flex-wrap">
         {#each recipe.tags as tag}
             <p class="tag">{tag}</p>
         {/each}
@@ -112,4 +116,4 @@
     <div class="created-date">
         <p>Created: {createdDate}</p>
     </div>
-</div>
+</a>

@@ -8,6 +8,8 @@ import axios from "axios";
 import { user } from "./auth";
 
 export const recipes = writable<Recipe[]>([]);
+export const allRecipes = writable<Recipe[]>([]);
+
 export const selectedRecipe = writable<Recipe | null>(null);
 
 export const newRecipe = writable<Recipe>({
@@ -60,25 +62,23 @@ export const getAllTags = (query? : string) => {
     });
 }
 
-export const searchRecipes = async (query: string) => { 
-    return new Promise(async (resolve, reject) => {
-        await fetchRecipes();
-        recipes.subscribe((all) => {
-            recipes.set(all.filter((r) => {
-                return (
-                    r.title.toLowerCase().includes(query.toLowerCase()) ||
-                    r.ingredients.some((i) => i.ingredient.toLowerCase().includes(query.toLowerCase())) ||
-                    r.tags.some((t) => t.toLowerCase().includes(query.toLowerCase())) ||
-                    r.foodType.toLowerCase().includes(query.toLowerCase()) ||
-                    r.cookTime.toLowerCase().includes(query.toLowerCase()) ||
-                    r.vegetarian.toString().toLowerCase().includes(query.toLowerCase())
-                );
-            }))
-        });
+export const searchRecipes = (query: string) => {
+    let queries = query.split("+").map((q) => q.trim());    
+    // Lots of nested stuff but basically we filter the recipes based on the queries
 
-        resolve(recipes);
+    allRecipes.subscribe((all) => {
+        recipes.set(all.filter((r) => {
+            return queries.every((q) => {
+                return (
+                    r.title.toLowerCase().includes(q.toLowerCase()) ||
+                    r.ingredients.some((i) => i.ingredient.toLowerCase().includes(q.toLowerCase())) ||
+                    r.tags.some((t) => t.toLowerCase().includes(q.toLowerCase())) ||
+                    r.foodType.toLowerCase().includes(q.toLowerCase()) 
+                );
+            });
+        }))
     });
-}
+};
 
 export const fetchRecipes = async () => {
     return new Promise(async (resolve, reject) => {
@@ -91,6 +91,7 @@ export const fetchRecipes = async () => {
 
         if (data.ok) {
             recipes.set(data.recipes);
+            allRecipes.set(data.recipes);
             resolve(data);
         } else {
             reject(data);

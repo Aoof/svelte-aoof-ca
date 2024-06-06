@@ -101,10 +101,6 @@
         padding: 3rem 2rem;
         margin: 2rem auto;
 
-        .ingredients-container {
-
-        }
-
         select {
             width: 100%;
             padding: 0.75rem 1.5rem;

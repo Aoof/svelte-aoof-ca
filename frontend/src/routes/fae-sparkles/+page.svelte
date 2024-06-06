@@ -32,7 +32,7 @@
             <h1>Fae's Grimoire</h1>
         </a>
     </div>
-    <div class="actions-wrapper flex justify-between">
+    <div class="actions-wrapper flex justify-between mt-4">
         <Button text="Add" on:click={() => {goto('/fae-sparkles/add-recipe')}} />
         <Button text="Logout" on:click={handleLogout} />
     </div>
