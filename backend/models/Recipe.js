@@ -39,7 +39,7 @@ Recipe.prototype.cleanUp = function () {
         cookTime: this.data.cookTime,
         tags: this.data.tags,
         vegetarian: this.data.vegetarian,
-        createdDate: _id != '' || _id != undefined? this.data.createdDate : new Date()
+        createdDate: _id != '' || _id != undefined? this.data.createdDate : new Date().toUTCString()
     }
 
     if (_id != '' || _id != undefined) {
@@ -55,9 +55,6 @@ Recipe.prototype.validate = function () {
         if (this.data.cookTime == "") { this.errors.push("You must provide a cook time."); }
         if (this.data.foodType == "") { this.errors.push("You must provide a food type."); }
 
-        let recipeWithTitle = await recipeCollection.findOne({ title: this.data.title });
-        if (recipeWithTitle && !this.updateMode) { this.errors.push("That title is already taken."); }
-
         resolve();
     });
 }
@@ -65,7 +62,7 @@ Recipe.prototype.validate = function () {
 Recipe.prototype.findById = function (id) {
     return new Promise(async (resolve, reject) => {
         if (typeof (id) != "string" || !ObjectId.isValid(id)) {
-            reject({ok: false, msg: ['Invalid ID']});
+            reject('Invalid ID');
             return;
         }
 
@@ -74,7 +71,7 @@ Recipe.prototype.findById = function (id) {
         if (recipe) {
             resolve(recipe);
         } else {
-            reject({ok: false, msg: ['Recipe not found']});
+            reject('Recipe not found');
         }
     });
 }
@@ -86,8 +83,9 @@ Recipe.prototype.addRecipe = function () {
 
         if (!this.errors.length) {
             try {
-                await recipeCollection.insertOne(this.data);
-                resolve();
+                recipeCollection.insertOne(this.data).then((res) => {
+                    resolve(res._id);
+                })
             } catch (err) {
                 reject(err);
             }
@@ -112,7 +110,7 @@ Recipe.prototype.editRecipe = function () {
                     foodType: this.data.foodType,
                     vegetarian: this.data.vegetarian,
                     tags: this.data.tags,
-                    createdDate: new Date(this.data.createdDate)
+                    createdDate: new Date(this.data.createdDate).toUTCString()
                 } })
                 resolve();
             } catch (err) {

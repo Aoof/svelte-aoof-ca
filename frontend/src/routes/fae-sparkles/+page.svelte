@@ -14,7 +14,8 @@
         addToast({
             message: "Logout successful",
             type: "success",
-            dismissible: true
+            dismissible: true,
+            timeout: 3000
         });
 
         window.location.reload();

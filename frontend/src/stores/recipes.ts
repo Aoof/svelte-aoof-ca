@@ -16,10 +16,10 @@ export const newRecipe = writable<Recipe>({
     _id: "",
     title: "",
     instructions: "",
-    cookTime: "",
-    foodType: "",
+    cookTime: "30-60 minutes",
+    foodType: "Appetizer",
     tags: [],
-    vegetarian: false,
+    vegetarian: true,
     ingredients: [],
     createdDate: new Date().toISOString(),
 });
@@ -132,6 +132,7 @@ export const fetchRecipe = async (id: string) => {
 export const addRecipe = async () => {
     return new Promise(async (resolve, reject) => {
         newRecipe.subscribe(async (recipe) => {
+            console.log(recipe);
             user.subscribe((value) => {
                 axios.defaults.headers.common["x-auth-token"] = value.token;
             });

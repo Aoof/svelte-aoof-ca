@@ -15,10 +15,10 @@ exports.createRecipe = async (req, res) => {
       vegetarian
     });
 
-    const recipe = await newRecipe.save();
+    const recipe = await newRecipe.addRecipe();
     res.json({ recipe, ok: true, msg: ['Recipe created']});
   } catch (err) {
-    res.send({ ok: false, msg: ['Server error'] });
+    res.json({ ok: false, msg: ['Server error'] });
   }
 };
 
@@ -29,7 +29,8 @@ exports.getRecipes = async (req, res) => {
     const recipes = await recipe.getRecipes();
     res.json({ recipes, ok: true, msg: ['Recipes found']});
   } catch (err) {
-    res.send({ ok: false, msg: ['Server error'] });
+    err = Array.isArray(err) ? err : [err];
+    res.json({ ok: false, msg: err });
   }
 };
 
@@ -45,56 +46,35 @@ exports.getRecipeById = async (req, res) => {
 
     res.json({recipe, ok: true, msg: ['Recipe found']});
   } catch (err) {
-    res.send({ ok: false, msg: ['Server error'] });
+    err = Array.isArray(err) ? err : [err];
+    res.json({ ok: false, msg: err });
   }
 };
 
 // Update a recipe by ID
 exports.updateRecipe = async (req, res) => {
-  const { title, instructions, ingredients, foodType, cookTime, tags, vegetarian } = req.body;
-
-  const recipeFields = {};
-  if (title) recipeFields.title = title;
-  if (instructions) recipeFields.instructions = instructions;
-  if (ingredients) recipeFields.ingredients = ingredients;
-  if (foodType) recipeFields.foodType = foodType;
-  if (cookTime) recipeFields.cookTime = cookTime;
-  if (tags) recipeFields.tags = tags;
-  if (vegetarian !== undefined) recipeFields.vegetarian = vegetarian;
-
   try {
-    let recipe = await Recipe.findById(req.params.id);
+    req.body._id = req.params.id;
+    let recipe = new Recipe(req.body);
 
-    if (!recipe) {
-      return res.json({ ok: false, msg: ['Recipe not found'] });
-    }
-
-    recipe = await Recipe.findByIdAndUpdate(
-      req.params.id,
-      { $set: recipeFields },
-      { new: true }
-    );
+    await recipe.editRecipe();
 
     res.json({ recipe, ok: true, msg: ['Recipe updated'] });
   } catch (err) {
-    res.send({ ok: false, msg: ['Server error'] });
+    err = Array.isArray(err) ? err : [err];
+    res.json({ ok: false, msg: err });
   }
 };
 
-// Delete a recipe by ID
 exports.deleteRecipe = async (req, res) => {
   try {
-    const recipe = await Recipe.findById(req.params.id);
+    let recipe = new Recipe({ _id: req.params.id });
 
-    if (!recipe) {
-      return res.json({ ok: false, msg: ['Recipe not found'] });
-    }
-
-    await recipe.remove();
+    await recipe.deleteRecipe();
 
     res.json({ ok: true, msg: ['Recipe removed'] });
   } catch (err) {
-    console.error(err.message);
-    res.send({ ok: false, msg: ['Server error'] });
+    err = Array.isArray(err) ? err : [err];
+    res.json({ ok: false, msg: err });
   }
 };

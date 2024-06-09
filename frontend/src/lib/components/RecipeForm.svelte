@@ -33,14 +33,16 @@
             addToast({
                 message: "Recipe added",
                 type: "success",
-                dismissible: true
+                dismissible: true,
+                timeout: 3000
             });
             goto('/fae-sparkles');
         }).catch(e => {
             addToast({
                 message: "Failed to add recipe",
                 type: "error",
-                dismissible: true
+                dismissible: true,
+                timeout: 3000
             });
         });
     }
@@ -50,15 +52,19 @@
             addToast({
                 message: "Recipe updated",
                 type: "success",
-                dismissible: true
+                dismissible: true,
+                timeout: 3000
             });
             goto('/fae-sparkles');
         }).catch(e => {
-            addToast({
-                message: "Failed to update recipe",
-                type: "error",
-                dismissible: true
-            });
+            e.msg.forEach((err : string) => {
+                addToast({
+                    message: err,
+                    type: "error",
+                    dismissible: true,
+                    timeout: 3000
+                });
+            })
         });
     }
 
@@ -252,6 +258,6 @@
             clearTags();
             goto('/fae-sparkles');
         }} />
-        <Button text="Add" on:click={handleSubmission} style='background-color: #E0AFA0' />
+        <Button text={$recipe._id ? "Update" : "Add"} on:click={handleSubmission} style='background-color: #E0AFA0' />
     </div>
 </form>

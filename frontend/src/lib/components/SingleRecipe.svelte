@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { marked } from 'marked';
+    import { parse } from 'marked';
 
     import { onMount } from 'svelte';
     import { goto } from '$app/navigation';
@@ -29,7 +29,7 @@
 
 <style lang="scss">
     .recipe-wrapper {
-        max-width: 700px;
+        width: 700px;
         margin: auto;
         text-align: left;
         padding-top: 70px;
@@ -63,7 +63,7 @@
                         <li class="my-2">{ingredient.amount} {ingredient.ingredient}</li>
                     {/each}
                 </ul>
-                <p class="!my-4">{@html marked($recipe.instructions)}</p>
+                <p class="!my-4">{@html parse($recipe.instructions.replaceAll('\n', '<br>'))}</p>
                 <p>{#each $recipe.tags as tag, i}
                     <Tag text={tag} className="{i == 0 ? '!ml-0' : ''}" />
                 {/each}</p>

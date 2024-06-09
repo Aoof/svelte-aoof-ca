@@ -38,7 +38,8 @@
         addToast({
           message: msg,
           type: "error",
-          dismissible: true
+          dismissible: true,
+          timeout: 3000
         });
       });
     }
