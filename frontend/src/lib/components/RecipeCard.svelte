@@ -79,7 +79,7 @@
 <a class="recipe select-none relative" href="/fae-sparkles/recipe/{recipe._id}">
     {#if recipe.vegetarian}
       <div class="vegetarian">
-        <i class="fas fa-leaf text-green text-xl"></i>
+        <i class="fas fa-leaf !text-green !text-xl"></i>
       </div>
     {/if}
     <h2 class="w-full text-2xl my-1">{recipe.title}</h2>

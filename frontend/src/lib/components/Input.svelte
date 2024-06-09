@@ -1,10 +1,9 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import type { ChangeEventHandler } from "svelte/elements";
 
   import Tag from "./Tag.svelte";
 
-  import { writable } from "svelte/store";
+  import { removeTag, addTag, tags as currentTags } from "$lib/../stores/tags";
 
   export let className: string = "";
   export let placeholder: string = "";
@@ -20,6 +19,19 @@
 
   function handleKeydown(event: KeyboardEvent) {
     dispatch("keydown", event);
+    if (!autofill || !isTags) return;
+
+    if (event.key === "Backspace" && value === "" && tags.length > 0) {
+      removeTag(tags[tags.length - 1]);
+    }
+    if (event.key === "Enter" || event.key === "Tab" || event.key === "+") {
+      value.split("+").forEach((val : string) => {
+        if (val !== "" && $currentTags.indexOf(val.trim()) === -1){
+          addTag(val.trim());
+        }
+      });
+      value = "";
+    }
   }
   function handleFocus(event: FocusEvent) {
     dispatch("focus", event);
@@ -101,7 +113,7 @@
     {#if isTags}
       <div class="tags-container">
         {#each tags as tag, i}
-          <Tag text={tag} className="{i == 0 ? '!ml-0' : ''}" />
+          <Tag text={tag} className="{i == 0 ? '!ml-0' : ''}" override={true} owonclick={() => {removeTag(tag)}} />
         {/each}
       </div>
     {/if}
@@ -113,7 +125,6 @@
       on:keydown={handleKeydown}
       on:focus={handleFocus}
       on:blur={handleBlur}
-      autocomplete="on"
       {...$$restProps}
     />
     <div id="results-container">
@@ -156,8 +167,17 @@
 
     display: flex;
     flex-direction: row;
-    align-items: left;
+    align-items: center;
     justify-content: left;
+    flex-wrap: wrap;
+
+    .tags-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: left;
+      flex-wrap: wrap;
+    }
 
     input {
       border: none;
@@ -166,7 +186,7 @@
       color: #fff;
       font-size: 1rem;
 
-      width: 100%;
+      min-width: 200px;
       &:focus {
         outline: none;
       }

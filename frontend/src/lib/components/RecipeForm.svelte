@@ -2,7 +2,6 @@
     // User is logged in this is the page that will be displayed
     import { addToast } from '$lib/../stores/toasts';
     import { newRecipe, addRecipe, updateRecipe } from '$lib/../stores/recipes';
-    import { onMount } from 'svelte';
 
     import Button from '$lib/components/Button.svelte';
     import Input from '$lib/components/Input.svelte';
@@ -58,8 +57,8 @@
             event.detail.preventDefault();
             handleAddIngredient();
         }
-        if (event.detail.key === 'Backspace' && currentIngredient.ingredient === '') {
-            if (currentIngredient.amount == '') event.detail.preventDefault();
+        if (event.detail.key === 'Backspace' && currentIngredient.ingredient === '' && currentIngredient.amount === '') {
+            event.detail.preventDefault();
             removeIngredient();
         }
     }
@@ -138,6 +137,9 @@
 </style>
 
 <form on:submit|preventDefault>
+    <div class="text-right">
+        <Button text="<i class='fas fa-x text-white'></i>" on:click={() => goto('/fae-sparkles')} />
+    </div>
     <div class='pt-2 pb-1'>
         <label class="input-label" for="title">Title</label>
         <Input type="text" name="title" id="title" bind:value={$recipe.title} />

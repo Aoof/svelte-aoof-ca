@@ -35,5 +35,25 @@
             background-color: rgba(0, 0, 0, 0.5);
             cursor: not-allowed;
         }
+
+        &.b-white {
+            color: white;
+        }
+
+        &.b-info {
+            color: white;
+            &:hover {
+                color: black;
+                background-color: rgb(177, 177, 177);
+            }
+        }
+
+        &.b-red {
+            color: white;
+            &:hover {
+                color: black;
+                background-color: #f22613;
+            }
+        }
     }
 </style>
