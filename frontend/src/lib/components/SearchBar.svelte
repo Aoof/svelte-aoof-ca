@@ -1,7 +1,7 @@
 <script lang="ts">
     import { writable } from "svelte/store";
     import { searchRecipes } from "$lib/../stores/recipes";
-    import { tags } from "$lib/../stores/tags";
+    import { searchTags as tags } from "$lib/../stores/tags";
 
     import Input from "./Input.svelte";
 

@@ -3,12 +3,18 @@
 
   import Tag from "./Tag.svelte";
 
-  import { removeTag, addTag, tags as currentTags } from "$lib/../stores/tags";
+  import { 
+    removeSearchTag as removeTag, 
+    addSearchTag as addTag, 
+    searchTags as currentTags 
+  } from "$lib/../stores/tags";
 
   export let className: string = "";
   export let placeholder: string = "";
   export let type: string = "text";
   export let value: any = "";
+
+  export let override: boolean = false;
 
   export let autofill: boolean = false;
   export let isTags: boolean = false;
@@ -19,12 +25,13 @@
 
   function handleKeydown(event: KeyboardEvent) {
     dispatch("keydown", event);
-    if (!autofill || !isTags) return;
+    if (!autofill || !isTags || override) return;
 
     if (event.key === "Backspace" && value === "" && tags.length > 0) {
       removeTag(tags[tags.length - 1]);
     }
     if (event.key === "Enter" || event.key === "Tab" || event.key === "+") {
+      if (event.key == "+") event.preventDefault();
       value.split("+").forEach((val : string) => {
         if (val !== "" && $currentTags.indexOf(val.trim()) === -1){
           addTag(val.trim());
@@ -219,6 +226,6 @@
   }
 
   textarea {
-    min-height: 200px;
+    min-height: 300px;
   }
 </style>

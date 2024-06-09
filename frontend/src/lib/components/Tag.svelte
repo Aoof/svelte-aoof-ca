@@ -1,7 +1,10 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
 
-    import { addTag, tags } from "$lib/../stores/tags";
+    import { 
+        addSearchTag as addTag, 
+        searchTags as tags 
+    } from "$lib/../stores/tags";
 
     export let text;
     export let className = '';
@@ -13,14 +16,15 @@
         if (override) {
             owonclick(event);
             return;
-        }
-        event.preventDefault();
-        if ($tags.includes(text)) {
+        } else {
+            event.preventDefault();
+            if ($tags.includes(text)) {
+                goto('/fae-sparkles');
+                return;
+            }
+            addTag(text);
             goto('/fae-sparkles');
-            return;
         }
-        addTag(text);
-        goto('/fae-sparkles');
     };
 </script>
 
