@@ -25,8 +25,20 @@ export const newRecipe = writable<Recipe>({
 });
 
 export const getRecipe = (id: string) => {
-    recipes.subscribe((all) => {
-        return all.find((r) => r._id === id);
+    return new Promise(async (resolve, reject) => {
+        user.subscribe((value) => {
+            axios.defaults.headers.common["x-auth-token"] = value.token;
+        });
+        const response = await axios.get(BACKEND_URL + "/api/recipes/" + id);
+
+        const data = response.data;
+
+        if (data.ok) {
+            newRecipe.set(data.recipe)
+            resolve(data.recipe);
+        } else {
+            reject(data);
+        }
     });
 };
 
@@ -136,20 +148,27 @@ export const addRecipe = async () => {
     });
 };
 
-export const updateExistingRecipe = async (id: string, recipe: Recipe) => {
+export const updateRecipe = async () => {
     return new Promise(async (resolve, reject) => {
-        user.subscribe((value) => {
-            axios.defaults.headers.common["x-auth-token"] = value.token;
+        newRecipe.subscribe(async (recipe) => {
+            if (!recipe._id) {
+                reject({ ok: false, message: "Recipe ID not found" });
+                return;
+            }
+
+            user.subscribe((value) => {
+                axios.defaults.headers.common["x-auth-token"] = value.token;
+            });
+            const response = await axios.put(BACKEND_URL + "/api/recipes/" + recipe._id, recipe);
+
+            const data = response.data;
+
+            if (data.ok) {
+                resolve(data);
+            } else {
+                reject(data);
+            }
         });
-        const response = await axios.put(BACKEND_URL + "/api/recipes/" + id, recipe);
-
-        const data = response.data;
-
-        if (data.ok) {
-            resolve(data);
-        } else {
-            reject(data);
-        }
     });
 };
 

@@ -6,7 +6,6 @@
     import favicon from '$lib/media/fae_favicon.png'
 
     import { onMount } from 'svelte';
-    import { writable } from 'svelte/store';
 
     onMount(async () => {
         user.set({ username: localStorage.getItem('username') || '', token: localStorage.getItem('token') || '' });

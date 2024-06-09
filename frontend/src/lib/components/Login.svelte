@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import { goto } from "$app/navigation";
   import { login, register, user } from "$lib/../stores/auth";
   import { addToast } from "$lib/../stores/toasts";
@@ -6,10 +6,10 @@
   import Button from "./Button.svelte";
   import Input from "./Input.svelte";
 
-  let username = "";
-  let password = "";
+  let username : string = "";
+  let password : string = "";
 
-  let registerMode = false;
+  let registerMode : boolean = false;
 
   async function handleSubmit() {
 
@@ -68,11 +68,13 @@
       text-align: right;
 
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-      background-color: rgba(40, 40, 40, 0.5);
+      background-color: rgba(40, 40, 40, 1);
       border-radius: 10px;
 
       padding: 3rem 2rem;
 
+      transition: all 0.3s;
+      
       * {
         font-size: 1em;
       }
@@ -99,12 +101,22 @@
   <form on:submit|preventDefault>
     <div class="form-group">
       <label for="username">Username</label><br />
-      <Input type="text" placeholder="Username" id="username" name="username" bind:value={username} />
+      <Input 
+        type="text" 
+        placeholder="Username" 
+        id="username" 
+        name="username" 
+        bind:value={username} />
     </div>
     <div class="form-group">
       <label for="password">Password</label><br />
-      <Input type="password" placeholder="Password" id="password" name="password" bind:value={password} />
+      <Input 
+        type="password" 
+        placeholder="Password" 
+        id="password" 
+        name="password" 
+        bind:value={password} />
     </div>
-    <Button className="px-5" text={registerMode ? "Register" : "Login"} on:click={handleSubmit} />
+    <Button className="px-5 border-2" style="border: 1px solid gray;" text={registerMode ? "Register" : "Login"} on:click={handleSubmit} />
   </form>
 </main>

@@ -45,7 +45,6 @@ exports.getRecipeById = async (req, res) => {
 
     res.json({recipe, ok: true, msg: ['Recipe found']});
   } catch (err) {
-    console.error(err.message);
     res.send({ ok: false, msg: ['Server error'] });
   }
 };

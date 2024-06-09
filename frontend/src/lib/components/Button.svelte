@@ -9,6 +9,14 @@
     function handleClick() { dispatch('click'); }
 </script>
 
+<!-- Tailwind btn -->
+<button 
+    class={className} 
+    on:click={handleClick}
+    {...$$restProps}>
+    {@html text}
+</button>
+
 <style lang="scss">
     button {
         padding: 0.5rem 1.4rem;
@@ -29,11 +37,3 @@
         }
     }
 </style>
-
-<!-- Tailwind btn -->
-<button 
-    class={className} 
-    on:click={handleClick}
-    {...$$restProps}>
-    {text}
-</button>

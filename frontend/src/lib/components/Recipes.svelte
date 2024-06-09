@@ -37,6 +37,12 @@
     });
 </script>
 
+<style lang="scss">
+    .recipes-wrapper {
+        min-height: 60vh;
+    }
+</style>
+
 <article>
     {#if $pages > 1}
         <div class="pagination text-center mt-4">
@@ -61,7 +67,7 @@
                 </div>
             {/if}
         {:else}
-            <p>No recipes found</p>
+            <p class="text-center">No recipes found</p>
         {/if}
     </div>
 </article>

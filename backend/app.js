@@ -1,6 +1,5 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
+const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
 const fs = require("fs");
-const https = require("https");
 
 require("dotenv").config();
 
@@ -19,15 +18,20 @@ client.connect().then(() => {
     let db = client.db(process.env.DBNAME);
     let collection = db.collection("recipes");
 
-    let recipes = JSON.parse(fs.readFileSync("./data/recipes.json"));
-
-    collection.insertMany(recipes).then(() => {
-        console.log("Recipes added to database")
-        client.close();
-    }).catch(err => {
-        console.error(err)
+    collection.find({}).toArray().then(recipes => {
+        console.log(recipes);
     });
 
+    // let recipes = JSON.parse(fs.readFileSync("./data/recipes.json"));
+
+    // recipes.forEach(recipe => {
+    //     recipe._id = new ObjectId(recipe._id);
+    //     recipe.createdDate = new Date(recipe.createdDate);
+
+    //     collection.insertOne(recipe).then(() => {
+    //         console.log("Recipe added to database")
+    //     })
+    // });
 }).catch(err => {
     console.error(err)
 });

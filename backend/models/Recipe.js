@@ -1,9 +1,22 @@
 const recipeCollection = require('../config/db').collection("recipes");
 const { ObjectId } = require('mongodb');
 
-let Recipe = function (data, updateMode = false) {
+// Recipe type is { _id : string, title : string, instructions : string, ingredients : [ { ingredient : string, quantity : string } ], cookTime : string, foodType : string, tags : [ string ], vegetarian : boolean, createdDate : Date 
+/**
+ * 
+ * @param {Object} data
+ * @param {string} data._id
+ * @param {string} data.title
+ * @param {string} data.instructions
+ * @param {Array} data.ingredients
+ * @param {string} data.cookTime
+ * @param {string} data.foodType
+ * @param {Array} data.tags
+ * @param {boolean} data.vegetarian
+ * @param {string} data.createdDate
+ */
+let Recipe = function(data) {
     this.data = data;
-    this.updateMode = updateMode;
     this.errors = [];
 }
 
@@ -26,10 +39,10 @@ Recipe.prototype.cleanUp = function () {
         cookTime: this.data.cookTime,
         tags: this.data.tags,
         vegetarian: this.data.vegetarian,
-        createdDate: this.updateMode ? this.data.createdDate : new Date()
+        createdDate: _id != '' || _id != undefined? this.data.createdDate : new Date()
     }
 
-    if (this.updateMode) {
+    if (_id != '' || _id != undefined) {
         this.data._id = _id;
     }
 }
@@ -51,17 +64,17 @@ Recipe.prototype.validate = function () {
 
 Recipe.prototype.findById = function (id) {
     return new Promise(async (resolve, reject) => {
-        if (typeof (id) != "string") {
-            reject();
+        if (typeof (id) != "string" || !ObjectId.isValid(id)) {
+            reject({ok: false, msg: ['Invalid ID']});
             return;
         }
 
-        let recipe = await recipeCollection.findOne({ _id: ObjectId(id) });
+        let recipe = await recipeCollection.findOne({ _id: new ObjectId(id) });
 
         if (recipe) {
             resolve(recipe);
         } else {
-            reject();
+            reject({ok: false, msg: ['Recipe not found']});
         }
     });
 }
@@ -91,7 +104,7 @@ Recipe.prototype.editRecipe = function () {
 
         if (!this.errors.length) {
             try {
-                await recipeCollection.updateOne({ _id: ObjectId(this.data._id) }, { $set: {
+                await recipeCollection.updateOne({ _id: new ObjectId(this.data._id) }, { $set: {
                     title: this.data.title,
                     instructions: this.data.instructions,
                     ingredients: this.data.ingredients,
@@ -99,7 +112,7 @@ Recipe.prototype.editRecipe = function () {
                     foodType: this.data.foodType,
                     vegetarian: this.data.vegetarian,
                     tags: this.data.tags,
-                    createdDate: this.data.createdDate
+                    createdDate: new Date(this.data.createdDate)
                 } })
                 resolve();
             } catch (err) {
@@ -114,7 +127,7 @@ Recipe.prototype.editRecipe = function () {
 Recipe.prototype.deleteRecipe = function () {
     return new Promise(async (resolve, reject) => {
         try {
-            await recipeCollection.deleteOne({ _id: ObjectId(this.data._id) });
+            await recipeCollection.deleteOne({ _id: new ObjectId(this.data._id) });
             resolve();
         } catch (err) {
             reject(err);
