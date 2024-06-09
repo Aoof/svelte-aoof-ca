@@ -100,7 +100,7 @@
   >
     {#if isTags}
       <div class="tags-container">
-        {#each tags as tag}
+        {#each tags as tag, i}
           <Tag text={tag} className="{i == 0 ? '!ml-0' : ''}" />
         {/each}
       </div>
