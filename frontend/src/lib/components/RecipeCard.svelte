@@ -65,14 +65,9 @@
     }
 
     .vegetarian {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        svg {
-            width: 2rem;
-            height: 2rem;
-            fill: #40cb40;
-        } 
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
     }
     
     &:hover {
