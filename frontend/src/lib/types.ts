@@ -19,5 +19,5 @@ export interface Recipe {
     tags: string[];
     vegetarian: boolean;
     ingredients: Ingredient[];
-    createdDate: string;
+    createdDate: Date;
 }

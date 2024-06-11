@@ -3,35 +3,17 @@
 
   import Tag from "./Tag.svelte";
 
-  /**
-   * interface Recipe {
-   *      _id: string;
-   *      title: string;
-   *      instructions: string;
-   *      cookTime: string;
-   *      foodType: string;
-   *      tags: string[];
-   *      vegetarian: boolean;
-   *      ingredients: Ingredient[];
-   * }
-   */
-
-  /**
-   * interface Ingredient {
-   *    ingredient: string;
-   *    amount: string;
-   * }
-   */
-
   export let recipe: Recipe;
 
-  let createdDate = new Date(recipe.createdDate).toLocaleString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-  });
+  function getDateString(date: Date | string) {
+    return new Date(date).toLocaleString("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    });
+  }
 
 </script>
 
@@ -91,6 +73,6 @@
     </div>
 
     <div class="created-date">
-        <p>Created: {createdDate}</p>
+        <p>Created: {getDateString(recipe.createdDate)}</p>
     </div>
 </a>

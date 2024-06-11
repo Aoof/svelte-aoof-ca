@@ -39,7 +39,7 @@ Recipe.prototype.cleanUp = function () {
         cookTime: this.data.cookTime,
         tags: this.data.tags,
         vegetarian: this.data.vegetarian,
-        createdDate: _id != '' || _id != undefined? this.data.createdDate : new Date().toUTCString()
+        createdDate: this.data.createdDate
     }
 
     if (_id != '' || _id != undefined) {
@@ -109,8 +109,7 @@ Recipe.prototype.editRecipe = function () {
                     cookTime: this.data.cookTime,
                     foodType: this.data.foodType,
                     vegetarian: this.data.vegetarian,
-                    tags: this.data.tags,
-                    createdDate: new Date(this.data.createdDate).toUTCString()
+                    tags: this.data.tags
                 } })
                 resolve();
             } catch (err) {

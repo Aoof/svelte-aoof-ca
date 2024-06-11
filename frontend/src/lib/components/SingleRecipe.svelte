@@ -25,6 +25,16 @@
         await getRecipe(id);
         isLoaded = true;
     });
+
+    function getDateString(date: Date | string) {
+        return new Date(date).toLocaleString("en-US", {
+            month: "long",
+            day: "numeric",
+            year: "numeric",
+            hour: "numeric",
+            minute: "numeric",
+        });
+    }
 </script>
 
 <style lang="scss">
@@ -68,5 +78,9 @@
                     <Tag text={tag} className="{i == 0 ? '!ml-0' : ''}" />
                 {/each}</p>
             {/if}
+        </div>
+
+        <div>
+            <p class="text-sm text-right">{getDateString($recipe.createdDate)}</p>
         </div>
     </div>

@@ -69,6 +69,11 @@
     }
 
     async function handleSubmission() {
+        handleAddIngredient();
+        handleAddTag();
+        
+        $recipe.tags = $tags;
+
         if ($recipe._id !== '') {
             await handleUpdateRecipe();
         } else {
@@ -84,14 +89,18 @@
         }
         
         if (event.detail.key === 'Enter' || event.detail.key === 'Tab' || event.detail.key === '+' || event.detail.key === ' ') {
-            if (event.detail.key === '+') {
+            if (event.detail.key !== 'Tab') {
                 event.detail.preventDefault();
             }
-            if ($recipeTags !== '' && $tags.indexOf($recipeTags.trim()) === -1) {
-                addTag($recipeTags.trim());
-            }
-            $recipeTags = '';
+            handleAddTag();
         }
+    }
+
+    function handleAddTag() {
+        if ($recipeTags !== '' && $tags.indexOf($recipeTags.trim()) === -1) {
+            addTag($recipeTags.trim());
+        }
+        $recipeTags = '';
     }
 
     function handleIngredientKeydown(event : CustomEvent<KeyboardEvent>) {
@@ -99,7 +108,7 @@
             event.detail.preventDefault();
             handleAddIngredient();
         }
-        if (event.detail.key === 'Backspace' && currentIngredient.ingredient === '' && currentIngredient.amount === '') {
+        if (event.detail.key === 'Backspace' && $currentIngredient.ingredient === '' && $currentIngredient.amount === '') {
             event.detail.preventDefault();
             removeIngredient();
         }
@@ -114,31 +123,31 @@
                 currentRecipe.ingredients = currentRecipe.ingredients.filter(i => i.ingredient !== ingredient);
                 return currentRecipe;
             }
-            currentIngredient = currentRecipe.ingredients[currentRecipe.ingredients.length - 1]
+            $currentIngredient = currentRecipe.ingredients[currentRecipe.ingredients.length - 1]
             currentRecipe.ingredients.pop();
             return currentRecipe;
         });
     }
 
     function handleAddIngredient() {
-        if (!currentIngredient.ingredient) {
+        if (!$currentIngredient.ingredient) {
             return;
         }
 
         recipe.update(currentRecipe => {
-            currentRecipe.ingredients.push(currentIngredient);
+            currentRecipe.ingredients.push($currentIngredient);
             return currentRecipe;
         });
-        currentIngredient = {
+        $currentIngredient = {
             amount: '',
             ingredient: ''
         };
     }
 
-    let currentIngredient = {
+    let currentIngredient = writable({
         amount: '',
         ingredient: ''
-    };
+    })
 </script>
 
 <style lang="scss">
@@ -221,8 +230,8 @@
 
                 <Button text="-" className="col-span-1 h-fit" on:click={() => removeIngredient(ingredient.ingredient)} />
             {/each}
-            <Input type="text" className="col-span-3" bind:value={currentIngredient.amount} on:keydown={handleIngredientKeydown} />
-            <Input type="text" className="col-span-9" bind:value={currentIngredient.ingredient} on:keydown={handleIngredientKeydown} autofill={true} />
+            <Input type="text" className="col-span-3" bind:value={$currentIngredient.amount} on:keydown={handleIngredientKeydown} />
+            <Input type="text" className="col-span-9" bind:value={$currentIngredient.ingredient} on:keydown={handleIngredientKeydown} autofill={true} />
 
             <Button text="+" className="col-span-12" style='background-color: #E0AFA0;' on:click={handleAddIngredient} />
         </div>

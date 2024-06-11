@@ -21,7 +21,7 @@ export const newRecipe = writable<Recipe>({
     tags: [],
     vegetarian: true,
     ingredients: [],
-    createdDate: new Date().toISOString(),
+    createdDate: new Date(),
 });
 
 export const getRecipe = (id: string) => {
@@ -76,7 +76,6 @@ export const getAllTags = (query? : string) => {
 
 export const searchRecipes = (query: string) => {
     let queries = query.split("+").map((q) => q.trim());    
-    // Lots of nested stuff but basically we filter the recipes based on the queries
 
     allRecipes.subscribe((all) => {
         recipes.set(all.filter((r) => {
@@ -132,7 +131,8 @@ export const fetchRecipe = async (id: string) => {
 export const addRecipe = async () => {
     return new Promise(async (resolve, reject) => {
         newRecipe.subscribe(async (recipe) => {
-            console.log(recipe);
+            recipe.createdDate = new Date();
+            
             user.subscribe((value) => {
                 axios.defaults.headers.common["x-auth-token"] = value.token;
             });
