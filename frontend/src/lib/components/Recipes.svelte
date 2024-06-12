@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { recipes, searchRecipes, fetchRecipes } from '$lib/../stores/recipes';
+    import { recipes, fetchRecipes } from '$lib/../stores/recipes';
     import { RECIPES_LIMIT } from '$lib/constants';
 
     import { onMount } from 'svelte';

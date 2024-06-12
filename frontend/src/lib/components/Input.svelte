@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
+  import { writable } from "svelte/store";
 
   import Tag from "./Tag.svelte";
 
@@ -9,23 +10,78 @@
     searchTags as currentTags 
   } from "$lib/../stores/tags";
 
+  import { getAllIngredients, getAllTags, allRecipes as recipes } from "$lib/../stores/recipes";
+
   export let className: string = "";
   export let placeholder: string = "";
   export let type: string = "text";
-  export let value: any = "";
+  export let value: string = "";
+  export let isChecked : boolean = false;
+
+  $: if (value) {
+    updateAutofill();
+  }
 
   export let override: boolean = false;
 
   export let autofill: boolean = false;
-  export let isTags: boolean = false;
-
-  export let tags: string[] = [];
+  export const autofillContent = writable({content : <string[]>[], show: <boolean>false});
 
   const dispatch = createEventDispatcher();
 
+  function autofillHandler(val: string) {
+    _this.focus();
+    value = val;
+
+    $autofillContent.show = false;
+    resultsContainer && resultsContainer.classList.remove("show");
+
+    dispatch("autofill", { value });
+  }
+
+  $: if ($autofillContent.show) {
+    if (resultsContainer) {
+      resultsContainer.classList.add("show");
+    }
+  } else {
+    if (resultsContainer) {
+      resultsContainer.classList.remove("show");
+    }
+  }
+  
+  export let isTags: boolean = false;
+  export let tags: string[] = [];
+
+  function updateAutofill() {
+    let content;
+
+    if (isTags) {
+      content = getAllTags($recipes, value);
+    } else {
+      content = getAllIngredients($recipes, value);
+    }
+
+    if (content.length === 0 || value === "" || value === content[0]) {
+      $autofillContent.show = false;
+      resultsContainer && resultsContainer.classList.remove("show");
+    } else {
+      $autofillContent.content = content;
+      $autofillContent.show = true;
+    }
+
+    return value;
+  }
+
   function handleKeydown(event: KeyboardEvent) {
     dispatch("keydown", event);
-    if (!autofill || !isTags || override) return;
+    if (!autofill && !isTags) return;
+    
+    if (event.key === 'Escape') {
+      $autofillContent.show = false;
+      resultsContainer && resultsContainer.classList.remove("show");
+    }
+
+    if (override) return;
 
     if (event.key === "Backspace" && value === "" && tags.length > 0) {
       removeTag(tags[tags.length - 1]);
@@ -48,6 +104,7 @@
   }
 
   let _this: HTMLInputElement;
+  let resultsContainer : HTMLDivElement;
 </script>
 
 {#if type === "password"}
@@ -75,7 +132,7 @@
   <input
     type="checkbox"
     class={`svelte-input ${className}`}
-    bind:checked={value}
+    bind:checked={isChecked}
     on:keydown={handleKeydown}
     on:focus={handleFocus}
     on:blur={handleBlur}
@@ -134,8 +191,17 @@
       on:blur={handleBlur}
       {...$$restProps}
     />
-    <div id="results-container">
-      <ul class="results-list"></ul>
+    <div id="results-container" bind:this={resultsContainer}>
+      <ul class="results-list">
+        {#each $autofillContent.content as item}
+          <li class="result-item">
+            <button 
+              class={"result-button"}
+              on:click={() => autofillHandler(item)}
+            >{item}</button>
+          </li>
+        {/each}
+      </ul>
     </div>
   </button>
 {:else}
@@ -184,6 +250,55 @@
       align-items: center;
       justify-content: left;
       flex-wrap: wrap;
+    }
+
+    #results-container {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      display: none;
+      background-color: rgba(40, 40, 40);
+      border-radius: 0.25rem;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+
+      .results-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        max-height: 200px;
+        overflow-y: auto;
+      }
+
+      .result-item {
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+          background-color: rgba(30, 30, 30);
+        }
+
+        .result-button {
+          padding: 0.5rem 1rem;
+          width: stretch;
+          height: stretch;
+          background-color: transparent;
+          border: none;
+          color: #fff;
+          font-size: 1rem;
+          cursor: pointer;
+          transition: all 0.3s;
+          &:hover {
+            filter: brightness(0.9);
+          }
+        }
+      }
+
+      &.show {
+        display: block;
+      }
     }
 
     input {

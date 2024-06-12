@@ -28,6 +28,7 @@
         border: none;
         background-color: rgba(40, 40, 40);
         font-size: 1rem;
+        user-select: none;
         &:hover {
             filter: brightness(0.9);
         }
@@ -40,6 +41,15 @@
             color: white;
         }
 
+        &.b-full-white {
+            color: black;
+            background-color: white;
+            &:hover {
+                color: white;
+                background-color: black;
+            }
+        }
+
         &.b-info {
             color: white;
             &:hover {
@@ -48,11 +58,27 @@
             }
         }
 
+        &.b-full-info {
+            color: black;
+            background-color: rgb(177, 177, 177);
+            &:hover {
+                background-color: rgb(177, 177, 177, 0.8);
+            }
+        }
+
         &.b-red {
             color: white;
             &:hover {
                 color: black;
                 background-color: #f22613;
+            }
+        }
+
+        &.b-full-red {
+            color: white;
+            background-color: #f22613;
+            &:hover {
+                background-color: #f22613a9;
             }
         }
     }

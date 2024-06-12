@@ -4,7 +4,12 @@
     import { addToast } from '$lib/../stores/toasts';
     import { onMount } from 'svelte';
 
-    import { newRecipe, addRecipe, updateRecipe } from '$lib/../stores/recipes';
+    import { 
+        newRecipe, 
+        addRecipe, 
+        updateRecipe,
+        fetchRecipes,
+    } from '$lib/../stores/recipes';
     import { 
         recipeTags as tags, 
         addRecipeTag as addTag, 
@@ -23,13 +28,15 @@
     onMount(() => {
         clearTags();
 
+        fetchRecipes();
+
         $recipe.tags.forEach(tag => {
             addTag(tag);
         });
     });
 
     async function handleAddRecipe() {
-        addRecipe().then(() => {
+        addRecipe($recipe).then(() => {
             addToast({
                 message: "Recipe added",
                 type: "success",
@@ -38,17 +45,19 @@
             });
             goto('/fae-sparkles');
         }).catch(e => {
-            addToast({
-                message: "Failed to add recipe",
-                type: "error",
-                dismissible: true,
-                timeout: 3000
-            });
+            e.msg.forEach((err : string) => {
+                addToast({
+                    message: err,
+                    type: "error",
+                    dismissible: true,
+                    timeout: 3000
+                });
+            })
         });
     }
 
     async function handleUpdateRecipe() {
-        updateRecipe().then(() => {
+        updateRecipe($recipe).then(() => {
             addToast({
                 message: "Recipe updated",
                 type: "success",
@@ -96,7 +105,12 @@
         }
     }
 
-    function handleAddTag() {
+    function handleAddTag(force? : boolean) {
+        if (force) {
+            addTag($recipeTags.trim());
+            $recipeTags = '';
+            return;
+        }
         if ($recipeTags !== '' && $tags.indexOf($recipeTags.trim()) === -1) {
             addTag($recipeTags.trim());
         }
@@ -254,12 +268,13 @@
             override={true} 
             bind:tags={$tags} 
             bind:value={$recipeTags} 
-            on:keydown={handleTagKeydown} />
+            on:keydown={handleTagKeydown}
+            on:autofill={(val) => {addTag(val.detail.value); $recipeTags = '';}} />
     </div>
 
     <div>
         <label for="vegetarian">Vegetarian?</label>
-        <Input type="checkbox" name="vegetarian" id="vegetarian" bind:value={$recipe.vegetarian} />
+        <Input type="checkbox" name="vegetarian" id="vegetarian" bind:isChecked={$recipe.vegetarian} />
     </div>
     
     <div class="text-right">

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { writable } from "svelte/store";
-    import { searchRecipes } from "$lib/../stores/recipes";
-    import { searchTags as tags } from "$lib/../stores/tags";
+    import { searchRecipes, allRecipes } from "$lib/../stores/recipes";
+    import { addSearchTag, searchTags as tags } from "$lib/../stores/tags";
 
     import Input from "./Input.svelte";
 
@@ -9,7 +9,7 @@
 
     $ : {
         let searchQueries = [...$tags, ...$searchQuery.split('+')];
-        searchRecipes(searchQueries.join('+'));
+        searchRecipes($allRecipes, searchQueries.join('+'));
     };
 </script>
 
@@ -23,4 +23,5 @@
     bind:value={$searchQuery} 
     autofill={true}
     isTags={true}
-    tags={$tags} />
+    tags={$tags}
+    on:autofill={ evnt => addSearchTag(evnt.detail.value) } />

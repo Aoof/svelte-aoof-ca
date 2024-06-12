@@ -5,6 +5,8 @@
     import { goto } from '$app/navigation';
 
     import { newRecipe as recipe, getRecipe, deleteRecipe } from '$lib/../stores/recipes';
+    import { addToast } from '$lib/../stores/toasts';
+    import { confirmDialog } from '$lib/../stores/dialog';
     
     import Loader from '$lib/components/Loader.svelte';
     import Button from '$lib/components/Button.svelte';
@@ -14,11 +16,39 @@
 
     let isLoaded = false;
 
-    async function handleDelete() {
-        if (confirm('Are you sure you want to delete this recipe?')) {
-            await deleteRecipe($recipe._id);
-            goto('/fae-sparkles');
+    let dialogConfirmed = false;
+    $ : {
+        if (dialogConfirmed) {
+            deleteRecipe($recipe._id).then(res => {
+                if (res.ok) {
+                    addToast({
+                        message: 'Recipe deleted',
+                        type: 'success',
+                        dismissible: true,
+                        timeout: 3000
+                    });
+                    goto('/fae-sparkles');
+                } else {
+                    addToast({
+                        message: 'Failed to delete recipe',
+                        type: 'error',
+                        dismissible: true,
+                        timeout: 3000
+                    });
+                }
+            }).catch(e => {
+                addToast({
+                    message: 'Failed to delete recipe',
+                    type: 'error',
+                    dismissible: true,
+                    timeout: 3000
+                });
+            });
         }
+    }
+
+    async function handleDelete() {
+        confirmDialog('Delete Recipe', 'Are you sure you want to delete this recipe?', () => { dialogConfirmed = true; });
     }
 
     onMount(async () => {

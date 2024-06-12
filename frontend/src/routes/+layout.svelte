@@ -2,12 +2,14 @@
     import '../app.css'
     import "../global.scss";
     import Toasts from "$lib/components/Toasts/Toasts.svelte";
+    import Dialog from '$lib/components/Dialog.svelte';
 </script>
 
 <style>
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css');
 </style>
 
+<Dialog />
 <Toasts />
 <slot />
 
