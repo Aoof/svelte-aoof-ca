@@ -1,11 +1,384 @@
 <script>
-    
+    import img3 from '$lib/media/Webdesign_03.png';
+    import img4 from '$lib/media/Webdesign_04.png';
+    import resume from '$lib/media/resume.pdf';
+
+    import { onMount } from 'svelte';
+
+    var dob = new Date("01/26/2004");  
+    var month_diff = Date.now() - dob.getTime();
+    var age_dt = new Date(month_diff);
+    var year = age_dt.getUTCFullYear();
+    var age = Math.abs(year - 1970); 
 </script>
 
 <style>
+    a {
+        color: #b4b4ff;
+        text-decoration: none;
+    }
+.container {
+  margin: 50px 15%;
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+}
 
+.container .profile {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid black;
+  margin: 30px;
+  grid-column: 1 span;
+}
+
+.desc {
+  line-height: 1.5;
+}
+
+.desc * {
+  margin: 1rem 0;
+}
+
+ul {
+  margin-left: 1.5rem !important;
+}
+
+.container .headline {
+  grid-column: 2 / 8 span;
+  color: white;
+  margin: 60px 0;
+}
+
+.container .headline * {
+  margin: 8px 0;
+}
+
+.container .headline #name {
+  font-size: 25pt;
+}
+
+.container .headline #description {
+  font-size: 18pt;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.container .headline #contact-e {
+  font-size: 18pt;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+}
+
+.container .headline #contact-t {
+  font-size: 15pt;
+  color: white;
+  text-decoration: none;
+}
+
+.aboutme {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: stretch;
+  grid-column: 2 / 8 span;
+  color: white;
+}
+
+.aboutme .headline {
+  font-size: 20pt;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: stretch;
+}
+
+.aboutme .desc a {
+  color: rgba(180, 180, 255, 0.7);
+}
+
+.skills {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: stretch;
+  grid-column: 2 / 8 span;
+  color: white;
+}
+
+.skills .headline {
+  font-size: 20pt;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: stretch;
+}
+
+.skills .skill {
+  display: -ms-grid;
+  display: grid;
+  position: relative;
+}
+
+.skills .skill .name {
+  grid-column: 1 span;
+  width: 90px;
+  margin: 10px 0;
+}
+
+.skills .skill .bar {
+  grid-column: 2 / 8 span;
+  position: relative;
+}
+
+.skills .skill .bar::after {
+  content: "";
+  height: 4px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  border-radius: 9px;
+}
+
+.skills .skill .bar.py::after {
+  width: 95%;
+}
+
+.skills .skill .bar.js::after {
+  width: 95%;
+}
+
+.skills .skill .bar.node::after {
+  width: 95%;
+}
+
+.skills .skill .bar.express::after {
+  width: 95%;
+}
+
+.skills .skill .bar.html::after {
+  width: 95%;
+}
+
+.skills .skill .bar.css::after {
+  width: 80%;
+}
+
+.skills .skill .bar.cs::after {
+  width: 85%;
+}
+
+.skills .skill .bar.c::after {
+  width: 85%;
+}
+
+.skills .skill .bar.sql::after {
+  width: 60%;
+}
+
+.skills .skill .bar.mongodb::after {
+  width: 85%;
+}
+
+.skills .skill .bar::before {
+  content: "";
+  width: 100%;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.projects {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: stretch;
+  grid-column: 2 / 8 span;
+  color: white;
+}
+
+.projects .headline {
+  font-size: 20pt;
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: stretch;
+}
+
+.card {
+  margin-bottom: 60px;
+  border-bottom: 1px solid white;
+}
+
+.image_container {
+  text-align: center;
+  width: 100%;
+  width: -webkit-fill-available;
+  height: auto;
+  margin-bottom: 40px;
+}
+
+.image_container img {
+  width: 80%;
+}
+
+.projects .card .desc {
+  grid-column: 2 / 8 span;
+  margin: 2rem 0;
+}
+
+.projects .card .desc .header {
+  font-size: 18pt;
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.projects .card .desc p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: 1.5rem;
+}
+
+.projects .card .desc p a {
+  color: rgba(180, 180, 255, 0.7);
+}
+
+.contacts {
+  width: -webkit-fill-available;
+  width: -moz-available;
+  width: stretch;
+  grid-column: 2 / 8 span;
+  color: white;
+}
+
+.contacts a svg {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  fill: rgba(180, 180, 255, 0.7);
+}
+
+@media only screen and (max-width: 870px) {
+  .container {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+  }
+  .container * {
+    grid-column: 1 span !important;
+  }
+}
+/*# sourceMappingURL=main.css.map */
 </style>
 
 <main>
-    
+    <div class="container">
+        <div class="headline">
+            <div id="name">Abdulrahman Mousa</div>
+            <div id="contacts">
+                <a href="https://www.instagram.com/aoofxd/" id="contact-i" target="_target" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50" style="fill:#FFFFFF;">
+                        <path d="M 16 3 C 8.8324839 3 3 8.8324839 3 16 L 3 34 C 3 41.167516 8.8324839 47 16 47 L 34 47 C 41.167516 47 47 41.167516 47 34 L 47 16 C 47 8.8324839 41.167516 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.086484 5 45 9.9135161 45 16 L 45 34 C 45 40.086484 40.086484 45 34 45 L 16 45 C 9.9135161 45 5 40.086484 5 34 L 5 16 C 5 9.9135161 9.9135161 5 16 5 z M 37 11 A 2 2 0 0 0 35 13 A 2 2 0 0 0 37 15 A 2 2 0 0 0 39 13 A 2 2 0 0 0 37 11 z M 25 14 C 18.936712 14 14 18.936712 14 25 C 14 31.063288 18.936712 36 25 36 C 31.063288 36 36 31.063288 36 25 C 36 18.936712 31.063288 14 25 14 z M 25 16 C 29.982407 16 34 20.017593 34 25 C 34 29.982407 29.982407 34 25 34 C 20.017593 34 16 29.982407 16 25 C 16 20.017593 20.017593 16 25 16 z"></path>
+                    </svg>
+                </a>
+                <a href="https://www.linkedin.com/in/aoof/" id="contact-l" target="_target" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50" style="fill:#FFFFFF;">
+                        <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path>
+                    </svg>
+                </a>
+            </div>
+            <div id="description"><br>Saint-Laurent, QC</div>
+            <div><a href="mailto:aoof.mousa@gmail.com" id="contact-e">aoof.mousa@gmail.com</a></div>
+            <div><a href="tel:+15147177233" id="contact-t">+1 (514) 717-7233</a></div>
+            <div></div>
+        </div>
+        <div class="aboutme">
+            <div class="headline">About Me <hr></div>
+            <div class="details">
+                <p>
+                    I am a passionate and dedicated full-stack developer with a strong foundation in web development, 
+                    database management, and cloud infrastructure. I have a keen eye for detail and a commitment to 
+                    delivering high-quality solutions that meet the unique needs of each project. My experience includes 
+                    developing dynamic and responsive websites, managing databases, and deploying applications on cloud 
+                    infrastructure. I am proficient in a variety of programming languages and tools, including JavaScript, 
+                    Node.js, Express.js, MongoDB, and AWS. I am eager to continue expanding my skills and knowledge in the 
+                    field of web development and contribute to innovative projects that make a positive impact.
+                </p>
+                <!-- Portfolio download link -->
+                <a href={resume} download="Abdulrahman_Mousa_Resume.pdf" class="download" rel="noopener noreferrer">Download Resume</a>
+            </div>
+        </div>
+        <div class="projects">
+            <div class="headline" style="grid-column: 12 span;">Portfolio <hr></div>
+            <div class="details">
+
+                <div class="card">
+                    <div class="image_container">
+                        <img src={img4} alt="IEAC Project">
+                    </div>
+                    <div class="desc">
+                        <div class="header">IEAC Official Website</div>
+                        <h3>Development</h3>
+
+                        <h4>Link:</h4>
+                        <p>
+                            <a href="https://ieac.ca/" target="_blank" rel="noopener noreferrer">https://ieac.ca/</a>
+                        </p>
+
+                        <h4>Project Overview:</h4>
+                        <p>For the International and Ethnic Associations Council (IEAC), I solo'd the development of their official website. The goal was to create a dynamic and responsive platform that serves as an information hub for the council, catering to diverse communities and promoting cultural inclusivity.</p>
+                        
+                        <h4>Technical Details:</h4>
+                        
+                        <h5>Technology Stack:</h5>
+                        <p>
+                            Backend: Utilized Express.js and Node.js to create a robust server environment, facilitating efficient data processing and handling.<br>
+                            Database: Implemented MongoDB to manage and store data, ensuring a scalable and flexible structure to accommodate the dynamic nature of the council's information.<br>
+                            Frontend: Crafted the user interface with plain HTML and CSS, incorporating Webpack for streamlined front-end JavaScript development.
+                        </p>
+
+                        <h4>Development Process:</h4>
+                        <p>
+                            Timeline: Completed the entire project within a tight timeframe of 6 weeks, from conceptualization to production deployment.<br>
+                            Hours Invested: Devoted approximately 60 hours, ensuring a meticulous and thorough development process.
+                        </p>
+
+                        <h4>Infrastructure:</h4>
+                        <p>
+                            Hosting: Deployed the website on an AWS EC2 (Elastic Compute Cloud) instance, leveraging the scalability and reliability of Amazon's infrastructure.<br>
+                            Database Management: Utilized MongoDB for efficient data storage and retrieval, optimizing performance for dynamic content updates.
+                        </p>
+
+                        <h4>Security Measures:</h4>
+                        <p>
+                            SSL Certificate: Implemented a secure connection by integrating SSL (Secure Sockets Layer) encryption. Employed ACME (Automated Certificate Management Environment) for seamless certificate provisioning and renewal.
+                        </p>
+
+                        <h4>Outcome:</h4>
+                        <p>
+                            The IEAC website stands as a testament to effective project management, technical proficiency, and the ability to create a secure and scalable web solution for a diverse audience.<br>
+                            This project showcases my skills in full-stack development, database management with MongoDB, deployment on cloud infrastructure (AWS EC2), and the implementation of security measures such as SSL certificates using ACME for enhanced data protection and user trust.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="image_container">
+                        <img src={img3} alt="Project snapshots">
+                    </div>
+                    <div class="desc">
+                        <div class="header">The Castle Canada</div>
+                        <h4>Details:</h4>
+                        <p>
+                            Created and managed a small family business website, my father sells fragrances online so after 
+                            he initiated the idea of using Shopify to create a personal website, I took on the steering wheel and 
+                            refined his shop making him a professional selling platform, learning a lot about Shopify, and handling money 
+                            through web applications. Check it out on <a href="http://castlecanada.com/" target="_blank" rel="noopener noreferrer">https://castlecanada.com/</a>
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </div>
 </main>
