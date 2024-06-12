@@ -27,7 +27,7 @@ Recipe.prototype.cleanUp = function () {
     if (typeof (this.data.cookTime) != "string") { this.data.cookTime = ""; }
     if (typeof (this.data.foodType) != "string") { this.data.foodType = ""; }
     if (typeof (this.data.tags) != "object") { this.data.tags = []; }
-    if (typeof (this.data.vegetarian) != "boolean") { this.data.vegetarian = false; }
+    if (typeof (this.data.vegetarian) != "boolean") { this.data.vegetarian = true; }
 
     let _id = this.data._id;
 
@@ -83,10 +83,13 @@ Recipe.prototype.addRecipe = function () {
 
         if (!this.errors.length) {
             try {
-                recipeCollection.insertOne(this.data).then((res) => {
-                    resolve(res._id);
+                this.data.createdDate = new Date();
+                await recipeCollection.insertOne(this.data)
+                .then(res => {
+                    resolve(res.insertedId.toString());
                 })
             } catch (err) {
+                console.log(err)
                 reject(err);
             }
         } else {
@@ -124,6 +127,7 @@ Recipe.prototype.editRecipe = function () {
 Recipe.prototype.deleteRecipe = function () {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log(this.data._id)
             await recipeCollection.deleteOne({ _id: new ObjectId(this.data._id) });
             resolve();
         } catch (err) {
@@ -141,66 +145,6 @@ Recipe.prototype.getRecipes = function () {
         });
 
         resolve(recipes);
-    });
-}
-
-Recipe.prototype.getIngredients = function () {
-    return new Promise(async (resolve, reject) => {
-        let ingredients = await recipeCollection.distinct("ingredients");
-        ingredients = ingredients.map(ingredient => ingredient.ingredient);
-
-        let uniqueIngredients = [];
-        ingredients.forEach(ingredient => {
-            if (!uniqueIngredients.includes(ingredient)) {
-                uniqueIngredients.push(ingredient);
-            }
-        });
-        resolve(uniqueIngredients);
-    });
-}
-
-Recipe.prototype.getTags = function () {
-    return new Promise(async (resolve, reject) => {
-        let tags = await recipeCollection.distinct("tags");
-        let uniqueTags = [];
-
-        tags.forEach(tag => {
-            if (!uniqueTags.includes(tag)) {
-                uniqueTags.push(tag);
-            }
-        })
-
-        resolve(uniqueTags);
-    });
-}
-
-Recipe.prototype.getFoodTypes = function () {
-    return new Promise(async (resolve, reject) => {
-        let foodTypes = await recipeCollection.distinct("foodType");
-        let uniqueFoodTypes = [];
-
-        foodTypes.forEach(foodType => {
-            if (!uniqueFoodTypes.includes(foodType)) {
-                uniqueFoodTypes.push(foodType);
-            }
-        });
-
-        resolve(uniqueFoodTypes);
-    });
-}
-
-Recipe.prototype.getCookTimes = function () {
-    return new Promise(async (resolve, reject) => {
-        let cookTimes = await recipeCollection.distinct("cookTime");
-        let uniqueCookTimes = [];
-
-        cookTimes.forEach(cookTime => {
-            if (!uniqueCookTimes.includes(cookTime)) {
-                uniqueCookTimes.push(cookTime);
-            }
-        });
-
-        resolve(uniqueCookTimes);
     });
 }
 

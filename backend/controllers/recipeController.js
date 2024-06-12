@@ -15,8 +15,8 @@ exports.createRecipe = async (req, res) => {
       vegetarian
     });
 
-    const recipe = await newRecipe.addRecipe();
-    res.json({ recipe, ok: true, msg: ['Recipe created']});
+    const insertedId = await newRecipe.addRecipe();
+    res.json({ insertedId, ok: true, msg: ['Recipe created']});
   } catch (err) {
     res.json({ ok: false, msg: ['Server error'] });
   }
