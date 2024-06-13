@@ -1,0 +1,19 @@
+# Ignore node_modules directory
+node_modules
+
+# Ignore logs
+logs
+*.log
+
+# Ignore environment variables
+.env
+
+# Ignore Dockerfile and .dockerignore itself
+Dockerfile
+.dockerignore
+
+# Ignore other specific files or directories
+coverage
+.DS_Store
+
+backups

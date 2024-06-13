@@ -25,6 +25,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-node": "^5.0.1",
+		"@sveltejs/adapter-static": "^3.0.1",
 		"axios": "^1.7.2",
 		"dotenv": "^16.4.5",
 		"marked": "^12.0.2",

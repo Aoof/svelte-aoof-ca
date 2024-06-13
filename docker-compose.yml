@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  svelte:
+    build: ./frontend
+    ports:
+      - "80:5000"
+    depends_on:
+      - express
+    env_file: "./frontend/.env"
+
+  express:
+    build: ./backend
+    ports:
+      - "3001:3000"
+    env_file: "./backend/.env"
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - svelte
+      - express
