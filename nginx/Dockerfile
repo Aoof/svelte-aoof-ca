@@ -7,7 +7,7 @@ COPY /root/.acme.sh/aoof.ca_ecc/aoof.ca.key /etc/nginx/ssl/aoof.ca.key
 
 # Set permissions
 RUN chmod 644 /etc/nginx/ssl/aoof.ca.cer
-RUN chmod 600 /etc/nginx/ssl/aoof.ca.key
+RUN chmod 644 /etc/nginx/ssl/aoof.ca.key
 
 # Copy Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf

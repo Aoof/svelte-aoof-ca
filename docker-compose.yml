@@ -23,6 +23,7 @@ services:
     depends_on:
       - svelte
       - express
+      
   certbot:
     image: certbot/certbot
     volumes:
