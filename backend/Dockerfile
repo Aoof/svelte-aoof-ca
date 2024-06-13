@@ -9,4 +9,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "/config/db.js"]
+CMD ["node", "./config/db.js"]
