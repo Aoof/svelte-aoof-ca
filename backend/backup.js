@@ -38,8 +38,43 @@ function cleanOldLogs() {
     });
 }
 
+const backupsDir = "./backups";
+
+function cleanOldBackups() {
+    readdir(backupsDir, (err, files) => {
+        if (err) {
+            console.error('Error reading backups directory:', err);
+            return;
+        }
+
+        files.forEach(file => {
+            const filePath = join(backupsDir, file);
+            stat(filePath, (err, stats) => {
+                if (err) {
+                    console.error('Error getting file stats:', err);
+                    return;
+                }
+
+                const now = new Date().getTime();
+                const fileAge = now - stats.mtime.getTime();
+                const monthInMilliseconds = 30 * 24 * 60 * 60 * 1000; // Approximation
+
+                if (fileAge > monthInMilliseconds) {
+                    unlink(filePath, (err) => {
+                        if (err) {
+                            console.error('Error removing old backup file:', err);
+                        } else {
+                            console.log(`Removed old backup file: ${file}`);
+                        }
+                    });
+                }
+            });
+        });
+    });
+}
+
 cleanOldLogs();
-console.log('Backup started');
+cleanOldBackups();
 
 const client = new MongoClient(process.env.MONGO_URI, {
     serverApi: {
