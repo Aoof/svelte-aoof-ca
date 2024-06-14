@@ -1,8 +1,9 @@
-const User = require('../models/User');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
-exports.register = async (req, res) => {
+import User from '../models/User.js';
+
+let register = async (req, res) => {
   const { username, password } = req.body;
 
   try {
@@ -36,14 +37,15 @@ exports.register = async (req, res) => {
   }
 };
 
-exports.login = async (req, res) => {
+let login = async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
     return res.json({ ok: false, msg: ['Please enter all fields'] });
   }
+  let user = new User();
 
-  await User.findByUsername(username).then(async user => {
+  await user.findByUsername(username).then(async user => {
     if (!user) {
       return res.json({ ok: false, msg: ['Invalid Credentials'] });
     }
@@ -74,7 +76,7 @@ exports.login = async (req, res) => {
   });
 };
 
-exports.logout = async (req, res) => {
+let logout = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       return res.json({ ok: false, msg: ['Server error please contact administrators.'] });
@@ -83,10 +85,12 @@ exports.logout = async (req, res) => {
   });
 }
 
-exports.verify = async (req, res) => {
+let verify = async (req, res) => {
   if (req.user) {
     res.json({ data: req.session.user , ok: true, msg: ['Authorized'] });
   } else {
       res.json({ ok: false, msg: ['Not authorized'] });
   }
 }
+
+export { register, login, logout, verify };

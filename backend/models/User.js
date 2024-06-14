@@ -1,94 +1,91 @@
-const usersCollection = require("../config/db").collection("users");
-const bcrypt = require("bcryptjs");
+import Database from "../config/db.js";
 
-let User = function (data) {
-  this.data = data;
-  this.errors = [];
-};
+import bcrypt from "bcryptjs";
 
-User.prototype.cleanUp = function () {
-  if (typeof this.data.username != "string") {
-    this.data.username = "";
+export default class User {
+  constructor(data) {
+    this.data = data;
+    this.errors = [];
+
+    this.database = new Database();
+    this.usersCollection = this.database.db.collection("users");
   }
-  if (typeof this.data.password != "string") {
-    this.data.password = "";
+  findByUsername(username) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let users = await this.usersCollection.find({}).toArray();
+        users.forEach((user) => {
+          if (user.username == username) {
+            resolve(user);
+          }
+        });
+        reject("No user found.");
+      } catch {
+        reject('Please try again later.');
+      }
+    });
   }
-
-  this.data = {
-    username: this.data.username.trim().toLowerCase(),
-    password: this.data.password,
-  };
-};
-
-User.prototype.validate = async function () {
-  if (this.data.username == "") {
-    this.errors.push("You must provide a username.");
-  }
-  if (this.data.password == "") {
-    this.errors.push("You must provide a password.");
-  }
-
-  let users = await usersCollection.find({}).toArray();
-  users.forEach((user) => {
-    if (user.username == this.data.username) {
-      this.errors.push("That username is already taken.");
+  cleanUp() {
+    if (typeof this.data.username != "string") {
+      this.data.username = "";
     }
-  });
-};
-
-User.prototype.register = function () {
-  return new Promise(async (resolve, reject) => {
-    this.cleanUp();
-    await this.validate();
-
-    if (!this.errors.length) {
-      // hash user password
-      let salt = bcrypt.genSaltSync(10);
-      this.data.password = bcrypt.hashSync(this.data.password, salt);
-      await usersCollection.insertOne(this.data);
-      resolve();
-    } else {
-      reject(this.errors);
+    if (typeof this.data.password != "string") {
+      this.data.password = "";
     }
-  });
-};
 
-User.prototype.login = function () {
-  return new Promise((resolve, reject) => {
-    this.cleanUp();
-
-    usersCollection
-      .findOne({ username: this.data.username })
-      .then((attemptedUser) => {
-        if (
-          attemptedUser &&
-          bcrypt.compareSync(this.data.password, attemptedUser.password)
-        ) {
-          resolve("Congrats!");
-        } else {
-          reject("Invalid username/password.");
-        }
-      })
-      .catch(() => {
-        reject("Please try again later.");
-      });
-  });
-};
-
-User.findByUsername = function (username) {
-  return new Promise(async (resolve, reject) => {
-    try {
-      let users = await usersCollection.find({}).toArray();
-      users.forEach((user) => {
-        if (user.username == username) {
-          resolve(user);
-        }
-      });
-      reject("No user found.");
-    } catch {
-      reject('Please try again later.');
+    this.data = {
+      username: this.data.username.trim().toLowerCase(),
+      password: this.data.password,
+    };
+  }
+  async validate() {
+    if (this.data.username == "") {
+      this.errors.push("You must provide a username.");
     }
-  });
+    if (this.data.password == "") {
+      this.errors.push("You must provide a password.");
+    }
+
+    let users = await this.usersCollection.find({}).toArray();
+    users.forEach((user) => {
+      if (user.username == this.data.username) {
+        this.errors.push("That username is already taken.");
+      }
+    });
+  }
+  register() {
+    return new Promise(async (resolve, reject) => {
+      this.cleanUp();
+      await this.validate();
+
+      if (!this.errors.length) {
+        // hash user password
+        let salt = bcrypt.genSaltSync(10);
+        this.data.password = bcrypt.hashSync(this.data.password, salt);
+        await this.usersCollection.insertOne(this.data);
+        resolve();
+      } else {
+        reject(this.errors);
+      }
+    });
+  }
+  login() {
+    return new Promise((resolve, reject) => {
+      this.cleanUp();
+
+      this.usersCollection
+        .findOne({ username: this.data.username })
+        .then((attemptedUser) => {
+          if (attemptedUser &&
+            bcrypt.compareSync(this.data.password, attemptedUser.password)) {
+              resolve();
+          } else {
+            reject("Invalid username/password.");
+          }
+        })
+        .catch(() => {
+          reject("Please try again later.");
+        });
+    });
+  }
 }
-
-module.exports = User;

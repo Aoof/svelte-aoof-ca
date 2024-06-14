@@ -1,8 +1,0 @@
-node_modules
-logs
-*.log
-.env
-Dockerfile
-.dockerignore
-.DS_Store
-backups

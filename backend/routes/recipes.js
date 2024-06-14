@@ -1,12 +1,12 @@
-const express = require('express');
-const {
+import express from 'express';
+import {
   createRecipe,
   getRecipes,
   getRecipeById,
   updateRecipe,
   deleteRecipe
-} = require('../controllers/recipeController');
-const auth = require('../middleware/auth');
+} from '../controllers/recipeController.js';
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 
@@ -35,4 +35,4 @@ router.put('/:id', auth, updateRecipe);
 // @access  Private
 router.delete('/:id', auth, deleteRecipe);
 
-module.exports = router;
+export default router;

@@ -1,8 +1,8 @@
-const { MongoClient, ServerApiVersion, ObjectId } = require("mongodb");
-const fs = require("fs");
+import { MongoClient, ServerApiVersion, ObjectId } from "mongodb";
+import fs from "fs"
 
-require("dotenv").config();
-
+import dotenv from "dotenv";
+dotenv.config();
 
 const client = new MongoClient(process.env.MONGO_URI, {
     serverApi: {
