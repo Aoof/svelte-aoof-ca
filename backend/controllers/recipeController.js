@@ -16,9 +16,9 @@ let createRecipe = async (req, res) => {
     });
 
     const insertedId = await newRecipe.addRecipe();
-    res.json({ insertedId, ok: true, msg: ['Recipe created']});
+    res.send({ insertedId, ok: true, msg: ['Recipe created']});
   } catch (err) {
-    res.json({ ok: false, msg: ['Server error'] });
+    res.send({ ok: false, msg: ['Server error'] });
   }
 };
 
@@ -27,10 +27,10 @@ let getRecipes = async (req, res) => {
   try { 
     let recipe = new Recipe();
     const recipes = await recipe.getRecipes();
-    res.json({ recipes, ok: true, msg: ['Recipes found']});
+    res.send({ recipes, ok: true, msg: ['Recipes found']});
   } catch (err) {
     err = Array.isArray(err) ? err : [err];
-    res.json({ ok: false, msg: err });
+    res.send({ ok: false, msg: err });
   }
 };
 
@@ -41,17 +41,16 @@ let getRecipeById = async (req, res) => {
     recipe = await recipe.findById(req.params.id);
 
     if (!recipe) {
-      return res.json({ ok: false, msg: ['Recipe not found'] });
+      return res.send({ ok: false, msg: ['Recipe not found'] });
     }
 
-    res.json({recipe, ok: true, msg: ['Recipe found']});
+    res.send({recipe, ok: true, msg: ['Recipe found']});
   } catch (err) {
     err = Array.isArray(err) ? err : [err];
-    res.json({ ok: false, msg: err });
+    res.send({ ok: false, msg: err });
   }
 };
 
-// Update a recipe by ID
 let updateRecipe = async (req, res) => {
   try {
     req.body._id = req.params.id;
@@ -59,10 +58,10 @@ let updateRecipe = async (req, res) => {
 
     await recipe.editRecipe();
 
-    res.json({ recipe, ok: true, msg: ['Recipe updated'] });
+    res.send({ ok: true, msg: ['Recipe updated'] });
   } catch (err) {
     err = Array.isArray(err) ? err : [err];
-    res.json({ ok: false, msg: err });
+    res.send({ ok: false, msg: err });
   }
 };
 
@@ -72,10 +71,10 @@ let deleteRecipe = async (req, res) => {
 
     await recipe.deleteRecipe();
 
-    res.json({ ok: true, msg: ['Recipe removed'] });
+    res.send({ ok: true, msg: ['Recipe removed'] });
   } catch (err) {
     err = Array.isArray(err) ? err : [err];
-    res.json({ ok: false, msg: err });
+    res.send({ ok: false, msg: err });
   }
 };
 

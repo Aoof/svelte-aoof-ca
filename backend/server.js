@@ -31,6 +31,40 @@ app.use(sessionOptions);
 // Init Middleware
 app.use(express.json({ extended: false }));
 app.use(cors(':method :url :status :res[content-length] bytes - :response-time ms'));
+
+const logger = (req, res, next) => {
+    const log = `${new Date().toISOString()} - ${req.method} ${req.url}`;
+    console.log(log);
+    fs.appendFile(`./logs/${getLogFileName()}`, log + '\n', (err) => {
+        if (err) {
+            console.error('Error writing to log file:', err);
+        }
+    });
+    next();
+};
+
+const errorLogger = (err, req, res, next) => {
+    const log = `${new Date().toISOString()} - ERROR: ${err.message}`;
+    console.error(log);
+    fs.appendFile(`./logs/${getLogFileName()}`, log + '\n', (err) => {
+        if (err) {
+            console.error('Error writing to log file:', err);
+        }
+    });
+    next(err);
+};
+
+function getLogFileName() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}.txt`;
+}
+
+app.use(logger);
+app.use(errorLogger);
+
 app.use(express.static('./static'));
 
 

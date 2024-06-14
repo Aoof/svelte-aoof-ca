@@ -25,11 +25,11 @@ let register = async (req, res) => {
         { expiresIn: 360000 },
         (err, token) => {
           if (err) throw err;
-          res.json({ token, ok: true, msg: ['Registration successful'] });
+          res.send({ token, ok: true, msg: ['Registration successful'] });
         }
       );
     }).catch(err => {
-      res.json({ ok: false, msg: [...err] });
+      res.send({ ok: false, msg: [...err] });
     
     })
   } catch (err) {
@@ -41,18 +41,18 @@ let login = async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
-    return res.json({ ok: false, msg: ['Please enter all fields'] });
+    return res.send({ ok: false, msg: ['Please enter all fields'] });
   }
   let user = new User();
 
   await user.findByUsername(username).then(async user => {
     if (!user) {
-      return res.json({ ok: false, msg: ['Invalid Credentials'] });
+      return res.send({ ok: false, msg: ['Invalid Credentials'] });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.json({ ok: false, msg: ['Invalid Credentials'] });
+      return res.send({ ok: false, msg: ['Invalid Credentials'] });
     }
 
     const payload = {
@@ -68,28 +68,28 @@ let login = async (req, res) => {
       { expiresIn: 360000 },
       (err, token) => {
         if (err) throw err;
-        res.json({ token, ok: true, msg: ['Login successful'] });
+        res.send({ token, ok: true, msg: ['Login successful'] });
       }
     );
   }).catch(err => {
-    res.json({ ok: false, msg: ['Server error please contact administrators.'] });
+    res.send({ ok: false, msg: ['Server error please contact administrators.'] });
   });
 };
 
 let logout = async (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.json({ ok: false, msg: ['Server error please contact administrators.'] });
+      return res.send({ ok: false, msg: ['Server error please contact administrators.'] });
     }
-    res.json({ ok: true, msg: ['Logout successful'] });
+    res.send({ ok: true, msg: ['Logout successful'] });
   });
 }
 
 let verify = async (req, res) => {
   if (req.user) {
-    res.json({ data: req.session.user , ok: true, msg: ['Authorized'] });
+    res.send({ data: req.session.user , ok: true, msg: ['Authorized'] });
   } else {
-      res.json({ ok: false, msg: ['Not authorized'] });
+      res.send({ ok: false, msg: ['Not authorized'] });
   }
 }
 

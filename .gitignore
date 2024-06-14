@@ -32,3 +32,14 @@ npm-debug.log
 .DS_Store
 
 .env
+
+backups
+backup.log
+
+build
+.svelte-kit
+package
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
