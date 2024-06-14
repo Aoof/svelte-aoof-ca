@@ -106,6 +106,16 @@ if (process.env.NODE_ENV === 'production') {
     https.createServer(options, app).listen(443, () => {
         console.log('Server started on port 443');
     })
+
+    let tmpApp = express();
+    
+    tmpApp.use((req, res) => {
+        res.redirect('https://' + req.headers.host + req.url);
+    });
+
+    tmpApp.listen(80, () => {
+        console.log('Redirect server started on port 80');
+    });
 } else {
     app.listen(process.env.PORT || 3000, () => {
         console.log(`Server started on port ${process.env.PORT || 3000}`);
