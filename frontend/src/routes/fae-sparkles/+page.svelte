@@ -5,8 +5,8 @@
     import { logout } from '$lib/../stores/auth';
     import { addToast } from '$lib/../stores/toasts';
 
-    import Button from '$lib/components/Button.svelte';
-    import Recipes from '$lib/components/Recipes.svelte';
+    import Button from '$lib/components/Fae/Button.svelte';
+    import Recipes from '$lib/components/Fae/Recipes.svelte';
 
     async function handleLogout() {
         await logout();

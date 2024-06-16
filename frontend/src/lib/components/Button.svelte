@@ -1,24 +1,28 @@
 <script lang="ts">
     import { createEventDispatcher } from "svelte";
 
-    export let text;
-    export let className = '';
+    export let text : string;
+    export let type = "button";
 
     const dispatch = createEventDispatcher();
-
-    function handleClick() { dispatch('click'); }
+    function handleClick() {
+        dispatch("click");
+    }
 </script>
 
 <!-- Tailwind btn -->
-<button 
-    class={className} 
-    on:click={handleClick}
-    {...$$restProps}>
-    {@html text}
-</button>
+ 
+{#if type === 'button'}
+    <button on:click={handleClick} {...$$restProps}>
+        {@html text}
+    </button>
+{:else}
+    <input type="submit" {...$$restProps} bind:value={text} />
+{/if}
 
 <style lang="scss">
-    button {
+    button,
+    input[type="submit"] {
         padding: 0.5rem 1.4rem;
         border-radius: 0.5rem;
         color: white;

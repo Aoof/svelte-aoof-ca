@@ -2,7 +2,7 @@
     import { page } from '$app/stores';
     import { onMount } from 'svelte';
 
-    import RecipeForm from '$lib/components/RecipeForm.svelte';
+    import RecipeForm from '$lib/components/Fae/RecipeForm.svelte';
     
     import { newRecipe as recipe, getRecipe } from '$lib/../stores/recipes';
 
