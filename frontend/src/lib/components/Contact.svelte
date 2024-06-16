@@ -46,7 +46,9 @@
 </script>
 
 <style lang="scss">
-
+    .sections {
+        height: stretch;
+    }
 </style>
 
 <article class="h-full bg-dark rounded-xl p-4 absolute top-0 w-full" transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }} {...$$restProps}>
@@ -55,8 +57,8 @@
         <div class="window-control bg-yellow w-3 h-3 rounded-full"></div>
         <div class="window-control bg-green w-3 h-3 rounded-full"></div>
     </div>
-    <div class="sections flex md:flex-row flex-col h-full p-4 mb-4 overflow-auto md:overflow-visible">
-        <div class="section flex flex-col gap-2 justify-between md:w-1/2 bg-pink p-8 rounded-lg text-dark mb-8">
+    <div class="sections flex md:flex-row flex-col p-4 my-4 text-lg overflow-auto h-full">
+        <div class="section flex flex-col gap-2 justify-between md:w-1/2 bg-pink p-8 rounded-lg text-dark mb-8 min-h-fit">
             <h1 class="text-3xl">Contact Information</h1>
             <p class="text-lg">Mostly active on Discord but feel free to reach out on one of the following.</p>
             <div class="flex flex-col gap-2 *:my-2 text-lg">

@@ -18,15 +18,15 @@
 
 <style lang="scss">
   main {
-    height: 100vh;
+    height: stretch;
+    width: stretch;
 
     .content-container {
       position: absolute;
       top: 0; bottom: 0;
 
-      margin: auto 1rem auto 10rem;
+      margin: auto 1rem auto 20rem;
       height: 70%;
-      left: 10%;
 
       width: stretch;
 

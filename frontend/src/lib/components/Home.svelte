@@ -57,6 +57,9 @@
 
 <style lang="scss">
     .typewriter-message {
+        height: stretch;
+        justify-content: center;
+
         * {
             font-family: 'Victor Mono' !important;
             letter-spacing: 0.1em !important;
@@ -139,13 +142,13 @@
     }
 </style>
 
-<article class="h-full bg-dark rounded-xl p-4 absolute top-0" transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}>
+<article class="h-full w-full bg-dark rounded-xl p-4 absolute top-0" transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}>
     <div class="window-controls flex justify-end gap-2">
         <div class="window-control bg-red w-3 h-3 rounded-full"></div>
         <div class="window-control bg-yellow w-3 h-3 rounded-full"></div>
         <div class="window-control bg-green w-3 h-3 rounded-full"></div>
-    </div>
-    <div class="typewriter-message flex flex-row flex-wrap leading-relaxed p-9">
+    </div> <!-- flex md:flex-row flex-col h-full p-4 mb-4 overflow-auto md:overflow-visible -->
+    <div class="typewriter-message flex flex-col justify-start leading-relaxed p-9 my-4 text-lg overflow-auto">
         <div class="html-tag w-full">
             <span><span id="cursor" bind:this={cursor}></span>&lt;</span><span class="text">title</span><span>&gt;</span>
             <span>Welcome to my portfolio!</span>
@@ -170,9 +173,6 @@
         <div class="html-tag w-full">
             <span>&lt;/</span><span class="text">script</span><span>&gt;</span>
         </div>
-
-        <br><br>
-        <br><br>
 
         <a class="html-tag anchor-tag text-left" download="Abdulrahman_Mousa_Resume.pdf" href={resume} rel='noopener noreferrer'>
             <span>&lt;</span><span class="text">a</span><span>&gt;</span>

@@ -47,7 +47,7 @@
     }
 </style>
 
-<div class="projects" transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}>
+<div class="projects my-4 text-lg overflow-auto h-full" transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}>
     {#each projects as project}
         <ProjectCard {...project} />
     {/each}

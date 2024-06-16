@@ -69,7 +69,7 @@
         <div class="window-control bg-green w-3 h-3 rounded-full"></div>
     </div>
 
-    <div class="content">
+    <div class="content flex md:flex-row flex-col h-full p-4 my-4 text-lg overflow-auto">
         <div class="content-group">
             <h1 class="text-2xl text-center">About Me</h1>
             <p class="my-4 text-lg">

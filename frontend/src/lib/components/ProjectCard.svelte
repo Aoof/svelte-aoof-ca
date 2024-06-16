@@ -71,7 +71,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: rgba(0, 0, 0, 0.8);
+        background-color: rgba(40, 40, 40);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -110,7 +110,7 @@
                 background-color: #333;
                 padding: 0.25rem 0.5rem;
                 border-radius: 5px;
-                margin-right: 0.5rem;
+                margin: 0.5rem;
                 i {
                     color: #fff;
                 }
