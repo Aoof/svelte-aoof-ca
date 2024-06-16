@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store';
 
-import { BACKEND_URL } from '$lib/constants';
 import type { User } from '$lib/types';
+
+import { PUBLIC_BACKEND_URL as BACKEND_URL } from '$env/static/public';
 
 import axios from 'axios';
 

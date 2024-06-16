@@ -1,6 +1,6 @@
 import { writable } from "svelte/store";
 
-import { BACKEND_URL } from "$lib/constants";
+import { PUBLIC_BACKEND_URL as BACKEND_URL } from '$env/static/public';
 import type { Recipe, Ingredient } from "$lib/types";
 
 import axios from "axios";

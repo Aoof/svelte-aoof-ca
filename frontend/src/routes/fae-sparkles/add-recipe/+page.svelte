@@ -1,5 +1,5 @@
 <script lang="ts">
-    import RecipeForm from '$lib/components/RecipeForm.svelte';
+    import RecipeForm from '$lib/components/Fae/RecipeForm.svelte';
 
     import { newRecipe } from '$lib/../stores/recipes';
 

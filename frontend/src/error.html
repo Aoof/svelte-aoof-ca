@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>%sveltekit.error.message%</title>
+	</head>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@600&display=swap");
+        * {
+            font-family: "Raleway", sans-serif;
+            font-weight: 300;
+            font-size: 105%;
+        }
+
+        html, body, #root {
+            height: 100%;
+            background-color: #463f3a;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        article {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 2rem;
+        }
+    </style>
+	<body>
+        <article>
+            <h1>Please report to administrators for feedback</h1>
+            <p>Status: %sveltekit.status%</p>
+            <p>Message: %sveltekit.error.message%</p>
+        </article>
+	</body>
+</html>
