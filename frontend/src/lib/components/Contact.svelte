@@ -65,8 +65,8 @@
                 <a class="my-2 *:mx-2 align-middle" href="https://discord.gg" target="_blank"><i class="fa-brands fa-discord"></i> aoof</a>
                 <a class="my-2 *:mx-2 align-middle" href="mailto:aoof.mousa@gmail.com" target="_blank"><i class="fas fa-envelope"></i> aoof.mousa@gmail.com</a>
                 <a class="my-2 *:mx-2 align-middle" href="tel:+1514-717-7233" target="_blank"><i class="fas fa-phone"></i> +1 (514) 717-7233</a>
-                <a class="my-2 *:mx-2 align-middle" href="https://github.com/Aoof" target="_blank"><i class="fa-brands fa-github"></i> Aoof</a>
-                <a class="my-2 *:mx-2 align-middle" href="https://www.linkedin.com/in/aoof/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                <a class="my-2 *:mx-2 align-middle" href="https://github.com/Aoof" target="_blank"><i class="fa-brands fa-github"></i> Github/Aoof</a>
+                <a class="my-2 *:mx-2 align-middle" href="https://www.linkedin.com/in/aoof/" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn/Aoof</a>
                 <div class="my-2 *:mx-2 align-middle"><i class="fas fa-map-marker-alt"></i> Montreal, Qc</div>
             </div>
         </div>
