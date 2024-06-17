@@ -148,7 +148,7 @@
         <div class="window-control bg-yellow w-3 h-3 rounded-full"></div>
         <div class="window-control bg-green w-3 h-3 rounded-full"></div>
     </div> <!-- flex md:flex-row flex-col h-full p-4 mb-4 overflow-auto md:overflow-visible -->
-    <div class="typewriter-message flex flex-col justify-start leading-relaxed p-9 my-4 text-lg overflow-auto">
+    <div class="typewriter-message flex flex-col justify-start leading-relaxed p-9 my-4 text-sm md:text-lg overflow-auto">
         <div class="html-tag w-full">
             <span><span id="cursor" bind:this={cursor}></span>&lt;</span><span class="text">title</span><span>&gt;</span>
             <span>Welcome to my portfolio!</span>
