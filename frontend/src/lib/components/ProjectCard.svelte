@@ -1,12 +1,13 @@
 <script lang="ts">
     import { fly } from 'svelte/transition';
     import { device } from '$lib/../stores/index';
+    import type { SvelteComponent } from 'svelte';
 
     export let name;
     export let description;
     export let image;
     export let link;
-    export let tags : { name : string, class : string }[] = [];
+    export let tags : { name : string, class : string, component?: ConstructorOfATypedSvelteComponent }[] = [];
 
     let expanded = false;
 </script>
@@ -52,11 +53,11 @@
         margin-top: 0.5rem;
         justify-content: center;
         .tag {
-            background-color: #ddd;
+            background-color: rgb(60, 60, 60);
             padding: 0.25rem 0.5rem;
             border-radius: 5px;
             i {
-                color: #333;
+                color: #ddd;
             }
         }
     }
@@ -131,8 +132,12 @@
                 Using the following technologies:
                 {#each tags as tag}
                     <span class="tag" title={tag.name}>
-                        <i class={tag.class}></i>
-                        {tag.name}
+                        {#if tag.component != undefined}
+                            <svelte:component this={tag.component}  />
+                        {:else}
+                            <i class={tag.class}></i>
+                        {/if}
+                            {tag.name}
                     </span>
                 {/each}
             </p>
@@ -154,7 +159,11 @@
         <div class="project-card-tags text-center">
             {#each tags as tag}
                 <span class="tag" title={tag.name}>
-                    <i class={tag.class}></i>
+                    {#if tag.component != undefined}
+                        <svelte:component this={tag.component}  />
+                    {:else}
+                        <i class={tag.class}></i>
+                    {/if}
                 </span>
             {/each}
         </div>

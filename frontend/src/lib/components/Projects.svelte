@@ -5,6 +5,12 @@
     import ProjectCard from './ProjectCard.svelte';
     import ieac  from '$lib/media/ieac.png';
     import castlecanada from '$lib/media/castlecanada.png';
+    import CppIcon from '$lib/components/Icons/CppIcon.svelte';
+    import ExpressIcon from '$lib/components/Icons/ExpressIcon.svelte';
+    import SvelteIcon from '$lib/components/Icons/SvelteIcon.svelte';
+    import MongodbIcon from '$lib/components/Icons/MongodbIcon.svelte';
+    import HetznerIcon from '$lib/components/Icons/HetznerIcon.svelte';
+    import ShopifyIcon from '$lib/components/Icons/ShopifyIcon.svelte';
 
     let projects = [
         {
@@ -16,9 +22,9 @@
                 { name: 'HTML', class: 'fa-brands fa-html5' },
                 { name: 'CSS', class: 'fa-brands fa-css3' },
                 { name: 'JavaScript', class: 'fa-brands fa-js' },
-                { name: 'Express', class: 'fas fa-server' },
-                { name: 'MongoDB', class: 'fas fa-database' },
-                { name: 'Hetzner VPS', class: 'fas fa-server' }
+                { name: 'Express', class: 'fas fa-server', component: ExpressIcon },
+                { name: 'MongoDB', class: 'fas fa-database', component: MongodbIcon },
+                { name: 'Hetzner VPS', class: 'fas fa-server', component: HetznerIcon }
             ]
         },
         {
@@ -30,8 +36,8 @@
                 { name: 'HTML', class: 'fa-brands fa-html5' },
                 { name: 'CSS', class: 'fa-brands fa-css3' },
                 { name: 'JavaScript', class: 'fa-brands fa-js' },
-                { name: 'Shopify', class: 'fas fa-shopping-cart'},
-                { name: 'Hetzner VPS', class: 'fas fa-server' }
+                { name: 'Shopify', class: 'fas fa-shopping-cart', component: ShopifyIcon},
+                { name: 'Hetzner VPS', class: 'fas fa-server', component: HetznerIcon}
             ]
         }
     ]
