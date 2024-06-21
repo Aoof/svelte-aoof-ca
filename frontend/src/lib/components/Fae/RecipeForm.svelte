@@ -1,6 +1,7 @@
 <script lang="ts">
     // User is logged in this is the page that will be displayed
     import { writable } from 'svelte/store';
+    import type { Writable } from 'svelte/store';
     import { addToast } from '$lib/../stores/toasts';
     import { onMount } from 'svelte';
 
@@ -15,7 +16,6 @@
         addRecipeTag as addTag, 
         removeRecipeTag as removeTag, 
         clearRecipeTags as clearTags
-
     } from '$lib/../stores/tags';
 
     import Button from '$lib/components/Fae/Button.svelte';
@@ -27,7 +27,6 @@
 
     onMount(() => {
         clearTags();
-
         fetchRecipes();
 
         $recipe.tags.forEach(tag => {

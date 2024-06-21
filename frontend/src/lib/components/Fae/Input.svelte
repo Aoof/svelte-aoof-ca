@@ -20,6 +20,8 @@
 
   $: if (value) {
     updateAutofill();
+  } else {
+    removeResults();
   }
 
   export let override: boolean = false;
@@ -29,24 +31,22 @@
 
   const dispatch = createEventDispatcher();
 
-  function autofillHandler(val: string) {
-    _this.focus();
-    value = val;
-
+  const removeResults = () => {
     $autofillContent.show = false;
     resultsContainer && resultsContainer.classList.remove("show");
+  };
 
+  function autofillHandler(val: string) {
+    _this.focus();
+    value = removeBold(val);
+    removeResults();
     dispatch("autofill", { value });
   }
 
   $: if ($autofillContent.show) {
-    if (resultsContainer) {
-      resultsContainer.classList.add("show");
-    }
+    if (resultsContainer) resultsContainer.classList.add("show");
   } else {
-    if (resultsContainer) {
-      resultsContainer.classList.remove("show");
-    }
+    if (resultsContainer) resultsContainer.classList.remove("show");
   }
   
   export let isTags: boolean = false;
@@ -61,10 +61,10 @@
       content = getAllIngredients($recipes, value);
     }
 
-    if (content.length === 0 || value === "" || value === content[0]) {
-      $autofillContent.show = false;
-      resultsContainer && resultsContainer.classList.remove("show");
+    if (content.length === 0 || value === "" || (value === content[0] && content.length === 1)) {
+      removeResults();
     } else {
+      content = content.map((item) => makeMatchBold(item, value));
       $autofillContent.content = content;
       $autofillContent.show = true;
     }
@@ -72,15 +72,29 @@
     return value;
   }
 
+  const makeMatchBold = (str: string, match: string) => {
+    return str.replace(new RegExp(match, "gi"), (match) => `<span style="font-weight: 700;">${match}</span>`);
+  };
+
+  const removeBold = (str: string) => {
+    return str.replace(/<span style="font-weight: 700;">|<\/span>/gi, "");
+  };
+
+  const setInputValue = (val: string) => {
+    value = removeBold(val);
+    removeResults();
+    _this.focus();
+  };
+
   function handleKeydown(event: KeyboardEvent) {
     dispatch("keydown", event);
-    if (!autofill && !isTags) return;
-    
-    if (event.key === 'Escape') {
-      $autofillContent.show = false;
-      resultsContainer && resultsContainer.classList.remove("show");
-    }
 
+    if (!autofill && !isTags) return;
+
+    if (event.key === 'Escape' || event.key === 'Enter') {
+      removeResults();
+    }
+    
     if (override) return;
 
     if (event.key === "Backspace" && value === "" && tags.length > 0) {
@@ -88,12 +102,19 @@
     }
     if (event.key === "Enter" || event.key === "Tab" || event.key === "+") {
       if (event.key == "+") event.preventDefault();
+
+      if ($autofillContent.content.length > 0) {
+            addTag($autofillContent.content[0]);
+            setInputValue("");
+            return;
+      }
+
       value.split("+").forEach((val : string) => {
         if (val !== "" && $currentTags.indexOf(val.trim()) === -1){
           addTag(val.trim());
         }
       });
-      value = "";
+      setInputValue("");
     }
   }
   function handleFocus(event: FocusEvent) {
@@ -191,14 +212,14 @@
       on:blur={handleBlur}
       {...$$restProps}
     />
-    <div id="results-container" bind:this={resultsContainer}>
+    <div class="results-container" bind:this={resultsContainer}>
       <ul class="results-list">
-        {#each $autofillContent.content as item}
+        {#each $autofillContent.content as item, i}
           <li class="result-item">
             <button 
-              class={"result-button"}
+              class={`result-button`}
               on:click={() => autofillHandler(item)}
-            >{item}</button>
+            >{@html item}</button>
           </li>
         {/each}
       </ul>
@@ -218,6 +239,7 @@
 {/if}
 
 <style lang="scss">
+
   .svelte-input,
   .input-container {
     width: 100%;
@@ -252,7 +274,7 @@
       flex-wrap: wrap;
     }
 
-    #results-container {
+    .results-container {
       position: absolute;
       top: 100%;
       left: 0;
@@ -277,6 +299,10 @@
         cursor: pointer;
         transition: all 0.3s;
         &:hover {
+          background-color: rgba(30, 30, 30);
+        }
+
+        &.highlighted {
           background-color: rgba(30, 30, 30);
         }
 
