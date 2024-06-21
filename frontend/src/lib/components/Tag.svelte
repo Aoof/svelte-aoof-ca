@@ -6,6 +6,8 @@
     import CppIcon from '$lib/components/Icons/CppIcon.svelte';
     import MongodbIcon from '$lib/components/Icons/MongodbIcon.svelte';
     import MySQLIcon from '$lib/components/Icons/MySQLIcon.svelte';
+    import HetznerIcon from './Icons/HetznerIcon.svelte';
+    import ShopifyIcon from './Icons/ShopifyIcon.svelte';
 
     export let title: string = "";
     export let iconClass: string = "";
@@ -23,6 +25,10 @@
                 return MongodbIcon;
             case "MySQLIcon":
                 return MySQLIcon;
+            case "HetznerIcon":
+                return HetznerIcon;
+            case "ShopifyIcon":
+                return ShopifyIcon;
             default:
                 return null;
         }
@@ -30,10 +36,8 @@
 
     let tooltipActive = false;
 
-    function handleTagClick() {
-        // Add a tooltip for the tag that shows the title
-        // Only 1 tooltip should be visible at a time
-
+    function handleTagClick(e : MouseEvent) {
+        e.stopPropagation();
         tooltipActive = !tooltipActive;
 
         if (tooltipActive) {
@@ -48,11 +52,11 @@
     .tag {
         background-color: #333;
         padding: 0.25rem 0.5rem;
+        margin: 0.25rem;
         border-radius: 5px;
 
         font-size: 1rem;
 
-        display: inline-flex;
         align-items: center;
         justify-content: center;
 
