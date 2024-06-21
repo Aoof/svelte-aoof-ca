@@ -19,9 +19,6 @@
         gap: 1rem;
         overflow: hidden;
 
-        width: 100%;
-        max-width: 600px;
-
         background-color: rgb(40, 40, 40);
         padding: 1rem;
 
@@ -68,10 +65,7 @@
 
     .project-card-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        top: 0; left: 0; right: 0; bottom: 0;
         background-color: rgba(40, 40, 40);
         display: flex;
         flex-direction: column;
@@ -145,7 +139,7 @@
         </div>
     </div>
 {/if}
-<button class="project-card w-full rounded-lg mx-3" on:click={() => {expanded = !expanded}}>
+<button class="project-card xl:w-1/3 w-full rounded-lg mx-3" on:click={() => {expanded = !expanded}}>
     <div class="window-controls flex justify-end gap-2">
         <div class="window-control bg-red w-3 h-3 rounded-full"></div>
         <div class="window-control bg-yellow w-3 h-3 rounded-full"></div>

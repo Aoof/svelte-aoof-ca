@@ -2,7 +2,7 @@
     import { writable } from 'svelte/store';
 
     import { page, anchors, device, change_page } from '$lib/../stores/index';
-    import { fly } from 'svelte/transition';
+    import { fly, fade, scale } from 'svelte/transition';
 
     import { onMount } from 'svelte';
 
@@ -117,24 +117,6 @@
                 width: 70px;
                 height: 70px;
                 border-radius: 50%;
-
-                .tooltip {
-                    display: flex;
-                    position: absolute;
-                    left: Calc(100% + 1rem);
-                    top: Calc(50% - .75rem);
-                    color: white;
-                    font-size: 1rem;
-
-                    transition: 0.3s;
-
-                    align-items: center;
-                    justify-content: center;
-
-                    @media (max-width: 768px) {
-                        display: none;
-                    }
-                }
             }
         }
     }
@@ -144,10 +126,18 @@
     <div class="buttons-container">
         <span class="active-selector" bind:this={$cursorElement}></span>
         {#each anchors as btn, i}
-            <button on:click={() => change_page(btn.name)} class={$page == btn.name ? 'active' : ''} bind:this={$buttons[i]}>
-                <i class={btn.icon}></i>
+            <button on:click={() => change_page(btn.name)} class={`relative ${$page == btn.name ? 'active' : ''}`} bind:this={$buttons[i]}>
                 {#if $page == btn.name}
-                    <div class="tooltip" transition:fly={{x: -20, duration: 500}}>{btn.name.toLocaleUpperCase()}</div>
+                    <span 
+                        class="text-xs w-full absolute top-0 left-0 right-0 bottom-0 m-auto h-fit" 
+                        in:fly={{y: -20, duration: 500}}
+                        out:scale={{duration: 200}}
+                    >{btn.name.toUpperCase()}</span>
+                {:else}
+                    <i class={btn.icon} 
+                        in:fly={{y: -20, duration: 200}}
+                        out:scale={{duration: 500}}
+                    ></i>
                 {/if}
             </button>
         {/each}

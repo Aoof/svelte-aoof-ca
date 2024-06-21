@@ -3,11 +3,25 @@
     import { fly } from 'svelte/transition';
     import { device } from '$lib/../stores/index';
 
-    import ExpressIcon from '$lib/components/Icons/ExpressIcon.svelte';
-    import SvelteIcon from '$lib/components/Icons/SvelteIcon.svelte';
-    import CppIcon from '$lib/components/Icons/CppIcon.svelte';
-    import MongodbIcon from '$lib/components/Icons/MongodbIcon.svelte';
-    import MySQLIcon from '$lib/components/Icons/MySQLIcon.svelte';
+    import Tag from '$lib/components/Tag.svelte';
+
+    const techTags = [
+        { title: "HTML", iconClass: "fa-brands fa-html5" },
+        { title: "CSS", iconClass: "fa-brands fa-css3" },
+        { title: "JavaScript", iconClass: "fa-brands fa-js" },
+        { title: "React", iconClass: "fa-brands fa-react" },
+        { title: "Svelte", component: "SvelteIcon" },
+        { title: "Node.js", iconClass: "fa-brands fa-node-js" },
+        { title: "Express.js", component: "ExpressIcon" },
+        { title: "Python", iconClass: "fa-brands fa-python" },
+        { title: "Java", iconClass: "fa-brands fa-java" },
+        { title: "C", iconClass: "fa-brands fa-c" },
+        { title: "C++", component: "CppIcon" },
+        { title: "Git", iconClass: "fa-brands fa-git" },
+        { title: "Docker", iconClass: "fa-brands fa-docker" },
+        { title: "MongoDB", component: "MongodbIcon" },
+        { title: "MySQL", component: "MySQLIcon" }
+    ];
 
 </script>
 
@@ -43,23 +57,6 @@
         flex-wrap: wrap;
         justify-content: center;
     }
-
-    .tag {
-        background-color: #333;
-        padding: 0.25rem 0.5rem;
-        border-radius: 5px;
-
-        font-size: 1rem;
-
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-
-        i {
-            color: white;
-            margin: 0 0.25rem;
-        }
-    }
 </style>
 
 <article class="bg-dark w-full p-4 rounded-lg h-full justify-center align-middle top-0 absolute" transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}>
@@ -81,21 +78,13 @@
         <div class="content-group">
             <h2 class="text-xl text-center">Skills</h2>
             <div class="tags-container text-lg">
-                <span class="tag" title="HTML"><i class="fa-brands fa-html5"></i></span>
-                <span class="tag" title="CSS"><i class="fa-brands fa-css3"></i></span>
-                <span class="tag" title="JavaScript"><i class="fa-brands fa-js"></i></span>
-                <span class="tag" title="React"><i class="fa-brands fa-react"></i></span>
-                <span class="tag" title="Svelte"><SvelteIcon /></span>
-                <span class="tag" title="Node.js"><i class="fa-brands fa-node-js"></i></span>
-                <span class="tag" title="Express.js"><ExpressIcon /></span>
-                <span class="tag" title="Python"><i class="fa-brands fa-python"></i></span>
-                <span class="tag" title="Java"><i class="fa-brands fa-java"></i></span>
-                <span class="tag" title="C"><i class="fa-brands fa-c"></i></span>
-                <span class="tag" title="C++"><CppIcon /></span>
-                <span class="tag" title="Git"><i class="fa-brands fa-git"></i></span>
-                <span class="tag" title="Docker"><i class="fa-brands fa-docker"></i></span>
-                <span class="tag" title="MongoDB"><MongodbIcon /></span>
-                <span class="tag" title="MySQL"><MySQLIcon /></span>
+                {#each techTags as tag}
+                    <Tag 
+                        title={tag.title} 
+                        iconClass={tag.iconClass} 
+                        component={tag.component}
+                    />
+                {/each}
             </div>
         </div>
 

@@ -57,8 +57,8 @@
         <div class="window-control bg-yellow w-3 h-3 rounded-full"></div>
         <div class="window-control bg-green w-3 h-3 rounded-full"></div>
     </div>
-    <div class="sections flex md:flex-row flex-col p-4 my-4 text-lg overflow-auto h-full">
-        <div class="section flex flex-col gap-2 justify-between md:w-1/2 bg-pink p-8 rounded-lg text-dark mb-8 min-h-fit">
+    <div class="sections flex xl:flex-row flex-col p-4 my-4 text-lg overflow-auto h-full">
+        <div class="section flex flex-col gap-2 justify-between xl:w-1/2 bg-pink p-8 rounded-lg text-dark min-h-fit">
             <h1 class="text-3xl">Contact Information</h1>
             <p class="text-lg">Mostly active on Discord but feel free to reach out on one of the following.</p>
             <div class="flex flex-col gap-2 *:my-2 text-lg">
@@ -70,7 +70,7 @@
                 <div class="my-2 *:mx-2 align-middle"><i class="fas fa-map-marker-alt"></i> Montreal, Qc</div>
             </div>
         </div>
-        <form class="section flex flex-col gap-2 md:w-1/2 rounded-lg p-8" on:submit|preventDefault={handleSubmit} method="POST">
+        <form class="section flex flex-col gap-2 xl:w-1/2 rounded-lg p-8" on:submit|preventDefault={handleSubmit} method="POST">
             <h1 class="text-3xl">Contact Form</h1>
             <div class="input-group">
                 <label for="email" class="text-lg">Email address : </label>
