@@ -5,9 +5,12 @@
   import Tag from "./Tag.svelte";
 
   import { 
-    removeSearchTag as removeTag, 
-    addSearchTag as addTag, 
-    searchTags as currentTags 
+    removeSearchTag, 
+    addSearchTag, 
+    searchTags,
+    recipeTags,
+    addRecipeTag,
+    removeRecipeTag,
   } from "$lib/../stores/tags";
 
   import { getAllIngredients, getAllTags, allRecipes as recipes } from "$lib/../stores/recipes";
@@ -24,12 +27,26 @@
     removeResults();
   }
 
-  export let override: boolean = false;
+  export let searchBar : boolean = false;
 
   export let autofill: boolean = false;
   export const autofillContent = writable({content : <string[]>[], show: <boolean>false});
 
   const dispatch = createEventDispatcher();
+
+  let tags = searchTags;
+  let addTag = addSearchTag;
+  let removeTag = removeSearchTag;
+
+  onMount(() => {
+    if (searchBar) {
+      $tags = [];
+    } else {
+      tags = recipeTags;
+      addTag = addRecipeTag;
+      removeTag = removeRecipeTag;
+    }
+  })
 
   const removeResults = () => {
     $autofillContent.show = false;
@@ -50,7 +67,6 @@
   }
   
   export let isTags: boolean = false;
-  export let tags: string[] = [];
 
   function updateAutofill() {
     let content;
@@ -86,31 +102,77 @@
     _this.focus();
   };
 
+  const removeHighlighted = () => {
+    let highlighted = document.querySelector(".highlighted");
+    if (highlighted) {
+      highlighted.classList.remove("highlighted");
+    }
+  };
+
   function handleKeydown(event: KeyboardEvent) {
     dispatch("keydown", event);
 
     if (!autofill && !isTags) return;
 
-    if (event.key === 'Escape' || event.key === 'Enter') {
+    if (event.key === 'Escape') {
       removeResults();
     }
-    
-    if (override) return;
 
-    if (event.key === "Backspace" && value === "" && tags.length > 0) {
-      removeTag(tags[tags.length - 1]);
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      let highlighted = document.querySelector(".highlighted");
+      let results = document.querySelectorAll(".result-item");
+
+      if (highlighted) {
+        highlighted.classList.remove("highlighted");
+        let index = Array.from(results).indexOf(highlighted);
+        if (event.key === "ArrowDown") {
+          if (index + 1 < results.length) {
+            results[index + 1].classList.add("highlighted");
+          } else {
+            results[0].classList.add("highlighted");
+          }
+        } else {
+          if (index - 1 >= 0) {
+            results[index - 1].classList.add("highlighted");
+          } else {
+            results[results.length - 1].classList.add("highlighted");
+          }
+        }
+      } else {
+        results[0].classList.add("highlighted");
+      }
+      return;
     }
-    if (event.key === "Enter" || event.key === "Tab" || event.key === "+") {
-      if (event.key == "+") event.preventDefault();
+
+    if (event.key === "Enter" && $autofillContent.content.length !== 0) {
+      event.preventDefault();
+      let highlighted = document.querySelector(".highlighted");
+      if (highlighted) {
+        let val = highlighted.querySelector(".result-button")?.textContent;
+        if (val) {
+          addTag(val);
+          setInputValue("");
+          removeHighlighted();
+        }
+      }
+      return;
+    }
+    
+    if (event.key === "Backspace" && value === "" && $tags.length > 0) {
+      removeTag($tags[$tags.length - 1]);
+    }
+    if (event.key === "Enter" || event.key === "Tab" || event.key === "+" || (event.key === " " && !searchBar)) {
+      if (event.key !== "Tab") event.preventDefault();
 
       if ($autofillContent.content.length > 0) {
-            addTag($autofillContent.content[0]);
-            setInputValue("");
-            return;
+        addTag(value);
+        setInputValue("");
+        return;
       }
 
       value.split("+").forEach((val : string) => {
-        if (val !== "" && $currentTags.indexOf(val.trim()) === -1){
+        if (val !== "" && $tags.indexOf(val.trim()) === -1){
           addTag(val.trim());
         }
       });
@@ -197,7 +259,7 @@
   >
     {#if isTags}
       <div class="tags-container">
-        {#each tags as tag, i}
+        {#each $tags as tag, i}
           <Tag text={tag} className="{i == 0 ? '!ml-0' : ''}" override={true} owonclick={() => {removeTag(tag)}} />
         {/each}
       </div>
@@ -215,7 +277,7 @@
     <div class="results-container" bind:this={resultsContainer}>
       <ul class="results-list">
         {#each $autofillContent.content as item, i}
-          <li class="result-item">
+          <li class={"result-item"}>
             <button 
               class={`result-button`}
               on:click={() => autofillHandler(item)}
@@ -309,7 +371,6 @@
         .result-button {
           padding: 0.5rem 1rem;
           width: stretch;
-          height: stretch;
           background-color: transparent;
           border: none;
           color: #fff;

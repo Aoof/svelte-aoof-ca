@@ -4,7 +4,12 @@ export const searchTags = writable<string[]>([]);
 export const recipeTags = writable<string[]>([]);
 
 export function addSearchTag(tag: string) {
-    searchTags.update((tags) => [...tags, tag]);
+    searchTags.update((tags) => {
+        if (tags.includes(tag)) {
+            return tags.filter((t) => t !== tag);
+        }
+        return [...tags, tag];
+    });
 }
 
 export function removeSearchTag(tag: string) {
@@ -16,7 +21,12 @@ export function clearSearchTags() {
 }
 
 export function addRecipeTag(tag: string) {
-    recipeTags.update((tags) => [...tags, tag]);
+    recipeTags.update((tags) => {
+        if (tags.includes(tag)) {
+            return tags;
+        }
+        return [...tags, tag];
+    });
 }
 
 export function removeRecipeTag(tag: string) {
