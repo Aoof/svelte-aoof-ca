@@ -163,7 +163,7 @@
             <span class="const">const</span> <span>info</span> <span class="operator">=</span> <span class="bracket"> &#123;</span>
             <div class="indent">
                 <div><span class="key">fullName</span><span>: </span><span class="string">"Abdulrahman Mousa"</span><span>,</span></div>
-                <div><span class="key">preferredName</span><span>: </span><span class="string">"Rahman"</span></div>
+                <div><span class="key">preferredName</span><span>: </span><span class="string">"Rahman"</span><span>,</span></div>
                 <div><span class="key">nickname</span><span>: </span><span class="string">"aoof"</span><span>,</span></div>
                 <div><span class="key">pronunciation</span><span>: </span><a class="string anchor" target="_blank" href="https://translate.google.com/?sl=ar&tl=en&text=%D8%B9%D9%8F%D9%88%D9%81%D9%92&op=translate">"(ʕu:f)"</a><span>,</span></div>
             </div>
