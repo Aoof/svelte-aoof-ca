@@ -28,7 +28,7 @@
 </style>
 
 <main class="fae-grimoire relative container lg:px-52 m-auto">
-    <div class="header text-center text-4xl pt-44 select-none">
+    <div class="header text-center text-4xl pt-20 select-none">
         <a href="/fae-sparkles">
             <h1>Fae's Grimoire</h1>
         </a>
