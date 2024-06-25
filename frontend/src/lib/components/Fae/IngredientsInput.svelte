@@ -15,77 +15,169 @@
     export let currentIngredient : Writable<{amount: string, ingredient: string}> = writable({amount: '', ingredient: ''});
     export let className : string = '';
 
-    let autofillContent : Writable<{content : string[], show: boolean}> = writable({content : [], show: false});
-    let ingredientsInput : HTMLInputElement[] = Array.from({length: $recipe.ingredients.length}, () => document.createElement('input'));
-    let ingredientsResultContainers : HTMLDivElement[] = Array.from({length: $recipe.ingredients.length}, () => document.createElement('div'));
-    let currentResultsContainer : HTMLDivElement = document.createElement('div');
-    let currentIngredientInput : HTMLInputElement = document.createElement('input');
+    let autofillContent : Writable<{content : string[], show: boolean}> = writable({content: [], show: false});
 
-    // Peanut butter is the active ingredient 🥜
-    $: peanutButter = (document.activeElement == currentIngredientInput) ? currentIngredientInput : ingredientsInput.find(input => document.activeElement == input) || currentIngredientInput;
+    let activeIndex = -1;
 
-    $: if ($currentIngredient.ingredient) {
-        updateAutofill();
-    } else {
-        removeResults();
+    let search = '';
+    let oldSearch = '';
+
+    let inputs : HTMLInputElement[] = [document.createElement('input')];
+    let results : HTMLDivElement[] = [document.createElement('div')];
+
+    function addIngredient() {        
+        if ($currentIngredient.ingredient === '') return;
+        if ($currentIngredient.amount === '') $currentIngredient.amount = 'amount';
+        $recipe.ingredients = [...$recipe.ingredients, $currentIngredient];
+
+        $currentIngredient = {amount: '', ingredient: ''};
+    }
+
+    function removeIngredient(index: number) {
+        results = results.filter((_, i) => i !== index + 1);
+        inputs = inputs.filter((_, i) => i !== index + 1);
+
+        $recipe.ingredients = $recipe.ingredients.filter((_, i) => i !== index);
+    }
+
+    function handleKeydown(event: KeyboardEvent) {
+        if (activeIndex === 0) search = $currentIngredient.ingredient;
+        else search = $recipe.ingredients[activeIndex-1].ingredient;
+
+        if (event.key === 'Backspace' && search === '') {
+            event.preventDefault();
+            if (activeIndex -1 === 0) return;
+            if (activeIndex === 0) 
+            {
+                if ($recipe.ingredients.length === 0) return;
+                $currentIngredient = $recipe.ingredients[$recipe.ingredients.length - 1];
+                removeIngredient($recipe.ingredients.length - 1);
+            } else removeIngredient(activeIndex - 1);
+            return;
+        }
+        
+        if (event.key.length === 1) search += event.key;
+        if (event.key === 'Backspace') search = search.slice(0, -1);
+
+        if (event.key === 'Escape') {
+            removeResults();
+        }
+
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+            event.preventDefault();
+            if ($autofillContent.content.length === 0) return;
+            let highlighted = results[activeIndex].querySelector('.highlighted');
+            let resultsList = results[activeIndex].querySelector('.results-list') as Element;
+            if (highlighted) {
+                let index = Array.from(resultsList.children).indexOf(highlighted);
+                if (event.key === 'ArrowDown') {
+                    index = (index + 1) % resultsList.children.length;
+                } else {
+                    index = (index - 1 + resultsList.children.length) % resultsList.children.length;
+                }
+                highlighted.classList.remove('highlighted');
+                resultsList.children[index].classList.add('highlighted');
+            } else {
+                resultsList.children[0].classList.add('highlighted');
+            }
+        }
+
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            if ($autofillContent.content.length === 0) {
+                removeResults();
+                addIngredient();
+            } else {
+                let highlighted = results[activeIndex].querySelector('.highlighted');
+                if (highlighted) {
+                    let index = Array.from((results[activeIndex].querySelector('.results-list') as Element).children).indexOf(highlighted);
+                    selectResult(index);
+                }
+            }
+        }
+
+        if (event.key === 'Tab') {
+            event.preventDefault();
+            if ($autofillContent.content.length === 0) {
+                removeResults();
+                addIngredient();
+            } else {
+                let highlighted = results[activeIndex].querySelector('.highlighted');
+                if (highlighted) {
+                    let index = Array.from((results[activeIndex].querySelector('.results-list') as Element).children).indexOf(highlighted);
+                    selectResult(index);
+                }
+            }
+        }
+        
+        if (oldSearch !== search) updateAutofill();
     }
 
     function updateAutofill() {
-    }
+        oldSearch = search;
 
-    function removeResults() {
-        $autofillContent.show = false;
-        $autofillContent.content = [];
+        let content = getAllIngredients($recipes, search);
 
-        ingredientsResultContainers.forEach(container => {
-            container.classList.remove('show');
-        });
-
-        currentResultsContainer.classList.remove('show');
-    }
-
-    function removeIngredient(ingredient : string = '') {
-        recipe.update(currentRecipe => {
-            if (currentRecipe.ingredients.length === 0) {
-                return currentRecipe;
-            }
-            if (ingredient) {
-                currentRecipe.ingredients = currentRecipe.ingredients.filter(i => i.ingredient !== ingredient);
-                return currentRecipe;
-            }
-            $currentIngredient = currentRecipe.ingredients[currentRecipe.ingredients.length - 1]
-            currentRecipe.ingredients.pop();
-            return currentRecipe;
-        });
-    }
-
-    function handleAddIngredient() {
-        if (!$currentIngredient.ingredient) {
+        if (content.length === 1 && content[0].toLowerCase() === search.toLowerCase()) {
+            removeResults();
             return;
         }
 
-        recipe.update(currentRecipe => {
-            currentRecipe.ingredients.push($currentIngredient);
-            return currentRecipe;
-        });
-        $currentIngredient = {
-            amount: '',
-            ingredient: ''
-        };
+        if (content.length === 0 || search === '') {
+            removeResults();
+        } else {
+            content = content.map(item => makeMatchBold(item));
+            $autofillContent.content = content;
+            showResults();
+        }
+
+        removeHighlighted();
     }
 
-    function handleIngredientKeydown(event : KeyboardEvent) {
-        if (event.key === 'Enter') {
-            event.preventDefault();
-            handleAddIngredient();
-        }
-        if (event.key === 'Backspace' && $currentIngredient.ingredient === '' && $currentIngredient.amount === '') {
-            event.preventDefault();
-            removeIngredient();
-        }
+    function selectResult(index: number) {
+        let result = $autofillContent.content[index];
+        setInputValue(result);
+        removeResults();
+    }
+
+    function removeResults()  {
+        results.forEach(result => {
+            if (result) result.classList.remove('show');
+        });
+        $autofillContent = {content: [], show: false};
     }
     
-    
+    function showResults() {
+        results[activeIndex].classList.add('show');
+        $autofillContent.show = true;
+    }
+
+    function makeMatchBold(str: string) {
+        return str.replace(new RegExp(search, "gi"), (match) => `<span style="font-weight: 700;">${match}</span>`);
+    };
+
+    function removeBold(str: string) {
+        return str.replace(new RegExp('<span style="font-weight: 700;">|</span>', "gi"), "");
+    };
+
+    function setInputValue(value: string) {
+        value = removeBold(value);
+        inputs[activeIndex].value = value;
+        search = value;
+        if (activeIndex === 0) {
+            $currentIngredient.ingredient = value;
+        } else {
+            $recipe.ingredients[activeIndex-1].ingredient = value;
+        }
+        removeResults();
+    }
+
+    function removeHighlighted() {
+        let highlighted = results[activeIndex]?.querySelector('.highlighted');
+        if (highlighted) {
+            highlighted.classList.remove('highlighted');
+        }
+    }
 </script>
 
 <style lang="scss">
@@ -188,57 +280,49 @@
 <div class={className}>
     {#each $recipe.ingredients as ingredient, i}
         <input type="text" class="col-span-3 !my-1 svelte-input" bind:value={ingredient.amount} />
-        <button
-            class={"input-container col-span-8 !my-1"}
-            on:click={() => ingredientsInput[i].focus()}
-            on:focus={() => ingredientsInput[i].focus()}
-        >
+        <button class={"input-container col-span-8 !my-1"} 
+            on:click={() => inputs[i+1].focus()}>
             <input
                 type="text"
-                class="svelte-input"
-                bind:this={ingredientsInput[i]}
                 bind:value={ingredient.ingredient}
+                on:focus={() => activeIndex = i+1}
+                bind:this={inputs[i+1]}
+                on:keydown={handleKeydown}
                 {...$$restProps}
             />
-            <div class="results-container" bind:this={ingredientsResultContainers[i]}>
+            <div class="results-container" bind:this={results[i+1]}>
             <ul class="results-list">
-                {#each $autofillContent.content as item, i}
+                {#each $autofillContent.content as item, j}
                 <li class={"result-item"}>
-                    <button 
-                    class={`result-button`}
-                    >{@html item}</button>
+                    <button class={`result-button`} on:click={() => selectResult(j)}>{@html item}</button>
                 </li>
                 {/each}
             </ul>
             </div>
         </button>
     
-        <button class="col-span-1 h-fit" on:click={() => removeIngredient(ingredient.ingredient)}>-</button>
+        <button class="col-span-1 h-fit" on:click={() => removeIngredient(i)}>-</button>
     {/each}
-    <input type="text" class="col-span-3 !my-1 svelte-input" bind:value={$currentIngredient.amount} on:keydown={handleIngredientKeydown} />
-    <button
-        class={"input-container col-span-9 !my-1"}
-        on:click={() => currentIngredientInput.focus()}
-        on:focus={() => currentIngredientInput.focus()}
-    >
-        <input
-            type="text"
-            bind:this={currentIngredientInput}
-            bind:value={$currentIngredient.ingredient}
-            {...$$restProps}
-        />
-        <div class="results-container" bind:this={currentResultsContainer}>
+    <input type="text" class="col-span-3 !my-1 svelte-input" bind:value={$currentIngredient.amount} />
+    <button class={"input-container col-span-9 !my-1"} 
+        on:click={() => inputs[0].focus()}>
+        <input 
+            type="text" 
+            bind:this={inputs[0]} 
+            bind:value={$currentIngredient.ingredient} 
+            on:focus={() => activeIndex = 0}
+            on:keydown={handleKeydown} 
+            {...$$restProps} />
+        <div class="results-container" bind:this={results[0]}>
         <ul class="results-list">
             {#each $autofillContent.content as item, i}
             <li class={"result-item"}>
-                <button 
-                class={`result-button`}
-                >{@html item}</button>
+                <button class={`result-button`} on:click={() => selectResult(i)}>{@html item}</button>
             </li>
             {/each}
         </ul>
         </div>
     </button>
     
-    <button class="col-span-12" style='background-color: #E0AFA0;' on:click={handleAddIngredient}>+</button>
+    <button class="col-span-12" style='background-color: #E0AFA0;' on:click={addIngredient}>+</button>
 </div>

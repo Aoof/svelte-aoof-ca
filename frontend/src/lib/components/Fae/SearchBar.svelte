@@ -9,14 +9,9 @@
 
     $ : {
         let searchQueries = [...$tags, ...$searchQuery.split('+')];
-
-        console.log(searchQueries);
         searchRecipes($allRecipes, searchQueries.join('+'));
-    };
+    }
 </script>
-
-<style>
-</style>
 
 <Input 
     type="text" 
