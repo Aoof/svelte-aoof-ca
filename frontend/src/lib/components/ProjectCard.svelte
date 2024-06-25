@@ -1,13 +1,13 @@
 <script lang="ts">
     import { fly } from 'svelte/transition';
-    import { device } from '$lib/../stores/index';
+    import Tag from '$lib/components/Tag.svelte';
     import type { SvelteComponent } from 'svelte';
 
     export let name;
     export let description;
     export let image;
     export let link;
-    export let tags : { name : string, class : string, component?: ConstructorOfATypedSvelteComponent }[] = [];
+    export let tags : { title : string, iconClass : string, component? : string }[] = [];
 
     let expanded = false;
 </script>
@@ -49,18 +49,6 @@
         gap: 0.5rem;
         margin-top: 0.5rem;
         justify-content: center;
-        .tag {
-            background-color: rgb(60, 60, 60);
-            padding: 0.25rem 0.5rem;
-            border-radius: 5px;
-            i {
-                color: #ddd;
-            }
-        }
-    }
-
-    .project-card-footer {
-        padding: 1rem;
     }
 
     .project-card-overlay {
@@ -100,16 +88,6 @@
                 text-decoration: none;
                 border-radius: 5px;
             }
-
-            .tag {
-                background-color: #333;
-                padding: 0.25rem 0.5rem;
-                border-radius: 5px;
-                margin: 0.5rem;
-                i {
-                    color: #fff;
-                }
-            }
         }
     }
 </style>
@@ -125,14 +103,11 @@
             <p>
                 Using the following technologies:
                 {#each tags as tag}
-                    <span class="tag" title={tag.name}>
-                        {#if tag.component != undefined}
-                            <svelte:component this={tag.component}  />
-                        {:else}
-                            <i class={tag.class}></i>
-                        {/if}
-                            {tag.name}
-                    </span>
+                    <Tag 
+                        title={tag.title} 
+                        iconClass={tag.iconClass} 
+                        component={tag.component}
+                    />
                 {/each}
             </p>
             <a href={link} target="_blank" rel="noopener noreferrer">View Project</a>
@@ -152,13 +127,11 @@
         <h3>{name}</h3>
         <div class="project-card-tags text-center">
             {#each tags as tag}
-                <span class="tag" title={tag.name}>
-                    {#if tag.component != undefined}
-                        <svelte:component this={tag.component}  />
-                    {:else}
-                        <i class={tag.class}></i>
-                    {/if}
-                </span>
+                <Tag 
+                    title={tag.title} 
+                    iconClass={tag.iconClass} 
+                    component={tag.component}
+                />
             {/each}
         </div>
     </div>

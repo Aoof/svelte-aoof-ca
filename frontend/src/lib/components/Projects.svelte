@@ -5,12 +5,6 @@
     import ProjectCard from './ProjectCard.svelte';
     import ieac  from '$lib/media/ieac.png';
     import castlecanada from '$lib/media/castlecanada.png';
-    import CppIcon from '$lib/components/Icons/CppIcon.svelte';
-    import ExpressIcon from '$lib/components/Icons/ExpressIcon.svelte';
-    import SvelteIcon from '$lib/components/Icons/SvelteIcon.svelte';
-    import MongodbIcon from '$lib/components/Icons/MongodbIcon.svelte';
-    import HetznerIcon from '$lib/components/Icons/HetznerIcon.svelte';
-    import ShopifyIcon from '$lib/components/Icons/ShopifyIcon.svelte';
 
     let projects = [
         {
@@ -19,12 +13,12 @@
             image: ieac,
             link: 'https://ieac.ca',
             tags: [
-                { name: 'HTML', class: 'fa-brands fa-html5' },
-                { name: 'CSS', class: 'fa-brands fa-css3' },
-                { name: 'JavaScript', class: 'fa-brands fa-js' },
-                { name: 'Express', class: 'fas fa-server', component: ExpressIcon },
-                { name: 'MongoDB', class: 'fas fa-database', component: MongodbIcon },
-                { name: 'Hetzner VPS', class: 'fas fa-server', component: HetznerIcon }
+                { title: 'HTML', iconClass: 'fa-brands fa-html5' },
+                { title: 'CSS', iconClass: 'fa-brands fa-css3' },
+                { title: 'JavaScript', iconClass: 'fa-brands fa-js' },
+                { title: 'Express', iconClass: 'fas fa-server', component: 'ExpressIcon' },
+                { title: 'MongoDB', iconClass: 'fas fa-database', component: 'MongodbIcon' },
+                { title: 'Hetzner VPS', iconClass: 'fas fa-server', component: 'HetznerIcon' }
             ]
         },
         {
@@ -33,11 +27,11 @@
             image: castlecanada,
             link: 'https://castlecanada.com',
             tags: [
-                { name: 'HTML', class: 'fa-brands fa-html5' },
-                { name: 'CSS', class: 'fa-brands fa-css3' },
-                { name: 'JavaScript', class: 'fa-brands fa-js' },
-                { name: 'Shopify', class: 'fas fa-shopping-cart', component: ShopifyIcon},
-                { name: 'Hetzner VPS', class: 'fas fa-server', component: HetznerIcon}
+                { title: 'HTML', iconClass: 'fa-brands fa-html5' },
+                { title: 'CSS', iconClass: 'fa-brands fa-css3' },
+                { title: 'JavaScript', iconClass: 'fa-brands fa-js' },
+                { title: 'Shopify', iconClass: 'fas fa-shopping-cart', component: 'ShopifyIcon'},
+                { title: 'Hetzner VPS', iconClass: 'fas fa-server', component: 'HetznerIcon'}
             ]
         }
     ]
@@ -53,7 +47,10 @@
     }
 </style>
 
-<div class="projects my-4 text-lg overflow-auto xl:h-fit h-full" transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}>
+<div 
+    class="projects my-4 text-lg overflow-auto xl:h-fit h-full" 
+    transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}
+>
     {#each projects as project}
         <ProjectCard {...project} />
     {/each}

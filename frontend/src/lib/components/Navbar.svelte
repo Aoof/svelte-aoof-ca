@@ -129,7 +129,7 @@
             <button on:click={() => change_page(btn.name)} class={`relative ${$page == btn.name ? 'active' : ''}`} bind:this={$buttons[i]}>
                 {#if $page == btn.name}
                     <span 
-                        class="text-xs w-full absolute top-0 left-0 right-0 bottom-0 m-auto h-fit" 
+                        class="text-xs w-full absolute top-0 left-0 right-0 bottom-0 m-auto h-fit font-bold" 
                         in:fly={{y: -20, duration: 500}}
                         out:scale={{duration: 200}}
                     >{btn.name.toUpperCase()}</span>
