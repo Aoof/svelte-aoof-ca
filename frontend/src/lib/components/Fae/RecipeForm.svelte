@@ -1,6 +1,7 @@
 <script lang="ts">
     // User is logged in this is the page that will be displayed
     import { writable } from 'svelte/store';
+    import type { Writable } from 'svelte/store';
     import { addToast } from '$lib/../stores/toasts';
     import { onMount } from 'svelte';
 
@@ -15,19 +16,19 @@
         addRecipeTag as addTag, 
         removeRecipeTag as removeTag, 
         clearRecipeTags as clearTags
-
     } from '$lib/../stores/tags';
 
     import Button from '$lib/components/Fae/Button.svelte';
     import Input from '$lib/components/Fae/Input.svelte';
     
     import { goto } from '$app/navigation';
+    
+    import IngredientsInput from './IngredientsInput.svelte';
 
     export let recipe = newRecipe;
 
     onMount(() => {
         clearTags();
-
         fetchRecipes();
 
         $recipe.tags.forEach(tag => {
@@ -92,19 +93,6 @@
 
     let recipeTags = writable('');
 
-    function handleTagKeydown(event : CustomEvent<KeyboardEvent>) {
-        if (event.detail.key === 'Backspace' && $recipeTags === '' && $tags.length > 0) {
-            removeTag($tags[$tags.length - 1]);
-        }
-        
-        if (event.detail.key === 'Enter' || event.detail.key === 'Tab' || event.detail.key === '+' || event.detail.key === ' ') {
-            if (event.detail.key !== 'Tab') {
-                event.detail.preventDefault();
-            }
-            handleAddTag();
-        }
-    }
-
     function handleAddTag(force? : boolean) {
         if (force) {
             addTag($recipeTags.trim());
@@ -115,32 +103,6 @@
             addTag($recipeTags.trim());
         }
         $recipeTags = '';
-    }
-
-    function handleIngredientKeydown(event : CustomEvent<KeyboardEvent>) {
-        if (event.detail.key === 'Enter') {
-            event.detail.preventDefault();
-            handleAddIngredient();
-        }
-        if (event.detail.key === 'Backspace' && $currentIngredient.ingredient === '' && $currentIngredient.amount === '') {
-            event.detail.preventDefault();
-            removeIngredient();
-        }
-    }
-    
-    function removeIngredient(ingredient : string = '') {
-        recipe.update(currentRecipe => {
-            if (currentRecipe.ingredients.length === 0) {
-                return currentRecipe;
-            }
-            if (ingredient) {
-                currentRecipe.ingredients = currentRecipe.ingredients.filter(i => i.ingredient !== ingredient);
-                return currentRecipe;
-            }
-            $currentIngredient = currentRecipe.ingredients[currentRecipe.ingredients.length - 1]
-            currentRecipe.ingredients.pop();
-            return currentRecipe;
-        });
     }
 
     function handleAddIngredient() {
@@ -237,18 +199,9 @@
                 <div class="col-span-9 text-sm">Name</div>
             </div>
         </div>
-        <div class="grid grid-cols-12 gap-2 ingredients-container justify-center items-center">
-            {#each $recipe.ingredients as ingredient, i}
-                <Input type="text" className="col-span-3 !my-1" bind:value={ingredient.amount} />
-                <Input type="text" className="col-span-8 !my-1" bind:value={ingredient.ingredient} autofill={true} />
-
-                <Button text="-" className="col-span-1 h-fit" on:click={() => removeIngredient(ingredient.ingredient)} />
-            {/each}
-            <Input type="text" className="col-span-3" bind:value={$currentIngredient.amount} on:keydown={handleIngredientKeydown} />
-            <Input type="text" className="col-span-9" bind:value={$currentIngredient.ingredient} on:keydown={handleIngredientKeydown} autofill={true} />
-
-            <Button text="+" className="col-span-12" style='background-color: #E0AFA0;' on:click={handleAddIngredient} />
-        </div>
+        <IngredientsInput 
+            className={"grid grid-cols-12 gap-2 ingredients-container justify-center items-center"} 
+            bind:currentIngredient={currentIngredient} />
     </div>
     <div class='pt-4 pb-1'>
         <label class="input-label" for="instructions">Instructions</label>
@@ -265,10 +218,8 @@
             id="tags" 
             autofill={true} 
             isTags={true} 
-            override={true} 
             bind:tags={$tags} 
-            bind:value={$recipeTags} 
-            on:keydown={handleTagKeydown}
+            bind:value={$recipeTags}
             on:autofill={(val) => {addTag(val.detail.value); $recipeTags = '';}} />
     </div>
 

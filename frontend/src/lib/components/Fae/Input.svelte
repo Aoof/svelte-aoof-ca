@@ -5,9 +5,12 @@
   import Tag from "./Tag.svelte";
 
   import { 
-    removeSearchTag as removeTag, 
-    addSearchTag as addTag, 
-    searchTags as currentTags 
+    removeSearchTag, 
+    addSearchTag, 
+    searchTags,
+    recipeTags,
+    addRecipeTag,
+    removeRecipeTag,
   } from "$lib/../stores/tags";
 
   import { getAllIngredients, getAllTags, allRecipes as recipes } from "$lib/../stores/recipes";
@@ -20,37 +23,50 @@
 
   $: if (value) {
     updateAutofill();
+  } else {
+    removeResults();
   }
 
-  export let override: boolean = false;
+  export let searchBar : boolean = false;
 
   export let autofill: boolean = false;
   export const autofillContent = writable({content : <string[]>[], show: <boolean>false});
 
   const dispatch = createEventDispatcher();
 
-  function autofillHandler(val: string) {
-    _this.focus();
-    value = val;
+  let tags = searchTags;
+  let addTag = addSearchTag;
+  let removeTag = removeSearchTag;
 
+  onMount(() => {
+    if (searchBar) {
+      $tags = [];
+    } else {
+      tags = recipeTags;
+      addTag = addRecipeTag;
+      removeTag = removeRecipeTag;
+    }
+  })
+
+  const removeResults = () => {
     $autofillContent.show = false;
     resultsContainer && resultsContainer.classList.remove("show");
+  };
 
+  function autofillHandler(val: string) {
+    _this.focus();
+    value = removeBold(val);
+    removeResults();
     dispatch("autofill", { value });
   }
 
   $: if ($autofillContent.show) {
-    if (resultsContainer) {
-      resultsContainer.classList.add("show");
-    }
+    if (resultsContainer) resultsContainer.classList.add("show");
   } else {
-    if (resultsContainer) {
-      resultsContainer.classList.remove("show");
-    }
+    if (resultsContainer) resultsContainer.classList.remove("show");
   }
   
   export let isTags: boolean = false;
-  export let tags: string[] = [];
 
   function updateAutofill() {
     let content;
@@ -61,10 +77,10 @@
       content = getAllIngredients($recipes, value);
     }
 
-    if (content.length === 0 || value === "" || value === content[0]) {
-      $autofillContent.show = false;
-      resultsContainer && resultsContainer.classList.remove("show");
+    if (content.length === 0 || value === "" || (value === content[0] && content.length === 1)) {
+      removeResults();
     } else {
+      content = content.map((item) => makeMatchBold(item, value));
       $autofillContent.content = content;
       $autofillContent.show = true;
     }
@@ -72,28 +88,95 @@
     return value;
   }
 
+  const makeMatchBold = (str: string, match: string) => {
+    return str.replace(new RegExp(match, "gi"), (match) => `<span style="font-weight: 700;">${match}</span>`);
+  };
+
+  const removeBold = (str: string) => {
+    return str.replace(/<span style="font-weight: 700;">|<\/span>/gi, "");
+  };
+
+  const setInputValue = (val: string) => {
+    value = removeBold(val);
+    removeResults();
+    _this.focus();
+  };
+
+  const removeHighlighted = () => {
+    let highlighted = document.querySelector(".highlighted");
+    if (highlighted) {
+      highlighted.classList.remove("highlighted");
+    }
+  };
+
   function handleKeydown(event: KeyboardEvent) {
     dispatch("keydown", event);
+
     if (!autofill && !isTags) return;
-    
+
     if (event.key === 'Escape') {
-      $autofillContent.show = false;
-      resultsContainer && resultsContainer.classList.remove("show");
+      removeResults();
     }
 
-    if (override) return;
+    if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+      event.preventDefault();
+      let highlighted = document.querySelector(".highlighted");
+      let results = document.querySelectorAll(".result-item");
 
-    if (event.key === "Backspace" && value === "" && tags.length > 0) {
-      removeTag(tags[tags.length - 1]);
+      if (highlighted) {
+        highlighted.classList.remove("highlighted");
+        let index = Array.from(results).indexOf(highlighted);
+        if (event.key === "ArrowDown") {
+          if (index + 1 < results.length) {
+            results[index + 1].classList.add("highlighted");
+          } else {
+            results[0].classList.add("highlighted");
+          }
+        } else {
+          if (index - 1 >= 0) {
+            results[index - 1].classList.add("highlighted");
+          } else {
+            results[results.length - 1].classList.add("highlighted");
+          }
+        }
+      } else {
+        results[0].classList.add("highlighted");
+      }
+      return;
     }
-    if (event.key === "Enter" || event.key === "Tab" || event.key === "+") {
-      if (event.key == "+") event.preventDefault();
+
+    if (event.key === "Enter" && $autofillContent.content.length !== 0) {
+      event.preventDefault();
+      let highlighted = document.querySelector(".highlighted");
+      if (highlighted) {
+        let val = highlighted.querySelector(".result-button")?.textContent;
+        if (val) {
+          addTag(val);
+          setInputValue("");
+          removeHighlighted();
+        }
+      }
+      return;
+    }
+    
+    if (event.key === "Backspace" && value === "" && $tags.length > 0) {
+      removeTag($tags[$tags.length - 1]);
+    }
+    if (event.key === "Enter" || event.key === "Tab" || event.key === "+" || (event.key === " " && !searchBar)) {
+      if (event.key !== "Tab") event.preventDefault();
+
+      if ($autofillContent.content.length > 0) {
+        addTag(value);
+        setInputValue("");
+        return;
+      }
+
       value.split("+").forEach((val : string) => {
-        if (val !== "" && $currentTags.indexOf(val.trim()) === -1){
+        if (val !== "" && $tags.indexOf(val.trim()) === -1){
           addTag(val.trim());
         }
       });
-      value = "";
+      setInputValue("");
     }
   }
   function handleFocus(event: FocusEvent) {
@@ -176,7 +259,7 @@
   >
     {#if isTags}
       <div class="tags-container">
-        {#each tags as tag, i}
+        {#each $tags as tag, i}
           <Tag text={tag} className="{i == 0 ? '!ml-0' : ''}" override={true} owonclick={() => {removeTag(tag)}} />
         {/each}
       </div>
@@ -191,14 +274,14 @@
       on:blur={handleBlur}
       {...$$restProps}
     />
-    <div id="results-container" bind:this={resultsContainer}>
+    <div class="results-container" bind:this={resultsContainer}>
       <ul class="results-list">
-        {#each $autofillContent.content as item}
-          <li class="result-item">
+        {#each $autofillContent.content as item, i}
+          <li class={"result-item"}>
             <button 
-              class={"result-button"}
+              class={`result-button`}
               on:click={() => autofillHandler(item)}
-            >{item}</button>
+            >{@html item}</button>
           </li>
         {/each}
       </ul>
@@ -218,6 +301,7 @@
 {/if}
 
 <style lang="scss">
+
   .svelte-input,
   .input-container {
     width: 100%;
@@ -252,7 +336,7 @@
       flex-wrap: wrap;
     }
 
-    #results-container {
+    .results-container {
       position: absolute;
       top: 100%;
       left: 0;
@@ -280,10 +364,13 @@
           background-color: rgba(30, 30, 30);
         }
 
+        &.highlighted {
+          background-color: rgba(30, 30, 30);
+        }
+
         .result-button {
           padding: 0.5rem 1rem;
           width: stretch;
-          height: stretch;
           background-color: transparent;
           border: none;
           color: #fff;

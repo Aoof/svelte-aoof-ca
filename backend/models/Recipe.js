@@ -24,10 +24,10 @@ export default class Recipe {
         this.data = {
             title: this.data.title.trim(),
             instructions: this.data.instructions.trim(),
-            ingredients: this.data.ingredients,
+            ingredients: this.data.ingredients.map(ingredient => {return {ingredient: ingredient.ingredient.trim(), amount: ingredient.amount.trim()}}),
             foodType: this.data.foodType,
             cookTime: this.data.cookTime,
-            tags: this.data.tags,
+            tags: this.data.tags.map(tag => tag.trim()),
             vegetarian: this.data.vegetarian,
             createdDate: this.data.createdDate
         };
@@ -114,7 +114,6 @@ export default class Recipe {
     deleteRecipe() {
         return new Promise(async (resolve, reject) => {
             try {
-                console.log(this.data._id);
                 await this.recipeCollection.deleteOne({ _id: new ObjectId(this.data._id) });
                 resolve();
             } catch (err) {

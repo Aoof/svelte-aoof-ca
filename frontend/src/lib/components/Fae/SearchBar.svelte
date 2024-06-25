@@ -10,11 +10,8 @@
     $ : {
         let searchQueries = [...$tags, ...$searchQuery.split('+')];
         searchRecipes($allRecipes, searchQueries.join('+'));
-    };
+    }
 </script>
-
-<style>
-</style>
 
 <Input 
     type="text" 
@@ -23,5 +20,6 @@
     bind:value={$searchQuery} 
     autofill={true}
     isTags={true}
+    searchBar={true}
     tags={$tags}
     on:autofill={ evnt => addSearchTag(evnt.detail.value) } />
