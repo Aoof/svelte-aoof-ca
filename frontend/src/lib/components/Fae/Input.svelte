@@ -163,7 +163,7 @@
       removeTag($tags[$tags.length - 1]);
     }
     if (event.key === "Enter" || event.key === "Tab" || event.key === "+" || (event.key === " " && !searchBar)) {
-      if (event.key !== "Tab") event.preventDefault();
+      event.preventDefault();
 
       if ($autofillContent.content.length > 0) {
         addTag(value);

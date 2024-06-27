@@ -52,7 +52,7 @@
             <Button on:click={() => $page + 1 <= $pages ? page.update(n => n + 1) : null} text="&gt;" />
         </div>
     {/if}
-    <SearchBar />
+    <SearchBar onsearch={() => $page = 1} />
     <div class="recipes-wrapper">
         {#if !$isLoaded}
             <Loader />

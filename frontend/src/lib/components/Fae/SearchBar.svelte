@@ -5,11 +5,25 @@
 
     import Input from "./Input.svelte";
 
+    export let onsearch = () => {};
+
     export let searchQuery = writable('');
 
-    $ : {
-        let searchQueries = [...$tags, ...$searchQuery.split('+')];
-        searchRecipes($allRecipes, searchQueries.join('+'));
+    let search = '';
+    let oldSearchQuery = '';
+
+    function keydownHandler(event : CustomEvent<KeyboardEvent>) {
+        search = $searchQuery;
+
+        if (event.detail.key.length === 1) search += event.detail.key;
+        if (event.detail.key === 'Backspace') search = search.slice(0, -1);
+
+        if (oldSearchQuery !== search) {
+            oldSearchQuery = search;
+            let searchQueries = [...$tags, ...search.split('+')];
+            searchRecipes($allRecipes, searchQueries.join('+'));
+            onsearch();
+        }
     }
 </script>
 
@@ -22,4 +36,5 @@
     isTags={true}
     searchBar={true}
     tags={$tags}
+    on:keydown={keydownHandler}
     on:autofill={ evnt => addSearchTag(evnt.detail.value) } />
