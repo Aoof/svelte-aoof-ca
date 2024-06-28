@@ -25,6 +25,14 @@
             onsearch();
         }
     }
+
+    function autofillHandler(event : CustomEvent<{value: string}>) {
+        if (event.detail.value !== '') addSearchTag(event.detail.value);
+        searchRecipes($allRecipes, $tags.join('+'));
+        onsearch();
+
+        $searchQuery = '';
+    }
 </script>
 
 <Input 
@@ -37,4 +45,4 @@
     searchBar={true}
     tags={$tags}
     on:keydown={keydownHandler}
-    on:autofill={ evnt => addSearchTag(evnt.detail.value) } />
+    on:autofill={ autofillHandler } />

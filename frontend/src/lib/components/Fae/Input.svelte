@@ -151,8 +151,7 @@
       if (highlighted) {
         let val = highlighted.querySelector(".result-button")?.textContent;
         if (val) {
-          addTag(val);
-          setInputValue("");
+          dispatch("autofill", { value: val });
           removeHighlighted();
         }
       }
@@ -161,13 +160,13 @@
     
     if (event.key === "Backspace" && value === "" && $tags.length > 0) {
       removeTag($tags[$tags.length - 1]);
+      autofillHandler("");
     }
     if (event.key === "Enter" || event.key === "Tab" || event.key === "+" || (event.key === " " && !searchBar)) {
       event.preventDefault();
 
       if ($autofillContent.content.length > 0) {
-        addTag(value);
-        setInputValue("");
+        dispatch("autofill", { value });
         return;
       }
 
