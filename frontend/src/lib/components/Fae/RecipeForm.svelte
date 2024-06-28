@@ -220,7 +220,11 @@
             isTags={true} 
             bind:tags={$tags} 
             bind:value={$recipeTags}
-            on:autofill={(val) => {addTag(val.detail.value); $recipeTags = '';}} />
+            on:autofill={(val) => {
+                if (val.detail.value === '') return;
+                addTag(val.detail.value); 
+                $recipeTags = '';
+            }} />
     </div>
 
     <div>
