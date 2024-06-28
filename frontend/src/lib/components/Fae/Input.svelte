@@ -39,9 +39,7 @@
   let removeTag = removeSearchTag;
 
   onMount(() => {
-    if (searchBar) {
-      $tags = [];
-    } else {
+    if (!searchBar) {
       tags = recipeTags;
       addTag = addRecipeTag;
       removeTag = removeRecipeTag;
@@ -64,6 +62,11 @@
     if (resultsContainer) resultsContainer.classList.add("show");
   } else {
     if (resultsContainer) resultsContainer.classList.remove("show");
+  }
+
+  $: if ($tags.length > 0) {
+    updateAutofill();
+    dispatch('autofill', { value: '' });
   }
   
   export let isTags: boolean = false;

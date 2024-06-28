@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { recipes, fetchRecipes } from '$lib/../stores/recipes';
+    import { recipes, fetchRecipes, searchRecipes } from '$lib/../stores/recipes';
+    import { searchTags as tags } from "$lib/../stores/tags";
     import { RECIPES_LIMIT } from '$lib/constants';
 
     import { onMount } from 'svelte';
@@ -9,7 +10,6 @@
     import { addToast } from '$lib/../stores/toasts';
     
     import RecipeCard from './RecipeCard.svelte';
-    import Input from './Input.svelte';
     import Button from './Button.svelte';
     import SearchBar from './SearchBar.svelte';
 
@@ -21,6 +21,7 @@
 
     onMount(async () => {
         let result = await fetchRecipes();
+        searchRecipes($recipes, [...$tags].join('+'));
         if (!result) {
             addToast({
                 message: 'Failed to fetch recipes',
