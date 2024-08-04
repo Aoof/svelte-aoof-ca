@@ -30,8 +30,7 @@
                 { title: 'HTML', iconClass: 'fa-brands fa-html5' },
                 { title: 'CSS', iconClass: 'fa-brands fa-css3' },
                 { title: 'JavaScript', iconClass: 'fa-brands fa-js' },
-                { title: 'Shopify', iconClass: 'fas fa-shopping-cart', component: 'ShopifyIcon'},
-                { title: 'Hetzner VPS', iconClass: 'fas fa-server', component: 'HetznerIcon'}
+                { title: 'Shopify', iconClass: 'fas fa-shopping-cart', component: 'ShopifyIcon'}
             ]
         }
     ]
