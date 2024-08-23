@@ -1,6 +1,7 @@
 <script lang="ts">
-    import { onMount } from "svelte";
-    import { writable } from "svelte/store";
+    import type { Subject } from '$lib/types';
+    import { logout } from '$lib/../stores/auth';
+    import { addToast } from '$lib/../stores/toasts';
 
     class Colors {
         static deepPink = '#ea445a';
@@ -40,30 +41,8 @@
         ];
     }
 
-    const activeToggle = writable(false);
-
     let btnBackground = "#333";
     let btnColor = "#fff";
-
-    interface Timeframe {
-        start: string;
-        end: string;
-    }
-
-    interface TimeframeIndex {
-        start: number;
-        end: number;
-    }
-
-    interface Subject {
-        subject: string;
-        name: string;
-        teacher: string;
-        color: string;
-        timeframe: Timeframe;
-        timeframeIndex?: TimeframeIndex;
-        room: string;
-    }
 
     let timeframes = [
         "6:00",
@@ -316,11 +295,54 @@
             }
         };
     });
+
+    async function handleLogout() {
+        await logout();
+        localStorage.clear();
+        addToast({
+            message: "Logout successful",
+            type: "success",
+            dismissible: true,
+            timeout: 3000
+        });
+
+        window.location.reload();
+    }
+
+    function handleAddSubject() {
+        
+    }
 </script>
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
-
+    .logout-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        width: 100%;
+        padding: 1rem;
+        .btn-logout {
+            font-size: 1rem;
+            color: #333;
+            text-align: center;
+    
+            margin: 1rem 0;
+            background-color: #333;
+            color: #fff;
+            padding: 0.5rem 2rem;
+            border-radius: 0.5rem;
+    
+            border: 0;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+    
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+    }
     main {
         * {
             font-family: 'Tajawal', sans-serif;
@@ -377,7 +399,7 @@
 
             width: 100%;
             max-width: 1200px;
-            grid-template-columns: auto 1fr;
+            grid-template-columns: 1fr auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 0.5rem;
             background-color: #fff;
@@ -510,17 +532,24 @@
 </style>
 
 <main>
+    <div class="logout-container">
+        <button
+            on:click={handleAddSubject}
+            class="btn-logout"
+        >
+            إضافة مادة
+        </button>
+        <button 
+            on:click={handleLogout}
+            class="btn-logout"
+        >
+            تسجيل الخروج
+        </button>
+    </div>
     <h1>جدول روض الجنان</h1>
     <div class="table">
         <button>الجمعة</button>
         <div class="grid">
-            <div class="rows">
-                {#each displayedTimeframes as timeframe}
-                    <p class="time-frame">
-                        {timeframe}
-                    </p>
-                {/each}
-            </div>
             <div class="rows" style="grid-template-rows: repeat({timeframes.length - 1}, 1fr);">
                 {#each subjects as subject}
                     <div class="card" style="background-color: {subject.color}; grid-row: {subject.timeframeIndex?.start} / {subject.timeframeIndex?.end};">
@@ -530,6 +559,13 @@
                         <h4><span>{subject.timeframe.start} - {subject.timeframe.end}</span> <span class="card-title">: الفترة</span></h4>
                         <a href={subject.room} class="btn-meeting" style="--btn-background: {btnBackground}; --btn-color: {btnColor};">الاجتماع</a>
                     </div>
+                {/each}
+            </div>
+            <div class="rows">
+                {#each displayedTimeframes as timeframe}
+                    <p class="time-frame">
+                        {timeframe}
+                    </p>
                 {/each}
             </div>
         </div>

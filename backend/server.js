@@ -80,13 +80,14 @@ app.use('/api/auth', authRoutes);
 app.use('/api/recipes', recipesRoutes);
 
 // Define Routes
-app.use(handler);
 
 const db = new Database();
 
 // Handle SSL certificates setup
 
 if (process.env.NODE_ENV === 'production') {
+    app.use(handler);
+    
     app.use((req, res, next) => {
         if (req.header('x-forwarded-proto') !== 'https') {
             res.redirect(`https://${req.header('host')}${req.url}`);
