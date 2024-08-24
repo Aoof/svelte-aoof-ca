@@ -6,14 +6,17 @@
   let username: string = "";
   let password: string = "";
 
-  let registerMode: boolean = false;
+  let registerMode: boolean = true;
+
+  export let isRaJ: boolean;
 
   async function handleSubmit() {
     let response;
     if (registerMode) {
-      response = await register(username, password);
+      response = await register(username, password, isRaJ);
     } else {
-      response = await login(username, password);
+      console.log(isRaJ)
+      response = await login(username, password, isRaJ);
     }
 
     if (response.ok) {

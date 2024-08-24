@@ -2,15 +2,31 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import User from '../models/User.js';
+import rUser from '../models/RaJ/User.js';
+
+let raj_func = async (req, res, next) => {
+  req.isRaj = true;
+  next();
+}
 
 let register = async (req, res) => {
-  const { username, password } = req.body;
-
   try {
-    let user = new User({
-      username,
-      password
-    });
+    let user;
+    if (req.isRaj) {
+      user = new rUser({
+        username: req.body.username,
+        password: req.body.password,
+        role: req.body.role,
+        course: req.body.course,
+        email: req.body.email,
+        color: req.body.color
+      });
+    } else {
+      user = new User({
+        username: req.body.username,
+        password: req.body.password
+      });
+    }
 
     user.register().then(() => {
       const payload = {
@@ -33,6 +49,7 @@ let register = async (req, res) => {
     
     })
   } catch (err) {
+    console.log(err);
     res.send({ ok: false, msg: ['Server error'] });
   }
 };
@@ -43,7 +60,14 @@ let login = async (req, res) => {
   if (!username || !password) {
     return res.send({ ok: false, msg: ['Please enter all fields'] });
   }
-  let user = new User();
+
+  let user;
+
+  if (req.isRaj) {
+    user = new rUser();
+  } else {
+    user = new User();
+  }
 
   await user.findByUsername(username).then(async user => {
     if (!user) {
@@ -93,4 +117,4 @@ let verify = async (req, res) => {
   }
 }
 
-export { register, login, logout, verify };
+export { register, login, logout, verify, raj_func };

@@ -30,9 +30,9 @@ export const isLoggedIn = async (): Promise<boolean> => {
     });
 }
 
-export const login = async (username: string, password: string): Promise<{ data?: any, token?: any, ok: boolean, msg : string }> => {
+export const login = async (username: string, password: string, _isRaJ : boolean = false): Promise<{ data?: any, token?: any, ok: boolean, msg : string }> => {
     try {
-        const response = await axios.post(BACKEND_URL + '/api/auth/login', {
+        const response = await axios.post(BACKEND_URL + (_isRaJ ? '/api/auth/raj/login' : '/api/auth/login'), {
             username,
             password,
         });
@@ -65,12 +65,14 @@ export const logout = async (): Promise<void> => {
     });
 };
 
-export const register = async (username: string, password: string): Promise<{ data?: any, token?: any, ok: boolean, msg : string }> => {
+export const register = async (username: string, password: string, _isRaJ : boolean = false): Promise<{ data?: any, token?: any, ok: boolean, msg : string }> => {
     try {
-        const response = await axios.post(BACKEND_URL + '/api/auth/register', {
-            username,
-            password,
-        });
+        let args : object = { username, password };
+        if (_isRaJ) {
+            args = { ...args, role: 'admin' };
+        }
+        
+        const response = await axios.post(BACKEND_URL + (_isRaJ ? '/api/auth/raj/register' : '/api/auth/register'), args);
 
         const data = response.data;
 

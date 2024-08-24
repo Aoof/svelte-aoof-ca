@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Subject } from '$lib/types';
+    import type { Course } from '$lib/types';
     import { logout } from '$lib/../stores/auth';
     import { addToast } from '$lib/../stores/toasts';
 
@@ -60,9 +60,9 @@
 
     let displayedTimeframes = timeframes.slice(0, timeframes.length - 1);
     
-    let subjects : Subject[] = [
+    let courses : Course[] = [
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "منى وابراهيم",
             teacher: "أسماء",
@@ -73,7 +73,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "ملهم",
             teacher: "أسماء",
@@ -84,7 +84,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "فاطمة ويوسف",
             teacher: "أسماء",
@@ -95,7 +95,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "مها قتادة",
             teacher: "أسماء",
@@ -106,7 +106,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "نور الهدى",
             teacher: "أسماء",
@@ -117,7 +117,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "آية سند",
             teacher: "أسماء",
@@ -128,7 +128,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "فرح وريم",
             teacher: "مبروكة",
@@ -139,7 +139,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "مرام وجميل",
             teacher: "أسماء",
@@ -150,7 +150,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "سيما",
             teacher: "مبروكة",
@@ -161,7 +161,7 @@
             }
         },
         {
-            subject: "عربي",
+            title: "عربي",
             room: "/rawdh-aljinan",
             name: "مارية وإلياس",
             teacher: "أسماء",
@@ -172,7 +172,7 @@
             }
         },
         {
-            subject: "القرآن",
+            title: "القرآن",
             room: "/rawdh-aljinan",
             name: "فاطمة ويوسف ومها قتادة",
             teacher: "هدى",
@@ -183,7 +183,7 @@
             }
         },
         {
-            subject: "التربية الإسلامية",
+            title: "التربية الإسلامية",
             room: "/rawdh-aljinan",
             name: "فاطمة ويوسف ومها قتادة",
             teacher: "أسماء بخضر",
@@ -194,7 +194,7 @@
             }
         },
         {
-            subject: "التربية الإسلامية",
+            title: "التربية الإسلامية",
             room: "/rawdh-aljinan",
             name: "منى وابراهيم وملهم",
             teacher: "أسماء بخضر",
@@ -205,7 +205,7 @@
             }
         },
         {
-            subject: "التربية الإسلامية",
+            title: "التربية الإسلامية",
             room: "/rawdh-aljinan",
             name: "منى وابراهيم وملهم",
             teacher: "مها",
@@ -216,7 +216,7 @@
             }
         },
         {
-            subject: "التربية الإسلامية",
+            title: "التربية الإسلامية",
             room: "/rawdh-aljinan",
             name: "فرح وريم وآية سند",
             teacher: "أسماء بخضر",
@@ -227,7 +227,7 @@
             }
         },
         {
-            subject: "القرآن",
+            title: "القرآن",
             room: "/rawdh-aljinan",
             name: "فرح وريم وآية سند",
             teacher: "هدى",
@@ -238,7 +238,7 @@
             }
         },
         {
-            subject: "القرآن",
+            title: "القرآن",
             room: "/rawdh-aljinan",
             name: "مارية وإلياس ونور الهدى",
             teacher: "هدى",
@@ -249,7 +249,7 @@
             }
         },
         {
-            subject: "التربية الإسلامة",
+            title: "التربية الإسلامة",
             room: "/rawdh-aljinan",
             name: "مارية وإلياس ونور الهدى",
             teacher: "أسماء بخضر",
@@ -260,7 +260,7 @@
             }
         },
         {
-            subject: "التربية الإسلامة",
+            title: "التربية الإسلامة",
             room: "/rawdh-aljinan",
             name: "مرام وجميل وسيما",
             teacher: "أسماء بخضر",
@@ -271,7 +271,7 @@
             }
         },
         {
-            subject: "قرآن",
+            title: "قرآن",
             room: "/rawdh-aljinan",
             name: "مرام وجميل وسيما",
             teacher: "هدى",
@@ -283,12 +283,12 @@
         }
     ];
 
-    subjects = subjects.map(subject => {
-        let start = timeframes.indexOf(subject.timeframe.start as string) + 1;
-        let end = timeframes.indexOf(subject.timeframe.end as string) + 1;
+    courses = courses.map(course => {
+        let start = timeframes.indexOf(course.timeframe.start as string) + 1;
+        let end = timeframes.indexOf(course.timeframe.end as string) + 1;
 
         return {
-            ...subject,
+            ...course,
             timeframeIndex: {
                 start,
                 end
@@ -551,13 +551,13 @@
         <button>الجمعة</button>
         <div class="grid">
             <div class="rows" style="grid-template-rows: repeat({timeframes.length - 1}, 1fr);">
-                {#each subjects as subject}
-                    <div class="card" style="background-color: {subject.color}; grid-row: {subject.timeframeIndex?.start} / {subject.timeframeIndex?.end};">
-                        <h4><span>{subject.subject}</span> <span class="card-title">: المادة</span></h4>
-                        <h4><span>{subject.name}</span> <span class="card-title">: الطالب\ة</span></h4>
-                        <h4><span>{subject.teacher}</span> <span class="card-title">: المعلم\ة</span></h4>
-                        <h4><span>{subject.timeframe.start} - {subject.timeframe.end}</span> <span class="card-title">: الفترة</span></h4>
-                        <a href={subject.room} class="btn-meeting" style="--btn-background: {btnBackground}; --btn-color: {btnColor};">الاجتماع</a>
+                {#each courses as course}
+                    <div class="card" style="background-color: {course.color}; grid-row: {course.timeframeIndex?.start} / {course.timeframeIndex?.end};">
+                        <h4><span>{course.title}</span> <span class="card-title">: المادة</span></h4>
+                        <h4><span>{course.name}</span> <span class="card-title">: الطالب\ة</span></h4>
+                        <h4><span>{course.teacher}</span> <span class="card-title">: المعلم\ة</span></h4>
+                        <h4><span>{course.timeframe.start} - {course.timeframe.end}</span> <span class="card-title">: الفترة</span></h4>
+                        <a href={course.room} class="btn-meeting" style="--btn-background: {btnBackground}; --btn-color: {btnColor};">الاجتماع</a>
                     </div>
                 {/each}
             </div>

@@ -40,5 +40,5 @@
 {:else if $loggedIn}
     <slot />
 {:else}
-    <Login />
+    <Login isRaJ={true} />
 {/if}

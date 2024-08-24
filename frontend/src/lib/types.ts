@@ -33,9 +33,9 @@ export interface TimeframeIndex {
     end: number;
 }
 
-export interface Subject {
+export interface Course {
     _id?: string;
-    subject: string;
+    title: string;
     name: string;
     teacher: string;
     color: string;

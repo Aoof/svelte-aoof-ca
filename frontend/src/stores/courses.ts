@@ -5,13 +5,13 @@ import { user } from "./auth";
 
 import axios from 'axios';
 
-import type { Subject } from "$lib/types";
+import type { Course } from "$lib/types";
 
-export const subjects = writable<Subject[]>([]);
+export const courses = writable<Course[]>([]);
 
-export const newSubject = writable<Subject>({
+export const newCourse = writable<Course>({
     _id: "",
-    subject: "",
+    title: "",
     name: "",
     teacher: "",
     color: "",
@@ -22,66 +22,66 @@ export const newSubject = writable<Subject>({
     },
 });
 
-export const getSubjects = async () => {
+export const getCourses = async () => {
     user.subscribe((value) => {
         axios.defaults.headers.common['x-auth-token'] = value.token;
     });
 
-    const response = await axios.get(BACKEND_URL + '/api/subjects');
+    const response = await axios.get(BACKEND_URL + '/api/courses');
 
     const data = response.data;
 
     if (data.ok) {
-        subjects.set(data.subjects);
+        courses.set(data.courses);
     }
 };
 
-export const addSubject = async (subject: Subject) => {
+export const addCourse = async (course: Course) => {
     user.subscribe((value) => {
         axios.defaults.headers.common['x-auth-token'] = value.token;
     });
 
-    const response = await axios.post(BACKEND_URL + '/api/subjects', subject);
+    const response = await axios.post(BACKEND_URL + '/api/courses', course);
 
     const data = response.data;
 
     if (data.ok) {
-        subjects.update((value) => {
-            return [...value, subject];
+        courses.update((value) => {
+            return [...value, course];
         });
     }
 };
 
-export const deleteSubject = async (id: string) => {
+export const deleteCourse = async (id: string) => {
     user.subscribe((value) => {
         axios.defaults.headers.common['x-auth-token'] = value.token;
     });
 
-    const response = await axios.delete(BACKEND_URL + '/api/subjects/' + id);
+    const response = await axios.delete(BACKEND_URL + '/api/courses/' + id);
 
     const data = response.data;
 
     if (data.ok) {
-        subjects.update((value) => {
-            return value.filter((subject) => subject._id !== id);
+        courses.update((value) => {
+            return value.filter((course) => course._id !== id);
         });
     }
 };
 
-export const updateSubject = async (subject: Subject) => {
+export const updateCourse = async (course: Course) => {
     user.subscribe((value) => {
         axios.defaults.headers.common['x-auth-token'] = value.token;
     });
 
-    const response = await axios.put(BACKEND_URL + '/api/subjects/' + subject._id, subject);
+    const response = await axios.put(BACKEND_URL + '/api/courses/' + course._id, course);
 
     const data = response.data;
 
     if (data.ok) {
-        subjects.update((value) => {
+        courses.update((value) => {
             return value.map((s) => {
-                if (s._id === subject._id) {
-                    return subject;
+                if (s._id === course._id) {
+                    return course;
                 }
                 return s;
             });
@@ -89,16 +89,16 @@ export const updateSubject = async (subject: Subject) => {
     }
 };
 
-export const getSubject = async (id: string) => {
+export const getCourse = async (id: string) => {
     user.subscribe((value) => {
         axios.defaults.headers.common['x-auth-token'] = value.token;
     });
 
-    const response = await axios.get(BACKEND_URL + '/api/subjects/' + id);
+    const response = await axios.get(BACKEND_URL + '/api/courses/' + id);
 
     const data = response.data;
 
     if (data.ok) {
-        return data.subject;
+        return data.course;
     }
 };
