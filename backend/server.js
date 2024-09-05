@@ -67,6 +67,15 @@ app.use(errorLogger);
 
 app.use(express.static('./static'));
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, x-auth-token');
+
+    req.isRaj = req.header('x-raj') === 'true';
+    next();
+});
+
 
 app.get("/.well-known/acme-challenge/:content", function(req, res) {
     let content = req.params.content;

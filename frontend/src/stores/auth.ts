@@ -10,7 +10,7 @@ export const user = writable({ username: '', token: '' } as User);
 
 export const loggedIn = writable(-1);
 
-export const isLoggedIn = async (): Promise<boolean> => {
+export const isLoggedIn = async (_isRaJ : boolean = false): Promise<boolean> => {
     return new Promise((resolve) => {
         user.subscribe(async (value) => {
             if (value.token === '') {
@@ -19,7 +19,7 @@ export const isLoggedIn = async (): Promise<boolean> => {
             axios.defaults.headers.common['x-auth-token'] = value.token;
 
             try {
-                const response = await axios.post(BACKEND_URL + '/api/auth/verify');
+                const response = await axios.post(BACKEND_URL + (_isRaJ ? '/api/auth/raj/verify' : '/api/auth/verify'));
                 loggedIn.set(response.data.ok ? 1 : 0);
                 resolve(response.data.ok);
             } catch (error : any) {

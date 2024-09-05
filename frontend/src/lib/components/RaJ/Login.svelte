@@ -6,7 +6,7 @@
   let username: string = "";
   let password: string = "";
 
-  let registerMode: boolean = true;
+  let registerMode: boolean = false;
 
   export let isRaJ: boolean;
 

@@ -9,7 +9,7 @@
 
     onMount(async () => {
         user.set({ username: localStorage.getItem('username') || '', token: localStorage.getItem('token') || '' });
-        loggedIn.set(await isLoggedIn() ? 1 : 0);
+        loggedIn.set(await isLoggedIn(false) ? 1 : 0);
     });
 </script>
 

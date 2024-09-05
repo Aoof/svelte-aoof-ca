@@ -2,6 +2,8 @@
     import type { Course } from '$lib/types';
     import { logout } from '$lib/../stores/auth';
     import { addToast } from '$lib/../stores/toasts';
+    import { addCourse, deleteCourse, updateCourse } from '$lib/../stores/courses';
+    import { onMount } from 'svelte';
 
     class Colors {
         static deepPink = '#ea445a';
@@ -283,6 +285,12 @@
         }
     ];
 
+    onMount(() => {
+        courses.forEach(course => {
+            addCourse(course);
+        })
+    });
+
     courses = courses.map(course => {
         let start = timeframes.indexOf(course.timeframe.start as string) + 1;
         let end = timeframes.indexOf(course.timeframe.end as string) + 1;
@@ -309,13 +317,18 @@
         window.location.reload();
     }
 
-    function handleAddSubject() {
+    function handleAddCourse() {
         
     }
 </script>
 
 <style lang="scss">
     @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+    i {
+        font-size: 1.5rem;
+        color: white;
+    }
+
     .logout-container {
         display: flex;
         justify-content: space-between;
@@ -533,18 +546,18 @@
 
 <main>
     <div class="logout-container">
-        <button
-            on:click={handleAddSubject}
-            class="btn-logout"
-        >
-            إضافة مادة
-        </button>
         <button 
             on:click={handleLogout}
             class="btn-logout"
         >
             تسجيل الخروج
         </button>
+        <button
+            on:click={handleAddCourse}
+            class="btn-logout"
+        >
+        <i class="far fa-bars text-white"></i>
+    </button>
     </div>
     <h1>جدول روض الجنان</h1>
     <div class="table">

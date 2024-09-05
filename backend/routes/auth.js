@@ -12,5 +12,6 @@ router.post('/verify', auth, verify);
 
 router.post('/raj/register', raj_func, register);
 router.post('/raj/login', raj_func, login);
+router.post('/raj/verify', raj_func, auth, verify);
 
 export default router;
