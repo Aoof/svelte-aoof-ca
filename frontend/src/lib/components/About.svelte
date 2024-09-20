@@ -70,7 +70,7 @@
         <div class="content-group">
             <h1 class="text-2xl text-center">About Me</h1>
             <p class="my-4 text-lg">
-                I am a student studying Computer Science Technology at College LaSalle Montreal. 
+                I am a Concordia University student studying Computer Engineering. 
                 I am passionate about software development and have experience in web development and Game development. 
                 I am always eager to learn new technologies and improve my skills.</p>
         </div>

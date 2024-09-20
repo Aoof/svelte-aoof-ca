@@ -1,4 +1,4 @@
-// Fae section
+
 export interface User {
     id?: string;
     username: string;
@@ -20,26 +20,4 @@ export interface Recipe {
     vegetarian: boolean;
     ingredients: Ingredient[];
     createdDate: Date;
-}
-
-// RaJ section
-export interface Timeframe {
-    start: string;
-    end: string;
-}
-
-export interface TimeframeIndex {
-    start: number;
-    end: number;
-}
-
-export interface Course {
-    _id?: string;
-    title: string;
-    name: string;
-    teacher: string;
-    color: string;
-    room: string;
-    timeframe: Timeframe;
-    timeframeIndex?: TimeframeIndex;
 }

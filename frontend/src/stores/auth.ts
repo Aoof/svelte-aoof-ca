@@ -10,7 +10,7 @@ export const user = writable({ username: '', token: '' } as User);
 
 export const loggedIn = writable(-1);
 
-export const isLoggedIn = async (_isRaJ : boolean = false): Promise<boolean> => {
+export const isLoggedIn = async (): Promise<boolean> => {
     return new Promise((resolve) => {
         user.subscribe(async (value) => {
             if (value.token === '') {
@@ -19,7 +19,7 @@ export const isLoggedIn = async (_isRaJ : boolean = false): Promise<boolean> => 
             axios.defaults.headers.common['x-auth-token'] = value.token;
 
             try {
-                const response = await axios.post(BACKEND_URL + (_isRaJ ? '/api/auth/raj/verify' : '/api/auth/verify'));
+                const response = await axios.post(BACKEND_URL + '/api/auth/verify');
                 loggedIn.set(response.data.ok ? 1 : 0);
                 resolve(response.data.ok);
             } catch (error : any) {
@@ -30,9 +30,9 @@ export const isLoggedIn = async (_isRaJ : boolean = false): Promise<boolean> => 
     });
 }
 
-export const login = async (username: string, password: string, _isRaJ : boolean = false): Promise<{ data?: any, token?: any, ok: boolean, msg : string }> => {
+export const login = async (username: string, password: string): Promise<{ data?: any, token?: any, ok: boolean, msg : string }> => {
     try {
-        const response = await axios.post(BACKEND_URL + (_isRaJ ? '/api/auth/raj/login' : '/api/auth/login'), {
+        const response = await axios.post(BACKEND_URL + '/api/auth/login', {
             username,
             password,
         });
@@ -65,14 +65,12 @@ export const logout = async (): Promise<void> => {
     });
 };
 
-export const register = async (username: string, password: string, _isRaJ : boolean = false): Promise<{ data?: any, token?: any, ok: boolean, msg : string }> => {
+export const register = async (username: string, password: string): Promise<{ data?: any, token?: any, ok: boolean, msg : string }> => {
     try {
-        let args : object = { username, password };
-        if (_isRaJ) {
-            args = { ...args, role: 'admin' };
-        }
-        
-        const response = await axios.post(BACKEND_URL + (_isRaJ ? '/api/auth/raj/register' : '/api/auth/register'), args);
+        const response = await axios.post(BACKEND_URL + '/api/auth/register', {
+            username,
+            password,
+        });
 
         const data = response.data;
 

@@ -10,7 +10,6 @@ export default class User {
     this.database = new Database();
     this.usersCollection = this.database.db.collection("users");
   }
-
   findByUsername(username) {
     return new Promise(async (resolve, reject) => {
       try {
@@ -22,11 +21,10 @@ export default class User {
         });
         reject("No user found.");
       } catch {
-        reject("Please try again later.");
+        reject('Please try again later.');
       }
     });
   }
-
   cleanUp() {
     if (typeof this.data.username != "string") {
       this.data.username = "";
@@ -40,7 +38,6 @@ export default class User {
       password: this.data.password,
     };
   }
-
   async validate() {
     if (this.data.username == "") {
       this.errors.push("You must provide a username.");
@@ -56,13 +53,13 @@ export default class User {
       }
     });
   }
-  
   register() {
     return new Promise(async (resolve, reject) => {
       this.cleanUp();
       await this.validate();
 
       if (!this.errors.length) {
+        // hash user password
         let salt = bcrypt.genSaltSync(10);
         this.data.password = bcrypt.hashSync(this.data.password, salt);
         await this.usersCollection.insertOne(this.data);
@@ -79,11 +76,9 @@ export default class User {
       this.usersCollection
         .findOne({ username: this.data.username })
         .then((attemptedUser) => {
-          if (
-            attemptedUser &&
-            bcrypt.compareSync(this.data.password, attemptedUser.password)
-          ) {
-            resolve();
+          if (attemptedUser &&
+            bcrypt.compareSync(this.data.password, attemptedUser.password)) {
+              resolve();
           } else {
             reject("Invalid username/password.");
           }
