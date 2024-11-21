@@ -6,8 +6,8 @@ export const language = writable<string>("en");
 
 export const anchors = [
     { name: 'home', href: "/"},
-    { name: 'projects', href: "/projects"},
     { name: 'about', href: "/about"},
+    { name: 'projects', href: "/projects"},
     { name: 'contact', href: "/contact"}
 ];
 
