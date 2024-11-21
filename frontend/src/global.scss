@@ -3,14 +3,42 @@
 
 * {
   font-family: "Raleway", sans-serif;
-  font-weight: 300;
   font-size: 105%;
+  color: #fff;
 }
 
 html, body, #root {
   height: 100%;
-  background-color: #463f3a;
-  color: white;
   margin: 0;
   padding: 0;
+  background-color: #282828;
+  scroll-behavior: smooth;
+}
+
+.btn-scroll-up { display: block; }
+
+.keyword {
+    background-clip: text;
+    background-image: linear-gradient(90deg, #ffc82c, #e0afa0); 
+    color: transparent;
+    animation: animateKeyword 10s linear infinite;
+    background-size: 300% 300%; 
+}
+
+@keyframes animateKeyword {
+    0% {
+        background-position: 0% 50%;
+    }
+    25% {
+        background-position: 100% 50%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }

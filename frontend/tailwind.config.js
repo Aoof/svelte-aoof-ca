@@ -17,7 +17,7 @@ export default {
       'yellow': '#ffc82c',
       'red': '#ff5e57',
       'gray-dark': '#273444',
-      'gray': '#8492a6',
+      'gray': '#646464',
       'gray-light': '#d3dce6',
       'white': '#ffffff',
       'dark': '#282828', // dark is 40, 40, 40 in rgb and #282828 in hex
@@ -33,8 +33,8 @@ export default {
       },
       borderRadius: {
         '4xl': '2rem',
-      }
-    }
+      },
+   }
   },
   plugins: [],
 }
