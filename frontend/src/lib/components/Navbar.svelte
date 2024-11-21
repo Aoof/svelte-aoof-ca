@@ -36,8 +36,8 @@
 
 <nav class="bg-dark border-b border-gray top-0 sticky w-full h-16 px-8 flex items-center z-50">
     <a href="/" class="text-white hover:text-pink text-xl font-bold no-underline">aoof.ca</a>
-    <div class="flex gap-4 items-center justify-center w-full">
-        <button class="text-white hover:text-pink text-sm cursor-pointer md:hidden" on:click={toggleDropdown}>
+    <div class="flex gap-4 items-center justify-end w-full px-4">
+        <button class="text-white hover:text-pink text-xl cursor-pointer md:hidden" on:click={toggleDropdown}>
             <i class="fas fa-bars"></i>
         </button>
         <div class="buttons-container gap-4 items-center justify-center w-full hidden md:flex">
