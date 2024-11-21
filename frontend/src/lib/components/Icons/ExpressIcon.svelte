@@ -1,6 +1,8 @@
 <style>
     svg {
         fill: white;
+        filter: brightness(0) saturate(100%) invert(100%) sepia(20%) saturate(0%) hue-rotate(217deg) brightness(104%) contrast(110%);
+        margin: 0 0.25rem;
         width: 1.5rem;
         height: 1.5rem;
         display: inline-block;

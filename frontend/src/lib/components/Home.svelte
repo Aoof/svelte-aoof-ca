@@ -1,183 +1,134 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { fly } from 'svelte/transition';
-    import { device } from '$lib/../stores/index';
-
+    import Tag from './Tag.svelte';
     import resume from '$lib/media/resume.pdf';
 
-    let texts : string[] = [];
-    let elements : ChildNode[] = [];
-    let speed = 10;
-    let wordIndex = 0;
-    let textIndex = 0;
+    type Skill = { title: string; component?: string; iconClass?: string };
+    type SkillCategory = 'proficient' | 'familiar';
 
-    let cursor : HTMLSpanElement;
-
-    onMount(() => {
-        let container = document.querySelector('.typewriter-message');
-
-        container && handleNode(container);
-        elements.forEach((element) => { element.textContent = ''; });
-
-        let interval = setInterval(() => {
-            if (wordIndex === texts[textIndex].length) {
-                wordIndex = 0;
-                textIndex++;
-                if (textIndex === texts.length) {
-                    clearInterval(interval);
-                    return;
-                }
-            }
-
-            try {
-                elements[textIndex].textContent += texts[textIndex].charAt(wordIndex);
-                (elements[textIndex] as HTMLElement).insertAdjacentElement('beforeend', cursor as HTMLElement);
-            } catch (e) {
-                console.error(e);
-                clearInterval(interval);
-                return;
-            }
-
-            wordIndex++;
-        }, speed);
-    });
-
-
-    function handleNode(node : ChildNode) {
-        if ((node as HTMLElement).classList?.contains('cursor')) return;
-        let isLowestNode = node.childNodes.length === 1 && node.childNodes[0].nodeType === Node.TEXT_NODE;
-        if (isLowestNode) {
-            texts.push(node.childNodes[0].textContent as string);
-            elements.push(node);
-        } else {
-            node.childNodes.forEach(child => handleNode(child));
-        }
+    const skills: Record<SkillCategory, Skill[]> = {
+        "proficient": [
+            { title: "Python", iconClass: "fa-brands fa-python" },
+            { title: "C#", component: "CsharpIcon" },
+            { title: "HTML5", iconClass: "fa-brands fa-html5" },
+            { title: "Svelte", component: "SvelteIcon" },
+            { title: "Express.js", component: "ExpressIcon" },
+            { title: "JavaScript", iconClass: "fa-brands fa-js" },
+            { title: "CSS", iconClass: "fa-brands fa-css3-alt" },
+        ],
+        "familiar": [
+            { title: "C++", component: "CppIcon" },
+            { title: "MongoDB", component: "MongodbIcon" },
+            { title: "MySQL", component: "MySQLIcon" },
+            { title: "Hetzner", component: "HetznerIcon" },
+            { title: "Shopify", component: "ShopifyIcon" },
+            { title: "Neovim", component: "NeovimIcon"},
+            { title: "Tailwind CSS", component: "TailwindIcon" },
+            { title: "TypeScript", component: "TypescriptIcon" }, // No icon
+            { title: "React", iconClass: "fa-brands fa-react" },
+            { title: "PHP", iconClass: "fa-brands fa-php" },
+            { title: "Bootstrap", iconClass: "fa-brands fa-bootstrap" },
+            { title: "Sass", iconClass: "fa-brands fa-sass" },
+            { title: "Java", iconClass: "fa-brands fa-java" },
+            { title: "C Language", iconClass: "fa-brands fa-c" },
+            { title: "Node.js", iconClass: "fa-brands fa-node-js" },
+            { title: "Git", iconClass: "fa-brands fa-git" },
+            { title: "GitHub", iconClass: "fa-brands fa-github" },
+            { title: "Linux", iconClass: "fa-brands fa-linux" },
+        ]
     }
+
+    let isFamiliarExpanded = false;
 </script>
 
-<style lang="scss">
-    .typewriter-message {
-        height: stretch;
-        justify-content: center;
-
-        * {
-            font-family: 'Victor Mono' !important;
-            letter-spacing: 0.1em !important;
+<style>
+    .keyword {
+        background-clip: text;
+        background-image: linear-gradient(90deg, #ffc82c, #e0afa0); 
+        color: transparent;
+        animation: animateKeyword 10s linear infinite;
+        background-size: 300% 300%; 
+    }
+    @keyframes animateKeyword {
+        0% {
+            background-position: 0% 50%;
         }
-
-
-        #cursor {
-            display: inline-block;
-            width: 1px;
-            height: 1em;
-            background-color: #f8f8f2;
-            animation: blink .8s infinite;
+        25% {
+            background-position: 100% 50%;
         }
-
-        @keyframes blink {
-            0% {
-                background: #f8f8f2;
-            }
-
-            50% {
-                background: transparent;
-            }
-
-            100% {
-                background: #f8f8f2;
-            }
+        50% {
+            background-position: 100% 100%;
         }
-
-        .html-tag {
-            color: #f8f8f2;
-
-            .text {
-                color: lightgreen;
-            }
-
-            &.anchor-tag {
-                .content {
-                    text-decoration: underline;
-                }
-
-                &:hover {
-                    cursor: pointer;
-                    background-color: #44475a;
-                }
-            }
+        75% {
+            background-position: 0% 100%;
         }
-
-        .json {
-            color: #f8f8f2;
-
-            .const {
-                color: #ff79c6;
-            }
-
-            .operator {
-                color: #ff79c6;
-            }
-
-            .bracket {
-                color: #f8f8f2;
-            }
-
-            .key {
-                color: #8be9fd;
-            }
-
-            .string {
-                color: #f1fa8c;
-
-                &.anchor:hover {
-                    cursor: pointer;
-                    text-decoration: underline;
-                }
-            }
-
-            .indent {
-                margin-left: 1.5em;
-            }
+        100% {
+            background-position: 0% 50%;
         }
     }
 </style>
 
-<article class="h-full w-full bg-dark rounded-xl p-4 absolute top-0" transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}>
-    <div class="window-controls flex justify-end gap-2">
-        <div class="window-control bg-red w-3 h-3 rounded-full"></div>
-        <div class="window-control bg-yellow w-3 h-3 rounded-full"></div>
-        <div class="window-control bg-green w-3 h-3 rounded-full"></div>
-    </div> <!-- flex md:flex-row flex-col h-full p-4 mb-4 overflow-auto md:overflow-visible -->
-    <div class="typewriter-message flex flex-col justify-start leading-relaxed p-9 my-4 text-sm md:text-lg overflow-auto">
-        <div class="html-tag w-full">
-            <span><span id="cursor" bind:this={cursor}></span>&lt;</span><span class="text">title</span><span>&gt;</span>
-            <span>Welcome to my portfolio!</span>
-            <span>&lt;/</span><span class="text">title</span><span>&gt;</span>
+<article class="h-full w-full p-4 bg-dark" id="home">
+    <section class="border border-gray rounded p-5"> 
+        <!-- Socials buttons container -->
+        <div class="flex justify-center gap-4 w-fit float-right">
+            <a href="https://github.com/aoof" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github text-gray hover:text-pink"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/aoof/" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin text-gray hover:text-pink"></i>
+            </a>
+            <a href="mailto:aoof.mousa@gmail.com" target="_blank" rel="noopener noreferrer">
+                <i class="fas fa-envelope text-gray hover:text-pink"></i>
+            </a>
         </div>
 
-        <div class="html-tag w-full">
-            <span>&lt;</span><span class="text">script</span><span>&gt;</span>
-        </div>
+        <h1 class="font-bold text-3xl">Abdulrahman Mousa</h1>
+        <p class="text-gray text-xl">Montreal Quebec, Canada | He/Him</p>
 
-        <div class="json">
-            <span class="const">const</span> <span>info</span> <span class="operator">=</span> <span class="bracket"> &#123;</span>
-            <div class="indent">
-                <div><span class="key">fullName</span><span>: </span><span class="string">"Abdulrahman Mousa"</span><span>,</span></div>
-                <div><span class="key">preferredName</span><span>: </span><span class="string">"Rahman"</span><span>,</span></div>
-                <div><span class="key">nickname</span><span>: </span><span class="string">"aoof"</span><span>,</span></div>
-                <div><span class="key">pronunciation</span><span>: </span><a class="string anchor" target="_blank" href="https://translate.google.com/?sl=ar&tl=en&text=%D8%B9%D9%8F%D9%88%D9%81%D9%92&op=translate">"(ʕu:f)"</a></div>
+        <p class="text-white text-lg mt-4">
+            I am a <span class="keyword">Computer Science</span> student at Collège LaSalle. I speak <span class="keyword">English</span>, <span class="keyword">Arabic</span>, and <span class="keyword">French</span>.
+            I am passionate about <span class="keyword">Software Development</span> and <span class="keyword">Web Development.</span> I am always looking for new opportunities to learn and grow. 
+        </p>
+        <p class="text-white text-lg mt-4">
+            I am currently looking for 
+            <span class="keyword">Part-Time,</span> 
+            <span class="keyword">Full-Time,</span> or 
+            <span class="keyword">Contract</span> positions in software development.
+        </p>
+        <div class="flex justify-end gap-4 mt-4">
+            <a href="#contact">
+                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">CONTACT ME</button>
+            </a>
+            <a href={resume} download="amousaresume.pdf">
+                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">RESUME</button>
+            </a>
+        </div>
+    </section>
+    <h3 class="text-white text-2xl font-bold mt-8">Skills</h3>
+    <div class="flex flex-wrap justify-stretch gap-2 mt-4">
+        {#each Object.keys(skills) as category}
+            <div class="w-full text-right">
+               {#if category === 'familiar'}
+                    <div class="overflow-hidden transition-all ease-out duration-500" style:max-height={isFamiliarExpanded ? '500px' : '0'} style:opacity={isFamiliarExpanded ? '1' : '0'}>
+                        <h3 class="text-xl text-white my-2 text-center select-none">Familiar</h3>
+                            <div class="flex flex-wrap gap-2">
+                                {#each skills[category] as skill}
+                                    <Tag title={skill.title} iconClass={skill.iconClass} component={skill.component} />
+                                {/each}
+                            </div>
+                        </div>
+                {:else}
+                    <h3 class="text-xl text-white text-center select-none">Proficient</h3>
+                    <div class="flex flex-wrap gap-2 my-2">
+                        {#each skills[category] as skill}
+                            <Tag title={skill.title} iconClass={skill.iconClass} component={skill.component} />
+                        {/each}
+                        <button class="select-none border border-pink hover:bg-pink hover:text-dark font-black px-3 py-1 m-1 rounded flex items-center gap-2 cursor-pointer text-base relative" on:click={() => isFamiliarExpanded = !isFamiliarExpanded}>
+                            {isFamiliarExpanded ? 'Show less...' : 'Show more...'}
+                        </button>
+                    </div>
+                {/if}
             </div>
-            <span class="bracket">&#125;</span><span>;</span>
-        </div>
-
-        <div class="html-tag w-full">
-            <span>&lt;/</span><span class="text">script</span><span>&gt;</span>
-        </div>
-
-        <a class="html-tag anchor-tag text-left" download="Abdulrahman_Mousa_Resume.pdf" href={resume} rel='noopener noreferrer'>
-            <span>&lt;</span><span class="text">a</span><span>&gt;</span>
-            <span class="content">Click here to download resume</span>
-            <span>&lt;/</span><span class="text">a</span><span>&gt;</span>
-        </a>
+        {/each}
     </div>
 </article>

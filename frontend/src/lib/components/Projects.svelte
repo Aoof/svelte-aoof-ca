@@ -1,7 +1,4 @@
 <script>
-    import { fly } from 'svelte/transition';
-    import { device } from '$lib/../stores/index';
-
     import ProjectCard from './ProjectCard.svelte';
     import ieac  from '$lib/media/ieac.png';
     import castlecanada from '$lib/media/castlecanada.png';
@@ -32,25 +29,13 @@
                 { title: 'JavaScript', iconClass: 'fa-brands fa-js' },
                 { title: 'Shopify', iconClass: 'fas fa-shopping-cart', component: 'ShopifyIcon'}
             ]
-        }
+        },
     ]
 </script>
 
-<style lang="scss">
-    .projects {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-
-        overflow: auto;
-    }
-</style>
-
-<div 
-    class="projects my-4 text-lg overflow-auto xl:h-fit h-full" 
-    transition:fly={$device === 'desktop' ? { x: -20, duration: 500 } : { y: -20, duration: 500 }}
->
+<article class="h-full w-full p-4 bg-dark flex flex-col gap-10" id="projects">
+    <h3 class="text-white text-2xl font-bold mt-4">Projects</h3>
     {#each projects as project}
         <ProjectCard {...project} />
     {/each}
-</div>
+</article>
