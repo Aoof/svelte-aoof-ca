@@ -36,7 +36,7 @@
         </div>
     </div>
 {/if}
-<button class="w-full rounded-lg md:mx-3 bg-[#222] border border-[#2f2f2f] px-4 pt-4 pb-12 transition-all duration-200 hover:bg-[#2f2f2f]" on:click={() => {expanded = !expanded}}
+<button class="w-full rounded-lg bg-[#222] border border-[#2f2f2f] px-4 pt-4 pb-12 transition-all duration-200 hover:bg-[#2f2f2f]" on:click={() => {expanded = !expanded}}
     transition:fly={{ y: 20, duration: 300 }}>
     <div class="flex justify-end gap-2 mb-4">
         <div class="bg-red w-3 h-3 rounded-full"></div>
