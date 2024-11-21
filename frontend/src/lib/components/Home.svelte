@@ -86,7 +86,7 @@
         <p class="text-gray text-xl">Montreal Quebec, Canada | He/Him</p>
 
         <p class="text-white text-lg mt-4">
-            I am a <span class="keyword">Computer Science</span> student at Collège LaSalle. I speak <span class="keyword">English</span>, <span class="keyword">Arabic</span>, and <span class="keyword">French</span>.
+            I am a <span class="keyword">Computer Science</span> student at Collège LaSalle. I speak <span class="keyword">English</span>, and <span class="keyword">Arabic</span>.
             I am passionate about <span class="keyword">Software Development</span> and <span class="keyword">Web Development.</span> I am always looking for new opportunities to learn and grow. 
         </p>
         <p class="text-white text-lg mt-4">
