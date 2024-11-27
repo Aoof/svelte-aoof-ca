@@ -5,6 +5,7 @@
     export let type = "button";
 
     const dispatch = createEventDispatcher();
+
     function handleClick() {
         dispatch("click");
     }

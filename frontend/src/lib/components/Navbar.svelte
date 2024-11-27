@@ -1,145 +1,60 @@
 <script lang="ts">
     import { writable } from 'svelte/store';
+    import { language, anchors, change_lang } from '$lib/../stores/index';
+    import resume from '$lib/media/resume.pdf';
 
-    import { page, anchors, device, change_page } from '$lib/../stores/index';
-    import { fly, fade, scale } from 'svelte/transition';
-
-    import { onMount } from 'svelte';
-
-    const buttons = writable<HTMLButtonElement[]>(
-        new Array(anchors.length)
-    );
-
-    const cursorElement = writable<HTMLElement>();
-    const activeButton = writable<HTMLButtonElement>();
-
-    onMount(() => {
-        $activeButton = $buttons[anchors.findIndex(btn => btn.name == $page)];
-        $cursorElement = document.querySelector('.active-selector') as HTMLElement;
-        if ($device == 'desktop') {
-            $cursorElement.style.top = `${$activeButton.offsetTop}px`;
-            window.addEventListener('resize', () => {
-                $cursorElement.style.top = `${$activeButton.offsetTop}px`;
-                $cursorElement.style.left = `${$activeButton.offsetLeft}px`;
-            });
+    const toggle_lang = () => {
+        if ($language === 'en') {
+            change_lang('fr');
         } else {
-            $cursorElement.style.left = `${$activeButton.offsetLeft}px`;
-            window.addEventListener('resize', () => {
-                $cursorElement.style.top = `${$activeButton.offsetTop}px`;
-                $cursorElement.style.left = `${$activeButton.offsetLeft}px`;
-            });
+            change_lang('en');
         }
-    })
+    }
 
+    const buttons = writable<HTMLButtonElement[]>(new Array(anchors.length));
+    const isDropdownOpen = writable(false);
 
-    $ : if (page) {
-        $activeButton = $buttons[anchors.findIndex(btn => btn.name == $page)];
-        if ($activeButton) {
-            if ($device == 'desktop') {
-                $cursorElement.style.top = `${$activeButton.offsetTop}px`;
-            } else {
-                $cursorElement.style.left = `${$activeButton.offsetLeft}px`;
-            }
-        }
+    const toggleDropdown = () => {
+        isDropdownOpen.update(n => !n);
     }
 </script>
 
-<style lang="scss">
-    .side-bar {
-        position: fixed;
-        top: 0;
-        left: 10%;
-        height: 100vh;
-        width: 60px;
+<style>
+    .dropdown-menu {
+        overflow: hidden;
+        transition: height 0.3s ease;
+    }
 
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .dropdown-menu.closed {
+        height: 0;
+    }
 
-        @media (max-width: 768px) {
-            left: 0;
-            bottom: 0;
-            top: auto;
-            width: stretch;
-            height: 70px;
-        }
-
-        .buttons-container {
-            position: relative;
-
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-
-            background: rgba(40, 40, 40);
-            height: 70%;
-
-            border-radius: 2rem;
-
-            @media (max-width: 768px) {
-                flex-direction: row;
-                width: 100%;
-                height: 70px;
-
-                border-radius: 0;
-            }
-
-            .active-selector {
-                position: absolute;
-                top: 0;
-                left: 0;
-
-                width: 100%;
-                height: 70px;
-
-                background-color: rgba(255, 255, 255, 0.2);
-                border-radius: 2rem;
-                transition: 0.3s;
-
-                @media (max-width: 768px) {
-                    top: 0;
-                    left: 0;
-                    width: 70px;
-                    height: stretch;
-                }
-            }
-
-            button {
-                position: relative;
-
-                background-color: transparent;
-                border: none;
-                color: white;
-                font-size: 1.5rem;
-                cursor: pointer;
-                
-                width: 70px;
-                height: 70px;
-                border-radius: 50%;
-            }
-        }
+    .dropdown-menu.open {
+        height: auto;
     }
 </style>
 
-<nav class="side-bar z-10">
-    <div class="buttons-container">
-        <span class="active-selector" bind:this={$cursorElement}></span>
+<nav class="bg-dark border-b border-gray top-0 sticky w-full h-16 px-8 flex items-center z-50">
+    <a href="/" class="text-white hover:text-pink text-xl font-bold no-underline">aoof.ca</a>
+    <div class="flex gap-4 items-center justify-end w-full px-4">
+        <button class="text-white hover:text-pink text-xl cursor-pointer md:hidden" on:click={toggleDropdown}>
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="buttons-container gap-4 items-center justify-center w-full hidden md:flex">
+            {#each anchors as btn, i}
+                <a class="text-white hover:text-pink cursor-pointer text-sm" href="#{btn.name}">{btn.name.toUpperCase()}</a>
+            {/each}
+        </div>
+    </div>
+    <div class="flex gap-4 items-center justify-center">
+        <!-- <button class="text-white hover:text-pink text-sm cursor-pointer" on:click={toggle_lang}>{$language === 'en' ? 'EN' : 'FR'}</button> -->
+        <a href={resume} download="amousaresume.pdf">
+            <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">RESUME</button>
+        </a>
+    </div>
+    <div class="dropdown-menu absolute bg-dark w-full top-14 left-0 {$isDropdownOpen ? 'open border-b py-3' : 'closed'} md:hidden border-gray">
         {#each anchors as btn, i}
-            <button on:click={() => change_page(btn.name)} class={`relative ${$page == btn.name ? 'active' : ''}`} bind:this={$buttons[i]}>
-                {#if $page == btn.name}
-                    <span 
-                        class="text-xs w-full absolute top-0 left-0 right-0 bottom-0 m-auto h-fit font-bold" 
-                        in:fly={{y: -20, duration: 500}}
-                        out:scale={{duration: 200}}
-                    >{btn.name.toUpperCase()}</span>
-                {:else}
-                    <i class={btn.icon} 
-                        in:fly={{y: -20, duration: 200}}
-                        out:scale={{duration: 500}}
-                    ></i>
-                {/if}
-            </button>
+            <a class="block text-white hover:text-pink cursor-pointer text-sm py-2 px-4 text-center" href="#{btn.name}">{btn.name.toUpperCase()}</a>
         {/each}
     </div>
 </nav>

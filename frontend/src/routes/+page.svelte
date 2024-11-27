@@ -16,34 +16,6 @@
   });
 </script>
 
-<style lang="scss">
-  main {
-    height: stretch;
-    width: stretch;
-
-    .content-container {
-      position: absolute;
-      top: 0; bottom: 0;
-
-      margin: auto 1rem auto 20rem;
-      height: 70%;
-
-      width: stretch;
-
-      @media (max-width: 980px) {
-          font-size: 0.8em;
-      }
-
-      @media (max-width: 768px) {
-        top: 1rem; bottom: auto;
-        margin: auto 1rem;
-        left: 0;
-        height: 90%;
-      }
-    }
-  }
-</style>
-
 <svelte:head>
     <script 
       data-name="BMC-Widget" 
@@ -55,20 +27,18 @@
       data-color="#FF813F" 
       data-position="Right" 
       data-x_margin="18" 
-      data-y_margin="80"></script>
+      data-y_margin="18"></script>
 </svelte:head>
 
 <main>
   <Navbar />
-  <div class="content-container">
-    {#if $page === 'home'}
-      <Home />
-    {:else if $page === 'contact'}
-      <Contact />
-    {:else if $page === 'about'}
-      <About />
-    {:else if $page === 'projects'}
-      <Projects />
-    {/if}
+  <div class="lg:w-1/2 md:w-2/3 sm:max-w-full m-auto">
+    <Home />
+    <About />
+    <Projects />
+    <Contact />
   </div>
+  <button class="fixed bottom-4 left-4 bg-dark text-white p-2 rounded-full shadow-lg btn-scroll-up hidden" on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+    <i class="fas fa-arrow-up"></i>
+  </button>
 </main>
