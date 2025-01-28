@@ -68,6 +68,7 @@
             name: "BotQuest",
             location: "Autodesk Canada Inc, Montreal QC",
             time: "November 2024",
+            link: "https://www.linkedin.com/posts/aoof_botquest-robotics-engineering-activity-7273043506187702274-bwtj?utm_source=share&utm_medium=member_desktop",
             summary: "The improved variation of Warhacks. Our challenge was to build a robot that could navigate a maze and finish in the shortest time. " +
                     "We built a robot that navigated most of the mazes provided, and it was really fast. " +
                     "Our opponents were very challenging to go against but we had fun and gained valuable experience in ;[robotics], ;[teamwork], and ;[problem-solving].",
