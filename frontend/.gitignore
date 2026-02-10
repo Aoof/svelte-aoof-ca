@@ -1,0 +1,7 @@
+# Admin database - contains sensitive data
+admin.db
+admin.db-shm
+admin.db-wal
+
+# Data directory for production
+data/

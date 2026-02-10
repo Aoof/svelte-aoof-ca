@@ -48,7 +48,7 @@
     </div>
     <div class="flex gap-4 items-center justify-center">
         <!-- <button class="text-white hover:text-pink text-sm cursor-pointer" on:click={toggle_lang}>{$language === 'en' ? 'EN' : 'FR'}</button> -->
-        <a href={resume} download="amousaresume.pdf">
+            <a href={resume} download="amousaresume.pdf">
             <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">RESUME</button>
         </a>
     </div>

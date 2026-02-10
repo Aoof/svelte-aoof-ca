@@ -1,5 +1,10 @@
 
 <script lang="ts">
+    import migsImg from '$lib/media/migs_image.png';
+    import fusionImg from '$lib/media/FusionFestival.jpg';
+    import botQuestImg from '$lib/media/BotQuest.jpeg';
+    import ggjImg from '$lib/media/ggj_image.jpg';
+
     let workExperiences : { current: boolean, date: string, title: string, location: string, description: string }[] = [
         {
             current: true,
@@ -7,11 +12,8 @@
             title: "Video Games Quality Assurance Tester",
             location: "Altagram Canada, Montreal QC - Project Based",
             description:
-                "Working as a video games quality assurance tester for a ;[localization] company. " +
-                "I am responsible for testing video games for bugs, errors, and issues. " +
-                "This project has been a great opportunity to learn ;[quality assurance], ;[video games], and ;[testing]. " +
-                "I have gained experience in ;[teamwork], ;[communication], and ;[problem-solving]. " +
-                "I am always looking for ways to improve and learn new skills."
+                "Testing games for a ;[localization] company—hunting down bugs, catching inconsistencies, and making sure everything works smoothly. " +
+                "It's been a crash course in ;[quality assurance] and sharpened my eye for detail. Plus, working with the team has taught me a lot about effective ;[communication] and collaborative ;[problem-solving]."
         },
         {
             current: true,
@@ -19,43 +21,38 @@
             title: "Frontend Developer",
             location: "Welfare Avenue, Montreal QC - Freelance / Maintainance",
             description:
-                "Working as a frontend developer for a ;[charity] company. " +
-                "I am tasked to bring designs to life using various technologies and helped with these designs. " +
-                "This project was a great opportunity to learn ;[React], ;[Frontend Development], and ;[Design]. " +
-                "There is always room for improvement and I am always looking for ways to improve. " +
-                "Key skills gained included ;[technological team work], ;[design], and ;[frontend development]."
+                "Bringing designs to life for a ;[charity] organization using ;[React]. " +
+                "I jump between coding and collaborating on design decisions, which has been a great balance of technical work and creative input. " +
+                "Each update is a chance to refine my ;[frontend development] skills and learn something new."
         },
-        {
-            current: false,
-            date: "December 2023 - January 2024",
-            title: "Full Stack Developer",
-            location: "International Ethnic Associations Council, Montreal QC - Freelance",
-            description:
-                "Developed and maintained the IEAC Concordia website, resolving issues and adding features. " +
-                "This project enhanced my skills in full stack development, working independently, and using ;[Express.js], ;[MongoDB], and ;[Node.js]. " +
-                "I gained experience in ;[backend development], ;[server management], and ;[database management]. " +
-                "Reflecting on the project, I identified areas for improvement and would approach some tasks differently." 
-        },
+        // {
+        //     current: false,
+        //     date: "December 2023 - January 2024",
+        //     title: "Full Stack Developer",
+        //     location: "International Ethnic Associations Council, Montreal QC - Freelance",
+        //     description:
+        //         "Built and maintained the IEAC Concordia website, tackling bugs and adding new features. " +
+        //         "Worked with ;[Express.js], ;[MongoDB], and ;[Node.js] to handle both the frontend and backend. " +
+        //         "Looking back, there are definitely things I'd do differently, but every project is a learning experience."
+        // },
         {
             current: false,
             date: "November 2022 - June 2023",
             title: "Inbound Customer Care Representative",
             location: "IO Solutions, Montreal QC - Part Time",
             description:
-                "Worked as a customer care representative for Rogers Communications. " +
-                "I was responsible for handling customer inquiries, complaints, and requests. " +
-                "Key skills gained included ;[data entry], ;[marketting], and ;[quick learning]."
+                "Handled customer calls for Rogers Communications—answering questions, solving issues, and keeping things running smoothly. " +
+                "Picked up skills in ;[data entry], ;[marketing], and learned how to adapt quickly to new systems."
         },
-        {
-            current: false,
-            date: "January 2022 - August 2022",
-            title: "Customer Care Representative",
-            location: "LogX Group, Cross Border Pickups, Markham ON - Full Time",
-            description: 
-                "Worked as a front desk customer care representative at a package handling facility. " +
-                "I was responsible for handling customer inquiries, complaints, and requests. " +
-                "Key skills gained included ;[multitasking], ;[interpersonal skills], and ;[problem-solving]."
-        },
+        // {
+        //     current: false,
+        //     date: "January 2022 - August 2022",
+        //     title: "Customer Care Representative",
+        //     location: "LogX Group, Cross Border Pickups, Markham ON - Full Time",
+        //     description: 
+        //         "Front desk at a package handling facility, juggling customer requests, complaints, and general inquiries. " +
+        //         "Got really good at ;[multitasking] and dealing with all sorts of people—definitely built up my ;[interpersonal skills]."
+        // },
     ];
 
     workExperiences = workExperiences.map(experience => {
@@ -63,39 +60,68 @@
         return experience;
     }); 
     
-    let competitions: { name: string, location: string, time: string, summary: string, link?: string }[] = [
+    let eventsAndCompetitions: { name: string, location: string, time: string, summary: string, link?: string, image?: string }[] = [
+        {
+            name: "Global Game Jam 2026 - Unity Technologies",
+            location: "Montreal QC",
+            time: "January 2026",
+            link: "https://www.linkedin.com/posts/aoof_a-week-ago-my-friends-and-i-decided-to-take-activity-7427119229058936834-Lcsn",
+            image: ggjImg,
+            summary: "Participated in the Global Game Jam 2026, hosted at Unity Technologies in Montreal. " +
+                    "It was an intense 48 hours of creativity, collaboration, and caffeine. " +
+                    "Our team was a mix of passionate amateurs and some professionals, which made for a great learning environment. " +
+                    "We managed to whip up a fun little game that we're all proud of (even if it wasn't polished), and the experience was a blast from start to finish."
+
+        },
+        {
+            name: "Montreal International Game Summit",
+            location: "Montreal QC",
+            time: "December 2025",
+            image: migsImg,
+            link: "https://www.linkedin.com/posts/aoof_last-month-i-had-the-pleasure-to-attend-activity-7402542580120375296-s-7v",
+            summary: "Attended the Montreal International Game Summit, a major event in the gaming industry. " +
+                    "It was an incredible opportunity to connect with professionals, attend insightful talks, and get a behind-the-scenes look at upcoming games and technologies. " +
+                    "The experience was inspiring and reinforced my passion for game development."
+        },
+        {
+            name: "Fusion Festival",
+            location: "Montreal QC",
+            time: "June 2025",
+            link: "https://www.linkedin.com/posts/aoof_fusionfestival-activity-7328610056080404481-WUQE",
+            image: fusionImg,
+            summary: "Participated in Fusion Festival, where I showed an interactive visual effects project. " +
+                    "It was a great experience to connect with professionals and get feedback on my work. " +
+                    "I was happy to be part of it and I'm grateful for my college for hosting it and giving me the opportunity to showcase my work."
+        },
         {
             name: "BotQuest",
             location: "Autodesk Canada Inc, Montreal QC",
             time: "November 2024",
-            link: "https://www.linkedin.com/posts/aoof_botquest-robotics-engineering-activity-7273043506187702274-bwtj?utm_source=share&utm_medium=member_desktop",
-            summary: "The improved variation of Warhacks. Our challenge was to build a robot that could navigate a maze and finish in the shortest time. " +
-                    "We built a robot that navigated most of the mazes provided, and it was really fast. " +
-                    "Our opponents were very challenging to go against but we had fun and gained valuable experience in ;[robotics], ;[teamwork], and ;[problem-solving].",
+            image: botQuestImg,
+            link: "https://www.linkedin.com/posts/aoof_botquest-robotics-engineering-activity-7273043506187702274-bwtj",
+            summary: "Round two of maze-solving robots, this time at Autodesk. Built a robot that crushed most of the mazes—and was surprisingly fast. " +
+                    "The competition was tough, but that's what made it fun. Leveled up my ;[robotics] and ;[teamwork] skills even more.",
         },
         {
             name: "Warhacks",
             location: "Concordia University, Montreal QC",
             time: "February 2024",
-            summary: "Our challenge was to build a robot that could navigate a maze and finish in the shortest time. " +
-                    "We built a robot that navigated most of the mazes provided, and it was really fast. " +
-                    "We won 3rd place in the competition and gained valuable experience in ;[robotics], ;[teamwork], and ;[problem-solving].",
+            summary: "Built a maze-navigating robot and raced it against other teams. Ours handled the mazes well and we snagged 3rd place! " +
+                    "First real dive into ;[robotics]—learned a ton about hardware, code, and working under pressure with a team.",
             link: "https://www.linkedin.com/posts/aoof_concordiauniversity-warhacks-robotics-activity-7157886921753378818-xt8O?utm_source=share&utm_medium=member_desktop"
         },
         {
             name: "ConUHacks",
             location: "Concordia University, Montreal QC",
             time: "February 2024",
-            summary: "A hackathon run by HackConcordia, hackathons are a great way to learn new skills and meet new people. " +
-                    "We built a web application that helps mechanics find the most optimal fixing schedule and display that in an intuitive way to both the mechanic and the customers. " +
-                    "Being my first hackathon it was challenging to maintain a decent enough pacing and we didn't end up finishing the project on time. " +
-                    "It was a great learning experience and I gained valuable experience in ;[web development], ;[teamwork], and ;[problem-solving].",
+            summary: "My first hackathon. Tried building a web app to help mechanics schedule repairs more efficiently. " +
+                    "Didn't quite finish in time—pacing is hard when you're new—but learned a lot about ;[web development], working with a team, and how to pivot when things don't go as planned.",
         }
     ];
 
-    competitions = competitions.map(competition => {
-        competition.summary = competition.summary.replace(/;\[(.*?)\]/g, '<span class="keyword">$1</span>');
-        return competition;
+    eventsAndCompetitions = eventsAndCompetitions.map(event => {
+        event.summary = event.summary.replace(/;\[(.*?)\]/g, '<span class="keyword">$1</span>');
+        return event;
     });
 </script>
 
@@ -124,24 +150,26 @@
             </ol>
         </div>
         <div class="content-group">
-            <h3 class="text-white text-2xl mt-4 font-bold">Competitions</h3>
+            <h3 class="text-white text-2xl mt-4 font-bold">Events and Competitions</h3>
             <p class="my-4 text-lg">
-                I have participated in several competitions and hackathons. 
-                I have won some of them and have gained valuable experience from all of them.
+                I've jumped into a few competitions and events—some went better than others, but each one taught me something new.
             </p>
-            {#each competitions as competition}
+            {#each eventsAndCompetitions as event}
                 <div class="card border border-gray p-4 rounded-lg mb-4">
-                    <h4 class="text-2xl font-semibold text-white">{competition.name}</h4>
-                    <div class="mb-2">
-                        <span class="text-gray text-sm">{competition.location}</span>
-                        <span class="text-gray text-sm">{competition.time}</span>
-                    </div>
-                    <p class="text-lg">{@html competition.summary}</p>
-                    {#if competition.link}
-                        <div class="flex justify-end">
-                            <a href={competition.link} target="_blank" rel="anonymous" class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">Linkedin Post</a>
+                    {#if event.image}
+                        <img src={event.image} alt={event.name} class="w-full h-48 object-cover rounded-lg mb-4" />
+                    {/if}
+                    {#if event.link}
+                        <div class="float-right">
+                            <a href={event.link} target="_blank" rel="anonymous" class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">Linkedin Post</a>
                         </div>
                     {/if}
+                    <h4 class="text-2xl font-semibold text-white">{event.name}</h4>
+                    <div class="mb-2">
+                        <span class="text-gray text-sm">{event.location}</span>
+                        <span class="text-gray text-sm">{event.time}</span>
+                    </div>
+                    <p class="text-lg">{@html event.summary}</p>
                 </div>
             {/each}
         </div>

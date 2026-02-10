@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { fly, scale } from 'svelte/transition';
+    import { fly, scale, fade } from 'svelte/transition';
     import Tag from '$lib/components/Tag.svelte';
 
     export let name = 'Project Name';
@@ -9,13 +9,42 @@
     export let tags : { title : string, iconClass : string, component? : string }[] = [];
 
     let expanded = false;
+
+    function closeModal() {
+        expanded = false;
+    }
+
+    function handleBackdropClick(e: MouseEvent) {
+        if (e.target === e.currentTarget) {
+            closeModal();
+        }
+    }
+
+    function handleKeydown(e: KeyboardEvent) {
+        if (e.key === 'Escape' && expanded) {
+            closeModal();
+        }
+    }
 </script>
 
+<svelte:window on:keydown={handleKeydown} />
+
 {#if expanded}
-    <div class="fixed inset-0 flex items-center justify-center z-50">
-        <div class="relative bg-[#222] shadow-md shadow-[#111] px-4 py-12 rounded-lg lg:w-1/2 w-full lg:h-3/4 h-full flex flex-col justify-center items-center"
-            transition:scale={{ duration: 300 }}>
-            <button class="absolute top-4 right-4 text-white text-2xl" on:click={() => expanded = !expanded}>
+    <!-- Backdrop with blur -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div class="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-sm bg-black/50 p-4"
+         on:click={handleBackdropClick}
+         transition:fade={{ duration: 200 }}>
+        <!-- Modal Card -->
+        <div class="relative bg-[#222] shadow-xl shadow-[#111] px-4 py-12 rounded-lg lg:w-1/2 w-full lg:h-3/4 h-full flex flex-col justify-center items-center max-h-[90vh] overflow-y-auto"
+            transition:scale={{ duration: 300, start: 0.9 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Project details">
+            <button class="absolute top-4 right-4 text-white text-2xl hover:text-pink transition-colors" 
+                    on:click={closeModal}
+                    aria-label="Close">
                 <i class="fas fa-times"></i>
             </button>
             <img src={image} alt={name} class="lg:h-1/2 w-auto rounded-md" />

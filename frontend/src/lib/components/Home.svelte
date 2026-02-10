@@ -9,6 +9,7 @@
         "proficient": [
             { title: "Python", iconClass: "fa-brands fa-python" },
             { title: "C#", component: "CsharpIcon" },
+            { title: "Java", iconClass: "fa-brands fa-java" },
             { title: "HTML5", iconClass: "fa-brands fa-html5" },
             { title: "Svelte", component: "SvelteIcon" },
             { title: "Express.js", component: "ExpressIcon" },
@@ -19,7 +20,6 @@
             { title: "C++", component: "CppIcon" },
             { title: "MongoDB", component: "MongodbIcon" },
             { title: "MySQL", component: "MySQLIcon" },
-            { title: "Hetzner", component: "HetznerIcon" },
             { title: "Shopify", component: "ShopifyIcon" },
             { title: "Neovim", component: "NeovimIcon"},
             { title: "Tailwind CSS", component: "TailwindIcon" },
@@ -28,7 +28,6 @@
             { title: "PHP", iconClass: "fa-brands fa-php" },
             { title: "Bootstrap", iconClass: "fa-brands fa-bootstrap" },
             { title: "Sass", iconClass: "fa-brands fa-sass" },
-            { title: "Java", iconClass: "fa-brands fa-java" },
             { title: "C Language", iconClass: "fa-brands fa-c" },
             { title: "Node.js", iconClass: "fa-brands fa-node-js" },
             { title: "Git", iconClass: "fa-brands fa-git" },
@@ -83,17 +82,18 @@
         </div>
 
         <h1 class="font-bold text-3xl">Abdulrahman Mousa</h1>
+        <a class="text-md transition-all duration-75 hover:underline hover:text-pink" href="https://namedrop.io/abdulrahmanmousa" target="_blank">or aoof <span class="text-pink">(pronunciation)</span></a>
         <p class="text-gray text-xl">Montreal Quebec, Canada | He/Him</p>
 
         <p class="text-white text-lg mt-4">
-            I am a <span class="keyword">Computer Science</span> student at Collège LaSalle. I speak <span class="keyword">English</span>, and <span class="keyword">Arabic</span>.
-            I am passionate about <span class="keyword">Software Development</span> and <span class="keyword">Web Development.</span> I am always looking for new opportunities to learn and grow. 
+            I am a <span class="keyword">Computer Science</span> student at Collège LaSalle. I speak <span class="keyword">English</span>, <span class="keyword">Arabic</span> and <span class="keyword">French</span>. <br />
+            I am passionate about <span class="keyword">Software Development</span>, <span class="keyword">Web Development</span> and <span class="keyword">Game Development</span> I am always looking for new opportunities to learn and grow. 
         </p>
         <p class="text-white text-lg mt-4">
             I am currently looking for 
             <span class="keyword">Part-Time,</span> 
             <span class="keyword">Full-Time,</span> or 
-            <span class="keyword">Contract</span> positions in software development.
+            <span class="keyword">Contract</span> positions in game development as a gameplay programmer.
         </p>
         <div class="flex justify-end gap-4 mt-4">
             <a href="#contact">
@@ -110,7 +110,7 @@
             <div class="w-full text-right">
                {#if category === 'familiar'}
                     <div class="overflow-hidden transition-all ease-out duration-500" style:max-height={isFamiliarExpanded ? '500px' : '0'} style:opacity={isFamiliarExpanded ? '1' : '0'}>
-                        <h3 class="text-xl text-white my-2 text-center select-none">Familiar</h3>
+                        <h3 class="text-xl text-white my-2 text-left select-none">Decent with...</h3>
                             <div class="flex flex-wrap gap-2">
                                 {#each skills[category] as skill}
                                     <Tag title={skill.title} iconClass={skill.iconClass} component={skill.component} />
@@ -118,7 +118,7 @@
                             </div>
                         </div>
                 {:else}
-                    <h3 class="text-xl text-white text-center select-none">Proficient</h3>
+                    <h3 class="text-xl text-white text-left select-none">I'm confident in...</h3>
                     <div class="flex flex-wrap gap-2 my-2">
                         {#each skills[category] as skill}
                             <Tag title={skill.title} iconClass={skill.iconClass} component={skill.component} />
