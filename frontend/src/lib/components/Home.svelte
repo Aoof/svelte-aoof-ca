@@ -1,6 +1,6 @@
 <script lang="ts">
     import Tag from './Tag.svelte';
-    import resume from '$lib/media/resume.pdf';
+    import ResumeModal from './ResumeModal.svelte';
 
     type Skill = { title: string; component?: string; iconClass?: string };
     type SkillCategory = 'proficient' | 'familiar';
@@ -36,7 +36,13 @@
         ]
     }
 
+    const skillCategories: SkillCategory[] = ['proficient', 'familiar'];
     let isFamiliarExpanded = false;
+    let isResumeModalOpen = false;
+
+    const openResumeModal = () => {
+        isResumeModalOpen = true;
+    }
 </script>
 
 <style>
@@ -99,14 +105,12 @@
             <a href="#contact">
                 <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">CONTACT ME</button>
             </a>
-            <a href={resume} download="amousaresume.pdf">
-                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">RESUME</button>
-            </a>
+            <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>RESUME</button>
         </div>
     </section>
     <h3 class="text-white text-2xl font-bold mt-8">Skills</h3>
     <div class="flex flex-wrap justify-stretch gap-2 mt-4">
-        {#each Object.keys(skills) as category}
+        {#each skillCategories as category}
             <div class="w-full text-right">
                {#if category === 'familiar'}
                     <div class="overflow-hidden transition-all ease-out duration-500" style:max-height={isFamiliarExpanded ? '500px' : '0'} style:opacity={isFamiliarExpanded ? '1' : '0'}>
@@ -132,3 +136,5 @@
         {/each}
     </div>
 </article>
+
+<ResumeModal bind:open={isResumeModalOpen} />

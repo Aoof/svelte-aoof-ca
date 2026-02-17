@@ -1,7 +1,7 @@
 <script lang="ts">
     import { writable } from 'svelte/store';
     import { language, anchors, change_lang } from '$lib/../stores/index';
-    import resume from '$lib/media/resume.pdf';
+    import ResumeModal from '$lib/components/ResumeModal.svelte';
 
     const toggle_lang = () => {
         if ($language === 'en') {
@@ -13,9 +13,14 @@
 
     const buttons = writable<HTMLButtonElement[]>(new Array(anchors.length));
     const isDropdownOpen = writable(false);
+    let isResumeModalOpen = false;
 
     const toggleDropdown = () => {
         isDropdownOpen.update(n => !n);
+    }
+
+    const openResumeModal = () => {
+        isResumeModalOpen = true;
     }
 </script>
 
@@ -48,9 +53,7 @@
     </div>
     <div class="flex gap-4 items-center justify-center">
         <!-- <button class="text-white hover:text-pink text-sm cursor-pointer" on:click={toggle_lang}>{$language === 'en' ? 'EN' : 'FR'}</button> -->
-            <a href={resume} download="amousaresume.pdf">
-            <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">RESUME</button>
-        </a>
+        <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>RESUME</button>
     </div>
     <div class="dropdown-menu absolute bg-dark w-full top-14 left-0 {$isDropdownOpen ? 'open border-b py-3' : 'closed'} md:hidden border-gray">
         {#each anchors as btn, i}
@@ -58,3 +61,5 @@
         {/each}
     </div>
 </nav>
+
+<ResumeModal bind:open={isResumeModalOpen} />

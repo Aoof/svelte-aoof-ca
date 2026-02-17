@@ -1,11 +1,8 @@
 <script lang="ts">
     import axios from 'axios';
 
-    import { device } from '$lib/../stores/index';
     import { addToast } from '$lib/../stores/toasts';
     import { PUBLIC_WEB3_ACCESSKEY } from '$env/static/public';
-
-    import { fly } from 'svelte/transition';
 
     import Input from '$lib/components/Input.svelte';
 
