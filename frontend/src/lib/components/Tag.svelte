@@ -10,6 +10,7 @@
     import NeovimIcon from './Icons/NeovimIcon.svelte';
     import TailwindIcon from './Icons/TailwindIcon.svelte';
     import TypescriptIcon from './Icons/TypescriptIcon.svelte';
+    import AltagramIcon from './Icons/AltagramIcon.svelte';
 
     export let title: string = "";
     export let iconClass: string = "";
@@ -39,6 +40,8 @@
                 return TailwindIcon;
             case "TypescriptIcon":
                 return TypescriptIcon;
+            case "AltagramIcon":
+                return AltagramIcon;
             default:
                 return null;
         }
@@ -47,7 +50,9 @@
 
 <span class="tag bg-[#444] px-3 py-1 m-1 rounded flex items-center gap-2 cursor-default text-base relative">
     {#if component}
-        <svelte:component this={getIconByName(component)} />
+        <span class="inline-flex items-center justify-center w-[1.1em] h-[1.1em] mx-1 shrink-0 [&>*]:!w-full [&>*]:!h-full [&>*]:!m-0">
+            <svelte:component this={getIconByName(component)} />
+        </span>
         <p class="text-gray-400">{title}</p>
     {:else}
         {#if iconClass != ""}

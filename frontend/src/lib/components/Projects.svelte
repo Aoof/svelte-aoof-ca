@@ -2,7 +2,7 @@
     import ProjectCard from './ProjectCard.svelte';
     import ieac  from '$lib/media/ieac.png';
     import castlecanada from '$lib/media/castlecanada.png';
-    import sonicRumbleImage from '$lib/media/sonicrumble.png';
+    import placeholderImage from '$lib/media/placeholder.svg';
     import askaImage from '$lib/media/aska.jpg';
     import colorMaskImage from '$lib/media/colormask.png';
 
@@ -24,25 +24,26 @@
             ]
         },
         {
-            name: 'Aska (Altagram LQA/FQA Project)',
+            name: 'Aska',
             description: "<p>Aska was one of my favourite games to test during my time at Altagram. It's a survival game and a simulator that revolves around gathering resources, crafting items, and building a village with smart AI villagers.</p><p>This was also one of the longest projects I worked on, so I've found hundreds of bugs, linguistic and functional.</p>",
             image: askaImage,
             link: 'https://playaska.com/',
             tags: [
                 { title: 'Functional Quality Assurance', iconClass: 'fa-solid fa-certificate' },
                 { title: 'Localization Testing', iconClass: 'fa-solid fa-language' },
-                { title: 'Bug Tracking', iconClass: 'fa-solid fa-bug' }
+                { title: 'Bug Tracking', iconClass: 'fa-solid fa-bug' },
+                { title: 'Altagram Project', iconClass: 'fa-solid fa-a', component: 'AltagramIcon' }
             ]
         },
         {
-            name: 'Sonic Rumble (Altagram LQA Project)',
-            description: "<p>Part of my role as a Localization Quality Assurance (LQA) tester at Altagram involved testing the game 'Sonic Rumble' for bugs and issues related to localization in Arabic.</p><p>I've played through the game multiple times, checking for any linguistic errors, or cultural inconsistencies that could affect the player's experience. I reported the issues in a bug tracking system and collaborated with my non-arabic colleagues to ensure that the game was good to go.</p>",
-            image: sonicRumbleImage,
-            link: 'https://altagram.com/projects/sonic-rumble/',
+            name: 'Lonely Mountains: Snow Riders',
+            description: "<p>Lonely Mountains: Snow Riders is a skiing game that I had the pleasure of testing at Altagram. The game was beautifully designed even though it was buggy at first. Working with the developers was a great experience because they were receptive to feedback and quick with their patches.</p>",
+            image: placeholderImage,
+            link: 'https://lonelymountains.com/#LMSR',
             tags: [
-                // { title: 'Functional Quality Assurance', iconClass: 'fa-solid fa-certificate' },
-                { title: 'Localization Testing', iconClass: 'fa-solid fa-language' },
-                { title: 'Bug Tracking', iconClass: 'fa-solid fa-bug' }
+                { title: 'Functional Quality Assurance', iconClass: 'fa-solid fa-certificate' },
+                { title: 'Bug Tracking', iconClass: 'fa-solid fa-bug' },
+                { title: 'Altagram Project', iconClass: 'fa-solid fa-a', component: 'AltagramIcon' }
             ]
         },
         {
