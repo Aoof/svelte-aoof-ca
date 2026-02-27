@@ -1,6 +1,7 @@
 <script lang="ts">
     import Tag from './Tag.svelte';
     import ResumeModal from './ResumeModal.svelte';
+    import Banner from '$lib/media/hero-banner.jpg';
 
     type Skill = { title: string; component?: string; iconClass?: string };
     type SkillCategory = 'proficient' | 'familiar';
@@ -73,39 +74,39 @@
 </style>
 
 <article class="h-full w-full p-4 bg-dark" id="home">
-    <section class="border border-gray rounded p-5"> 
-        <!-- Socials buttons container -->
-        <div class="flex justify-center gap-4 w-fit float-right">
-            <a href="https://github.com/aoof" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-github text-gray hover:text-pink"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/aoof/" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-linkedin text-gray hover:text-pink"></i>
-            </a>
-            <a href="mailto:aoof.mousa@gmail.com" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-envelope text-gray hover:text-pink"></i>
-            </a>
-        </div>
-
-        <h1 class="font-bold text-3xl">Abdulrahman Mousa</h1>
-        <a class="text-md transition-all duration-75 hover:underline hover:text-pink" href="https://namedrop.io/abdulrahmanmousa" target="_blank">or aoof <span class="text-pink">(pronunciation)</span></a>
-        <p class="text-gray text-xl">Montreal Quebec, Canada | He/Him</p>
-
-        <p class="text-white text-lg mt-4">
-            I am a <span class="keyword">Computer Science</span> student at Collège LaSalle. I speak <span class="keyword">English</span>, <span class="keyword">Arabic</span> and <span class="keyword">French</span>. <br />
-            I am passionate about <span class="keyword">Software Development</span>, <span class="keyword">Web Development</span> and <span class="keyword">Game Development</span> I am always looking for new opportunities to learn and grow. 
-        </p>
-        <p class="text-white text-lg mt-4">
-            I am currently looking for 
-            <span class="keyword">Part-Time,</span> 
-            <span class="keyword">Full-Time,</span> or 
-            <span class="keyword">Contract</span> positions in game development as a gameplay programmer.
-        </p>
-        <div class="flex justify-end gap-4 mt-4">
-            <a href="#contact">
-                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">CONTACT ME</button>
-            </a>
-            <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>RESUME</button>
+    <section class="border border-gray rounded"> 
+        <img src={Banner} alt="Hero Banner" class="w-full h-48 object-cover rounded-t" />
+        <div class="p-5">
+            <div class="flex justify-center gap-4 w-fit float-right">
+                <a href="https://github.com/aoof" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github text-gray hover:text-pink"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/aoof/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin text-gray hover:text-pink"></i>
+                </a>
+                <a href="mailto:aoof.mousa@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-envelope text-gray hover:text-pink"></i>
+                </a>
+            </div>
+    
+            <h1 class="font-bold text-3xl">Abdulrahman Mousa</h1>
+            <a class="text-md transition-all duration-75 hover:underline hover:text-pink" href="https://namedrop.io/abdulrahmanmousa" target="_blank">or aoof <span class="text-pink">(pronunciation)</span></a>
+            <p class="text-gray text-xl">Montreal Quebec, Canada | He/Him</p>
+    
+            <p class="text-white text-lg mt-4">
+                I am a <span class="keyword">Computer Science</span> student at Collège LaSalle. I speak <span class="keyword">English</span>, <span class="keyword">Arabic</span> and <span class="keyword">French</span>. <br />
+                I am passionate about <span class="keyword">Software Development</span>, <span class="keyword">Web Development</span> and <span class="keyword">Game Development</span> I am always looking for new opportunities to learn and grow. 
+            </p>
+            <p class="text-white text-lg mt-4">
+                I am currently looking for 
+                <span class="keyword">Part-Time,</span> 
+                <span class="keyword">Full-Time,</span> or 
+                <span class="keyword">Contract</span> positions in game development as a gameplay programmer.
+            </p>
+            <div class="flex justify-end gap-4 mt-4">
+                <button on:click={() => window.location.href = '#contact' } class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">CONTACT ME</button>
+                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>RESUME</button>
+            </div>
         </div>
     </section>
     <h3 class="text-white text-2xl font-bold mt-8">Skills</h3>
