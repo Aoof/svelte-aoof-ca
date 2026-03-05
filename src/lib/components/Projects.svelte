@@ -5,6 +5,7 @@
     import placeholderImage from '$lib/media/placeholder.svg';
     import askaImage from '$lib/media/aska.jpg';
     import colorMaskImage from '$lib/media/colormask.png';
+    import polImage from '$lib/media/pol.jpg';
 
     type Tag = {
         title: string;
@@ -13,6 +14,17 @@
     };
 
     let projects : { name : string, description: string, image: string, link: string, tags : Tag[]}[] = [
+        {
+            name: 'Planet of Lana II',
+            description: "<p>Planet of Lana II is a puzzle-platformer game that I tested at Altagram. It looked amazing and had some really interesting mechanics. The developers were very responsive to feedback and quick to patch bugs, which made the testing process enjoyable.</p>",
+            image: polImage,
+            link: 'https://www.planetoflana.com/',
+            tags: [
+                { title: 'Functional Quality Assurance', iconClass: 'fa-solid fa-certificate' },
+                { title: 'Bug Tracking', iconClass: 'fa-solid fa-bug' },
+                { title: 'Altagram Project', iconClass: 'fa-solid fa-a', component: 'AltagramIcon' }
+            ]
+        },
         {
             name: 'ColorMask',
             description: "<p>Part of a weekend-long game jam project, ColorMask is a swarm game where players can get rid of their enemies by changing their colours through blocks from their inventory.</p><p>I was responsible for the game's programming, using <strong>C#</strong> and <strong>Unity</strong>. I also contributed to the game's design and mechanics, collaborating with my teammate to create a fun and engaging experience.</p><p>(You can find the linkedIn post <a href='https://www.linkedin.com/posts/aoof_a-week-ago-my-friends-and-i-decided-to-take-activity-7427119229058936834-Lcsn' target='_blank' class='text-pink hover:underline'>here</a>)</p>",
