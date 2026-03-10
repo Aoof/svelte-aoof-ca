@@ -8,9 +8,9 @@
     let workExperiences : { current: boolean, date: string, title: string, location: string, description: string }[] = [
         {
             current: true,
-            date: "February 2024 - Present",
-            title: "Video Games Quality Assurance Tester",
-            location: "Altagram Canada, Montreal QC - Project Based",
+            date: "Feb 2024 - ongoing",
+            title: "Functional/Linguistic Quality Assurance Tester",
+            location: "Altagram Canada | Montreal, QC",
             description:
                 "Testing games for a ;[localization] company—hunting down bugs, catching inconsistencies, and making sure everything works smoothly. " +
                 "It's been a crash course in ;[quality assurance] and sharpened my eye for detail. Plus, working with the team has taught me a lot about effective ;[communication] and collaborative ;[problem-solving]."
@@ -25,16 +25,15 @@
                 "I jump between coding and collaborating on design decisions, which has been a great balance of technical work and creative input. " +
                 "Each update is a chance to refine my ;[frontend development] skills and learn something new."
         },
-        // {
-        //     current: false,
-        //     date: "December 2023 - January 2024",
-        //     title: "Full Stack Developer",
-        //     location: "International Ethnic Associations Council, Montreal QC - Freelance",
-        //     description:
-        //         "Built and maintained the IEAC Concordia website, tackling bugs and adding new features. " +
-        //         "Worked with ;[Express.js], ;[MongoDB], and ;[Node.js] to handle both the frontend and backend. " +
-        //         "Looking back, there are definitely things I'd do differently, but every project is a learning experience."
-        // },
+        {
+            current: true,
+            date: "Feb 2022 - ongoing",
+            title: "Personal and Group College Level Programming Tutor",
+            location: "Freelance | Montreal, QC",
+            description:
+                "I tutored more than 50 hours to people from all over the world (UK, France, Saudi Arabia, Canada and the US) mostly in English. " +
+                "Most of the sessions I've completed were ;[programming] in ;[C#], ;[Java] and ;[Python]."
+        },
         {
             current: false,
             date: "November 2022 - June 2023",
@@ -44,15 +43,6 @@
                 "Handled customer calls for Rogers Communications—answering questions, solving issues, and keeping things running smoothly. " +
                 "Picked up skills in ;[data entry], ;[marketing], and learned how to adapt quickly to new systems."
         },
-        // {
-        //     current: false,
-        //     date: "January 2022 - August 2022",
-        //     title: "Customer Care Representative",
-        //     location: "LogX Group, Cross Border Pickups, Markham ON - Full Time",
-        //     description: 
-        //         "Front desk at a package handling facility, juggling customer requests, complaints, and general inquiries. " +
-        //         "Got really good at ;[multitasking] and dealing with all sorts of people—definitely built up my ;[interpersonal skills]."
-        // },
     ];
 
     workExperiences = workExperiences.map(experience => {
