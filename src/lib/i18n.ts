@@ -4,7 +4,7 @@ import en from './locales/en.js';
 export { locale as currentLocale };
 
 // Register locales with lazy loading
-register('en', en);
+register('en', () => Promise.resolve(en));
 register('fr', () => import('./locales/fr.js'));
 
 // Initialize i18n
@@ -16,8 +16,6 @@ init({
 // Function to change locale
 export const setLocale = async (newLocale: string) => {
   locale.set(newLocale);
-  // This will trigger the lazy loading of the locale
-  await import(`./locales/${newLocale}.js`);
   document.documentElement.lang = newLocale;
   localStorage.setItem('preferredLocale', newLocale);
 };
@@ -25,7 +23,8 @@ export const setLocale = async (newLocale: string) => {
 // Get current locale synchronously
 export const getCurrentLocale = () => {
   let current : string | null | undefined = 'en';
-  locale.subscribe(value => current = value)();
+  const unsubscribe = locale.subscribe(value => current = value);
+  unsubscribe();
   return current;
 };
 
