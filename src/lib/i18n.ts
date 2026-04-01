@@ -1,5 +1,4 @@
 import { register, init, getLocaleFromNavigator, locale } from 'svelte-i18n';
-import { writable } from 'svelte/store';
 
 export { locale as currentLocale };
 
@@ -24,7 +23,7 @@ export const setLocale = async (newLocale: string) => {
 
 // Get current locale synchronously
 export const getCurrentLocale = () => {
-  let current = 'en';
+  let current : string | null | undefined = 'en';
   locale.subscribe(value => current = value)();
   return current;
 };
