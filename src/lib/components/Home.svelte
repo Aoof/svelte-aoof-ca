@@ -95,10 +95,13 @@
             <p class="text-gray text-xl">{$_('home.location')}</p>
     
             <p class="text-white text-lg mt-4">
-                {$_('home.description')}
+                {@html $_('home.description')}
             </p>
             <p class="text-white text-lg mt-4">
-                {$_('home.passion')} 
+                {@html $_('home.passion')}
+            </p>
+            <p class="text-white text-lg mt-4">
+                {@html $_('home.lookingFor')}
             </p>
             <div class="flex justify-end gap-4 mt-4">
                 <button on:click={() => window.location.href = '#contact' } class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">{$_('contact.title').toUpperCase()}</button>

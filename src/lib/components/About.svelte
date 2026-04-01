@@ -10,9 +10,11 @@
 
     // Subscribe to translations and update data
     const unsubscribe = _.subscribe(($t) => {
-        workExperiences = $t('about.workExperiences').map((experience: any) => {
+        let currents = [true, true, true, false];
+        workExperiences = $t('about.workExperiences').map((experience: any, index: number) => {
             return {
                 ...experience,
+                current: currents[index],
                 description: experience.description.replace(/;\[(.*?)\]/g, '<span class="keyword">$1</span>')
             };
         });

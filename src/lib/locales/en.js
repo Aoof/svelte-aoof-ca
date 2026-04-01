@@ -13,8 +13,9 @@ export default {
     subtitle: "or aoof",
     subtitleHighlight: "(pronunciation)",
     location: "Montreal Quebec, Canada | He/Him",
-    description: "I am a Computer Science student at Collège LaSalle. I speak English, Arabic and French.",
-    passion: "I am passionate about Software Development, Web Development and Game Development I am always looking for new opportunities to learn and grow.",
+    description: "I am a <span class=\"keyword\">Computer Science</span> student at Collège LaSalle. I speak <span class=\"keyword\">English</span>, <span class=\"keyword\">Arabic</span> and <span class=\"keyword\">French</span>.",
+    passion: "I am passionate about <span class=\"keyword\">Software Development</span>, <span class=\"keyword\">Web Development</span> and <span class=\"keyword\">Game Development</span>. I am always looking for new opportunities to learn and grow.",
+    lookingFor: "I am currently looking for <span class=\"keyword\">Part-Time</span>, <span class=\"keyword\">Full-Time</span>, or <span class=\"keyword\">Contract</span> positions in game development as a gameplay programmer.",
     skills: {
       proficient: "I'm confident in...",
       familiar: "Decent with..."
@@ -30,7 +31,7 @@ export default {
     websiteDescription: "This website is built using SvelteKit, a framework for building web applications. It has a responsive design and is optimized for performance. There are some hidden features for me and my friends to enjoy. These features are built using SvelteKit's server-side rendering and API routes. With Express.js and MongoDB, I created an API to store and retrieve data. The API and backend are for the hidden features and are not used for the main website.",
     workExperiences: [
       {
-        date: "Feb 2024 - ongoing",
+        date: "Feb 2024 - Present",
         title: "Functional/Linguistic Quality Assurance Tester",
         location: "Altagram Canada | Montreal, QC",
         description: "Testing games for a ;[localization] company—hunting down bugs, catching inconsistencies, and making sure everything works smoothly. It's been a crash course in ;[quality assurance] and sharpened my eye for detail. Plus, working with the team has taught me a lot about effective ;[communication] and collaborative ;[problem-solving]."
@@ -42,7 +43,7 @@ export default {
         description: "Bringing designs to life for a charity organization using ;[React]. I jump between coding and collaborating on design decisions, which has been a great balance of technical work and creative input. Each update is a chance to refine my ;[frontend development] skills and learn something new."
       },
       {
-        date: "Feb 2022 - ongoing",
+        date: "Feb 2022 - Present",
         title: "Personal and Group College Level Programming Tutor",
         location: "Freelance | Montreal, QC",
         description: "I tutored more than 50 hours to people from all over the world (UK, France, Saudi Arabia, Canada and the US) mostly in English. Most of the sessions I've completed were ;[programming] in ;[C#], ;[Java] and ;[Python]."

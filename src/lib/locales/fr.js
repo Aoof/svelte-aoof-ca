@@ -13,8 +13,9 @@ export default {
     subtitle: "ou aoof",
     subtitleHighlight: "(prononciation)",
     location: "Montréal, Québec, Canada | Il/Lui",
-    description: "Je suis étudiant en informatique au Collège LaSalle. Je parle l'anglais, l'arabe et le français.",
-    passion: "Je suis passionné par le développement de logiciels, le développement web et le développement de jeux. Je suis toujours à la recherche de nouvelles opportunités pour apprendre et progresser.",
+    description: "Je suis étudiant en <span class=\"keyword\">informatique</span> au Collège LaSalle. Je parle <span class=\"keyword\">anglais</span>, <span class=\"keyword\">arabe</span> et <span class=\"keyword\">français</span>.",
+    passion: "Je suis passionné par le <span class=\"keyword\">développement de logiciels</span>, le <span class=\"keyword\">développement web</span> et le <span class=\"keyword\">développement de jeux</span>. Je suis toujours à la recherche de nouvelles opportunités pour apprendre et progresser.",
+    lookingFor: "Je suis actuellement à la recherche de postes à <span class=\"keyword\">temps partiel</span>, <span class=\"keyword\">temps plein</span> ou <span class=\"keyword\">contractuel</span> en développement de jeux en tant que programmeur de gameplay.",
     skills: {
       proficient: "Je suis confiant dans...",
       familiar: "Décent avec..."
@@ -30,7 +31,7 @@ export default {
     websiteDescription: "Ce site web est construit en utilisant SvelteKit, un framework pour construire des applications web. Il a un design responsive et est optimisé pour les performances. Il y a quelques fonctionnalités cachées pour moi et mes amis à apprécier. Ces fonctionnalités sont construites en utilisant le rendu côté serveur de SvelteKit et les routes API. Avec Express.js et MongoDB, j'ai créé une API pour stocker et récupérer des données. L'API et le backend sont pour les fonctionnalités cachées et ne sont pas utilisés pour le site web principal.",
     workExperiences: [
       {
-        date: "Fév 2024 - en cours",
+        date: "Fév 2024 - Présent",
         title: "Testeur d'assurance qualité fonctionnelle/linguistique",
         location: "Altagram Canada | Montréal, QC",
         description: "Test de jeux pour une entreprise de ;[localisation]—à la recherche de bugs, identification des incohérences et s'assurer que tout fonctionne correctement. C'a été un apprentissage intensif en ;[assurance qualité] et m'a affiné l'œil pour les détails. De plus, travailler avec l'équipe m'a beaucoup enseigné sur la ;[communication] efficace et la ;[résolution de problèmes] collaborative."
@@ -42,7 +43,7 @@ export default {
         description: "Donner vie aux conceptions d'une organisation caritative en utilisant ;[React]. Je jongle entre le codage et la collaboration sur les décisions de conception, ce qui a été un excellent équilibre entre le travail technique et l'apport créatif. Chaque mise à jour est une chance de perfectionner mes compétences en ;[développement frontend] et d'apprendre quelque chose de nouveau."
       },
       {
-        date: "Fév 2022 - en cours",
+        date: "Fév 2022 - Présent",
         title: "Tuteur en programmation - niveau collégial",
         location: "Freelance | Montréal, QC",
         description: "J'ai tutoré plus de 50 heures pour des personnes du monde entier (Royaume-Uni, France, Arabie Saoudite, Canada et États-Unis) principalement en anglais. La plupart des sessions que j'ai complétées portaient sur la ;[programmation] en ;[C#], ;[Java] et ;[Python]."
