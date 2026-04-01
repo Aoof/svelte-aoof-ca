@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { _ } from 'svelte-i18n';
     import Tag from './Tag.svelte';
     import ResumeModal from './ResumeModal.svelte';
     import Banner from '$lib/media/hero-banner.jpg';
@@ -89,23 +90,19 @@
                 </a>
             </div>
     
-            <h1 class="font-bold text-3xl">Abdulrahman Mousa</h1>
-            <a class="text-md transition-all duration-75 hover:underline hover:text-pink" href="https://namedrop.io/abdulrahmanmousa" target="_blank">or aoof <span class="text-pink">(pronunciation)</span></a>
-            <p class="text-gray text-xl">Montreal Quebec, Canada | He/Him</p>
+            <h1 class="font-bold text-3xl">{$_('home.title')}</h1>
+            <a class="text-md transition-all duration-75 hover:underline hover:text-pink" href="https://namedrop.io/abdulrahmanmousa" target="_blank">{$_('home.subtitle')} <span class="text-pink">{$_('home.subtitleHighlight')}</span></a>
+            <p class="text-gray text-xl">{$_('home.location')}</p>
     
             <p class="text-white text-lg mt-4">
-                I am a <span class="keyword">Computer Science</span> student at Collège LaSalle. I speak <span class="keyword">English</span>, <span class="keyword">Arabic</span> and <span class="keyword">French</span>. <br />
-                I am passionate about <span class="keyword">Software Development</span>, <span class="keyword">Web Development</span> and <span class="keyword">Game Development</span> I am always looking for new opportunities to learn and grow. 
+                {$_('home.description')}
             </p>
             <p class="text-white text-lg mt-4">
-                I am currently looking for 
-                <span class="keyword">Part-Time,</span> 
-                <span class="keyword">Full-Time,</span> or 
-                <span class="keyword">Contract</span> positions in game development as a gameplay programmer.
+                {$_('home.passion')} 
             </p>
             <div class="flex justify-end gap-4 mt-4">
-                <button on:click={() => window.location.href = '#contact' } class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">CONTACT ME</button>
-                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>RESUME</button>
+                <button on:click={() => window.location.href = '#contact' } class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">{$_('contact.title').toUpperCase()}</button>
+                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>{$_('navbar.resume')}</button>
             </div>
         </div>
     </section>
@@ -115,7 +112,7 @@
             <div class="w-full text-right">
                {#if category === 'familiar'}
                     <div class="overflow-hidden transition-all ease-out duration-500" style:max-height={isFamiliarExpanded ? '500px' : '0'} style:opacity={isFamiliarExpanded ? '1' : '0'}>
-                        <h3 class="text-xl text-white my-2 text-left select-none">Decent with...</h3>
+                        <h3 class="text-xl text-white my-2 text-left select-none">{$_('home.skills.familiar')}</h3>
                             <div class="flex flex-wrap gap-2">
                                 {#each skills[category] as skill}
                                     <Tag title={skill.title} iconClass={skill.iconClass} component={skill.component} />
@@ -123,7 +120,7 @@
                             </div>
                         </div>
                 {:else}
-                    <h3 class="text-xl text-white text-left select-none">I'm confident in...</h3>
+                    <h3 class="text-xl text-white text-left select-none">{$_('home.skills.proficient')}</h3>
                     <div class="flex flex-wrap gap-2 my-2">
                         {#each skills[category] as skill}
                             <Tag title={skill.title} iconClass={skill.iconClass} component={skill.component} />

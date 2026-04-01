@@ -1,6 +1,12 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
+    import { initializeLocale } from '$lib/i18n';
     import '../app.css'
     import "../global.scss";
+
+    onMount(() => {
+        initializeLocale();
+    });
 </script>
 
 <style>

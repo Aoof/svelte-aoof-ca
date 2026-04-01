@@ -1,8 +1,9 @@
 import { writable } from "svelte/store";
+import { locale, setLocale } from '$lib/i18n';
 
 export const page = writable<string>("home");
 
-export const language = writable<string>("en");
+export const language = locale;
 
 export const anchors = [
     { name: 'home', href: "/"},
@@ -17,6 +18,6 @@ export const change_page = (newPage: string) => {
     page.set(newPage);
 }
 
-export const change_lang = (newLang: string) => {
-    language.set(newLang);
+export const change_lang = async (newLang: string) => {
+    await setLocale(newLang);
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { fade, scale } from 'svelte/transition';
     import { createEventDispatcher } from 'svelte';
-    import resume from '$lib/media/resume.pdf';
+    import resume from '$lib/media/resume.en.pdf';
 
     export let open = false;
     

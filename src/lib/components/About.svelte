@@ -1,124 +1,48 @@
 
 <script lang="ts">
+    import { _ } from 'svelte-i18n';
     import migsImg from '$lib/media/migs_image.png';
     import fusionImg from '$lib/media/FusionFestival.jpg';
     import botQuestImg from '$lib/media/BotQuest.jpeg';
     import ggjImg from '$lib/media/ggj_image.jpg';
 
-    let workExperiences : { current: boolean, date: string, title: string, location: string, description: string }[] = [
-        {
-            current: true,
-            date: "Feb 2024 - ongoing",
-            title: "Functional/Linguistic Quality Assurance Tester",
-            location: "Altagram Canada | Montreal, QC",
-            description:
-                "Testing games for a ;[localization] company—hunting down bugs, catching inconsistencies, and making sure everything works smoothly. " +
-                "It's been a crash course in ;[quality assurance] and sharpened my eye for detail. Plus, working with the team has taught me a lot about effective ;[communication] and collaborative ;[problem-solving]."
-        },
-        {
-            current: true,
-            date: "December 2023 - Present",
-            title: "Frontend Developer",
-            location: "Welfare Avenue, Montreal QC - Freelance / Maintainance",
-            description:
-                "Bringing designs to life for a ;[charity] organization using ;[React]. " +
-                "I jump between coding and collaborating on design decisions, which has been a great balance of technical work and creative input. " +
-                "Each update is a chance to refine my ;[frontend development] skills and learn something new."
-        },
-        {
-            current: true,
-            date: "Feb 2022 - ongoing",
-            title: "Personal and Group College Level Programming Tutor",
-            location: "Freelance | Montreal, QC",
-            description:
-                "I tutored more than 50 hours to people from all over the world (UK, France, Saudi Arabia, Canada and the US) mostly in English. " +
-                "Most of the sessions I've completed were ;[programming] in ;[C#], ;[Java] and ;[Python]."
-        },
-        {
-            current: false,
-            date: "November 2022 - June 2023",
-            title: "Inbound Customer Care Representative",
-            location: "IO Solutions, Montreal QC - Part Time",
-            description:
-                "Handled customer calls for Rogers Communications—answering questions, solving issues, and keeping things running smoothly. " +
-                "Picked up skills in ;[data entry], ;[marketing], and learned how to adapt quickly to new systems."
-        },
-    ];
+    let workExperiences : { current: boolean, date: string, title: string, location: string, description: string }[] = [];
+    let eventsAndCompetitions: { name: string, location: string, time: string, summary: string, link?: string, image?: string }[] = [];
 
-    workExperiences = workExperiences.map(experience => {
-        experience.description = experience.description.replace(/;\[(.*?)\]/g, '<span class="keyword">$1</span>');
-        return experience;
-    }); 
-    
-    let eventsAndCompetitions: { name: string, location: string, time: string, summary: string, link?: string, image?: string }[] = [
-        {
-            name: "Global Game Jam 2026 - Unity Technologies",
-            location: "Montreal QC",
-            time: "January 2026",
-            link: "https://www.linkedin.com/posts/aoof_a-week-ago-my-friends-and-i-decided-to-take-activity-7427119229058936834-Lcsn",
-            image: ggjImg,
-            summary: "Participated in the Global Game Jam 2026, hosted at Unity Technologies in Montreal. " +
-                    "It was an intense 48 hours of creativity, collaboration, and caffeine. " +
-                    "Our team was a mix of passionate amateurs and some professionals, which made for a great learning environment. " +
-                    "We managed to whip up a fun little game that we're all proud of (even if it wasn't polished), and the experience was a blast from start to finish."
+    // Subscribe to translations and update data
+    const unsubscribe = _.subscribe(($t) => {
+        workExperiences = $t('about.workExperiences').map((experience: any) => {
+            return {
+                ...experience,
+                description: experience.description.replace(/;\[(.*?)\]/g, '<span class="keyword">$1</span>')
+            };
+        });
 
-        },
-        {
-            name: "Montreal International Game Summit",
-            location: "Montreal QC",
-            time: "December 2025",
-            image: migsImg,
-            link: "https://www.linkedin.com/posts/aoof_last-month-i-had-the-pleasure-to-attend-activity-7402542580120375296-s-7v",
-            summary: "Attended the Montreal International Game Summit, a major event in the gaming industry. " +
-                    "It was an incredible opportunity to connect with professionals, attend insightful talks, and get a behind-the-scenes look at upcoming games and technologies. " +
-                    "The experience was inspiring and reinforced my passion for game development."
-        },
-        {
-            name: "Fusion Festival",
-            location: "Montreal QC",
-            time: "June 2025",
-            link: "https://www.linkedin.com/posts/aoof_fusionfestival-activity-7328610056080404481-WUQE",
-            image: fusionImg,
-            summary: "Participated in Fusion Festival, where I showed an interactive visual effects project. " +
-                    "It was a great experience to connect with professionals and get feedback on my work. " +
-                    "I was happy to be part of it and I'm grateful for my college for hosting it and giving me the opportunity to showcase my work."
-        },
-        {
-            name: "BotQuest",
-            location: "Autodesk Canada Inc, Montreal QC",
-            time: "November 2024",
-            image: botQuestImg,
-            link: "https://www.linkedin.com/posts/aoof_botquest-robotics-engineering-activity-7273043506187702274-bwtj",
-            summary: "Round two of maze-solving robots, this time at Autodesk. Built a robot that crushed most of the mazes—and was surprisingly fast. " +
-                    "The competition was tough, but that's what made it fun. Leveled up my ;[robotics] and ;[teamwork] skills even more.",
-        },
-        {
-            name: "Warhacks",
-            location: "Concordia University, Montreal QC",
-            time: "February 2024",
-            summary: "Built a maze-navigating robot and raced it against other teams. Ours handled the mazes well and we snagged 3rd place! " +
-                    "First real dive into ;[robotics]—learned a ton about hardware, code, and working under pressure with a team.",
-            link: "https://www.linkedin.com/posts/aoof_concordiauniversity-warhacks-robotics-activity-7157886921753378818-xt8O?utm_source=share&utm_medium=member_desktop"
-        },
-        {
-            name: "ConUHacks",
-            location: "Concordia University, Montreal QC",
-            time: "February 2024",
-            summary: "My first hackathon. Tried building a web app to help mechanics schedule repairs more efficiently. " +
-                    "Didn't quite finish in time—pacing is hard when you're new—but learned a lot about ;[web development], working with a team, and how to pivot when things don't go as planned.",
-        }
-    ];
+        const baseEvents = $t('about.eventsAndCompetitionsList');
+        const eventImages = [ggjImg, migsImg, fusionImg, botQuestImg, undefined, undefined];
+        const eventLinks = [
+            "https://www.linkedin.com/posts/aoof_a-week-ago-my-friends-and-i-decided-to-take-activity-7427119229058936834-Lcsn",
+            "https://www.linkedin.com/posts/aoof_last-month-i-had-the-pleasure-to-attend-activity-7402542580120375296-s-7v",
+            "https://www.linkedin.com/posts/aoof_fusionfestival-activity-7328610056080404481-WUQE",
+            "https://www.linkedin.com/posts/aoof_botquest-robotics-engineering-activity-7273043506187702274-bwtj",
+            "https://www.linkedin.com/posts/aoof_concordiauniversity-warhacks-robotics-activity-7157886921753378818-xt8O?utm_source=share&utm_medium=member_desktop",
+        ];
 
-    eventsAndCompetitions = eventsAndCompetitions.map(event => {
-        event.summary = event.summary.replace(/;\[(.*?)\]/g, '<span class="keyword">$1</span>');
-        return event;
+        eventsAndCompetitions = baseEvents.map((event: any, index: number) => {
+            return {
+                ...event,
+                image: eventImages[index],
+                link: eventLinks[index],
+                summary: event.summary.replace(/;\[(.*?)\]/g, '<span class="keyword">$1</span>')
+            };
+        });
     });
 </script>
 
 <article class="bg-dark w-full p-4 rounded-lg justify-center items-center" id="about">
     <div class="content flex flex-col h-full my-4 text-lg overflow-auto">
         <div class="content-group">
-            <h3 class="text-white text-2xl mt-4 font-bold">Work Experience</h3>
+            <h3 class="text-white text-2xl mt-4 font-bold">{$_('about.workExperienceTitle')}</h3>
             <ol class="relative border-s border-gray-200 m-4">
                 {#each workExperiences as experience}
                     <li class="mb-10 ms-4">
@@ -129,7 +53,7 @@
                         {/if}
                         <time class="mb-1 text-sm font-normal leading-none">{experience.date}
                             {#if experience.current}
-                                <span class="text-sm leading-none bg-pink font-black text-dark py-1 px-3 mx-3 rounded-lg select-none">Current</span>
+                                <span class="text-sm leading-none bg-pink font-black text-dark py-1 px-3 mx-3 rounded-lg select-none">{$_('about.current')}</span>
                             {/if}
                         </time>
                         <h3 class="text-lg font-semibold">{experience.title}</h3>
@@ -140,9 +64,9 @@
             </ol>
         </div>
         <div class="content-group">
-            <h3 class="text-white text-2xl mt-4 font-bold">Events and Competitions</h3>
+            <h3 class="text-white text-2xl mt-4 font-bold">{$_('about.eventsCompetitionsTitle')}</h3>
             <p class="my-4 text-lg">
-                I've jumped into a few competitions and events—some went better than others, but each one taught me something new.
+                {$_('about.eventsCompetitionsDescription')}
             </p>
             {#each eventsAndCompetitions as event}
                 <div class="card border border-gray p-4 rounded-lg mb-4">
@@ -151,7 +75,7 @@
                     {/if}
                     {#if event.link}
                         <div class="float-right">
-                            <a href={event.link} target="_blank" rel="anonymous" class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">Linkedin Post</a>
+                            <a href={event.link} target="_blank" rel="anonymous" class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">{$_('about.linkedinPost')}</a>
                         </div>
                     {/if}
                     <h4 class="text-2xl font-semibold text-white">{event.name}</h4>
@@ -164,14 +88,9 @@
             {/each}
         </div>
         <div class="content-group">
-            <h3 class="text-white text-2xl mt-4 font-bold">About this website</h3>
+            <h3 class="text-white text-2xl mt-4 font-bold">{$_('about.websiteTitle')}</h3>
             <p class="my-4 text-lg">
-                This website is built using SvelteKit, a framework for building web applications.
-                It has a responsive design and is optimized for performance.
-                There are some hidden features for me and my friends to enjoy.
-                These features are built using SvelteKit's server-side rendering and API routes.
-                With Express.js and MongoDB, I created an API to store and retrieve data.
-                The API and backend are for the hidden features and are not used for the main website.
+                {$_('about.websiteDescription')}
             </p>
         </div>
     </div>

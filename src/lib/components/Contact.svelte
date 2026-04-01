@@ -1,5 +1,6 @@
 <script lang="ts">
     import axios from 'axios';
+    import { _ } from 'svelte-i18n';
 
     import { addToast } from '$lib/../stores/toasts';
     import { PUBLIC_WEB3_ACCESSKEY } from '$env/static/public';
@@ -9,7 +10,7 @@
     let status = "";
 
     const handleSubmit = async (event : SubmitEvent) => {
-        status = 'Submitting...'
+        status = $_('contact.form.submitting')
         const formData = new FormData(event.currentTarget as HTMLFormElement);
         const object = Object.fromEntries(formData);
         const json = JSON.stringify(object);
@@ -21,18 +22,18 @@
             }
         }).then((response) => {
             if (response.data.success) {
-                status = response.data.message || "Success";
+                status = response.data.message || $_('contact.form.success');
                 addToast({
-                    message: "Message sent successfully",
+                    message: $_('contact.form.success'),
                     type: "success",
                     dismissible: true,
                     timeout: 3000
                 });
             }
         }).catch(e => {
-            status = e.response.data.message || "Failed to send message";
+            status = e.response.data.message || $_('contact.form.error');
             addToast({
-                message: "Failed to send message",
+                message: $_('contact.form.error'),
                 type: "error",
                 dismissible: true,
                 timeout: 3000
@@ -44,10 +45,10 @@
 <article class="" {...$$restProps} id="contact">
     <div class="sections flex flex-col p-4 my-4 text-lg overflow-auto h-full">
         <div class="section flex flex-col gap-2 justify-between bg-pink p-8 rounded-lg min-h-fit">
-            <h1 class="text-3xl text-dark font-black">Contact Information</h1>
-            <p class="text-lg text-dark font-black">Mostly active on Discord but feel free to reach out on one of the following.</p>
+            <h1 class="text-3xl text-dark font-black">{$_('contact.title')}</h1>
+            <p class="text-lg text-dark font-black">{$_('contact.subtitle')}</p>
             <div class="flex flex-col gap-2 *:my-2 text-lg">
-                <a class="my-2 *:mx-2 align-middle text-dark font-black" href="https://discord.gg" target="_blank"><i class="fa-brands font-black text-dark fa-discord"></i> aoof</a>
+                <a class="my-2 *:mx-2 align-middle text-dark font-black" href="https://discord.gg" target="_blank"><i class="fa-brands font-black text-dark fa-discord"></i> {$_('contact.discord')}</a>
                 <a class="my-2 *:mx-2 align-middle text-dark font-black" href="mailto:aoof.mousa@gmail.com" target="_blank"><i class="fas font-black text-dark fa-envelope"></i> aoof.mousa@gmail.com</a>
                 <a class="my-2 *:mx-2 align-middle text-dark font-black" href="https://github.com/Aoof" target="_blank"><i class="fa-brands font-black text-dark fa-github"></i> Github/Aoof</a>
                 <a class="my-2 *:mx-2 align-middle text-dark font-black" href="https://www.linkedin.com/in/aoof/" target="_blank"><i class="fa-brands font-black text-dark fa-linkedin"></i> LinkedIn/Aoof</a>
@@ -55,19 +56,19 @@
             </div>
         </div>
         <form class="section flex flex-col gap-2 rounded-lg p-8" on:submit|preventDefault={handleSubmit} method="POST">
-            <h1 class="text-3xl">Contact Form</h1>
+            <h1 class="text-3xl">{$_('contact.form.title')}</h1>
             <div class="input-group">
-                <label for="email" class="text-lg">Email address : </label>
-                <Input name="email" placeholder="Enter your email here" class="w-full" id="email" required />
+                <label for="email" class="text-lg">{$_('contact.form.email')}</label>
+                <Input name="email" placeholder={$_('contact.form.emailPlaceholder')} class="w-full" id="email" required />
             </div>
             <div class="input-group">
-                <label for="message" class="text-lg">Message : </label>
-                <Input name="message" placeholder="Enter your message here" class="w-full" type="textarea" id="message" required />
+                <label for="message" class="text-lg">{$_('contact.form.message')}</label>
+                <Input name="message" placeholder={$_('contact.form.messagePlaceholder')} class="w-full" type="textarea" id="message" required />
             </div>
             <div class="status text-lg">{status}</div>
             <div class="input-group text-right">
                 <input type="hidden" name="access_key" value={ PUBLIC_WEB3_ACCESSKEY } />
-                <button class="text-dark py-2 px-4 w-fit self-center font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">Send</button>
+                <button class="text-dark py-2 px-4 w-fit self-center font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">{$_('contact.form.send')}</button>
             </div>
         </form>
     </div>
