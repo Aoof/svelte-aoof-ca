@@ -1,9 +1,10 @@
 import { register, init, getLocaleFromNavigator, locale } from 'svelte-i18n';
+import en from './locales/en.js';
 
 export { locale as currentLocale };
 
 // Register locales with lazy loading
-register('en', () => import('./locales/en.js'));
+register('en', en);
 register('fr', () => import('./locales/fr.js'));
 
 // Initialize i18n
