@@ -5,7 +5,7 @@ export default {
     about: "À PROPOS",
     projects: "PROJETS",
     contact: "CONTACT",
-    resume: "CV",
+    resume: "RESUMÉ",
     language: "EN"
   },
   home: {
@@ -33,25 +33,25 @@ export default {
         date: "Fév 2024 - en cours",
         title: "Testeur d'assurance qualité fonctionnelle/linguistique",
         location: "Altagram Canada | Montréal, QC",
-        description: "Test de jeux pour une entreprise de localisation—à la recherche de bugs, identification des incohérences et s'assurer que tout fonctionne correctement. C'a été un apprentissage intensif en assurance qualité et m'a affiné l'œil pour les détails. De plus, travailler avec l'équipe m'a beaucoup enseigné sur la communication efficace et la résolution de problèmes collaborative."
+        description: "Test de jeux pour une entreprise de ;[localisation]—à la recherche de bugs, identification des incohérences et s'assurer que tout fonctionne correctement. C'a été un apprentissage intensif en ;[assurance qualité] et m'a affiné l'œil pour les détails. De plus, travailler avec l'équipe m'a beaucoup enseigné sur la ;[communication] efficace et la ;[résolution de problèmes] collaborative."
       },
       {
         date: "Décembre 2023 - Présent",
         title: "Développeur Frontend",
         location: "Welfare Avenue, Montréal QC - Freelance / Maintenance",
-        description: "Donner vie aux conceptions d'une organisation caritative en utilisant React. Je jongle entre le codage et la collaboration sur les décisions de conception, ce qui a été un excellent équilibre entre le travail technique et l'apport créatif. Chaque mise à jour est une chance de perfectionner mes compétences en développement frontend et d'apprendre quelque chose de nouveau."
+        description: "Donner vie aux conceptions d'une organisation caritative en utilisant ;[React]. Je jongle entre le codage et la collaboration sur les décisions de conception, ce qui a été un excellent équilibre entre le travail technique et l'apport créatif. Chaque mise à jour est une chance de perfectionner mes compétences en ;[développement frontend] et d'apprendre quelque chose de nouveau."
       },
       {
         date: "Fév 2022 - en cours",
         title: "Tuteur en programmation - niveau collégial",
         location: "Freelance | Montréal, QC",
-        description: "J'ai tutoré plus de 50 heures pour des personnes du monde entier (Royaume-Uni, France, Arabie Saoudite, Canada et États-Unis) principalement en anglais. La plupart des sessions que j'ai complétées portaient sur la programmation en C#, Java et Python."
+        description: "J'ai tutoré plus de 50 heures pour des personnes du monde entier (Royaume-Uni, France, Arabie Saoudite, Canada et États-Unis) principalement en anglais. La plupart des sessions que j'ai complétées portaient sur la ;[programmation] en ;[C#], ;[Java] et ;[Python]."
       },
       {
         date: "Novembre 2022 - Juin 2023",
         title: "Représentant du service à la clientèle entrant",
         location: "IO Solutions, Montréal QC - Travail à temps partiel",
-        description: "J'ai géré les appels téléphoniques des clients pour Rogers Communications—répondre aux questions, résoudre les problèmes et maintenir le bon fonctionnement. J'ai acquis des compétences en saisie de données, marketing, et j'ai appris à m'adapter rapidement aux nouveaux systèmes."
+        description: "J'ai géré les appels téléphoniques des clients pour Rogers Communications—répondre aux questions, résoudre les problèmes et maintenir le bon fonctionnement. J'ai acquis des compétences en ;[saisie de données], ;[marketing], et j'ai appris à m'adapter rapidement aux nouveaux systèmes."
       }
     ],
     eventsAndCompetitionsList: [

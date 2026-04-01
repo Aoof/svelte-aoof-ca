@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="flex gap-4 items-center justify-center">
-        <button class="text-white hover:text-pink text-sm cursor-pointer" on:click={toggle_lang}>{$language === 'en' ? $_('navbar.language') : 'EN'}</button>
+        <button class="text-white hover:text-pink text-sm cursor-pointer" on:click={toggle_lang}>{ $_('navbar.language') }</button>
         <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>{$_('navbar.resume')}</button>
     </div>
     <div class="dropdown-menu absolute bg-dark w-full top-14 left-0 {$isDropdownOpen ? 'open border-b py-3' : 'closed'} md:hidden border-gray">

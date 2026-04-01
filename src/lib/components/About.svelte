@@ -1,4 +1,3 @@
-
 <script lang="ts">
     import { _ } from 'svelte-i18n';
     import migsImg from '$lib/media/migs_image.png';

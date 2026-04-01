@@ -1,9 +1,9 @@
 import { writable } from "svelte/store";
-import { locale, setLocale } from '$lib/i18n';
+import { currentLocale, setLocale } from '$lib/i18n';
 
 export const page = writable<string>("home");
 
-export const language = locale;
+export const language = currentLocale;
 
 export const anchors = [
     { name: 'home', href: "/"},

@@ -1,11 +1,11 @@
-import { register, init, getLocaleFromNavigator } from 'svelte-i18n';
+import { register, init, getLocaleFromNavigator, locale } from 'svelte-i18n';
 import { writable } from 'svelte/store';
 
-export const locale = writable('en');
+export { locale as currentLocale };
 
 // Register locales with lazy loading
-register('en', () => import('../locales/en.js'));
-register('fr', () => import('../locales/fr.js'));
+register('en', () => import('./locales/en.js'));
+register('fr', () => import('./locales/fr.js'));
 
 // Initialize i18n
 init({
@@ -13,14 +13,13 @@ init({
   initialLocale: getLocaleFromNavigator() || 'en',
 });
 
-// Store for current locale
-export const currentLocale = locale;
-
 // Function to change locale
 export const setLocale = async (newLocale: string) => {
   locale.set(newLocale);
   // This will trigger the lazy loading of the locale
-  await import(`./locales/${newLocale}.ts`);
+  await import(`./locales/${newLocale}.js`);
+  document.documentElement.lang = newLocale;
+  localStorage.setItem('preferredLocale', newLocale);
 };
 
 // Get current locale synchronously

@@ -33,25 +33,25 @@ export default {
         date: "Feb 2024 - ongoing",
         title: "Functional/Linguistic Quality Assurance Tester",
         location: "Altagram Canada | Montreal, QC",
-        description: "Testing games for a localization company—hunting down bugs, catching inconsistencies, and making sure everything works smoothly. It's been a crash course in quality assurance and sharpened my eye for detail. Plus, working with the team has taught me a lot about effective communication and collaborative problem-solving."
+        description: "Testing games for a ;[localization] company—hunting down bugs, catching inconsistencies, and making sure everything works smoothly. It's been a crash course in ;[quality assurance] and sharpened my eye for detail. Plus, working with the team has taught me a lot about effective ;[communication] and collaborative ;[problem-solving]."
       },
       {
         date: "December 2023 - Present",
         title: "Frontend Developer",
         location: "Welfare Avenue, Montreal QC - Freelance / Maintainance",
-        description: "Bringing designs to life for a charity organization using React. I jump between coding and collaborating on design decisions, which has been a great balance of technical work and creative input. Each update is a chance to refine my frontend development skills and learn something new."
+        description: "Bringing designs to life for a charity organization using ;[React]. I jump between coding and collaborating on design decisions, which has been a great balance of technical work and creative input. Each update is a chance to refine my ;[frontend development] skills and learn something new."
       },
       {
         date: "Feb 2022 - ongoing",
         title: "Personal and Group College Level Programming Tutor",
         location: "Freelance | Montreal, QC",
-        description: "I tutored more than 50 hours to people from all over the world (UK, France, Saudi Arabia, Canada and the US) mostly in English. Most of the sessions I've completed were programming in C#, Java and Python."
+        description: "I tutored more than 50 hours to people from all over the world (UK, France, Saudi Arabia, Canada and the US) mostly in English. Most of the sessions I've completed were ;[programming] in ;[C#], ;[Java] and ;[Python]."
       },
       {
         date: "November 2022 - June 2023",
         title: "Inbound Customer Care Representative",
         location: "IO Solutions, Montreal QC - Part Time",
-        description: "Handled customer calls for Rogers Communications—answering questions, solving issues, and keeping things running smoothly. Picked up skills in data entry, marketing, and learned how to adapt quickly to new systems."
+        description: "Handled customer calls for Rogers Communications—answering questions, solving issues, and keeping things running smoothly. Picked up skills in ;[data entry], ;[marketing], and learned how to adapt quickly to new systems."
       }
     ],
     eventsAndCompetitionsList: [

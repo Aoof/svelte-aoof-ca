@@ -1,7 +1,9 @@
 <script lang="ts">
     import { fade, scale } from 'svelte/transition';
     import { createEventDispatcher } from 'svelte';
-    import resume from '$lib/media/resume.en.pdf';
+    import { getCurrentLocale } from '$lib/i18n';
+    import resumeEn from '$lib/media/resume_en.pdf';
+    import resumeFr from '$lib/media/resume_fr.pdf';
 
     export let open = false;
     
@@ -16,7 +18,7 @@
 
     function downloadResume() {
         const link = document.createElement('a');
-        link.href = resume;
+        link.href = getCurrentLocale() === 'fr' ? resumeFr : resumeEn;
         link.download = 'amousaresume.pdf';
         link.click();
         closeModal();
@@ -109,7 +111,7 @@
                     <div class="flex flex-col items-center gap-4 h-full">
                         <h2 class="text-white text-2xl font-bold">Preview</h2>
                         <iframe 
-                            src={resume} 
+                            src={getCurrentLocale() === 'fr' ? resumeFr : resumeEn} 
                             class="w-full h-[70vh] rounded-lg border border-gray"
                             title="Resume PDF Viewer"
                             frameborder="0"
