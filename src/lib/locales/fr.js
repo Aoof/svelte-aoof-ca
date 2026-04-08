@@ -5,7 +5,7 @@ export default {
     about: "À PROPOS",
     projects: "PROJETS",
     contact: "CONTACT",
-    resume: "RESUMÉ",
+    resume: "CV",
     language: "EN"
   },
   home: {
@@ -17,7 +17,7 @@ export default {
     passion: "Je suis passionné par le <span class=\"keyword\">développement de logiciels</span>, le <span class=\"keyword\">développement web</span> et le <span class=\"keyword\">développement de jeux</span>. Je suis toujours à la recherche de nouvelles opportunités pour apprendre et progresser.",
     lookingFor: "Je suis actuellement à la recherche de postes à <span class=\"keyword\">temps partiel</span>, <span class=\"keyword\">temps plein</span> ou <span class=\"keyword\">contractuel</span> en développement de jeux en tant que programmeur de gameplay.",
     skills: {
-      proficient: "Je suis confiant dans...",
+      proficient: "J'ai de l'expérience avec...",
       familiar: "Décent avec..."
     }
   },
@@ -130,7 +130,7 @@ export default {
     ]
   },
   contact: {
-    title: "Coordonnées de contact",
+    title: "Contact",
     subtitle: "Surtout actif sur Discord mais n'hésitez pas à me contacter sur l'un des suivants.",
     discord: "aoof",
     form: {
