@@ -3,7 +3,7 @@
 backend:
   name: github
   repo: Aoof/svelte-aoof-ca
-  branch: sveltia/revamp
+  branch: master
 
 media_folder: /static/media
 public_folder: /media
