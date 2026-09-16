@@ -22,7 +22,10 @@
 
 <article class="h-full w-full p-4 bg-dark" id="projects">
     <h3 class="text-white text-2xl font-bold mt-4 mb-6">Projects</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch justify-center">
+        {#if projects.length === 0}
+            <p class="text-white text-sm">No projects available.</p>
+        {/if}
         {#each projects as project (project.name)}
             <ProjectCard {...project} description={sanitizeHtml(project.description)} tags={project.tags.map(toTag)} />
         {/each}
