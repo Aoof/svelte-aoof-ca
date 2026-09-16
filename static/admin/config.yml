@@ -9,7 +9,7 @@ media_folder: /static/media
 public_folder: /media
 
 i18n:
-  structure: single_file
+  structure: single_file_default_root
   locales: [en, fr]
   default_locale: en
   initial_locales: all

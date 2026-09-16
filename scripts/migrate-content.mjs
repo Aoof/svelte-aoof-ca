@@ -94,8 +94,14 @@ for (const [locale, source] of [['en', en], ['fr', fr]]) {
   };
 }
 
-await writeJson(path.join(contentRoot, 'settings.json'), localizedSettings);
-await writeJson(path.join(contentRoot, 'home.json'), localizedHome);
+await writeJson(path.join(contentRoot, 'settings.json'), {
+  ...localizedSettings.en,
+  fr: localizedSettings.fr
+});
+await writeJson(path.join(contentRoot, 'home.json'), {
+  ...localizedHome.en,
+  fr: localizedHome.fr
+});
 
 for (const [index, experience] of en.about.workExperiences.entries()) {
   const slug = slugify(experience.title);

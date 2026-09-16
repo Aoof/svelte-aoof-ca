@@ -11,7 +11,14 @@ async function readJson<T>(filePath: string): Promise<T> {
 
 async function readLocalized<T>(name: string): Promise<Localized<T>> {
   try {
-    return await readJson<Localized<T>>(path.join(contentRoot, `${name}.json`));
+    const content = await readJson<Localized<T> & { fr?: T }>(path.join(contentRoot, `${name}.json`));
+    if ('en' in content && 'fr' in content) {
+      return content as Localized<T>;
+    }
+
+    const localizedContent = content as Record<string, unknown> & { fr?: T };
+    const { fr, ...en } = localizedContent;
+    return { en: en as T, fr: fr as T };
   } catch {
     // Keep compatibility with locale-suffixed files during the migration.
   }
