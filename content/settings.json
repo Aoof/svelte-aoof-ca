@@ -3,6 +3,7 @@
   "navigation": {
     "home": "HOME",
     "about": "ABOUT",
+    "events": "events",
     "projects": "PROJECTS",
     "contact": "CONTACT",
     "resume": "RESUME",
@@ -29,6 +30,7 @@
     "navigation": {
       "home": "ACCUEIL",
       "about": "À PROPOS",
+      "events": "evenements",
       "projects": "PROJETS",
       "contact": "CONTACT",
       "resume": "CV",
