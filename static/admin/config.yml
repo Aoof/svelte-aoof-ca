@@ -36,6 +36,7 @@ collections:
             fields:
               - { name: home, label: Home, widget: string }
               - { name: about, label: About, widget: string }
+              - { name: events, label: Evenets, widget: string }
               - { name: projects, label: Projects, widget: string }
               - { name: contact, label: Contact, widget: string }
               - { name: resume, label: Resume, widget: string }
