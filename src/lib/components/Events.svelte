@@ -66,7 +66,7 @@
                         <div class="flex items-start justify-between gap-3">
                             <h2 class="text-2xl font-semibold text-white">{event.name}</h2>
                             {#if event.link}
-                                <a href={event.link} target="_blank" rel="noreferrer" class="shrink-0 rounded-md bg-black px-3 py-2 text-white transition-opacity hover:opacity-80" aria-label={`${localizedUi.about.linkedinPost}: ${event.name}`}>
+                                <a href={event.link} target="_blank" rel="noreferrer" class="shrink-0 rounded-md bg-black px-3 text-white transition-opacity hover:opacity-80" aria-label={`${localizedUi.about.linkedinPost}: ${event.name}`}>
                                     <i class="fab fa-linkedin text-white" aria-hidden="true"></i>
                                 </a>
                             {/if}
