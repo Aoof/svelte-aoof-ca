@@ -8,6 +8,7 @@ export const language = currentLocale;
 export const anchors = [
     { name: 'home', href: "/"},
     { name: 'about', href: "/about"},
+    { name: 'events', href: "/events"},
     { name: 'projects', href: "/projects"},
     { name: 'contact', href: "/contact"}
 ];

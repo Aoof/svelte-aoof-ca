@@ -144,5 +144,11 @@ export default {
       success: "Message envoyé avec succès",
       error: "Échec de l'envoi du message"
     }
+  },
+  resume: {
+    title: "CV",
+    prompt: "Souhaitez-vous télécharger ou consulter le CV ?",
+    preview: "Aperçu",
+    download: "Télécharger"
   }
 };

@@ -34,7 +34,7 @@
                 {/each}
             </ol>
         </div>
-        <div class="content-group">
+        <div class="content-group" id="events">
             <h3 class="text-white text-2xl mt-4 font-bold">{$_('about.eventsCompetitionsTitle')}</h3>
             <p class="my-4 text-lg">{$_('about.eventsCompetitionsDescription')}</p>
             {#each eventsAndCompetitions as event (event.name)}
