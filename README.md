@@ -31,4 +31,3 @@ Configure these GitHub Actions secrets in the `production` environment:
 - `DEPLOY_PATH`: directory containing the Compose file
 - `DEPLOY_REPO_PATH`: server checkout of this `svelte-aoof-ca` repository
 - `DEPLOY_PORT`: optional SSH port; defaults to `22`
-
