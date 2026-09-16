@@ -1,0 +1,13 @@
+{
+  "title": "Abdulrahman Mousa",
+  "subtitle": "or aoof",
+  "subtitle_highlight": "(pronunciation)",
+  "location": "Montreal Quebec, Canada | He/Him",
+  "description": "I am a <span class=\"keyword\">Computer Science</span> student at Collège LaSalle. I speak <span class=\"keyword\">English</span>, <span class=\"keyword\">Arabic</span> and <span class=\"keyword\">French</span>.",
+  "passion": "I am passionate about <span class=\"keyword\">Software Development</span>, <span class=\"keyword\">Web Development</span> and <span class=\"keyword\">Game Development</span>. I am always looking for new opportunities to learn and grow.",
+  "looking_for": "I am currently looking for <span class=\"keyword\">Part-Time</span>, <span class=\"keyword\">Full-Time</span>, or <span class=\"keyword\">Contract</span> positions in game development as a gameplay programmer.",
+  "skills": {
+    "proficient": "I'm confident in...",
+    "familiar": "Decent with..."
+  }
+}

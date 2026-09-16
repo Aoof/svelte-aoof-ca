@@ -1,0 +1,102 @@
+{
+  "proficient": [
+    {
+      "title": "Python",
+      "icon_class": "fa-brands fa-python"
+    },
+    {
+      "title": "C#",
+      "icon": "csharp"
+    },
+    {
+      "title": "Java",
+      "icon_class": "fa-brands fa-java"
+    },
+    {
+      "title": "HTML5",
+      "icon_class": "fa-brands fa-html5"
+    },
+    {
+      "title": "Svelte",
+      "icon": "svelte"
+    },
+    {
+      "title": "Express.js",
+      "icon": "express"
+    },
+    {
+      "title": "JavaScript",
+      "icon_class": "fa-brands fa-js"
+    },
+    {
+      "title": "CSS",
+      "icon_class": "fa-brands fa-css3-alt"
+    }
+  ],
+  "familiar": [
+    {
+      "title": "C++",
+      "icon": "cpp"
+    },
+    {
+      "title": "MongoDB",
+      "icon": "mongodb"
+    },
+    {
+      "title": "MySQL",
+      "icon": "mysql"
+    },
+    {
+      "title": "Shopify",
+      "icon": "shopify"
+    },
+    {
+      "title": "Neovim",
+      "icon": "neovim"
+    },
+    {
+      "title": "Tailwind CSS",
+      "icon": "tailwind"
+    },
+    {
+      "title": "TypeScript",
+      "icon": "typescript"
+    },
+    {
+      "title": "React",
+      "icon_class": "fa-brands fa-react"
+    },
+    {
+      "title": "PHP",
+      "icon_class": "fa-brands fa-php"
+    },
+    {
+      "title": "Bootstrap",
+      "icon_class": "fa-brands fa-bootstrap"
+    },
+    {
+      "title": "Sass",
+      "icon_class": "fa-brands fa-sass"
+    },
+    {
+      "title": "C Language",
+      "icon_class": "fa-brands fa-c"
+    },
+    {
+      "title": "Node.js",
+      "icon_class": "fa-brands fa-node-js"
+    },
+    {
+      "title": "Git",
+      "icon_class": "fa-brands fa-git"
+    },
+    {
+      "title": "GitHub",
+      "icon_class": "fa-brands fa-github"
+    },
+    {
+      "title": "Linux",
+      "icon_class": "fa-brands fa-linux"
+    }
+  ]
+}

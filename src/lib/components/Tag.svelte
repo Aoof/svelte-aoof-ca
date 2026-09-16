@@ -18,28 +18,40 @@
 
     let getIconByName = (name: string) => {
         switch(name) {
+            case "express":
             case "ExpressIcon":
                 return ExpressIcon;
+            case "svelte":
             case "SvelteIcon":
                 return SvelteIcon;
+            case "cpp":
             case "CppIcon":
                 return CppIcon;
+            case "mongodb":
             case "MongodbIcon":
                 return MongodbIcon;
+            case "mysql":
             case "MySQLIcon":
                 return MySQLIcon;
+            case "hetzner":
             case "HetznerIcon":
                 return HetznerIcon;
+            case "shopify":
             case "ShopifyIcon":
                 return ShopifyIcon;
+            case "csharp":
             case "CsharpIcon":
                 return CsharpIcon;
+            case "neovim":
             case "NeovimIcon":
                 return NeovimIcon;
+            case "tailwind":
             case "TailwindIcon":
                 return TailwindIcon;
+            case "typescript":
             case "TypescriptIcon":
                 return TypescriptIcon;
+            case "altagram":
             case "AltagramIcon":
                 return AltagramIcon;
             default:

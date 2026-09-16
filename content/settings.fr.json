@@ -1,0 +1,28 @@
+{
+  "brand": "aoof.ca",
+  "navigation": {
+    "home": "ACCUEIL",
+    "about": "À PROPOS",
+    "events": "EVENEMENTS",
+    "projects": "PROJETS",
+    "contact": "CONTACT",
+    "resume": "CV",
+    "language": "EN"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Surtout actif sur Discord mais n'hésitez pas à me contacter sur l'un des suivants.",
+    "discord": "aoof",
+    "email": "aoof.mousa@gmail.com",
+    "location": "Montréal, Québec, Canada | Il/Lui"
+  },
+  "social": {
+    "github": "https://github.com/Aoof",
+    "linkedin": "https://www.linkedin.com/in/aoof/",
+    "discord": "https://discord.gg"
+  },
+  "resume": {
+    "english": "/media/resume_en.pdf",
+    "french": "/media/resume_fr.pdf"
+  }
+}

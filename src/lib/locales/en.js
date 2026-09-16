@@ -144,5 +144,11 @@ export default {
       success: "Message sent successfully",
       error: "Failed to send message"
     }
+  },
+  resume: {
+    title: "Resume",
+    prompt: "Would you like to download or view the resume?",
+    preview: "Preview",
+    download: "Download"
   }
 };

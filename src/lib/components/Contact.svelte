@@ -6,6 +6,11 @@
     import { PUBLIC_WEB3_ACCESSKEY } from '$env/static/public';
 
     import Input from '$lib/components/Input.svelte';
+    import { language } from '$lib/../stores/index';
+    import type { SiteSettings } from '$lib/content/types';
+
+    export let settings: { en: SiteSettings; fr: SiteSettings };
+    $: localizedSettings = settings?.[$language === 'fr' ? 'fr' : 'en'] ?? settings?.en;
 
     let status = "";
 
@@ -45,14 +50,14 @@
 <article class="" {...$$restProps} id="contact">
     <div class="sections flex flex-col p-4 my-4 text-lg overflow-auto h-full">
         <div class="section flex flex-col gap-2 justify-between bg-pink p-8 rounded-lg min-h-fit">
-            <h1 class="text-3xl text-dark font-black">{$_('contact.title')}</h1>
-            <p class="text-lg text-dark font-black">{$_('contact.subtitle')}</p>
+            <h1 class="text-3xl text-dark font-black">{localizedSettings.contact.title}</h1>
+            <p class="text-lg text-dark font-black">{localizedSettings.contact.subtitle}</p>
             <div class="flex flex-col gap-2 *:my-2 text-lg">
-                <a class="my-2 *:mx-2 align-middle text-dark font-black" href="https://discord.gg" target="_blank"><i class="fa-brands font-black text-dark fa-discord"></i> {$_('contact.discord')}</a>
-                <a class="my-2 *:mx-2 align-middle text-dark font-black" href="mailto:aoof.mousa@gmail.com" target="_blank"><i class="fas font-black text-dark fa-envelope"></i> aoof.mousa@gmail.com</a>
-                <a class="my-2 *:mx-2 align-middle text-dark font-black" href="https://github.com/Aoof" target="_blank"><i class="fa-brands font-black text-dark fa-github"></i> Github/Aoof</a>
-                <a class="my-2 *:mx-2 align-middle text-dark font-black" href="https://www.linkedin.com/in/aoof/" target="_blank"><i class="fa-brands font-black text-dark fa-linkedin"></i> LinkedIn/Aoof</a>
-                <div class="my-2 *:mx-2 align-middle text-dark font-black"><i class="fas font-black text-dark fa-map-marker-alt"></i> Montreal, Qc</div>
+                <a class="my-2 *:mx-2 align-middle text-dark font-black" href={localizedSettings.social.discord} target="_blank"><i class="fa-brands font-black text-dark fa-discord"></i> {localizedSettings.contact.discord}</a>
+                <a class="my-2 *:mx-2 align-middle text-dark font-black" href={`mailto:${localizedSettings.contact.email}`} target="_blank"><i class="fas font-black text-dark fa-envelope"></i> {localizedSettings.contact.email}</a>
+                <a class="my-2 *:mx-2 align-middle text-dark font-black" href={localizedSettings.social.github} target="_blank"><i class="fa-brands font-black text-dark fa-github"></i> Github/Aoof</a>
+                <a class="my-2 *:mx-2 align-middle text-dark font-black" href={localizedSettings.social.linkedin} target="_blank"><i class="fa-brands font-black text-dark fa-linkedin"></i> LinkedIn/Aoof</a>
+                <div class="my-2 *:mx-2 align-middle text-dark font-black"><i class="fas font-black text-dark fa-map-marker-alt"></i> {localizedSettings.contact.location}</div>
             </div>
         </div>
         <form class="section flex flex-col gap-2 rounded-lg p-8" on:submit|preventDefault={handleSubmit} method="POST">
