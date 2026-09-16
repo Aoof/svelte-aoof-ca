@@ -4,8 +4,9 @@ backend:
   name: github
   repo: Aoof/svelte-aoof-ca
   branch: master
+  base_url: https://aoof.ca
 
-media_folder: /static/media
+media_folder: static/media
 public_folder: /media
 
 i18n:
@@ -66,6 +67,54 @@ collections:
             fields:
               - { name: english, label: English PDF, widget: file, i18n: duplicate }
               - { name: french, label: French PDF, widget: file, i18n: duplicate }
+          - name: ui
+            label: Interface Text
+            widget: object
+            i18n: true
+            fields:
+              - name: about
+                label: About and Events
+                widget: object
+                i18n: true
+                fields:
+                  - { name: workExperienceTitle, label: Work Experience Title, widget: string, i18n: true }
+                  - { name: current, label: Current Label, widget: string, i18n: true }
+                  - { name: websiteTitle, label: Website Title, widget: string, i18n: true }
+                  - { name: websiteDescription, label: Website Description, widget: text, i18n: true }
+                  - { name: eventsCompetitionsTitle, label: Events Title, widget: string, i18n: true }
+                  - { name: eventsCompetitionsDescription, label: Events Description, widget: text, i18n: true }
+                  - { name: eventsSearchLabel, label: Events Search Label, widget: string, i18n: true }
+                  - { name: eventsSearchPlaceholder, label: Events Search Placeholder, widget: string, i18n: true }
+                  - { name: eventsNoResults, label: No Results Message, widget: string, i18n: true }
+                  - { name: linkedinPost, label: LinkedIn Label, widget: string, i18n: true }
+              - name: contact
+                label: Contact Form
+                widget: object
+                i18n: true
+                fields:
+                  - name: form
+                    label: Form
+                    widget: object
+                    i18n: true
+                    fields:
+                      - { name: title, label: Title, widget: string, i18n: true }
+                      - { name: email, label: Email Label, widget: string, i18n: true }
+                      - { name: emailPlaceholder, label: Email Placeholder, widget: string, i18n: true }
+                      - { name: message, label: Message Label, widget: string, i18n: true }
+                      - { name: messagePlaceholder, label: Message Placeholder, widget: string, i18n: true }
+                      - { name: send, label: Send Label, widget: string, i18n: true }
+                      - { name: submitting, label: Submitting Label, widget: string, i18n: true }
+                      - { name: success, label: Success Message, widget: string, i18n: true }
+                      - { name: error, label: Error Message, widget: string, i18n: true }
+              - name: resume
+                label: Resume Modal
+                widget: object
+                i18n: true
+                fields:
+                  - { name: title, label: Title, widget: string, i18n: true }
+                  - { name: prompt, label: Prompt, widget: string, i18n: true }
+                  - { name: preview, label: Preview Label, widget: string, i18n: true }
+                  - { name: download, label: Download Label, widget: string, i18n: true }
 
   - name: home
     label: Home Page

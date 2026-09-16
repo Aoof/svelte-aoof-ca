@@ -2,14 +2,10 @@
   import { onMount } from 'svelte';
   import { page, device } from '$lib/../stores/index';
 
-  import Navbar from '$lib/components/Navbar.svelte';
   import Home from '$lib/components/Home.svelte';
-  import Contact from '$lib/components/Contact.svelte';
-  import About from '$lib/components/About.svelte';
-  import Projects from '$lib/components/Projects.svelte';
-  import type { PageData } from './$types';
+  import type { PageData, LayoutData } from './$types';
 
-  export let data: PageData;
+  export let data: PageData & LayoutData;
 
   onMount(() => {
     $device = window.innerWidth < 768 ? 'mobile' : 'desktop';
@@ -34,14 +30,10 @@
 </svelte:head>
 
 <main>
-  <Navbar settings={data.content.settings} />
   <div class="lg:w-1/2 md:w-2/3 sm:max-w-full m-auto">
-    <Home content={data.content.home} skills={data.content.skills} />
-    <About content={data.content.about} />
-    <Projects content={data.content.projects} />
-    <Contact settings={data.content.settings} />
+       <Home content={data.content.home} skills={data.content.skills} settings={data.content.settings} />
   </div>
-  <button class="fixed bottom-4 left-4 bg-dark text-white p-2 rounded-full shadow-lg btn-scroll-up hidden" on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+  <button class="fixed bottom-4 left-4 bg-dark text-white p-2 rounded-full shadow-lg btn-scroll-up hidden" on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Scroll to top">
     <i class="fas fa-arrow-up"></i>
   </button>
 </main>

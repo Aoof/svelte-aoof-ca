@@ -1,7 +1,5 @@
 <script lang="ts">
     import axios from 'axios';
-    import { _ } from 'svelte-i18n';
-
     import { addToast } from '$lib/../stores/toasts';
     import { PUBLIC_WEB3_ACCESSKEY } from '$env/static/public';
 
@@ -11,11 +9,12 @@
 
     export let settings: { en: SiteSettings; fr: SiteSettings };
     $: localizedSettings = settings?.[$language === 'fr' ? 'fr' : 'en'] ?? settings?.en;
+    $: ui = localizedSettings?.ui;
 
     let status = "";
 
     const handleSubmit = async (event : SubmitEvent) => {
-        status = $_('contact.form.submitting')
+        status = ui.contact.form.submitting
         const formData = new FormData(event.currentTarget as HTMLFormElement);
         const object = Object.fromEntries(formData);
         const json = JSON.stringify(object);
@@ -27,18 +26,18 @@
             }
         }).then((response) => {
             if (response.data.success) {
-                status = response.data.message || $_('contact.form.success');
+                status = response.data.message || ui.contact.form.success;
                 addToast({
-                    message: $_('contact.form.success'),
+                    message: ui.contact.form.success,
                     type: "success",
                     dismissible: true,
                     timeout: 3000
                 });
             }
         }).catch(e => {
-            status = e.response.data.message || $_('contact.form.error');
+            status = e.response.data.message || ui.contact.form.error;
             addToast({
-                message: $_('contact.form.error'),
+                message: ui.contact.form.error,
                 type: "error",
                 dismissible: true,
                 timeout: 3000
@@ -61,19 +60,19 @@
             </div>
         </div>
         <form class="section flex flex-col gap-2 rounded-lg p-8" on:submit|preventDefault={handleSubmit} method="POST">
-            <h1 class="text-3xl">{$_('contact.form.title')}</h1>
+            <h1 class="text-3xl">{ui.contact.form.title}</h1>
             <div class="input-group">
-                <label for="email" class="text-lg">{$_('contact.form.email')}</label>
-                <Input name="email" placeholder={$_('contact.form.emailPlaceholder')} class="w-full" id="email" required />
+                <label for="email" class="text-lg">{ui.contact.form.email}</label>
+                <Input name="email" placeholder={ui.contact.form.emailPlaceholder} class="w-full" id="email" required />
             </div>
             <div class="input-group">
-                <label for="message" class="text-lg">{$_('contact.form.message')}</label>
-                <Input name="message" placeholder={$_('contact.form.messagePlaceholder')} class="w-full" type="textarea" id="message" required />
+                <label for="message" class="text-lg">{ui.contact.form.message}</label>
+                <Input name="message" placeholder={ui.contact.form.messagePlaceholder} class="w-full" type="textarea" id="message" required />
             </div>
             <div class="status text-lg">{status}</div>
             <div class="input-group text-right">
                 <input type="hidden" name="access_key" value={ PUBLIC_WEB3_ACCESSKEY } />
-                <button class="text-dark py-2 px-4 w-fit self-center font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">{$_('contact.form.send')}</button>
+                <button class="text-dark py-2 px-4 w-fit self-center font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">{ui.contact.form.send}</button>
             </div>
         </form>
     </div>

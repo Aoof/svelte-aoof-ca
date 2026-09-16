@@ -71,6 +71,41 @@ export interface SiteSettings {
     english: string;
     french: string;
   };
+  ui: UiContent;
+}
+
+export interface UiContent {
+  about: {
+    workExperienceTitle: string;
+    current: string;
+    websiteTitle: string;
+    websiteDescription: string;
+    eventsCompetitionsTitle: string;
+    eventsCompetitionsDescription: string;
+    eventsSearchLabel: string;
+    eventsSearchPlaceholder: string;
+    eventsNoResults: string;
+    linkedinPost: string;
+  };
+  contact: {
+    form: {
+      title: string;
+      email: string;
+      emailPlaceholder: string;
+      message: string;
+      messagePlaceholder: string;
+      send: string;
+      submitting: string;
+      success: string;
+      error: string;
+    };
+  };
+  resume: {
+    title: string;
+    prompt: string;
+    preview: string;
+    download: string;
+  };
 }
 
 export interface Localized<T> {

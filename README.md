@@ -23,6 +23,14 @@ Pushes to `master`, including commits made through Sveltia CMS, trigger
 `.github/workflows/deploy-portfolio.yml`. The workflow updates the server's
 Compose checkout, rebuilds `aoof-portfolio`, and recreates only that service.
 
+### Sveltia CMS
+
+The CMS is available at `/admin/`. Sveltia writes localized page data to
+`content/` and uploaded media to `static/media/`. The production Docker image
+copies both directories into the runtime image; provide environment variables
+such as `PUBLIC_WEB3_ACCESSKEY` through the deployment environment instead of
+copying `.env` into the image.
+
 Configure these GitHub Actions secrets in the `production` environment:
 
 - `DEPLOY_HOST`: Docker host name or IP

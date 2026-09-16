@@ -50,7 +50,7 @@
 </style>
 
 {#if type === 'textarea'}
-    <textarea {...$$restProps} bind:value={value} />
+    <textarea {...$$restProps} bind:value={value}></textarea>
 {:else}
     <input type={type === 'password' ? 'text' : type} value={inputValue} on:input={handleInput} {...$$restProps} />
 {/if}

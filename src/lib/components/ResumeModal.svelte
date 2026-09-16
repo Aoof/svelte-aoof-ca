@@ -1,12 +1,11 @@
 <script lang="ts">
     import { fade, scale } from 'svelte/transition';
     import { createEventDispatcher } from 'svelte';
-    import { _ } from 'svelte-i18n';
-    import { getCurrentLocale } from '$lib/i18n';
-    import resumeEn from '$lib/media/resume_en.pdf';
-    import resumeFr from '$lib/media/resume_fr.pdf';
+    import { language } from '$lib/../stores/index';
+    import type { SiteSettings } from '$lib/content/types';
 
     export let open = false;
+    export let settings: SiteSettings;
     
     let isViewingResume = false;
     const dispatch = createEventDispatcher();
@@ -19,7 +18,7 @@
 
     function downloadResume() {
         const link = document.createElement('a');
-        link.href = getCurrentLocale() === 'fr' ? resumeFr : resumeEn;
+    link.href = $language === 'fr' ? settings.resume.french : settings.resume.english;
         link.download = 'amousaresume.pdf';
         link.click();
         closeModal();
@@ -95,14 +94,14 @@
             {#if !isViewingResume}
                 <!-- Resume Options -->
                 <div class="px-6 py-8 flex flex-col items-center gap-6">
-                    <h2 class="text-white text-2xl font-bold">{$_('resume.title')}</h2>
-                    <p class="text-white text-center text-lg">{$_('resume.prompt')}</p>
+                    <h2 class="text-white text-2xl font-bold">{settings.ui.resume.title}</h2>
+                    <p class="text-white text-center text-lg">{settings.ui.resume.prompt}</p>
                     <div class="flex gap-4 flex-wrap justify-center">
                         <button class="text-white py-3 px-8 font-bold rounded border border-pink hover:bg-pink/10 transition-all ease-out text-base cursor-pointer" on:click={viewResume}>
-                            {$_('resume.preview')}
+                            {settings.ui.resume.preview}
                         </button>
                         <button class="text-dark py-3 px-8 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-base cursor-pointer" on:click={downloadResume}>
-                            {$_('resume.download')}
+                            {settings.ui.resume.download}
                         </button>
                     </div>
                 </div>
@@ -110,15 +109,15 @@
                 <!-- PDF Viewer -->
                 <div class="overflow-y-auto px-6 py-8 custom-scrollbar flex-1">
                     <div class="flex flex-col items-center gap-4 h-full">
-                        <h2 class="text-white text-2xl font-bold">Preview</h2>
+                        <h2 class="text-white text-2xl font-bold">{settings.ui.resume.preview}</h2>
                         <iframe 
-                            src={getCurrentLocale() === 'fr' ? resumeFr : resumeEn} 
+                                     src={$language === 'fr' ? settings.resume.french : settings.resume.english}
                             class="w-full h-[70vh] rounded-lg border border-gray"
                             title="Resume PDF Viewer"
                             frameborder="0"
                         ></iframe>
                         <button class="text-dark py-2 px-6 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-base cursor-pointer" on:click={downloadResume}>
-                            {$_('resume.download')}
+                            {settings.ui.resume.download}
                         </button>
                     </div>
                 </div>

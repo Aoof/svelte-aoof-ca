@@ -1,8 +1,12 @@
 <script lang="ts">
     import { onMount } from 'svelte';
     import { initializeLocale } from '$lib/i18n';
+    import Navbar from '$lib/components/Navbar.svelte';
+    import type { LayoutData } from './$types';
     import '../app.css'
     import "../global.scss";
+
+    export let data: LayoutData;
 
     onMount(() => {
         initializeLocale();
@@ -15,4 +19,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 </style>
 
-<slot />
+    <Navbar settings={data.content.settings} />
+    <slot />
