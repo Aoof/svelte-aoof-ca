@@ -17,3 +17,18 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 1. [Loading Spinners [Svelte.dev]](https://svelte.dev/repl/14a03ba29cbc408f8d26904c2f59a985?version=3.46.4)
 
+## Deployment
+
+Pushes to `master`, including commits made through Sveltia CMS, trigger
+`.github/workflows/deploy-portfolio.yml`. The workflow updates the server's
+Compose checkout, rebuilds `aoof-portfolio`, and recreates only that service.
+
+Configure these GitHub Actions secrets in the `production` environment:
+
+- `DEPLOY_HOST`: Docker host name or IP
+- `DEPLOY_USER`: SSH user
+- `DEPLOY_SSH_KEY`: private SSH key authorized on the Docker host
+- `DEPLOY_PATH`: directory containing the Compose file
+- `DEPLOY_REPO_PATH`: server checkout of this `svelte-aoof-ca` repository
+- `DEPLOY_PORT`: optional SSH port; defaults to `22`
+
