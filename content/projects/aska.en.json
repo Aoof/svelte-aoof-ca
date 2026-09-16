@@ -1,0 +1,24 @@
+{
+  "name": "Aska",
+  "description": "<p>Aska was one of my favourite games to test during my time at Altagram. It's a survival game and a simulator that revolves around gathering resources, crafting items, and building a village with smart AI villagers.</p><p>This was also one of the longest projects I worked on, so I've found hundreds of bugs, linguistic and functional.</p>",
+  "tags": [
+    {
+      "title": "Functional Quality Assurance",
+      "icon": "certificate"
+    },
+    {
+      "title": "Localization Testing",
+      "icon": "language"
+    },
+    {
+      "title": "Bug Tracking",
+      "icon": "bug"
+    },
+    {
+      "title": "Altagram Project",
+      "icon": "altagram"
+    }
+  ],
+  "image": "/media/aska.jpg",
+  "link": "https://playaska.com/"
+}

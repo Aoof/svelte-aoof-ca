@@ -1,0 +1,166 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+
+backend:
+  name: github
+  repo: Aoof/svelte-aoof-ca
+  branch: sveltia/revamp
+
+media_folder: /static/media
+public_folder: /media
+
+i18n:
+  structure: multiple_files
+  locales: [en, fr]
+  default_locale: en
+  initial_locales: all
+
+collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - name: settings
+        label: Site Settings
+        file: content/settings.{{locale}}.json
+        format: json
+        i18n: true
+        fields:
+          - name: brand
+            label: Brand
+            widget: string
+            i18n: duplicate
+          - name: navigation
+            label: Navigation
+            widget: object
+            i18n: true
+            fields:
+              - { name: home, label: Home, widget: string }
+              - { name: about, label: About, widget: string }
+              - { name: projects, label: Projects, widget: string }
+              - { name: contact, label: Contact, widget: string }
+              - { name: resume, label: Resume, widget: string }
+              - { name: language, label: Language Toggle, widget: string }
+          - name: contact
+            label: Contact
+            widget: object
+            i18n: true
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: subtitle, label: Subtitle, widget: text }
+              - { name: discord, label: Discord, widget: string, i18n: duplicate }
+              - { name: email, label: Email, widget: string, i18n: duplicate }
+              - { name: location, label: Location, widget: string }
+          - name: social
+            label: Social Links
+            widget: object
+            i18n: duplicate
+            fields:
+              - { name: github, label: GitHub, widget: string }
+              - { name: linkedin, label: LinkedIn, widget: string }
+              - { name: discord, label: Discord, widget: string }
+          - name: resume
+            label: Resume
+            widget: object
+            i18n: duplicate
+            fields:
+              - { name: english, label: English PDF, widget: file }
+              - { name: french, label: French PDF, widget: file }
+
+  - name: home
+    label: Home Page
+    files:
+      - name: home
+        label: Home Page
+        file: content/home.{{locale}}.json
+        format: json
+        i18n: true
+        fields:
+          - { name: title, label: Name, widget: string, i18n: duplicate }
+          - { name: subtitle, label: Subtitle, widget: string }
+          - { name: subtitle_highlight, label: Subtitle Highlight, widget: string }
+          - { name: location, label: Location, widget: string }
+          - { name: description, label: Description, widget: richtext }
+          - { name: passion, label: Passion, widget: richtext }
+          - { name: looking_for, label: Looking For, widget: richtext }
+          - name: skills
+            label: Skills Labels
+            widget: object
+            i18n: true
+            fields:
+              - { name: proficient, label: Proficient Label, widget: string }
+              - { name: familiar, label: Familiar Label, widget: string }
+
+  - name: skills
+    label: Skills
+    files:
+      - name: skills
+        label: Skills
+        file: content/skills.json
+        format: json
+        fields:
+          - name: proficient
+            label: Proficient Skills
+            widget: list
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: icon, label: Icon Key, widget: string, required: false }
+              - { name: icon_class, label: Font Awesome Class, widget: string, required: false }
+          - name: familiar
+            label: Familiar Skills
+            widget: list
+            fields:
+              - { name: title, label: Title, widget: string }
+              - { name: icon, label: Icon Key, widget: string, required: false }
+              - { name: icon_class, label: Font Awesome Class, widget: string, required: false }
+
+  - name: experience
+    label: Work Experience
+    folder: content/experience
+    create: true
+    format: json
+    i18n: true
+    identifier_field: title
+    summary: "{{title}} - {{location}}"
+    fields:
+      - { name: title, label: Title, widget: string, i18n: true }
+      - { name: location, label: Location, widget: string, i18n: true }
+      - { name: date, label: Date, widget: string, i18n: true }
+      - { name: current, label: Current Role, widget: boolean, i18n: duplicate }
+      - { name: description, label: Description, widget: richtext, i18n: true }
+
+  - name: events
+    label: Events and Competitions
+    folder: content/events
+    create: true
+    format: json
+    i18n: true
+    identifier_field: name
+    summary: "{{name}} - {{time}}"
+    fields:
+      - { name: name, label: Name, widget: string, i18n: true }
+      - { name: location, label: Location, widget: string, i18n: true }
+      - { name: time, label: Date, widget: string, i18n: true }
+      - { name: summary, label: Summary, widget: richtext, i18n: true }
+      - { name: image, label: Image, widget: image, required: false, i18n: duplicate }
+      - { name: link, label: External Link, widget: string, required: false, i18n: duplicate }
+
+  - name: projects
+    label: Projects
+    folder: content/projects
+    create: true
+    format: json
+    i18n: true
+    identifier_field: name
+    summary: "{{name}}"
+    fields:
+      - { name: name, label: Name, widget: string, i18n: true }
+      - { name: description, label: Description, widget: richtext, i18n: true }
+      - { name: image, label: Image, widget: image, i18n: duplicate }
+      - { name: link, label: Project Link, widget: string, i18n: duplicate }
+      - name: tags
+        label: Technologies and Skills
+        widget: list
+        i18n: true
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: icon, label: Icon Key, widget: string, required: false, i18n: duplicate }
+          - { name: icon_class, label: Font Awesome Class, widget: string, required: false, i18n: duplicate }

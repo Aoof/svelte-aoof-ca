@@ -3,11 +3,17 @@
     import Tag from './Tag.svelte';
     import ResumeModal from './ResumeModal.svelte';
     import Banner from '$lib/media/hero-banner.jpg';
+    import { language } from '$lib/../stores/index';
+    import type { HomeContent, SkillsContent } from '$lib/content/types';
+    import { sanitizeHtml } from '$lib/content/sanitize';
+
+    export let content: { en: HomeContent; fr: HomeContent };
+    export let skills: SkillsContent;
 
     type Skill = { title: string; component?: string; iconClass?: string };
     type SkillCategory = 'proficient' | 'familiar';
 
-    const skills: Record<SkillCategory, Skill[]> = {
+    const fallbackSkills: Record<SkillCategory, Skill[]> = {
         "proficient": [
             { title: "Python", iconClass: "fa-brands fa-python" },
             { title: "C#", component: "CsharpIcon" },
@@ -41,6 +47,9 @@
     const skillCategories: SkillCategory[] = ['proficient', 'familiar'];
     let isFamiliarExpanded = false;
     let isResumeModalOpen = false;
+
+    $: localizedContent = content?.[$language === 'fr' ? 'fr' : 'en'] ?? content?.en;
+    $: localizedSkills = skills ?? fallbackSkills;
 
     const openResumeModal = () => {
         isResumeModalOpen = true;
@@ -90,18 +99,18 @@
                 </a>
             </div>
     
-            <h1 class="font-bold text-3xl">{$_('home.title')}</h1>
-            <a class="text-md transition-all duration-75 hover:underline hover:text-pink" href="https://namedrop.io/abdulrahmanmousa" target="_blank">{$_('home.subtitle')} <span class="text-pink">{$_('home.subtitleHighlight')}</span></a>
-            <p class="text-gray text-xl">{$_('home.location')}</p>
+            <h1 class="font-bold text-3xl">{localizedContent.title}</h1>
+            <a class="text-md transition-all duration-75 hover:underline hover:text-pink" href="https://namedrop.io/abdulrahmanmousa" target="_blank">{localizedContent.subtitle} <span class="text-pink">{localizedContent.subtitle_highlight}</span></a>
+            <p class="text-gray text-xl">{localizedContent.location}</p>
     
             <p class="text-white text-lg mt-4">
-                {@html $_('home.description')}
+                {@html sanitizeHtml(localizedContent.description)}
             </p>
             <p class="text-white text-lg mt-4">
-                {@html $_('home.passion')}
+                {@html sanitizeHtml(localizedContent.passion)}
             </p>
             <p class="text-white text-lg mt-4">
-                {@html $_('home.lookingFor')}
+                {@html sanitizeHtml(localizedContent.looking_for)}
             </p>
             <div class="flex justify-end gap-4 mt-4">
                 <button on:click={() => window.location.href = '#contact' } class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">{$_('contact.title').toUpperCase()}</button>
@@ -115,18 +124,18 @@
             <div class="w-full text-right">
                {#if category === 'familiar'}
                     <div class="overflow-hidden transition-all ease-out duration-500" style:max-height={isFamiliarExpanded ? '500px' : '0'} style:opacity={isFamiliarExpanded ? '1' : '0'}>
-                        <h3 class="text-xl text-white my-2 text-left select-none">{$_('home.skills.familiar')}</h3>
+                        <h3 class="text-xl text-white my-2 text-left select-none">{localizedContent.skills.familiar}</h3>
                             <div class="flex flex-wrap gap-2">
-                                {#each skills[category] as skill}
-                                    <Tag title={skill.title} iconClass={skill.iconClass} component={skill.component} />
+                                {#each localizedSkills[category] as skill (skill.title)}
+                                    <Tag title={skill.title} iconClass={skill.icon_class ?? skill.iconClass} component={skill.icon ?? skill.component} />
                                 {/each}
                             </div>
                         </div>
                 {:else}
-                    <h3 class="text-xl text-white text-left select-none">{$_('home.skills.proficient')}</h3>
+                    <h3 class="text-xl text-white text-left select-none">{localizedContent.skills.proficient}</h3>
                     <div class="flex flex-wrap gap-2 my-2">
-                        {#each skills[category] as skill}
-                            <Tag title={skill.title} iconClass={skill.iconClass} component={skill.component} />
+                        {#each localizedSkills[category] as skill (skill.title)}
+                            <Tag title={skill.title} iconClass={skill.icon_class ?? skill.iconClass} component={skill.icon ?? skill.component} />
                         {/each}
                         <button class="select-none border border-pink hover:bg-pink hover:text-dark font-black px-3 py-1 m-1 rounded flex items-center gap-2 cursor-pointer text-base relative" on:click={() => isFamiliarExpanded = !isFamiliarExpanded}>
                             {isFamiliarExpanded ? 'Show less...' : 'Show more...'}

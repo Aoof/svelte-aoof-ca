@@ -1,0 +1,24 @@
+{
+  "name": "The Castle Canada",
+  "description": "<p>Pour le développement d'une boutique de commerce électronique de parfums en ligne, j'ai aidé à créer une plateforme conviviale et visuellement attrayante.</p><p>L'objectif était d'établir une expérience d'achat en ligne accessible et efficace pour les clients, en mettant l'accent sur la facilité de navigation, la découverte de produits et les transactions sécurisées.</p>",
+  "tags": [
+    {
+      "title": "HTML",
+      "icon_class": "fa-brands fa-html5"
+    },
+    {
+      "title": "CSS",
+      "icon_class": "fa-brands fa-css3"
+    },
+    {
+      "title": "JavaScript",
+      "icon_class": "fa-brands fa-js"
+    },
+    {
+      "title": "Shopify",
+      "icon": "shopify"
+    }
+  ],
+  "image": "/media/castlecanada.png",
+  "link": "https://castlecanada.com"
+}

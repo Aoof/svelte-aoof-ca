@@ -7,6 +7,9 @@
   import Contact from '$lib/components/Contact.svelte';
   import About from '$lib/components/About.svelte';
   import Projects from '$lib/components/Projects.svelte';
+  import type { PageData } from './$types';
+
+  export let data: PageData;
 
   onMount(() => {
     $device = window.innerWidth < 768 ? 'mobile' : 'desktop';
@@ -31,12 +34,12 @@
 </svelte:head>
 
 <main>
-  <Navbar />
+  <Navbar settings={data.content.settings} />
   <div class="lg:w-1/2 md:w-2/3 sm:max-w-full m-auto">
-    <Home />
-    <About />
-    <Projects />
-    <Contact />
+    <Home content={data.content.home} skills={data.content.skills} />
+    <About content={data.content.about} />
+    <Projects content={data.content.projects} />
+    <Contact settings={data.content.settings} />
   </div>
   <button class="fixed bottom-4 left-4 bg-dark text-white p-2 rounded-full shadow-lg btn-scroll-up hidden" on:click={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
     <i class="fas fa-arrow-up"></i>
