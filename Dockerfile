@@ -1,4 +1,4 @@
-FROM node:20-alpine AS builder
+FROM node:lts-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm ci
@@ -7,7 +7,7 @@ RUN npm run build
 
 RUN npm prune --omit=dev
 
-FROM node:20-alpine
+FROM node:lts-alpine
 WORKDIR /app
 ENV NODE_ENV=production \
     PORT=8080
