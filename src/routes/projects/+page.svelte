@@ -5,6 +5,4 @@
     export let data: PageData;
 </script>
 
-<main class="lg:w-1/2 md:w-2/3 sm:max-w-full m-auto">
-    <Projects content={data.content.projects} />
-</main>
+<Projects content={data.content.projects} />

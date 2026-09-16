@@ -87,8 +87,7 @@
                 {@html sanitizeHtml(localizedContent.looking_for)}
             </p>
             <div class="flex justify-end gap-4 mt-4">
-                <button on:click={() => window.location.href = '/contact' } class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer">{localizedSettings.contact.title.toUpperCase()}</button>
-                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>{localizedSettings.ui.resume.download}</button>
+                <button class="text-dark py-2 px-4 font-bold rounded bg-pink hover:opacity-80 transition-opacity ease-out text-sm cursor-pointer" on:click={openResumeModal}>{localizedSettings.ui.resume.title}</button>
             </div>
         </div>
     </section>

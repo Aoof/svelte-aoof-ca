@@ -27,17 +27,17 @@
             <form class="relative mt-6 w-full" on:submit|preventDefault>
                 <label class="block">
                     <span class="sr-only">{localizedUi.about.eventsSearchLabel}</span>
-                    <i class="fas fa-search pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray" aria-hidden="true"></i>
+                    <i class="fas fa-search text-sm pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray" aria-hidden="true"></i>
                     <input
-                        class="w-full rounded-lg border border-gray bg-[#222] py-4 pl-12 pr-16 text-white placeholder:text-gray focus:border-pink focus:outline-none"
+                        class="w-full text-sm rounded-lg border border-gray bg-[#222] py-2.5 pl-10 pr-12 text-white placeholder:text-gray focus:border-pink focus:outline-none"
                         type="search"
                         bind:value={searchTerm}
                         placeholder={localizedUi.about.eventsSearchPlaceholder}
                         aria-label={localizedUi.about.eventsSearchLabel}
                     />
                 </label>
-                <button class="absolute right-1 top-1 bottom-1 w-12 rounded-md bg-pink text-dark transition-opacity hover:opacity-80" type="submit" aria-label={localizedUi.about.eventsSearchLabel}>
-                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                <button class="absolute right-1 top-1 bottom-1 aspect-square rounded-md bg-pink text-dark flex items-center justify-center transition-opacity hover:opacity-80" type="submit" aria-label={localizedUi.about.eventsSearchLabel}>
+                    <i class="fas fa-arrow-right text-sm" aria-hidden="true"></i>
                 </button>
             </form>
         </div>
