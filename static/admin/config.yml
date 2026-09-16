@@ -34,38 +34,38 @@ collections:
             widget: object
             i18n: true
             fields:
-              - { name: home, label: Home, widget: string }
-              - { name: about, label: About, widget: string }
-              - { name: events, label: Evenets, widget: string }
-              - { name: projects, label: Projects, widget: string }
-              - { name: contact, label: Contact, widget: string }
-              - { name: resume, label: Resume, widget: string }
-              - { name: language, label: Language Toggle, widget: string }
+              - { name: home, label: Home, widget: string, i18n: true }
+              - { name: about, label: About, widget: string, i18n: true }
+              - { name: events, label: Events, widget: string, i18n: true }
+              - { name: projects, label: Projects, widget: string, i18n: true }
+              - { name: contact, label: Contact, widget: string, i18n: true }
+              - { name: resume, label: Resume, widget: string, i18n: true }
+              - { name: language, label: Language Toggle, widget: string, i18n: true }
           - name: contact
             label: Contact
             widget: object
             i18n: true
             fields:
-              - { name: title, label: Title, widget: string }
-              - { name: subtitle, label: Subtitle, widget: text }
+              - { name: title, label: Title, widget: string, i18n: true }
+              - { name: subtitle, label: Subtitle, widget: text, i18n: true }
               - { name: discord, label: Discord, widget: string, i18n: duplicate }
               - { name: email, label: Email, widget: string, i18n: duplicate }
-              - { name: location, label: Location, widget: string }
+              - { name: location, label: Location, widget: string, i18n: true }
           - name: social
             label: Social Links
             widget: object
             i18n: duplicate
             fields:
-              - { name: github, label: GitHub, widget: string }
-              - { name: linkedin, label: LinkedIn, widget: string }
-              - { name: discord, label: Discord, widget: string }
+              - { name: github, label: GitHub, widget: string, i18n: duplicate }
+              - { name: linkedin, label: LinkedIn, widget: string, i18n: duplicate }
+              - { name: discord, label: Discord, widget: string, i18n: duplicate }
           - name: resume
             label: Resume
             widget: object
             i18n: duplicate
             fields:
-              - { name: english, label: English PDF, widget: file }
-              - { name: french, label: French PDF, widget: file }
+              - { name: english, label: English PDF, widget: file, i18n: duplicate }
+              - { name: french, label: French PDF, widget: file, i18n: duplicate }
 
   - name: home
     label: Home Page
@@ -78,19 +78,19 @@ collections:
         i18n: true
         fields:
           - { name: title, label: Name, widget: string, i18n: duplicate }
-          - { name: subtitle, label: Subtitle, widget: string }
-          - { name: subtitle_highlight, label: Subtitle Highlight, widget: string }
-          - { name: location, label: Location, widget: string }
-          - { name: description, label: Description, widget: richtext }
-          - { name: passion, label: Passion, widget: richtext }
-          - { name: looking_for, label: Looking For, widget: richtext }
+          - { name: subtitle, label: Subtitle, widget: string, i18n: true }
+          - { name: subtitle_highlight, label: Subtitle Highlight, widget: string, i18n: true }
+          - { name: location, label: Location, widget: string, i18n: true }
+          - { name: description, label: Description, widget: richtext, i18n: true }
+          - { name: passion, label: Passion, widget: richtext, i18n: true }
+          - { name: looking_for, label: Looking For, widget: richtext, i18n: true }
           - name: skills
             label: Skills Labels
             widget: object
             i18n: true
             fields:
-              - { name: proficient, label: Proficient Label, widget: string }
-              - { name: familiar, label: Familiar Label, widget: string }
+              - { name: proficient, label: Proficient Label, widget: string, i18n: true }
+              - { name: familiar, label: Familiar Label, widget: string, i18n: true }
 
   - name: skills
     label: Skills
