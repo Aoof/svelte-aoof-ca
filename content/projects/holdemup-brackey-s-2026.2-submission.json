@@ -2,7 +2,7 @@
   "en": {
     "name": "HoldEmUp - Brackey's 2026.2 Submission",
     "description": "I spent a week working on this game for Brackey's 2026.2 Game Jam and it scored top 2% out of 2175 submissions. My focus was on programming the game, putting everything together, making a playable Poker game, and the AI of each enemy with unique personalities and play-styles. What makes my AI better than most is that it's not an engine that calculates best possible choice, it is erratic, and simulates what real players could do in a poker game, creating a unique experience each round.\n\nWe used Unity 6 and C# to code this 2D/3D game and handle inputs across the dimensions with proper structure. Used game managers and singletons to ensure consistency across the game, which the whole team contributed to.\n\nFeel free to check out the [itch.io page here](https://dylanpatrascu.itch.io/hold-em-up)",
-    "image": "/media/HoldEmUp.jpg",
+    "image": "/media/HoldEmUp.png",
     "link": "https://www.linkedin.com/posts/aoof_main-linkedintalk-gamejam-activity-7501312068059451392-Ibdv",
     "tags": [
       {
@@ -20,7 +20,7 @@
   "fr": {
     "name": "HoldEmUp - Brackey's Game Jam 2026.2",
     "description": "J'ai passé une semaine à travailler sur ce jeu pour la Game Jam Brackey's 2026.2, et il s'est classé dans le top 2% sur 2175 soumissions. Je me suis concentré sur la programmation du jeu, l'assemblage de l'ensemble, la création d'un jeu de Poker jouable, ainsi que l'IA de chaque ennemi avec des personnalités et des styles de jeu uniques. Ce qui rend mon IA meilleure que la plupart, c'est qu'il ne s'agit pas d'un moteur qui calcule le meilleur choix possible : elle est erratique et simule ce que de vrais joueurs pourraient faire dans une partie de poker, créant ainsi une expérience unique à chaque manche.\n\nNous avons utilisé Unity 6 et C# pour coder ce jeu 2D/3D et gérer les entrées à travers les dimensions avec une structure adaptée. Nous avons utilisé des game managers et des singletons pour assurer la cohérence à travers le jeu, auquel toute l'équipe a contribué.\n\nN'hésitez pas à consulter la page [itch.io ici](https://dylanpatrascu.itch.io/hold-em-up)",
-    "image": "/media/HoldEmUp.jpg",
+    "image": "/media/HoldEmUp.png",
     "link": "https://www.linkedin.com/posts/aoof_main-linkedintalk-gamejam-activity-7501312068059451392-Ibdv",
     "tags": [
       {
