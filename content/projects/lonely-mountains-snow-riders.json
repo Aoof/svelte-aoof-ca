@@ -1,0 +1,42 @@
+{
+  "en": {
+    "name": "Lonely Mountains: Snow Riders",
+    "description": "<p>Lonely Mountains: Snow Riders is a skiing game that I had the pleasure of testing at Altagram. The game was beautifully designed even though it was buggy at first. Working with the developers was a great experience because they were receptive to feedback and quick with their patches.</p>",
+    "tags": [
+      {
+        "title": "Functional Quality Assurance",
+        "icon": "certificate"
+      },
+      {
+        "title": "Bug Tracking",
+        "icon": "bug"
+      },
+      {
+        "title": "Altagram Project",
+        "icon": "altagram"
+      }
+    ],
+    "image": "/media/placeholder.svg",
+    "link": "https://lonelymountains.com/#LMSR"
+  },
+  "fr": {
+    "name": "Lonely Mountains: Snow Riders",
+    "description": "<p>Lonely Mountains: Snow Riders est un jeu de ski que j'ai eu le plaisir de tester chez Altagram. Le jeu était magnifiquement conçu même s'il était plein de bugs au départ. Travailler avec les développeurs a été une excellente expérience parce qu'ils étaient réceptifs aux commentaires et rapides avec leurs corrections.</p>",
+    "tags": [
+      {
+        "title": "Functional Quality Assurance",
+        "icon": "certificate"
+      },
+      {
+        "title": "Bug Tracking",
+        "icon": "bug"
+      },
+      {
+        "title": "Altagram Project",
+        "icon": "altagram"
+      }
+    ],
+    "image": "/media/placeholder.svg",
+    "link": "https://lonelymountains.com/#LMSR"
+  }
+}

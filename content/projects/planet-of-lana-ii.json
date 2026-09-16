@@ -1,0 +1,42 @@
+{
+  "en": {
+    "name": "Planet of Lana II",
+    "description": "<p>Planet of Lana II is a puzzle-platformer game that I tested at Altagram. It looked amazing and had some really interesting mechanics. The developers were very responsive to feedback and quick to patch bugs, which made the testing process enjoyable.</p>",
+    "tags": [
+      {
+        "title": "Functional Quality Assurance",
+        "icon": "certificate"
+      },
+      {
+        "title": "Bug Tracking",
+        "icon": "bug"
+      },
+      {
+        "title": "Altagram Project",
+        "icon": "altagram"
+      }
+    ],
+    "image": "/media/pol.jpg",
+    "link": "https://www.planetoflana.com/"
+  },
+  "fr": {
+    "name": "Planet of Lana II",
+    "description": "<p>Planet of Lana II est un jeu de plateforme à énigmes que j'ai testé chez Altagram. Il avait une belle apparence et possédait des mécaniques vraiment intéressantes. Les développeurs étaient très réceptifs aux commentaires et rapides à corriger les bugs, ce qui a rendu le processus de test agréable.</p>",
+    "tags": [
+      {
+        "title": "Functional Quality Assurance",
+        "icon": "certificate"
+      },
+      {
+        "title": "Bug Tracking",
+        "icon": "bug"
+      },
+      {
+        "title": "Altagram Project",
+        "icon": "altagram"
+      }
+    ],
+    "image": "/media/pol.jpg",
+    "link": "https://www.planetoflana.com/"
+  }
+}

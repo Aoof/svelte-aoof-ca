@@ -1,0 +1,56 @@
+{
+  "en": {
+    "brand": "aoof.ca",
+    "navigation": {
+      "home": "HOME",
+      "about": "ABOUT",
+      "projects": "PROJECTS",
+      "contact": "CONTACT",
+      "resume": "RESUME",
+      "language": "FR"
+    },
+    "contact": {
+      "title": "Contact Information",
+      "subtitle": "Mostly active on Discord but feel free to reach out on one of the following.",
+      "discord": "aoof",
+      "email": "aoof.mousa@gmail.com",
+      "location": "Montreal Quebec, Canada | He/Him"
+    },
+    "social": {
+      "github": "https://github.com/Aoof",
+      "linkedin": "https://www.linkedin.com/in/aoof/",
+      "discord": "https://discord.gg"
+    },
+    "resume": {
+      "english": "/media/resume_en.pdf",
+      "french": "/media/resume_fr.pdf"
+    }
+  },
+  "fr": {
+    "brand": "aoof.ca",
+    "navigation": {
+      "home": "ACCUEIL",
+      "about": "À PROPOS",
+      "projects": "PROJETS",
+      "contact": "CONTACT",
+      "resume": "CV",
+      "language": "EN"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Surtout actif sur Discord mais n'hésitez pas à me contacter sur l'un des suivants.",
+      "discord": "aoof",
+      "email": "aoof.mousa@gmail.com",
+      "location": "Montréal, Québec, Canada | Il/Lui"
+    },
+    "social": {
+      "github": "https://github.com/Aoof",
+      "linkedin": "https://www.linkedin.com/in/aoof/",
+      "discord": "https://discord.gg"
+    },
+    "resume": {
+      "english": "/media/resume_en.pdf",
+      "french": "/media/resume_fr.pdf"
+    }
+  }
+}

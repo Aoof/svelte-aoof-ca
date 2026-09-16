@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { fly, scale, fade } from 'svelte/transition';
+    import { scale, fade } from 'svelte/transition';
     import Tag from '$lib/components/Tag.svelte';
 
     export let name = 'Project Name';
@@ -82,7 +82,7 @@
                         <div class="mt-2">
                             <p class="text-lg font-semibold mb-3">Technologies Used:</p>
                             <div class="flex justify-center gap-2 *:text-sm flex-wrap">
-                                {#each tags as tag}
+                                {#each tags as tag (tag.title)}
                                     <Tag 
                                         title={tag.title} 
                                         iconClass={tag.iconClass} 
@@ -99,19 +99,14 @@
     </div>
 {/if}
 <button class="w-full rounded-lg bg-[#222] border border-gray p-4 transition-all duration-200 hover:border-pink group" on:click={() => {expanded = !expanded}}
-    transition:fly={{ y: 20, duration: 300 }}>
-    <div class="flex justify-end gap-2 mb-4">
-        <div class="bg-red w-3 h-3 rounded-full transition-transform group-hover:scale-110"></div>
-        <div class="bg-yellow w-3 h-3 rounded-full transition-transform group-hover:scale-110"></div>
-        <div class="bg-green w-3 h-3 rounded-full transition-transform group-hover:scale-110"></div>
-    </div>
+    aria-expanded={expanded}>
     <div class="mb-4">
         <img src={image} alt={name} class="w-full h-48 object-cover rounded-lg" />
     </div>
     <div>
         <h3 class="text-white text-xl font-semibold mb-2">{name}</h3>
         <div class="flex justify-center gap-2 *:text-sm flex-wrap">
-            {#each tags as tag}
+            {#each tags as tag (tag.title)}
                 <Tag 
                     title={tag.title} 
                     iconClass={tag.iconClass} 

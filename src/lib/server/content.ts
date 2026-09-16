@@ -10,6 +10,12 @@ async function readJson<T>(filePath: string): Promise<T> {
 }
 
 async function readLocalized<T>(name: string): Promise<Localized<T>> {
+  try {
+    return await readJson<Localized<T>>(path.join(contentRoot, `${name}.json`));
+  } catch {
+    // Keep compatibility with locale-suffixed files during the migration.
+  }
+
   const [en, fr] = await Promise.all([
     readJson<T>(path.join(contentRoot, `${name}.en.json`)),
     readJson<T>(path.join(contentRoot, `${name}.fr.json`))
@@ -25,6 +31,14 @@ async function readLocalizedEntries<T>(collection: string): Promise<Localized<T[
     file,
     value: await readJson<T>(path.join(directory, file))
   })));
+
+  const mergedEntries = entries.filter(({ file }) => !/\.(en|fr)\.json$/.test(file));
+  if (mergedEntries.length > 0) {
+    return {
+      en: mergedEntries.map(({ value }) => (value as Localized<T>).en),
+      fr: mergedEntries.map(({ value }) => (value as Localized<T>).fr)
+    };
+  }
 
   return {
     en: entries.filter(({ file }) => file.endsWith('.en.json')).map(({ value }) => value),

@@ -1,0 +1,28 @@
+{
+  "en": {
+    "title": "Abdulrahman Mousa",
+    "subtitle": "or aoof",
+    "subtitle_highlight": "(pronunciation)",
+    "location": "Montreal Quebec, Canada | He/Him",
+    "description": "I am a <span class=\"keyword\">Computer Science</span> student at Collège LaSalle. I speak <span class=\"keyword\">English</span>, <span class=\"keyword\">Arabic</span> and <span class=\"keyword\">French</span>.",
+    "passion": "I am passionate about <span class=\"keyword\">Software Development</span>, <span class=\"keyword\">Web Development</span> and <span class=\"keyword\">Game Development</span>. I am always looking for new opportunities to learn and grow.",
+    "looking_for": "I am currently looking for <span class=\"keyword\">Part-Time</span>, <span class=\"keyword\">Full-Time</span>, or <span class=\"keyword\">Contract</span> positions in game development as a gameplay programmer.",
+    "skills": {
+      "proficient": "I'm confident in...",
+      "familiar": "Decent with..."
+    }
+  },
+  "fr": {
+    "title": "Abdulrahman Mousa",
+    "subtitle": "ou aoof",
+    "subtitle_highlight": "(prononciation)",
+    "location": "Montréal, Québec, Canada | Il/Lui",
+    "description": "Je suis étudiant en <span class=\"keyword\">informatique</span> au Collège LaSalle. Je parle <span class=\"keyword\">anglais</span>, <span class=\"keyword\">arabe</span> et <span class=\"keyword\">français</span>.",
+    "passion": "Je suis passionné par le <span class=\"keyword\">développement de logiciels</span>, le <span class=\"keyword\">développement web</span> et le <span class=\"keyword\">développement de jeux</span>. Je suis toujours à la recherche de nouvelles opportunités pour apprendre et progresser.",
+    "looking_for": "Je suis actuellement à la recherche de postes à <span class=\"keyword\">temps partiel</span>, <span class=\"keyword\">temps plein</span> ou <span class=\"keyword\">contractuel</span> en développement de jeux en tant que programmeur de gameplay.",
+    "skills": {
+      "proficient": "J'ai de l'expérience avec...",
+      "familiar": "Décent avec..."
+    }
+  }
+}

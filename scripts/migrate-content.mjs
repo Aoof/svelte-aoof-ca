@@ -1,4 +1,4 @@
-import { cp, mkdir, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import en from '../src/lib/locales/en.js';
 import fr from '../src/lib/locales/fr.js';
@@ -54,8 +54,10 @@ const writeJson = async (filePath, value) => {
 await mkdir(contentRoot, { recursive: true });
 await mkdir(mediaTarget, { recursive: true });
 
+const localizedSettings = {};
+const localizedHome = {};
 for (const [locale, source] of [['en', en], ['fr', fr]]) {
-  await writeJson(path.join(contentRoot, `settings.${locale}.json`), {
+  localizedSettings[locale] = {
     brand: source.navbar.brand,
     navigation: {
       home: source.navbar.home,
@@ -78,9 +80,9 @@ for (const [locale, source] of [['en', en], ['fr', fr]]) {
       discord: 'https://discord.gg'
     },
     resume: { english: '/media/resume_en.pdf', french: '/media/resume_fr.pdf' }
-  });
+  };
 
-  await writeJson(path.join(contentRoot, `home.${locale}.json`), {
+  localizedHome[locale] = {
     title: source.home.title,
     subtitle: source.home.subtitle,
     subtitle_highlight: source.home.subtitleHighlight,
@@ -89,33 +91,49 @@ for (const [locale, source] of [['en', en], ['fr', fr]]) {
     passion: source.home.passion,
     looking_for: source.home.lookingFor,
     skills: source.home.skills
+  };
+}
+
+await writeJson(path.join(contentRoot, 'settings.json'), localizedSettings);
+await writeJson(path.join(contentRoot, 'home.json'), localizedHome);
+
+for (const [index, experience] of en.about.workExperiences.entries()) {
+  const slug = slugify(experience.title);
+  await writeJson(path.join(contentRoot, 'experience', `${slug}.json`), {
+    en: { ...experience, current: experienceCurrent[index] },
+    fr: { ...fr.about.workExperiences[index], current: experienceCurrent[index] }
   });
+}
 
-  for (const [index, experience] of source.about.workExperiences.entries()) {
-    const slug = slugify(experience.title);
-    await writeJson(path.join(contentRoot, 'experience', `${slug}.${locale}.json`), {
-      ...experience,
-      current: experienceCurrent[index]
-    });
-  }
+for (const [index, event] of en.about.eventsAndCompetitionsList.entries()) {
+  const localizedEvent = (sourceEvent) => ({
+    ...sourceEvent,
+    image: eventImages[index] ? `/media/${eventImages[index]}` : '',
+    link: eventLinks[index] || ''
+  });
+  await writeJson(path.join(contentRoot, 'events', `${slugify(event.name)}.json`), {
+    en: localizedEvent(event),
+    fr: localizedEvent(fr.about.eventsAndCompetitionsList[index])
+  });
+}
 
-  for (const [index, event] of source.about.eventsAndCompetitionsList.entries()) {
-    await writeJson(path.join(contentRoot, 'events', `${slugify(event.name)}.${locale}.json`), {
-      ...event,
-      image: eventImages[index] ? `/media/${eventImages[index]}` : '',
-      link: eventLinks[index] || ''
-    });
-  }
+for (const [index, project] of en.projects.items.entries()) {
+  const metadata = projectMetadata[index];
+  const localizedProject = (sourceProject) => ({
+    ...sourceProject,
+    image: `/media/${metadata.image}`,
+    link: metadata.link,
+    tags: metadata.tags.map(toSkill)
+  });
+  await writeJson(path.join(contentRoot, 'projects', `${slugify(project.name)}.json`), {
+    en: localizedProject(project),
+    fr: localizedProject(fr.projects.items[index])
+  });
+}
 
-  for (const [index, project] of source.projects.items.entries()) {
-    const metadata = projectMetadata[index];
-    await writeJson(path.join(contentRoot, 'projects', `${slugify(project.name)}.${locale}.json`), {
-      ...project,
-      image: `/media/${metadata.image}`,
-      link: metadata.link,
-      tags: metadata.tags.map(toSkill)
-    });
-  }
+for (const collection of ['experience', 'events', 'projects']) {
+  const files = await readdir(path.join(contentRoot, collection));
+  await Promise.all(files.filter((file) => /\.(en|fr)\.json$/.test(file)).map((file) => rm(path.join(contentRoot, collection, file))));
 }
 
 await writeJson(path.join(contentRoot, 'skills.json'), {

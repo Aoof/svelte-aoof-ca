@@ -1,0 +1,66 @@
+{
+  "en": {
+    "name": "IEAC Official Website",
+    "description": "<p>For the <strong>International and Ethnic Associations Council (IEAC)</strong>, I solo'd the development of their official website.</p><p>The goal was to create a dynamic and responsive platform that serves as an information hub for the council, catering to diverse communities and promoting cultural inclusivity.</p>",
+    "tags": [
+      {
+        "title": "HTML",
+        "icon_class": "fa-brands fa-html5"
+      },
+      {
+        "title": "CSS",
+        "icon_class": "fa-brands fa-css3"
+      },
+      {
+        "title": "JavaScript",
+        "icon_class": "fa-brands fa-js"
+      },
+      {
+        "title": "Express",
+        "icon": "express"
+      },
+      {
+        "title": "MongoDB",
+        "icon": "mongodb"
+      },
+      {
+        "title": "Hetzner VPS",
+        "icon": "hetzner"
+      }
+    ],
+    "image": "/media/ieac.png",
+    "link": "https://ieac.ca"
+  },
+  "fr": {
+    "name": "Site officiel IEAC",
+    "description": "<p>Pour le <strong>Conseil international et multiethnique (IEAC)</strong>, j'ai développé seul leur site officiel.</p><p>L'objectif était de créer une plateforme dynamique et réactive qui serve de centre d'information pour le conseil, répondant aux diverses communautés et promouvant l'inclusion culturelle.</p>",
+    "tags": [
+      {
+        "title": "HTML",
+        "icon_class": "fa-brands fa-html5"
+      },
+      {
+        "title": "CSS",
+        "icon_class": "fa-brands fa-css3"
+      },
+      {
+        "title": "JavaScript",
+        "icon_class": "fa-brands fa-js"
+      },
+      {
+        "title": "Express",
+        "icon": "express"
+      },
+      {
+        "title": "MongoDB",
+        "icon": "mongodb"
+      },
+      {
+        "title": "Hetzner VPS",
+        "icon": "hetzner"
+      }
+    ],
+    "image": "/media/ieac.png",
+    "link": "https://ieac.ca"
+  }
+}

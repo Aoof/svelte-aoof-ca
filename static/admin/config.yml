@@ -9,7 +9,7 @@ media_folder: /static/media
 public_folder: /media
 
 i18n:
-  structure: multiple_files
+  structure: single_file
   locales: [en, fr]
   default_locale: en
   initial_locales: all
@@ -20,7 +20,7 @@ collections:
     files:
       - name: settings
         label: Site Settings
-        file: content/settings.{{locale}}.json
+        file: content/settings.json
         format: json
         i18n: true
         fields:
@@ -70,7 +70,7 @@ collections:
     files:
       - name: home
         label: Home Page
-        file: content/home.{{locale}}.json
+        file: content/home.json
         format: json
         i18n: true
         fields:
