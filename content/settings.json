@@ -6,7 +6,7 @@
   "brand": "aoof.ca",
   "navigation": {
     "home": "HOME",
-    "about": "ABOUT",
+    "about": "WORK",
     "events": "EVENTS",
     "projects": "PROJECTS",
     "contact": "CONTACT",
@@ -66,7 +66,7 @@
     "brand": "aoof.ca",
     "navigation": {
       "home": "ACCUEIL",
-      "about": "À PROPOS",
+      "about": "TRAVAIL",
       "events": "EVENEMENTS",
       "projects": "PROJETS",
       "contact": "CONTACT",
