@@ -21,21 +21,6 @@
   });
 </script>
 
-<svelte:head>
-  <script
-    data-name="BMC-Widget"
-    data-cfasync="false"
-    src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-    data-id="aoof"
-    data-description="Support me on Buy me a coffee!"
-    data-message=""
-    data-color="#FF813F"
-    data-position="Right"
-    data-x_margin="18"
-    data-y_margin="18"
-  ></script>
-</svelte:head>
-
 <Navbar settings={data.content.settings} />
 
 <main>
@@ -57,5 +42,4 @@
 <style>
   /* @import url('https://kit.fontawesome.com/b41f14ba9b.js'); */
   @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css");
-  @import url("https://fonts.googleapis.com/css2?family=Victor+Mono:ital,wght@0,100..700;1,100..700&display=swap");
 </style>
