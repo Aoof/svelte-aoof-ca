@@ -1,6 +1,5 @@
 <script lang="ts">
     import { fade, scale } from 'svelte/transition';
-    import { createEventDispatcher } from 'svelte';
     import { language } from '$lib/../stores/index';
     import type { SiteSettings } from '$lib/content/types';
 
@@ -8,12 +7,10 @@
     export let settings: SiteSettings;
     
     let isViewingResume = false;
-    const dispatch = createEventDispatcher();
 
     function closeModal() {
         isViewingResume = false;
         open = false;
-        dispatch('close');
     }
 
     function downloadResume() {

@@ -98,7 +98,7 @@
         </div>
     </div>
 {/if}
-<button class="w-full rounded-lg bg-[#222] border border-gray p-4 transition-all duration-200 hover:border-pink group" on:click={() => {expanded = !expanded}}
+<button class="w-full rounded-lg bg-[#222] border border-gray p-4 transition-all duration-200 hover:border-pink group justify-start flex flex-col" on:click={() => {expanded = !expanded}}
     aria-expanded={expanded}>
     <div class="mb-4">
         <img src={image} alt={name} class="w-full h-48 object-cover rounded-lg" />

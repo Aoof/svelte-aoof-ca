@@ -1,7 +1,6 @@
 <script lang="ts">
     import Tag from './Tag.svelte';
     import ResumeModal from './ResumeModal.svelte';
-    import Banner from '$lib/media/hero-banner.jpg';
     import { language } from '$lib/../stores/index';
     import type { HomeContent, SiteSettings, SkillsContent } from '$lib/content/types';
     import { sanitizeHtml } from '$lib/content/sanitize';
@@ -59,7 +58,7 @@
 
 <article class="h-full w-full p-4 bg-dark" id="home">
     <section class="border border-gray rounded"> 
-        <img src={Banner} alt="Hero Banner" class="w-full h-48 object-cover rounded-t" />
+        <img src="/media/hero-banner.jpg" alt="Hero Banner" class="w-full h-48 object-cover rounded-t" />
         <div class="p-5">
             <div class="flex justify-center gap-4 w-fit float-right">
                 <a href="https://github.com/aoof" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
