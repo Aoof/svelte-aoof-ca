@@ -3,16 +3,16 @@
     "name": "ConUHacks",
     "location": "Concordia University, Montreal QC",
     "time": "February 2024",
-    "summary": "My first hackathon. Tried building a web app to help mechanics schedule repairs more efficiently. Didn't quite finish in time—pacing is hard when you're new—but learned a lot about web development, working with a team, and how to pivot when things don't go as planned.",
-    "image": "",
-    "link": ""
+    "summary": "My first hackathon. Tried building a web app to help mechanics schedule repairs more efficiently. It was a great experience, working with a team and making friends. Used express, node and APIs to create that website.",
+    "image": "/media/conuhacks.jpg",
+    "link": "https://www.linkedin.com/posts/gina-cody_did-you-know-concordia-university-hosts-quebecs-activity-7155214029240561664-cdYo"
   },
   "fr": {
     "name": "ConUHacks",
     "location": "Université Concordia, Montréal QC",
     "time": "Février 2024",
-    "summary": "Mon premier hackathon. J'ai essayé de construire une application web pour aider les mécaniciens à planifier les réparations plus efficacement. Je n'ai pas tout à fait terminé à temps—c'est difficile de bien calibrer quand on est nouveau—mais j'ai beaucoup appris sur le développement web, le travail en équipe et comment pivoter quand les choses ne se passent pas comme prévu.",
-    "image": "",
-    "link": ""
+    "summary": "Mon premier hackathon. J'ai essayé de créer une application web pour aider les mécaniciens à planifier leurs réparations plus efficacement. Ce fut une expérience formidable, à travailler en équipe et à me faire des amis. J'ai utilisé Express, Node et des API pour créer ce site web.",
+    "image": "/media/conuhacks.jpg",
+    "link": "https://www.linkedin.com/posts/gina-cody_did-you-know-concordia-university-hosts-quebecs-activity-7155214029240561664-cdYo"
   }
 }
