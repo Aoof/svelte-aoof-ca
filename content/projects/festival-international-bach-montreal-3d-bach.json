@@ -1,7 +1,7 @@
 {
   "en": {
     "name": "Festival International Bach Montreal - 3D Bach",
-    "description": "I learned a lot about WordPress development environment and working with production code of a website that has thousands of regular users.\n\nIt took 3 months of development and approximately 130\\~ hours of studying and working. Since there was no supervision or seniors to ask, I had to study the codebase and the best practices to how I would test, modify and apply the changes securely. \n\nThe tech stack was PHP, HTML, CSS, and JavaScript.\n\nI used a local git repo to not expose the client's codebase, retrieved the codebase using Updraft backups, and used the \"Restore backup\" feature when the website was ready to be launched.\n\nI even wrote about it on <a href=\"https://lnkd.in/p/gfSCStXc\" target=\"_blank\">linkedin here</a>",
+    "description": "I learned a lot about WordPress development environment and working with production code of a website that has thousands of regular users.\n\nIt took 3 months of development and approximately 130~ hours of studying and working. Since there was no supervision or seniors to ask, I had to study the codebase and the best practices to how I would test, modify and apply the changes securely. \n\nThe tech stack was PHP, HTML, CSS, and JavaScript.\n\nI used a local git repo to not expose the client's codebase, retrieved the codebase using Updraft backups, and used the \"Restore backup\" feature when the website was ready to be launched.\n\nI even wrote about it on <a href=\"https://lnkd.in/p/gfSCStXc\" target=\"_blank\">linkedin here</a>",
     "image": "/media/bachfestivalproject.png",
     "link": "https://festivalbachmontreal.com/",
     "tags": [
