@@ -4,7 +4,7 @@ backend:
   name: github
   repo: Aoof/svelte-aoof-ca
   branch: master
-  base_url: https://aoof.ca
+  base_url: https://aoof-sveltia-cms.aoofxd.workers.dev
 
 media_folder: static/media
 public_folder: /media
