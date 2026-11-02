@@ -1,0 +1,54 @@
+{
+  "en": {
+    "name": "aoof.ca",
+    "slug": "aoof-ca",
+    "summary": "This site. SvelteKit in a Docker container, redeployed by GitHub Actions on every push.",
+    "description": "<p>I built and maintain this portfolio in SvelteKit and TypeScript, with over 145 commits since June 2024.</p><p>It runs in a Docker container on my own Linux server on Hetzner, and a GitHub Actions workflow redeploys it over SSH on every push. I set up Sveltia CMS at /admin so I can edit content without touching code. Those edits are committed to the repository and deployed automatically.</p>",
+    "links": [
+      {
+        "label": "See the code",
+        "url": "https://github.com/aoof/svelte-aoof-ca"
+      }
+    ],
+    "stack": [
+      "SvelteKit",
+      "TypeScript",
+      "Docker",
+      "GitHub Actions",
+      "Sveltia CMS",
+      "Hetzner"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2024-06",
+    "end": "",
+    "role": "Solo developer"
+  },
+  "fr": {
+    "name": "aoof.ca",
+    "slug": "aoof-ca",
+    "summary": "Ce site. SvelteKit dans un conteneur Docker, redéployé par GitHub Actions à chaque push.",
+    "description": "<p>J'ai créé et je maintiens ce portfolio en SvelteKit et TypeScript, avec plus de 145 commits depuis juin 2024.</p><p>Il tourne dans un conteneur Docker sur mon propre serveur Linux chez Hetzner, et un workflow GitHub Actions le redéploie par SSH à chaque push. J'ai installé Sveltia CMS sur /admin pour modifier le contenu sans toucher au code. Ces modifications sont versionnées dans le dépôt et déployées automatiquement.</p>",
+    "links": [
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/aoof/svelte-aoof-ca"
+      }
+    ],
+    "stack": [
+      "SvelteKit",
+      "TypeScript",
+      "Docker",
+      "GitHub Actions",
+      "Sveltia CMS",
+      "Hetzner"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2024-06",
+    "end": "",
+    "role": "Développeur en solo"
+  }
+}

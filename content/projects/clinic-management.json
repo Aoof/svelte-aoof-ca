@@ -1,0 +1,66 @@
+{
+  "en": {
+    "name": "Clinic Management",
+    "slug": "clinic-management",
+    "summary": "A multi-tier desktop app for running a health clinic. I made 66 of the 107 commits, and it got a perfect grade.",
+    "story": {
+      "problem": "For my Multi-tier Application Development course, two friends and I had to build a full desktop app to run a fictional clinic. The teacher was the client and required .NET Framework 4.8. Each of us built one feature end to end, and mine was the Appointment stack. We had to keep the codebase coherent, and good designs are hard to make in .NET Framework 4.8 Windows Forms.",
+      "did": "I made all the UI and let my teammates build the UI functionality through controllers that all inherit from an IPanelController. The controllers find and handle the form's inputs, so I could design forms however I liked without touching the UI's back end. I didn't impose it: we discussed and studied the approach first. I worked across all three layers: Windows Forms dashboards and controllers, business-logic services and DTOs, and an Entity Framework data layer over SQL Server with stored procedures and views. It ships with an installer that sets up the database automatically.",
+      "with": "I built it with Shayan Delbari and Vy Nguyen. When a DTO didn't match, we messaged each other to explain the issue, then called to decide which fix to go with.",
+      "result": "Perfect grade. The app covered every required competency and was the best-looking one in our batch for the class. It has role-based login for doctors, receptionists and administrators, appointment booking, patient records, doctor scheduling, reports and in-app notifications."
+    },
+    "links": [
+      {
+        "label": "See the code",
+        "url": "https://github.com/aoof/clinic-management"
+      }
+    ],
+    "stack": [
+      "C#",
+      "Windows Forms",
+      ".NET Framework 4.8",
+      "Entity Framework",
+      "SQL Server"
+    ],
+    "tracks": [
+      "software",
+      "qa"
+    ],
+    "start": "2025-11",
+    "end": "2025-12",
+    "role": "Lead contributor",
+    "team": "Team of 3, with Shayan Delbari and Vy Nguyen"
+  },
+  "fr": {
+    "name": "Clinic Management",
+    "slug": "clinic-management",
+    "summary": "Une application de bureau multicouche pour gérer une clinique. J'ai fait 66 des 107 commits, et elle a obtenu la note parfaite.",
+    "story": {
+      "problem": "Pour mon cours de développement d'applications multicouches, deux amis et moi devions créer une application de bureau complète pour gérer une clinique fictive. Le professeur était le client et exigeait .NET Framework 4.8. Chacun a construit une fonctionnalité de bout en bout, et la mienne était la pile des rendez-vous. Il fallait garder le code cohérent, et de bons designs sont difficiles à faire avec Windows Forms sous .NET Framework 4.8.",
+      "did": "J'ai fait toute l'interface et laissé mes coéquipiers construire ses fonctionnalités par des contrôleurs qui héritent tous d'un IPanelController. Les contrôleurs trouvent et gèrent les champs du formulaire, alors je pouvais concevoir les formulaires comme je voulais sans toucher au back end de l'interface. Je ne l'ai pas imposé : nous avons discuté et étudié l'approche d'abord. J'ai travaillé sur les trois couches : tableaux de bord et contrôleurs Windows Forms, services de logique d'affaires et DTO, et une couche de données Entity Framework sur SQL Server avec procédures stockées et vues. Elle est livrée avec un installateur qui configure la base de données automatiquement.",
+      "with": "Je l'ai construite avec Shayan Delbari et Vy Nguyen. Quand un DTO ne correspondait pas, nous nous écrivions pour expliquer le problème, puis nous nous appelions pour décider de la solution.",
+      "result": "Note parfaite. L'application remplissait toutes les compétences exigées et était la plus belle de notre groupe pour ce cours. Elle a une connexion par rôle pour les médecins, les réceptionnistes et les administrateurs, la prise de rendez-vous, les dossiers de patients, l'horaire des médecins, des rapports et des notifications intégrées."
+    },
+    "links": [
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/aoof/clinic-management"
+      }
+    ],
+    "stack": [
+      "C#",
+      "Windows Forms",
+      ".NET Framework 4.8",
+      "Entity Framework",
+      "SQL Server"
+    ],
+    "tracks": [
+      "software",
+      "qa"
+    ],
+    "start": "2025-11",
+    "end": "2025-12",
+    "role": "Contributeur principal",
+    "team": "Équipe de 3, avec Shayan Delbari et Vy Nguyen"
+  }
+}

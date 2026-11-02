@@ -1,42 +1,46 @@
 {
   "en": {
     "name": "Planet of Lana II",
+    "slug": "planet-of-lana-ii",
+    "summary": "A puzzle-platformer I tested at Altagram.",
     "description": "<p>Planet of Lana II is a puzzle-platformer game that I tested at Altagram. It looked amazing and had some really interesting mechanics. The developers were very responsive to feedback and quick to patch bugs, which made the testing process enjoyable.</p>",
-    "tags": [
+    "image": "/media/pol.jpg",
+    "links": [
       {
-        "title": "Functional Quality Assurance",
-        "icon": "certificate"
-      },
-      {
-        "title": "Bug Tracking",
-        "icon": "bug"
-      },
-      {
-        "title": "Altagram Project",
-        "icon": "altagram"
+        "label": "Visit the game site",
+        "url": "https://www.planetoflana.com/"
       }
     ],
-    "image": "/media/pol.jpg",
-    "link": "https://www.planetoflana.com/"
+    "stack": [
+      "Functional QA",
+      "Bug tracking"
+    ],
+    "tracks": [
+      "qa"
+    ],
+    "role": "Functional QA tester",
+    "team": "Altagram QA team"
   },
   "fr": {
     "name": "Planet of Lana II",
+    "slug": "planet-of-lana-ii",
+    "summary": "Un jeu de plateforme et de réflexion que j'ai testé chez Altagram.",
     "description": "<p>Planet of Lana II est un jeu de plateforme à énigmes que j'ai testé chez Altagram. Il avait une belle apparence et possédait des mécaniques vraiment intéressantes. Les développeurs étaient très réceptifs aux commentaires et rapides à corriger les bugs, ce qui a rendu le processus de test agréable.</p>",
-    "tags": [
+    "image": "/media/pol.jpg",
+    "links": [
       {
-        "title": "Functional Quality Assurance",
-        "icon": "certificate"
-      },
-      {
-        "title": "Bug Tracking",
-        "icon": "bug"
-      },
-      {
-        "title": "Altagram Project",
-        "icon": "altagram"
+        "label": "Visiter le site du jeu",
+        "url": "https://www.planetoflana.com/"
       }
     ],
-    "image": "/media/pol.jpg",
-    "link": "https://www.planetoflana.com/"
+    "stack": [
+      "Functional QA",
+      "Bug tracking"
+    ],
+    "tracks": [
+      "qa"
+    ],
+    "role": "Testeur AQ fonctionnelle",
+    "team": "Équipe d'AQ d'Altagram"
   }
 }

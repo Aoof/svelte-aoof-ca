@@ -1,0 +1,18 @@
+{
+  "en": {
+    "name": "Project Icarus",
+    "location": "",
+    "time": "October 2024",
+    "date": "2024-10",
+    "summary": "A hackathon where our team built Operation Redacted, a Godot game played with a custom controller. I wrote the Python bridge between the controller and the game.",
+    "project": "operation-redacted"
+  },
+  "fr": {
+    "name": "Project Icarus",
+    "location": "",
+    "time": "Octobre 2024",
+    "date": "2024-10",
+    "summary": "Un hackathon où notre équipe a fait Operation Redacted, un jeu Godot joué avec une manette sur mesure. J'ai écrit le pont Python entre la manette et le jeu.",
+    "project": "operation-redacted"
+  }
+}

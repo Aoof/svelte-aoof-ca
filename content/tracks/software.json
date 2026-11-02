@@ -1,0 +1,28 @@
+{
+  "en": {
+    "slug": "software",
+    "order": 4,
+    "title": "Software developer",
+    "hire": "Hire a software developer",
+    "pitch": "I build multi-tier desktop apps in C#, .NET and Java, and I tutor others in them. Clinic Management, my course team project, got a perfect grade.",
+    "resume": "/media/amousa-resume-base-software-en.pdf",
+    "featured": [
+      "clinic-management",
+      "vehicle-management-system",
+      "montreal-pools-scraper"
+    ]
+  },
+  "fr": {
+    "slug": "software",
+    "order": 4,
+    "title": "Développeur logiciel",
+    "hire": "Embauchez un développeur logiciel",
+    "pitch": "Je crée des applications de bureau multicouches en C#, .NET et Java, et j'en enseigne la programmation. Clinic Management, mon projet d'équipe de cours, a obtenu la note parfaite.",
+    "resume": "/media/amousa-resume-base-software-fr.pdf",
+    "featured": [
+      "clinic-management",
+      "vehicle-management-system",
+      "montreal-pools-scraper"
+    ]
+  }
+}

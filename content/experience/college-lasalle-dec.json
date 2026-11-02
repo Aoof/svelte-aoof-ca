@@ -1,0 +1,32 @@
+{
+  "en": {
+    "kind": "education",
+    "title": "DEC, Computer Science Technology",
+    "location": "Collège LaSalle, Montreal QC",
+    "start": "2024-08",
+    "end": "2027-08",
+    "expected": true,
+    "description": "I'm at a 90% average. The program is called Techniques de l'informatique (420.B0).",
+    "tracks": [
+      "web",
+      "game",
+      "qa",
+      "software"
+    ]
+  },
+  "fr": {
+    "kind": "education",
+    "title": "DEC, Techniques de l'informatique",
+    "location": "Collège LaSalle, Montréal QC",
+    "start": "2024-08",
+    "end": "2027-08",
+    "expected": true,
+    "description": "Ma moyenne est de 90 %. Le programme s'appelle Techniques de l'informatique (420.B0).",
+    "tracks": [
+      "web",
+      "game",
+      "qa",
+      "software"
+    ]
+  }
+}

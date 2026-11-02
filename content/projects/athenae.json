@@ -1,0 +1,80 @@
+{
+  "en": {
+    "name": "Athenae",
+    "slug": "athenae",
+    "summary": "The first website for a brand-new non-profit, in French and English, with a CMS the client edits herself.",
+    "story": {
+      "problem": "Athenae Initiative is a brand-new non-profit that gets people to practise the humanities through free activities. It needed a website from scratch.",
+      "did": "I built a French and English site with locale-based routing, light and dark themes that follow the visitor's preference, and Markdown content. I picked SvelteKit because it compiles components to direct DOM updates, so bundles stay small, and Svelte 5 runes keep the .ts and .svelte files talking to each other cleanly. I set it up for Cloudflare Pages and Docker, and wrote Vitest and Playwright tests. As the only contributor, I'd rather not ship regressions I can't see. To ship fast I used a translation model for the first French copy, then set up Sveltia CMS with localization so the client can edit content herself. The forms only send to an email handler, but I still added anti-spam, CAPTCHA and CSRF protection.",
+      "with": "I worked with the co-founder, who isn't technical. A couple of meetings were enough for me to understand what they needed, and I added a few features she hadn't thought of.",
+      "result": "The initiative uses the site to post events and articles, and people use it to email them when they want to reach out. It's still live with my build."
+    },
+    "links": [
+      {
+        "label": "Visit athenaeinitiative.com",
+        "url": "https://athenaeinitiative.com"
+      },
+      {
+        "label": "See the code",
+        "url": "https://github.com/aoof/Athenae"
+      }
+    ],
+    "stack": [
+      "SvelteKit",
+      "Svelte 5",
+      "TypeScript",
+      "Tailwind CSS",
+      "Cloudflare Pages",
+      "Docker",
+      "Sveltia CMS",
+      "Vitest",
+      "Playwright"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2026-06",
+    "end": "2026-09",
+    "role": "Web developer",
+    "team": "Solo, with the initiative's co-founder"
+  },
+  "fr": {
+    "name": "Athenae",
+    "slug": "athenae",
+    "summary": "Le premier site d'un tout nouvel organisme à but non lucratif, en français et en anglais, avec un CMS que la cliente modifie elle-même.",
+    "story": {
+      "problem": "Athenae Initiative est un tout nouvel organisme à but non lucratif qui incite les gens à pratiquer les humanités grâce à des activités gratuites. Il avait besoin d'un site web à partir de zéro.",
+      "did": "J'ai créé un site en français et en anglais avec un routage par langue, des thèmes clair et sombre qui suivent la préférence du visiteur, et du contenu en Markdown. J'ai choisi SvelteKit parce qu'il compile les composants en mises à jour directes du DOM, ce qui garde les bundles petits, et les runes de Svelte 5 permettent aux fichiers .ts et .svelte de communiquer proprement. Je l'ai configuré pour Cloudflare Pages et Docker, et j'ai écrit des tests Vitest et Playwright. Comme seul contributeur, je préfère ne pas livrer de régressions que je ne vois pas. Pour aller vite, j'ai utilisé un modèle de traduction pour le premier texte français, puis j'ai configuré Sveltia CMS avec localisation pour que la cliente puisse modifier le contenu elle-même. Les formulaires envoient seulement vers un gestionnaire de courriel, mais j'ai quand même ajouté une protection anti-pourriel, CAPTCHA et CSRF.",
+      "with": "J'ai travaillé avec la cofondatrice, qui n'est pas technique. Quelques rencontres ont suffi pour comprendre ses besoins, et j'ai ajouté quelques fonctionnalités auxquelles elle n'avait pas pensé.",
+      "result": "L'initiative utilise le site pour publier des événements et des articles, et les gens s'en servent pour lui écrire. Il est toujours en ligne avec ma version."
+    },
+    "links": [
+      {
+        "label": "Visiter athenaeinitiative.com",
+        "url": "https://athenaeinitiative.com"
+      },
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/aoof/Athenae"
+      }
+    ],
+    "stack": [
+      "SvelteKit",
+      "Svelte 5",
+      "TypeScript",
+      "Tailwind CSS",
+      "Cloudflare Pages",
+      "Docker",
+      "Sveltia CMS",
+      "Vitest",
+      "Playwright"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2026-06",
+    "end": "2026-09",
+    "role": "Développeur web",
+    "team": "Seul, avec la cofondatrice de l'initiative"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "en": {
+    "slug": "game",
+    "order": 2,
+    "title": "Game developer",
+    "hire": "Hire a game developer",
+    "pitch": "I'm a gameplay programmer working in Unity and C#, and I've used Godot too. I wrote the poker game and the opponent AI for HoldEmUp, which placed in the top 2% of 2,175 submissions at Brackey's 2026.2.",
+    "resume": "/media/amousa-resume-base-gamedev-en.pdf",
+    "featured": [
+      "holdemup",
+      "my-house-is-built-for-you",
+      "operation-redacted"
+    ]
+  },
+  "fr": {
+    "slug": "game",
+    "order": 2,
+    "title": "Développeur de jeux",
+    "hire": "Embauchez un développeur de jeux",
+    "pitch": "Je suis programmeur de gameplay en Unity et C#, et j'ai aussi utilisé Godot. J'ai programmé le jeu de poker et l'IA des adversaires de HoldEmUp, qui s'est classé dans le top 2 % de 2 175 soumissions au Brackey's 2026.2.",
+    "resume": "/media/amousa-resume-base-gamedev-fr.pdf",
+    "featured": [
+      "holdemup",
+      "my-house-is-built-for-you",
+      "operation-redacted"
+    ]
+  }
+}

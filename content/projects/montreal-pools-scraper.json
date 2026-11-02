@@ -1,0 +1,50 @@
+{
+  "en": {
+    "name": "Montreal Pools Scraper",
+    "slug": "montreal-pools-scraper",
+    "summary": "A Python scraper that turns Montreal's public pool listings into structured data.",
+    "description": "<p>I wrote about 1,300 lines of Python that turn the pool listings on montreal.ca into structured data. A MySQL-backed page cache keeps it from downloading the same page twice, and the command-line interface has logging levels and selective extraction.</p>",
+    "links": [
+      {
+        "label": "See the code",
+        "url": "https://github.com/aoof/montreal-pools-scraper"
+      }
+    ],
+    "stack": [
+      "Python",
+      "BeautifulSoup",
+      "requests",
+      "MySQL"
+    ],
+    "tracks": [
+      "software"
+    ],
+    "start": "2026-03",
+    "end": "2026-04",
+    "role": "Developer"
+  },
+  "fr": {
+    "name": "Montreal Pools Scraper",
+    "slug": "montreal-pools-scraper",
+    "summary": "Un scraper Python qui transforme les listes de piscines publiques de Montréal en données structurées.",
+    "description": "<p>J'ai écrit environ 1 300 lignes de Python qui transforment les listes de piscines de montreal.ca en données structurées. Un cache de pages sur MySQL évite de télécharger deux fois la même page, et l'interface en ligne de commande a des niveaux de journalisation et une extraction sélective.</p>",
+    "links": [
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/aoof/montreal-pools-scraper"
+      }
+    ],
+    "stack": [
+      "Python",
+      "BeautifulSoup",
+      "requests",
+      "MySQL"
+    ],
+    "tracks": [
+      "software"
+    ],
+    "start": "2026-03",
+    "end": "2026-04",
+    "role": "Développeur"
+  }
+}
