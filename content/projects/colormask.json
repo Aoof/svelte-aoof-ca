@@ -1,38 +1,50 @@
 {
   "en": {
     "name": "ColorMask",
+    "slug": "colormask",
+    "summary": "A swarm game from Global Game Jam 2026 where you beat enemies by changing their colours.",
     "description": "<p>Part of a weekend-long game jam project, ColorMask is a swarm game where players can get rid of their enemies by changing their colours through blocks from their inventory.</p><p>I was responsible for the game's programming, using <strong>C#</strong> and <strong>Unity</strong>. I also contributed to the game's design and mechanics, collaborating with my teammate to create a fun and engaging experience.</p>",
     "image": "/media/colormask.png",
-    "link": "https://www.linkedin.com/posts/aoof_a-week-ago-my-friends-and-i-decided-to-take-activity-7427119229058936834-Lcsn",
-    "tags": [
+    "links": [
       {
-        "title": "C#",
-        "icon": "csharp",
-        "icon_class": ""
-      },
-      {
-        "title": "Unity",
-        "icon": "",
-        "icon_class": "fa-brands fa-unity"
+        "label": "LinkedIn post",
+        "url": "https://www.linkedin.com/posts/aoof_a-week-ago-my-friends-and-i-decided-to-take-activity-7427119229058936834-Lcsn"
       }
-    ]
+    ],
+    "stack": [
+      "C#",
+      "Unity"
+    ],
+    "tracks": [
+      "game"
+    ],
+    "start": "2026-01",
+    "end": "2026-01",
+    "role": "Programmer",
+    "team": "Me and one teammate"
   },
   "fr": {
     "name": "ColorMask",
+    "slug": "colormask",
+    "summary": "Un jeu de nuées du Global Game Jam 2026 où on bat les ennemis en changeant leurs couleurs.",
     "description": "<p>Partie d'un projet de game jam d'un week-end, ColorMask est un jeu d'essaim où les joueurs peuvent se débarrasser de leurs ennemis en changeant leurs couleurs grâce aux blocs de leur inventaire.</p><p>J'ai été responsable de la programmation du jeu, en utilisant <strong>C#</strong> et <strong>Unity</strong>. J'ai également contribué à la conception et aux mécaniques du jeu, en collaborant avec mon coéquipier pour créer une expérience amusante et engageante.</p>",
     "image": "/media/colormask.png",
-    "link": "https://www.linkedin.com/posts/aoof_a-week-ago-my-friends-and-i-decided-to-take-activity-7427119229058936834-Lcsn",
-    "tags": [
+    "links": [
       {
-        "title": "C#",
-        "icon": "csharp",
-        "icon_class": ""
-      },
-      {
-        "title": "Unity",
-        "icon": "",
-        "icon_class": "fa-brands fa-unity"
+        "label": "Publication LinkedIn",
+        "url": "https://www.linkedin.com/posts/aoof_a-week-ago-my-friends-and-i-decided-to-take-activity-7427119229058936834-Lcsn"
       }
-    ]
+    ],
+    "stack": [
+      "C#",
+      "Unity"
+    ],
+    "tracks": [
+      "game"
+    ],
+    "start": "2026-01",
+    "end": "2026-01",
+    "role": "Programmeur",
+    "team": "Moi et un coéquipier"
   }
 }

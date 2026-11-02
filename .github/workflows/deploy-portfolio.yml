@@ -23,8 +23,28 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  test:
+    name: Build and smoke test
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_WEB3_ACCESSKEY: ci-placeholder
+      PUBLIC_BACKEND_URL: ''
+      PUBLIC_FRONTEND_URL: ''
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+          cache: npm
+      - run: npm ci
+      - run: npx svelte-kit sync && npx svelte-check --tsconfig ./tsconfig.json
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test
+
   deploy:
     name: Rebuild and restart portfolio
+    needs: test
     runs-on: ubuntu-latest
     environment: production
 

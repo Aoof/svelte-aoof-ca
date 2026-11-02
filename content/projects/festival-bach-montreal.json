@@ -1,0 +1,76 @@
+{
+  "en": {
+    "name": "Festival International Bach Montreal - 3D Bach",
+    "slug": "festival-bach-montreal",
+    "summary": "An interactive feature on every 2026 concert page, with 222 bilingual questions loaded through a CSV import.",
+    "description": "I learned a lot about WordPress development environment and working with production code of a website that has thousands of regular users.\n\nIt took 3 months of development and approximately 130~ hours of studying and working. Since there was no supervision or seniors to ask, I had to study the codebase and the best practices to how I would test, modify and apply the changes securely. \n\nThe tech stack was PHP, HTML, CSS, and JavaScript.\n\nI used a local git repo to not expose the client's codebase, retrieved the codebase using Updraft backups, and used the \"Restore backup\" feature when the website was ready to be launched.\n\nI even wrote about it on <a href=\"https://lnkd.in/p/gfSCStXc\" target=\"_blank\">linkedin here</a>",
+    "story": {
+      "problem": "Festival visitors use the site to browse concerts. The year before, the festival hired a web developer, a 3D animator, a 3D modeler and others to build an interactive experience that answers questions about each concert and nudges people toward tickets. For 2026 the clients had a bigger budget, but they expected about the same thing.",
+      "did": "I didn't repeat last year's build. I improved the UI and UX and built a back end that makes it easy to change and add questions in the years after, even though that makes the client need me a little less. The clients weren't technical, so I made the back end decisions myself. Content goes in through a CSV import: concert, question, language and YouTube link. I also added user tracking for the festival's marketing and affiliate programs.",
+      "with": "I worked with the General Manager and the Marketing Manager. I explained the technical details as I went, even when there was nothing to show yet, and kept reviews short whenever the plan changed so changes never got expensive. I also sat in on the animation team's work to give feedback and make sure they understood the format I needed. The clients described the interactive button vaguely, and I turned that into an actual design.",
+      "result": "I set up about 222 questions, each with its own video and question text in English and French. The feature is live on every 2026 concert at [festivalbachmontreal.com/programmation](https://festivalbachmontreal.com/programmation/). The clients haven't asked for changes since. They can add content themselves, and I offered them training."
+    },
+    "image": "/media/bachfestivalproject.png",
+    "links": [
+      {
+        "label": "Visit the festival site",
+        "url": "https://festivalbachmontreal.com/"
+      },
+      {
+        "label": "See the concert feature",
+        "url": "https://festivalbachmontreal.com/programmation/"
+      }
+    ],
+    "stack": [
+      "PHP",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Git"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2026-04",
+    "end": "2026-09",
+    "role": "Web developer and designer",
+    "team": "Solo, for the festival's General Manager and Marketing Manager"
+  },
+  "fr": {
+    "name": "Festival International Bach Montreal - 3D Bach",
+    "slug": "festival-bach-montreal",
+    "summary": "Une fonctionnalité interactive sur chaque concert de 2026, avec 222 questions bilingues chargées par importation CSV.",
+    "description": "J'ai beaucoup appris sur l'environnement de développement WordPress et sur le travail avec le code de production d'un site web qui compte des milliers d'utilisateurs réguliers.\n\nCela a représenté 3 mois de développement et environ 130 heures d'étude et de travail. Comme il n'y avait ni supervision ni personne de plus expérimenté à qui poser des questions, j'ai dû étudier la base de code et les bonnes pratiques pour savoir comment tester, modifier et appliquer les changements en toute sécurité.\n\nLa pile technologique comprenait PHP, HTML, CSS et JavaScript.\n\nJ'ai utilisé un dépôt git local afin de ne pas exposer la base de code du client, j'ai récupéré la base de code à partir des sauvegardes Updraft, et j'ai utilisé la fonction « Restaurer la sauvegarde » lorsque le site était prêt à être lancé.\n\nJ'en ai même parlé sur <a href=\"https://lnkd.in/p/gfSCStXc\" target=\"_blank\">LinkedIn, ici</a>",
+    "story": {
+      "problem": "Les visiteurs du festival utilisent le site pour parcourir les concerts. L'année précédente, le festival avait engagé un développeur web, un animateur 3D, un modélisateur 3D et d'autres pour créer une expérience interactive qui répond aux questions sur chaque concert et encourage l'achat de billets. En 2026, les clients avaient un budget plus important, mais ils s'attendaient à peu près à la même chose.",
+      "did": "Je n'ai pas refait la version de l'an dernier. J'ai amélioré l'interface et l'expérience utilisateur et créé un back end qui permet de modifier et d'ajouter facilement des questions les années suivantes, même si cela fait que le client a un peu moins besoin de moi. Les clients n'étaient pas techniques, alors j'ai pris moi-même les décisions sur le back end. Le contenu entre par importation CSV : concert, question, langue et lien YouTube. J'ai aussi ajouté du suivi des utilisateurs pour les programmes de marketing et d'affiliation du festival.",
+      "with": "J'ai travaillé avec la direction générale et la direction marketing. J'expliquais les détails techniques au fur et à mesure, même quand il n'y avait encore rien à montrer, et je gardais les révisions courtes chaque fois que le plan changeait pour que les changements ne coûtent jamais cher. J'ai aussi suivi le travail de l'équipe d'animation pour donner mon avis et m'assurer qu'elle comprenait le format dont j'avais besoin. Les clients avaient décrit le bouton interactif de façon vague, et j'en ai fait un vrai design.",
+      "result": "J'ai mis en place environ 222 questions, chacune avec sa propre vidéo et son texte en français et en anglais. La fonctionnalité est en ligne sur chaque concert de 2026 à [festivalbachmontreal.com/programmation](https://festivalbachmontreal.com/programmation/). Les clients n'ont plus demandé de changements depuis. Ils peuvent ajouter du contenu eux-mêmes, et je leur ai offert une formation."
+    },
+    "image": "/media/bachfestivalproject.png",
+    "links": [
+      {
+        "label": "Visiter le site du festival",
+        "url": "https://festivalbachmontreal.com/"
+      },
+      {
+        "label": "Voir la fonctionnalité sur les concerts",
+        "url": "https://festivalbachmontreal.com/programmation/"
+      }
+    ],
+    "stack": [
+      "PHP",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Git"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2026-04",
+    "end": "2026-09",
+    "role": "Développeur web et concepteur",
+    "team": "Seul, pour la directrice générale et le directeur marketing du festival"
+  }
+}

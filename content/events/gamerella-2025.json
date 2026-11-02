@@ -1,0 +1,18 @@
+{
+  "en": {
+    "name": "Gamerella 2025",
+    "location": "",
+    "time": "November 2025",
+    "date": "2025-11",
+    "summary": "A game jam with a team of 4. We made My House Is Built for You in Unity, and I wrote the dialogue, task menu and UI scripts.",
+    "project": "my-house-is-built-for-you"
+  },
+  "fr": {
+    "name": "Gamerella 2025",
+    "location": "",
+    "time": "Novembre 2025",
+    "date": "2025-11",
+    "summary": "Une game jam en équipe de 4. Nous avons fait My House Is Built for You dans Unity, et j'ai écrit les scripts de dialogue, de menu des tâches et d'interface.",
+    "project": "my-house-is-built-for-you"
+  }
+}

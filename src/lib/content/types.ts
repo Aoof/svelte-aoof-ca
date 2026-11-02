@@ -1,60 +1,105 @@
 export type Locale = 'en' | 'fr';
 
+export type Strings = Record<string, string>;
+
+export type UiGroup =
+  | 'common'
+  | 'home'
+  | 'track'
+  | 'work'
+  | 'case'
+  | 'experience'
+  | 'events'
+  | 'contact'
+  | 'card'
+  | 'interests'
+  | 'footnotes'
+  | 'resume'
+  | 'seo';
+
 export interface HomeContent {
   title: string;
   subtitle: string;
   subtitle_highlight: string;
   location: string;
+  /** HTML, already sanitized by the loader */
   description: string;
   passion: string;
   looking_for: string;
-  skills: {
-    proficient: string;
-    familiar: string;
-  };
+  featured: string[];
 }
 
-export interface Skill {
-  title: string;
-  icon?: string;
-  icon_class?: string;
-  iconClass?: string;
-  component?: string;
+export interface Story {
+  problem?: string;
+  did?: string;
+  with?: string;
+  result?: string;
 }
 
-export interface SkillsContent {
-  proficient: Skill[];
-  familiar: Skill[];
+export interface ProjectLink {
+  label: string;
+  url: string;
 }
+
+export interface Project {
+  name: string;
+  slug: string;
+  summary: string;
+  description?: string;
+  story?: Story;
+  image?: string;
+  links: ProjectLink[];
+  stack: string[];
+  tracks: string[];
+  start?: string;
+  /** '' means ongoing */
+  end?: string;
+  /** Free text that replaces the computed dates */
+  when?: string;
+  role?: string;
+  team?: string;
+}
+
+export type ExperienceKind = 'job' | 'education' | 'volunteering' | 'other';
 
 export interface Experience {
-  date: string;
+  kind: ExperienceKind;
   title: string;
   location: string;
+  start?: string;
+  end?: string;
+  expected?: boolean;
   description: string;
-  current: boolean;
+  tracks: string[];
+  project?: string;
+  link?: string;
 }
 
 export interface Event {
   name: string;
   location: string;
   time: string;
+  /** YYYY-MM, for sorting */
+  date: string;
   summary: string;
   link?: string;
   image?: string;
+  project?: string;
 }
 
-export interface Project {
-  name: string;
-  description: string;
-  image: string;
-  link: string;
-  tags: Skill[];
+export interface Track {
+  slug: string;
+  order: number;
+  title: string;
+  hire: string;
+  pitch: string;
+  resume: string;
+  featured: string[];
 }
 
 export interface SiteSettings {
   brand: string;
-  navigation: Record<string, string>;
+  navigation: Strings;
   contact: {
     title: string;
     subtitle: string;
@@ -67,48 +112,5 @@ export interface SiteSettings {
     linkedin: string;
     discord: string;
   };
-  resume: {
-    english: string;
-    french: string;
-  };
-  ui: UiContent;
-}
-
-export interface UiContent {
-  about: {
-    workExperienceTitle: string;
-    current: string;
-    websiteTitle: string;
-    websiteDescription: string;
-    eventsCompetitionsTitle: string;
-    eventsCompetitionsDescription: string;
-    eventsSearchLabel: string;
-    eventsSearchPlaceholder: string;
-    eventsNoResults: string;
-    linkedinPost: string;
-  };
-  contact: {
-    form: {
-      title: string;
-      email: string;
-      emailPlaceholder: string;
-      message: string;
-      messagePlaceholder: string;
-      send: string;
-      submitting: string;
-      success: string;
-      error: string;
-    };
-  };
-  resume: {
-    title: string;
-    prompt: string;
-    preview: string;
-    download: string;
-  };
-}
-
-export interface Localized<T> {
-  en: T;
-  fr: T;
+  ui: Record<UiGroup, Strings>;
 }

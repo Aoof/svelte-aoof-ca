@@ -1,0 +1,62 @@
+{
+  "en": {
+    "name": "LCI Database Manager",
+    "slug": "lci-database-manager",
+    "summary": "A web-based database manager for my Databases 1 course. I wrote about 7,900 of the 9,000 source lines.",
+    "description": "<p>I built this with Shayan Delbari for Databases 1 at Collège LaSalle. Users can create and edit tables, manage rows with validation, and work with primary key, foreign key, unique and check constraints, with sorting, filtering and pagination.</p><p>I designed a seven-table schema in third normal form and drew the entity-relationship diagrams with Mermaid. It runs on serverless PostgreSQL on Neon and is deployed on Vercel.</p>",
+    "links": [
+      {
+        "label": "See the code",
+        "url": "https://github.com/aoof/lci-database-manager"
+      }
+    ],
+    "stack": [
+      "SvelteKit",
+      "Svelte 5",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Neon",
+      "Mermaid",
+      "Vercel"
+    ],
+    "tracks": [
+      "web",
+      "software"
+    ],
+    "start": "2025-03",
+    "end": "2025-11",
+    "role": "Lead developer",
+    "team": "Team of 2, with Shayan Delbari"
+  },
+  "fr": {
+    "name": "LCI Database Manager",
+    "slug": "lci-database-manager",
+    "summary": "Un gestionnaire de base de données web pour mon cours Bases de données 1. J'ai écrit environ 7 900 des 9 000 lignes de code source.",
+    "description": "<p>Je l'ai construit avec Shayan Delbari pour le cours Bases de données 1 au Collège LaSalle. Les utilisateurs peuvent créer et modifier des tables, gérer des lignes avec validation, et travailler avec des contraintes de clé primaire, de clé étrangère, d'unicité et de vérification, avec tri, filtrage et pagination.</p><p>J'ai conçu un schéma de sept tables en troisième forme normale et dessiné les diagrammes entité-relation avec Mermaid. Il tourne sur PostgreSQL serverless chez Neon et il est déployé sur Vercel.</p>",
+    "links": [
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/aoof/lci-database-manager"
+      }
+    ],
+    "stack": [
+      "SvelteKit",
+      "Svelte 5",
+      "TypeScript",
+      "Tailwind CSS",
+      "PostgreSQL",
+      "Neon",
+      "Mermaid",
+      "Vercel"
+    ],
+    "tracks": [
+      "web",
+      "software"
+    ],
+    "start": "2025-03",
+    "end": "2025-11",
+    "role": "Développeur principal",
+    "team": "Équipe de 2, avec Shayan Delbari"
+  }
+}

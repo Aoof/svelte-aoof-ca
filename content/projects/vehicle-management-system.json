@@ -1,0 +1,48 @@
+{
+  "en": {
+    "name": "Vehicle Management System",
+    "slug": "vehicle-management-system",
+    "summary": "A C# console app that manages nine vehicle types through an inheritance hierarchy.",
+    "description": "<p>A course project at Collège LaSalle. It handles nine vehicle types, from cars and trucks to airplanes and trains, through an abstract base class. I added custom validation exceptions, tax, comparison and statistics utilities, and file-based storage.</p><p>A GitHub Actions workflow publishes Linux and macOS release builds.</p>",
+    "links": [
+      {
+        "label": "See the code",
+        "url": "https://github.com/aoof/vehicles-management-system"
+      }
+    ],
+    "stack": [
+      "C#",
+      ".NET 9",
+      "GitHub Actions"
+    ],
+    "tracks": [
+      "software"
+    ],
+    "start": "2025-03",
+    "end": "2025-04",
+    "role": "Developer"
+  },
+  "fr": {
+    "name": "Vehicle Management System",
+    "slug": "vehicle-management-system",
+    "summary": "Une application console C# qui gère neuf types de véhicules grâce à une hiérarchie d'héritage.",
+    "description": "<p>Un projet de cours au Collège LaSalle. Il gère neuf types de véhicules, des voitures et camions aux avions et trains, grâce à une classe de base abstraite. J'ai ajouté des exceptions de validation personnalisées, des utilitaires de taxes, de comparaison et de statistiques, et un stockage dans des fichiers.</p><p>Un workflow GitHub Actions publie des versions pour Linux et macOS.</p>",
+    "links": [
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/aoof/vehicles-management-system"
+      }
+    ],
+    "stack": [
+      "C#",
+      ".NET 9",
+      "GitHub Actions"
+    ],
+    "tracks": [
+      "software"
+    ],
+    "start": "2025-03",
+    "end": "2025-04",
+    "role": "Développeur"
+  }
+}

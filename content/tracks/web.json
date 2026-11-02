@@ -1,0 +1,28 @@
+{
+  "en": {
+    "slug": "web",
+    "order": 1,
+    "title": "Web developer",
+    "hire": "Hire a web developer",
+    "pitch": "I build and ship full websites in SvelteKit, TypeScript and Node.js. I solo'd a council's site and built the concert feature for a music festival.",
+    "resume": "/media/amousa-resume-base-web-en.pdf",
+    "featured": [
+      "festival-bach-montreal",
+      "athenae",
+      "ieac-official-website"
+    ]
+  },
+  "fr": {
+    "slug": "web",
+    "order": 1,
+    "title": "Développeur web",
+    "hire": "Embauchez un développeur web",
+    "pitch": "Je crée et mets en ligne des sites web complets en SvelteKit, TypeScript et Node.js. J'ai réalisé seul le site d'un conseil et la fonctionnalité de concerts d'un festival de musique.",
+    "resume": "/media/amousa-resume-base-web-fr.pdf",
+    "featured": [
+      "festival-bach-montreal",
+      "athenae",
+      "ieac-official-website"
+    ]
+  }
+}
