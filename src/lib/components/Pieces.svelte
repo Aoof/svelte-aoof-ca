@@ -1,31 +1,32 @@
 <script lang="ts">
   import Icon from './Icon.svelte';
 
-  // Stickers: icons about me, stuck on at odd angles. Decoration only.
-  type Sticker = { icon: string; x: string; y: string; size: number; turn: number; bg: string; round?: boolean };
+  // Stickers: icons about me, set in a loose row above a heading. They sit in the normal
+  // flow, so they can never cover text at any width. Decoration only.
+  type Sticker = { icon: string; size: number; turn: number; lift: number; bg: string; round?: boolean };
 
   let { track = 'home' }: { track?: string } = $props();
 
   const sets: Record<string, Sticker[]> = {
     web: [
-      { icon: 'coffee', x: '84%', y: '4%', size: 84, turn: 8, bg: 'var(--accent)' },
-      { icon: 'leaf', x: '68%', y: '24%', size: 60, turn: -12, bg: '#fff', round: true }
+      { icon: 'coffee', size: 84, turn: 8, lift: 0, bg: 'var(--accent)' },
+      { icon: 'leaf', size: 60, turn: -12, lift: 14, bg: '#fff', round: true }
     ],
     game: [
-      { icon: 'hat', x: '82%', y: '4%', size: 92, turn: -9, bg: 'var(--accent)', round: true },
-      { icon: 'volleyball', x: '66%', y: '24%', size: 78, turn: 12, bg: '#fff', round: true }
+      { icon: 'hat', size: 88, turn: -9, lift: 0, bg: 'var(--accent)', round: true },
+      { icon: 'volleyball', size: 68, turn: 12, lift: 16, bg: '#fff', round: true }
     ],
     qa: [
-      { icon: 'cat', x: '83%', y: '3%', size: 90, turn: 7, bg: 'var(--accent)' },
-      { icon: 'bug', x: '68%', y: '24%', size: 62, turn: -14, bg: '#fff', round: true }
+      { icon: 'cat', size: 86, turn: 7, lift: 0, bg: 'var(--accent)' },
+      { icon: 'bug', size: 62, turn: -14, lift: 14, bg: '#fff', round: true }
     ],
     software: [
-      { icon: 'code', x: '83%', y: '3%', size: 92, turn: 10, bg: 'var(--accent)' },
-      { icon: 'pot', x: '68%', y: '24%', size: 62, turn: -10, bg: '#fff' }
+      { icon: 'code', size: 86, turn: 10, lift: 0, bg: 'var(--accent)' },
+      { icon: 'pot', size: 62, turn: -10, lift: 14, bg: '#fff' }
     ],
     home: [
-      { icon: 'coffee', x: '56%', y: '2%', size: 76, turn: -8, bg: '#ffc933' },
-      { icon: 'cat', x: '96%', y: '6%', size: 70, turn: 12, bg: 'var(--key)' }
+      { icon: 'coffee', size: 76, turn: -8, lift: 0, bg: '#ffc933' },
+      { icon: 'cat', size: 66, turn: 12, lift: 14, bg: 'var(--key)' }
     ]
   };
 
@@ -37,10 +38,9 @@
     <span
       class="sticker"
       class:round={s.round}
-      style:left={`min(${s.x}, calc(100% - ${s.size}px - 8px))`}
-      style:top={`min(${s.y}, calc(100% - ${s.size}px))`}
       style:--size={`${s.size}px`}
       style:--turn={`${s.turn}deg`}
+      style:--lift={`${s.lift}px`}
       style:background={s.bg}
     >
       <Icon name={s.icon} size={s.size * 0.62} />
@@ -50,38 +50,33 @@
 
 <style>
   .pieces {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 0.25rem 0.5rem 1.25rem 0.25rem;
     pointer-events: none;
   }
 
   .sticker {
-    position: absolute;
     display: grid;
     place-items: center;
-    width: var(--size);
-    height: var(--size);
+    flex: none;
+    width: min(var(--size), 22vw);
+    aspect-ratio: 1;
     border: 3px solid #111;
     border-radius: 10px;
     box-shadow: 4px 4px 0 #111;
     rotate: var(--turn);
-    scale: 0.7;
+    translate: 0 var(--lift);
+  }
+
+  .sticker :global(svg) {
+    width: 62%;
+    height: 62%;
   }
 
   .round {
     border-radius: 50%;
-  }
-
-  @media (max-width: 639px) {
-    .sticker {
-      display: none;
-    }
-  }
-
-  @media (min-width: 768px) {
-    .sticker {
-      scale: 1;
-    }
   }
 </style>

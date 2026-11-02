@@ -36,8 +36,8 @@
 <SEO description={ui.seo.home} {lang} path="/" jsonLd={person} />
 
 <section class="intro wrap">
-  <Pieces track="home" />
   <div class="text">
+    <Pieces track="home" />
     <h1>{home.title}</h1>
     <p class="aka">
       <a href="https://namedrop.io/abdulrahmanmousa" target="_blank" rel="noopener noreferrer">

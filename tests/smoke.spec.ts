@@ -98,3 +98,25 @@ for (const [prefix, lang, button] of [['', 'en', 'Résumé'], ['/fr', 'fr', 'CV'
     expect(await links.first().getAttribute('href')).toMatch(new RegExp(`-${other}\.pdf$`));
   });
 }
+
+for (const route of ['/', ...tracks.map((slug) => `/hire/${slug}`)]) {
+  for (const width of [320, 360, 768, 1024, 1440, 1920]) {
+    test(`stickers do not cover text on ${route} at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(route);
+      const hits = await page.evaluate(() => {
+        const boxes = [...document.querySelectorAll('.sticker')].map((el) => el.getBoundingClientRect());
+        const text = [...document.querySelectorAll('main h1, main h2, main h3, main p, main a, main button')]
+          .filter((el) => !el.closest('.pieces'))
+          .map((el) => ({ name: el.textContent?.trim().slice(0, 20), box: el.getBoundingClientRect() }))
+          .filter(({ box }) => box.width > 0 && box.height > 0);
+        const out: string[] = [];
+        for (const a of boxes)
+          for (const { name, box: b } of text)
+            if (a.left < b.right - 2 && a.right > b.left + 2 && a.top < b.bottom - 2 && a.bottom > b.top + 2) out.push(String(name));
+        return out;
+      });
+      expect(hits).toEqual([]);
+    });
+  }
+}

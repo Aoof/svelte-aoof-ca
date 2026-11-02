@@ -126,11 +126,6 @@
     padding-bottom: 1rem;
   }
 
-  .text > :global(*:not(.pieces)) {
-    position: relative;
-    z-index: 1;
-  }
-
   h1 {
     max-width: 11ch;
     font-size: var(--t-title);

@@ -90,5 +90,8 @@ export function brandFor(tool: string): Brand | undefined {
     brands[key] ??
     brands[key.replace(/\s+framework.*$/, '')] ??
     (key.startsWith('.net') ? brands['.net'] : undefined);
-  return found && { title: found.title, path: found.path, hex: found.hex };
+  if (!found) return undefined;
+  // Some marks are white (Unity), which would vanish on the white chips.
+  const light = parseInt(found.hex, 16) > 0xdddddd;
+  return { title: found.title, path: found.path, hex: light ? '111111' : found.hex };
 }

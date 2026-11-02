@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Icon from './Icon.svelte';
   import ToolList from './ToolList.svelte';
   import { href, period } from '$lib/i18n';
   import type { Locale, Project, Strings } from '$lib/content/types';
@@ -8,29 +9,47 @@
   const when = $derived(
     project.when ?? period(lang, project.start, project.end, { present: ui.present })
   );
+  const first = $derived(project.tracks[0] ?? 'web');
+  const trackIcons: Record<string, string> = { web: 'coffee', game: 'hat', qa: 'cat', software: 'code' };
 </script>
 
-<li class="row" class:plain={!project.image}>
-  {#if project.image}
-    <img src={project.image} alt="" width="640" height="400" loading="lazy" decoding="async" />
-  {/if}
-  <div class="text">
-    <h3><a href={href(lang, `/work/${project.slug}`)}>{project.name}</a></h3>
-    <p class="summary">{project.summary}</p>
-    {#if project.stack.length}
-      <div class="stack"><ToolList tools={project.stack} /></div>
+<!-- The li is the container, so the row inside can answer to its width. -->
+<li class="item">
+  <div class="row" data-track={first}>
+    <div class="thumb" class:placeholder={!project.image}>
+      {#if project.image}
+        <img src={project.image} alt="" width="640" height="400" loading="lazy" decoding="async" />
+      {:else}
+        <Icon name={trackIcons[first] ?? 'coffee'} size={56} />
+      {/if}
+    </div>
+
+    <div class="text">
+      <h3><a href={href(lang, `/work/${project.slug}`)}>{project.name}</a></h3>
+      <p class="summary">{project.summary}</p>
+      {#if project.stack.length}
+        <div class="stack"><ToolList tools={project.stack} /></div>
+      {/if}
+    </div>
+
+    {#if when}
+      <p class="when meta">{when}</p>
     {/if}
   </div>
-  {#if when}
-    <p class="when meta">{when}</p>
-  {/if}
 </li>
 
 <style>
+  .item {
+    container-type: inline-size;
+    list-style: none;
+  }
+
   .row {
     position: relative;
     display: grid;
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem 1.25rem;
+    align-items: start;
     padding: 1rem;
     border: var(--border);
     border-radius: 10px;
@@ -39,16 +58,28 @@
     transition:
       translate 120ms var(--ease),
       box-shadow 120ms var(--ease);
-    container-type: inline-size;
   }
 
-  img {
+  .thumb {
+    overflow: hidden;
     width: 100%;
     aspect-ratio: 16 / 10;
-    object-fit: cover;
     border: 3px solid #111;
     border-radius: 6px;
     background: var(--sunk);
+  }
+
+  .thumb img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .thumb.placeholder {
+    display: grid;
+    place-items: center;
+    background: var(--accent);
   }
 
   .text {
@@ -83,13 +114,6 @@
     text-decoration: underline;
     text-decoration-color: var(--accent);
     text-decoration-thickness: 3px;
-    text-decoration-thickness: 2px;
-  }
-
-  @media (hover: hover) {
-    .row:hover img {
-      outline: none;
-    }
   }
 
   .summary {
@@ -100,41 +124,26 @@
     margin: 0;
   }
 
-  @container (min-width: 36rem) {
+  @container (min-width: 34rem) {
     .row {
-      grid-template-columns: 10rem minmax(0, 1fr);
-      column-gap: 1.5rem;
-    }
-
-    .row.plain {
-      grid-template-columns: minmax(0, 1fr);
+      grid-template-columns: 11rem minmax(0, 1fr);
     }
 
     .when {
       grid-column: 2;
     }
-
-    .row.plain .when {
-      grid-column: 1;
-    }
   }
 
-  @container (min-width: 52rem) {
+  @container (min-width: 56rem) {
     .row {
-      grid-template-columns: 13.75rem minmax(0, 1fr) 10rem;
-    }
-
-    .row.plain {
-      grid-template-columns: minmax(0, 1fr) 10rem;
+      grid-template-columns: 15rem minmax(0, 1fr) auto;
     }
 
     .when {
       grid-column: 3;
+      grid-row: 1;
       text-align: right;
-    }
-
-    .row.plain .when {
-      grid-column: 2;
+      white-space: nowrap;
     }
   }
 </style>

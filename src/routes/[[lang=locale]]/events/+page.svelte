@@ -31,8 +31,8 @@
 <section class="wrap">
   {#if shown.length}
     <ul class="list">
-      {#each shown as event (event.name)}
-        <EventRow {event} {lang} ui={ui.common} />
+      {#each shown as event, index (event.name)}
+        <EventRow {event} {lang} ui={ui.common} {index} />
       {/each}
     </ul>
   {:else}
@@ -79,9 +79,11 @@
   }
 
   .list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
     list-style: none;
-    border-bottom: 1px solid var(--line);
   }
 </style>
