@@ -1,0 +1,50 @@
+{
+  "en": {
+    "name": "Operation Redacted",
+    "slug": "operation-redacted",
+    "summary": "A Godot game played with a custom USB controller, made at the Project Icarus hackathon. I wrote the Python bridge.",
+    "description": "<p>For Project Icarus, our team made a Godot game played with a custom controller. I wrote a Python bridge that reads the controller over USB serial and forwards its input to the game through a local socket.</p><p>I also wrote about 640 lines of GDScript for character movement, the camera and input handling. I am the top contributor, with 21 of 34 commits.</p>",
+    "links": [
+      {
+        "label": "See the code",
+        "url": "https://github.com/aoof/operation-redacted"
+      }
+    ],
+    "stack": [
+      "Godot",
+      "GDScript",
+      "Python"
+    ],
+    "tracks": [
+      "game"
+    ],
+    "start": "2024-10",
+    "end": "2024-10",
+    "role": "Programmer",
+    "team": "Hackathon team"
+  },
+  "fr": {
+    "name": "Operation Redacted",
+    "slug": "operation-redacted",
+    "summary": "Un jeu Godot joué avec une manette USB sur mesure, fait au hackathon Project Icarus. J'ai écrit le pont Python.",
+    "description": "<p>Pour Project Icarus, notre équipe a fait un jeu Godot joué avec une manette sur mesure. J'ai écrit un pont Python qui lit la manette par liaison série USB et transmet ses entrées au jeu par un socket local.</p><p>J'ai aussi écrit environ 640 lignes de GDScript pour le mouvement du personnage, la caméra et la gestion des entrées. Je suis le principal contributeur, avec 21 des 34 commits.</p>",
+    "links": [
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/aoof/operation-redacted"
+      }
+    ],
+    "stack": [
+      "Godot",
+      "GDScript",
+      "Python"
+    ],
+    "tracks": [
+      "game"
+    ],
+    "start": "2024-10",
+    "end": "2024-10",
+    "role": "Programmeur",
+    "team": "Équipe de hackathon"
+  }
+}

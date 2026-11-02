@@ -1,50 +1,68 @@
 {
   "en": {
     "name": "Aska",
+    "slug": "aska",
+    "summary": "I tested ASKA for over 2 months at Altagram, and my name is in the game's credits.",
     "description": "<p>Aska was one of my favourite games to test during my time at Altagram. It's a survival game and a simulator that revolves around gathering resources, crafting items, and building a village with smart AI villagers.</p><p>This was also one of the longest projects I worked on, so I've found hundreds of bugs, linguistic and functional.</p>",
-    "tags": [
+    "story": {
+      "problem": "I hit a bug that only I ever saw, and only once: the village chunks stopped loading. I'd triggered the boss fight by accident, so I had no idea why it happened.",
+      "did": "I had the incident on video and could have filed it as a vague, hard-to-reproduce bug. I decided to dig instead. After watching the video many times, I noticed the boss at the edge of the frame. I went back and kept fighting it until the bug triggered. If the player dies to the boss and quits the game instead of respawning first, the game keeps the chunks near the boss alive and never loads the village chunks. Once I could reproduce it, I kept testing to confirm my theory and to check for other issues. It took days.",
+      "with": "I wrote simple reproduction steps and shared them with my colleagues to see if they made sense. They did. A few of them replied with videos of themselves triggering the same bug.",
+      "result": "The bug was fixed, and I got the regression check afterwards, since I'd spent days learning every way it could go wrong. My team keeps saying I find the craziest bugs. I think it's because I won't stop until I understand how something works."
+    },
+    "image": "/media/aska.jpg",
+    "links": [
       {
-        "title": "Functional Quality Assurance",
-        "icon": "certificate"
+        "label": "See me in the credits on Steam",
+        "url": "https://store.steampowered.com/app/1898300/ASKA/"
       },
       {
-        "title": "Localization Testing",
-        "icon": "language"
-      },
-      {
-        "title": "Bug Tracking",
-        "icon": "bug"
-      },
-      {
-        "title": "Altagram Project",
-        "icon": "altagram"
+        "label": "Visit the game site",
+        "url": "https://playaska.com/"
       }
     ],
-    "image": "/media/aska.jpg",
-    "link": "https://playaska.com/"
+    "stack": [
+      "Functional QA",
+      "Localization testing",
+      "Bug tracking"
+    ],
+    "tracks": [
+      "qa"
+    ],
+    "role": "Functional QA tester",
+    "team": "Altagram QA team"
   },
   "fr": {
     "name": "Aska",
+    "slug": "aska",
+    "summary": "J'ai testé ASKA pendant plus de 2 mois chez Altagram, et mon nom figure aux crédits du jeu.",
     "description": "<p>Aska était l'un de mes jeux préférés à tester au cours de mon travail chez Altagram. C'est un jeu de survie et un simulateur qui tourne autour de la collecte de ressources, de la création d'articles et de la construction d'un village avec des villageois IA intelligents.</p><p>C'était aussi l'un des projets les plus longs sur lesquels j'ai travaillé, donc j'ai trouvé des centaines de bugs, linguistiques et fonctionnels.</p>",
-    "tags": [
+    "story": {
+      "problem": "Je suis tombé sur un bogue que j'étais le seul à voir, et une seule fois : les morceaux du village ont cessé de se charger. J'avais déclenché le combat contre le boss par accident, alors je ne savais pas pourquoi ça s'était produit.",
+      "did": "J'avais l'incident en vidéo et j'aurais pu le déclarer comme un bogue vague et difficile à reproduire. J'ai préféré creuser. Après avoir revu la vidéo plusieurs fois, j'ai remarqué le boss au bord de l'image. Je suis retourné le combattre jusqu'à ce que le bogue se déclenche. Si le joueur meurt contre le boss et quitte le jeu au lieu de réapparaître d'abord, le jeu garde actifs les morceaux près du boss et ne charge jamais ceux du village. Une fois que je pouvais le reproduire, j'ai continué à tester pour confirmer ma théorie et chercher d'autres problèmes. Ça m'a pris des jours.",
+      "with": "J'ai écrit des étapes de reproduction simples et je les ai partagées avec mes collègues pour voir si elles étaient claires. Elles l'étaient. Quelques-uns m'ont répondu avec des vidéos d'eux-mêmes en train de déclencher le même bogue.",
+      "result": "Le bogue a été corrigé, et j'ai eu la vérification de régression ensuite, puisque j'avais passé des jours à apprendre toutes les façons dont il pouvait mal tourner. Mon équipe répète que je trouve les bogues les plus fous. Je pense que c'est parce que je ne lâche pas tant que je ne comprends pas comment quelque chose fonctionne."
+    },
+    "image": "/media/aska.jpg",
+    "links": [
       {
-        "title": "Functional Quality Assurance",
-        "icon": "certificate"
+        "label": "Voir mon nom aux crédits sur Steam",
+        "url": "https://store.steampowered.com/app/1898300/ASKA/"
       },
       {
-        "title": "Localization Testing",
-        "icon": "language"
-      },
-      {
-        "title": "Bug Tracking",
-        "icon": "bug"
-      },
-      {
-        "title": "Altagram Project",
-        "icon": "altagram"
+        "label": "Visiter le site du jeu",
+        "url": "https://playaska.com/"
       }
     ],
-    "image": "/media/aska.jpg",
-    "link": "https://playaska.com/"
+    "stack": [
+      "Functional QA",
+      "Localization testing",
+      "Bug tracking"
+    ],
+    "tracks": [
+      "qa"
+    ],
+    "role": "Testeur AQ fonctionnelle",
+    "team": "Équipe d'AQ d'Altagram"
   }
 }

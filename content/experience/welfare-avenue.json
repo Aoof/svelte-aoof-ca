@@ -1,0 +1,20 @@
+{
+  "en": {
+    "kind": "volunteering",
+    "title": "Frontend Developer",
+    "location": "Welfare Avenue, Montreal QC - Freelance / Maintenance",
+    "start": "2023-10",
+    "end": "",
+    "description": "Bringing designs to life for a charity organization using ;[React]. I jump between coding and collaborating on design decisions, which has been a great balance of technical work and creative input. Each update is a chance to refine my ;[frontend development] skills and learn something new.",
+    "tracks": []
+  },
+  "fr": {
+    "kind": "volunteering",
+    "title": "Développeur Frontend",
+    "location": "Welfare Avenue, Montréal QC - Freelance / Maintenance",
+    "start": "2023-10",
+    "end": "",
+    "description": "Donner vie aux conceptions d'une organisation caritative en utilisant ;[React]. Je jongle entre le codage et la collaboration sur les décisions de conception, ce qui a été un excellent équilibre entre le travail technique et l'apport créatif. Chaque mise à jour est une chance de perfectionner mes compétences en ;[développement frontend] et d'apprendre quelque chose de nouveau.",
+    "tracks": []
+  }
+}

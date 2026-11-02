@@ -1,37 +1,52 @@
-import { writable } from 'svelte/store';
+import type { Locale } from '$lib/content/types';
 
-export type Locale = 'en' | 'fr';
+export type { Locale };
 
-export const currentLocale = writable<Locale>('en');
+export const prefix = (lang: Locale) => (lang === 'fr' ? '/fr' : '');
 
-export const setLocale = async (newLocale: string) => {
-  const nextLocale: Locale = newLocale === 'fr' ? 'fr' : 'en';
-  currentLocale.set(nextLocale);
-
-  if (typeof document !== 'undefined') {
-    document.documentElement.lang = nextLocale;
-    localStorage.setItem('preferredLocale', nextLocale);
-  }
+/** Build a link in the given language. */
+export const href = (lang: Locale, path = '/') => {
+  const p = prefix(lang);
+  if (path === '/' || path === '') return p || '/';
+  return p + (path.startsWith('/') ? path : `/${path}`);
 };
 
-export const getCurrentLocale = () => {
-  let current: Locale = 'en';
-  const unsubscribe = currentLocale.subscribe(value => current = value);
-  unsubscribe();
-  return current;
+export const stripLang = (pathname: string) => {
+  if (pathname === '/fr') return '/';
+  return pathname.startsWith('/fr/') ? pathname.slice(3) : pathname;
 };
 
-export const initializeLocale = async () => {
-  let preferredLocale: Locale = 'en';
+export const swapLang = (pathname: string, to: Locale) => href(to, stripLang(pathname));
 
-  if (typeof window !== 'undefined') {
-    const stored = localStorage.getItem('preferredLocale');
-    if (stored && (stored === 'en' || stored === 'fr')) {
-      preferredLocale = stored;
-    } else if (navigator.language.split('-')[0] === 'fr') {
-      preferredLocale = 'fr';
-    }
-  }
-
-  await setLocale(preferredLocale);
+const months: Record<Locale, string[]> = {
+  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  fr: ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin', 'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.']
 };
+
+/** "2025-11" becomes "Nov 2025" or "nov. 2025". Hand-rolled so server and browser always agree. */
+export function formatMonth(lang: Locale, ym?: string): string {
+  if (!ym) return '';
+  const [y, m] = ym.split('-');
+  if (!m) return y;
+  return `${months[lang][Number(m) - 1]} ${y}`;
+}
+
+/** end === '' means ongoing; start === end collapses to one month. */
+export function period(
+  lang: Locale,
+  start: string | undefined,
+  end: string | undefined,
+  words: { present: string; expected?: string },
+  expected = false
+): string {
+  if (!start) return '';
+  const from = formatMonth(lang, start);
+  const to = lang === 'fr' ? 'à' : 'to';
+  if (end === undefined || end === start) return from;
+  if (end === '') return `${from} ${to} ${words.present}`;
+  const last = formatMonth(lang, end);
+  return expected && words.expected ? `${from} ${to} ${last} (${words.expected})` : `${from} ${to} ${last}`;
+}
+
+export const newestFirst = <T extends { start?: string }>(a: T, b: T) =>
+  (b.start ?? '').localeCompare(a.start ?? '');

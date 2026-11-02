@@ -1,0 +1,50 @@
+{
+  "en": {
+    "name": "Elite Earthquake Tracker",
+    "slug": "elite-earthquake-tracker",
+    "summary": "A map of magnitude 4.5+ earthquakes from the USGS API, with date filters.",
+    "description": "<p>I made this for the ELITE club in March 2026. It plots magnitude 4.5+ earthquakes from the USGS API on a MapLibre GL map in SvelteKit, with date filters, and it is deployed on Vercel.</p>",
+    "links": [
+      {
+        "label": "See the code",
+        "url": "https://github.com/aoof/elite-earthquake-tracker"
+      }
+    ],
+    "stack": [
+      "SvelteKit",
+      "MapLibre GL",
+      "USGS API",
+      "Vercel"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2026-03",
+    "end": "2026-03",
+    "role": "Developer"
+  },
+  "fr": {
+    "name": "Elite Earthquake Tracker",
+    "slug": "elite-earthquake-tracker",
+    "summary": "Une carte des séismes de magnitude 4,5 et plus de l'API USGS, avec des filtres de date.",
+    "description": "<p>Je l'ai fait pour le club ELITE en mars 2026. Il affiche les séismes de magnitude 4,5 et plus de l'API USGS sur une carte MapLibre GL en SvelteKit, avec des filtres de date, et il est déployé sur Vercel.</p>",
+    "links": [
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/aoof/elite-earthquake-tracker"
+      }
+    ],
+    "stack": [
+      "SvelteKit",
+      "MapLibre GL",
+      "USGS API",
+      "Vercel"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2026-03",
+    "end": "2026-03",
+    "role": "Développeur"
+  }
+}

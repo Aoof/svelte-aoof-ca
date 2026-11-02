@@ -1,0 +1,28 @@
+{
+  "en": {
+    "slug": "qa",
+    "order": 3,
+    "title": "QA tester",
+    "hire": "Hire a QA tester",
+    "pitch": "I did functional and linguistic QA on 10+ games for PlayStation, Xbox and Nintendo at Altagram. Being a developer helps me reproduce, isolate and write up bugs so other people can reproduce them too.",
+    "resume": "/media/amousa-resume-base-qa-en.pdf",
+    "featured": [
+      "aska",
+      "lonely-mountains-snow-riders",
+      "planet-of-lana-ii"
+    ]
+  },
+  "fr": {
+    "slug": "qa",
+    "order": 3,
+    "title": "Testeur AQ",
+    "hire": "Embauchez un testeur AQ",
+    "pitch": "J'ai fait de l'AQ fonctionnelle et linguistique sur plus de 10 jeux pour PlayStation, Xbox et Nintendo chez Altagram. Mon expérience de développeur m'aide à reproduire, isoler et documenter les bogues pour que les autres puissent les reproduire aussi.",
+    "resume": "/media/amousa-resume-base-qa-fr.pdf",
+    "featured": [
+      "aska",
+      "lonely-mountains-snow-riders",
+      "planet-of-lana-ii"
+    ]
+  }
+}

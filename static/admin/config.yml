@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# Field names mirror src/lib/content/types.ts. Change both together.
 
 backend:
   name: github
@@ -26,22 +27,23 @@ collections:
         format: json
         i18n: true
         fields:
-          - name: brand
-            label: Brand
-            widget: string
-            i18n: duplicate
+          - { name: brand, label: Brand, widget: string, i18n: duplicate }
           - name: navigation
             label: Navigation
             widget: object
             i18n: true
             fields:
               - { name: home, label: Home, widget: string, i18n: true }
-              - { name: about, label: About, widget: string, i18n: true }
+              - { name: work, label: Work, widget: string, i18n: true }
+              - { name: experience, label: Experience, widget: string, i18n: true }
               - { name: events, label: Events, widget: string, i18n: true }
-              - { name: projects, label: Projects, widget: string, i18n: true }
               - { name: contact, label: Contact, widget: string, i18n: true }
               - { name: resume, label: Resume, widget: string, i18n: true }
-              - { name: language, label: Language Toggle, widget: string, i18n: true }
+              - { name: language, label: Language, widget: string, i18n: true }
+              - { name: menu, label: Menu, widget: string, i18n: true }
+              - { name: close, label: Close, widget: string, i18n: true }
+              - { name: skip, label: Skip, widget: string, i18n: true }
+              - { name: footnotes, label: Footnotes, widget: string, i18n: true }
           - name: contact
             label: Contact
             widget: object
@@ -60,61 +62,181 @@ collections:
               - { name: github, label: GitHub, widget: string, i18n: duplicate }
               - { name: linkedin, label: LinkedIn, widget: string, i18n: duplicate }
               - { name: discord, label: Discord, widget: string, i18n: duplicate }
-          - name: resume
-            label: Resume
-            widget: object
-            i18n: duplicate
-            fields:
-              - { name: english, label: English PDF, widget: file, i18n: duplicate }
-              - { name: french, label: French PDF, widget: file, i18n: duplicate }
           - name: ui
-            label: Interface Text
+            label: Ui
             widget: object
             i18n: true
             fields:
-              - name: about
-                label: About and Events
+              - name: common
+                label: Common
                 widget: object
                 i18n: true
                 fields:
-                  - { name: workExperienceTitle, label: Work Experience Title, widget: string, i18n: true }
-                  - { name: current, label: Current Label, widget: string, i18n: true }
-                  - { name: websiteTitle, label: Website Title, widget: string, i18n: true }
-                  - { name: websiteDescription, label: Website Description, widget: text, i18n: true }
-                  - { name: eventsCompetitionsTitle, label: Events Title, widget: string, i18n: true }
-                  - { name: eventsCompetitionsDescription, label: Events Description, widget: text, i18n: true }
-                  - { name: eventsSearchLabel, label: Events Search Label, widget: string, i18n: true }
-                  - { name: eventsSearchPlaceholder, label: Events Search Placeholder, widget: string, i18n: true }
-                  - { name: eventsNoResults, label: No Results Message, widget: string, i18n: true }
-                  - { name: linkedinPost, label: LinkedIn Label, widget: string, i18n: true }
-              - name: contact
-                label: Contact Form
+                  - { name: present, label: Present, widget: string, i18n: true }
+                  - { name: expected, label: Expected, widget: string, i18n: true }
+                  - { name: readMore, label: Read More, widget: string, i18n: true }
+                  - { name: caseStudy, label: Case Study, widget: string, i18n: true }
+                  - { name: linkedinPost, label: Linkedin Post, widget: string, i18n: true }
+                  - { name: emailMe, label: Email Me, widget: string, i18n: true }
+              - name: home
+                label: Home
                 widget: object
                 i18n: true
                 fields:
-                  - name: form
-                    label: Form
-                    widget: object
-                    i18n: true
-                    fields:
-                      - { name: title, label: Title, widget: string, i18n: true }
-                      - { name: email, label: Email Label, widget: string, i18n: true }
-                      - { name: emailPlaceholder, label: Email Placeholder, widget: string, i18n: true }
-                      - { name: message, label: Message Label, widget: string, i18n: true }
-                      - { name: messagePlaceholder, label: Message Placeholder, widget: string, i18n: true }
-                      - { name: send, label: Send Label, widget: string, i18n: true }
-                      - { name: submitting, label: Submitting Label, widget: string, i18n: true }
-                      - { name: success, label: Success Message, widget: string, i18n: true }
-                      - { name: error, label: Error Message, widget: string, i18n: true }
-              - name: resume
-                label: Resume Modal
+                  - { name: handTitle, label: Hand Title, widget: string, i18n: true }
+                  - { name: featuredTitle, label: Featured Title, widget: string, i18n: true }
+                  - { name: seeAll, label: See All, widget: string, i18n: true }
+                  - { name: interestsLabel, label: Interests Label, widget: string, i18n: true }
+              - name: track
+                label: Track
+                widget: object
+                i18n: true
+                fields:
+                  - { name: resume, label: Resume, widget: string, i18n: true }
+                  - { name: featuredTitle, label: Featured Title, widget: string, i18n: true }
+                  - { name: moreTitle, label: More Title, widget: string, i18n: true }
+                  - { name: experienceTitle, label: Experience Title, widget: string, i18n: true }
+                  - { name: toolsTitle, label: Tools Title, widget: string, i18n: true }
+                  - { name: ctaTitle, label: Cta Title, widget: string, i18n: true }
+                  - { name: ctaText, label: Cta Text, widget: string, i18n: true }
+                  - { name: otherRoles, label: Other Roles, widget: string, i18n: true }
+              - name: work
+                label: Work
                 widget: object
                 i18n: true
                 fields:
                   - { name: title, label: Title, widget: string, i18n: true }
-                  - { name: prompt, label: Prompt, widget: string, i18n: true }
-                  - { name: preview, label: Preview Label, widget: string, i18n: true }
-                  - { name: download, label: Download Label, widget: string, i18n: true }
+                  - { name: intro, label: Intro, widget: string, i18n: true }
+                  - { name: filterLabel, label: Filter Label, widget: string, i18n: true }
+                  - { name: all, label: All, widget: string, i18n: true }
+                  - { name: empty, label: Empty, widget: string, i18n: true }
+              - name: case
+                label: Case
+                widget: object
+                i18n: true
+                fields:
+                  - { name: back, label: Back, widget: string, i18n: true }
+                  - { name: role, label: Role, widget: string, i18n: true }
+                  - { name: when, label: When, widget: string, i18n: true }
+                  - { name: team, label: Team, widget: string, i18n: true }
+                  - { name: tools, label: Tools, widget: string, i18n: true }
+                  - { name: problem, label: Problem, widget: string, i18n: true }
+                  - { name: did, label: Did, widget: string, i18n: true }
+                  - { name: with, label: With, widget: string, i18n: true }
+                  - { name: result, label: Result, widget: string, i18n: true }
+                  - { name: more, label: More, widget: string, i18n: true }
+              - name: experience
+                label: Experience
+                widget: object
+                i18n: true
+                fields:
+                  - { name: title, label: Title, widget: string, i18n: true }
+                  - { name: intro, label: Intro, widget: string, i18n: true }
+                  - { name: jobs, label: Jobs, widget: string, i18n: true }
+                  - { name: education, label: Education, widget: string, i18n: true }
+                  - { name: volunteering, label: Volunteering, widget: string, i18n: true }
+                  - { name: other, label: Other, widget: string, i18n: true }
+                  - { name: otherNote, label: Other Note, widget: string, i18n: true }
+              - name: events
+                label: Events
+                widget: object
+                i18n: true
+                fields:
+                  - { name: title, label: Title, widget: string, i18n: true }
+                  - { name: intro, label: Intro, widget: text, i18n: true }
+                  - { name: searchLabel, label: Search Label, widget: string, i18n: true }
+                  - { name: searchPlaceholder, label: Search Placeholder, widget: string, i18n: true }
+                  - { name: noResults, label: No Results, widget: string, i18n: true }
+              - name: contact
+                label: Contact
+                widget: object
+                i18n: true
+                fields:
+                  - { name: title, label: Title, widget: string, i18n: true }
+                  - { name: intro, label: Intro, widget: text, i18n: true }
+                  - { name: detailsTitle, label: Details Title, widget: string, i18n: true }
+                  - { name: email, label: Email, widget: string, i18n: true }
+                  - { name: discord, label: Discord, widget: string, i18n: true }
+                  - { name: location, label: Location, widget: string, i18n: true }
+                  - { name: formTitle, label: Form Title, widget: string, i18n: true }
+                  - { name: emailLabel, label: Email Label, widget: string, i18n: true }
+                  - { name: messageLabel, label: Message Label, widget: string, i18n: true }
+                  - { name: send, label: Send, widget: string, i18n: true }
+                  - { name: sending, label: Sending, widget: string, i18n: true }
+                  - { name: sent, label: Sent, widget: string, i18n: true }
+                  - { name: error, label: Error, widget: text, i18n: true }
+                  - { name: required, label: Required, widget: string, i18n: true }
+                  - { name: invalidEmail, label: Invalid Email, widget: string, i18n: true }
+              - name: card
+                label: Card
+                widget: object
+                i18n: true
+                fields:
+                  - { name: scan, label: Scan, widget: string, i18n: true }
+                  - { name: showFront, label: Show Front, widget: string, i18n: true }
+                  - { name: showBack, label: Show Back, widget: string, i18n: true }
+                  - { name: flip, label: Flip, widget: string, i18n: true }
+                  - { name: copyEmail, label: Copy Email, widget: string, i18n: true }
+                  - { name: copied, label: Copied, widget: string, i18n: true }
+                  - { name: saveContact, label: Save Contact, widget: string, i18n: true }
+                  - { name: print, label: Print, widget: string, i18n: true }
+              - name: seo
+                label: Seo
+                widget: object
+                i18n: true
+                fields:
+                  - { name: home, label: Home, widget: text, i18n: true }
+                  - { name: work, label: Work, widget: text, i18n: true }
+                  - { name: experience, label: Experience, widget: text, i18n: true }
+                  - { name: events, label: Events, widget: string, i18n: true }
+                  - { name: contact, label: Contact, widget: text, i18n: true }
+                  - { name: card, label: Card, widget: text, i18n: true }
+                  - { name: footnotes, label: Footnotes, widget: text, i18n: true }
+              - name: interests
+                label: Interests
+                widget: object
+                i18n: true
+                fields:
+                  - { name: coffee, label: Coffee, widget: string, i18n: true }
+                  - { name: cat, label: Cat, widget: string, i18n: true }
+                  - { name: movies, label: Movies, widget: string, i18n: true }
+                  - { name: anime, label: Anime, widget: string, i18n: true }
+                  - { name: music, label: Music, widget: string, i18n: true }
+                  - { name: flower, label: Flower, widget: string, i18n: true }
+                  - { name: leaf, label: Leaf, widget: string, i18n: true }
+                  - { name: tea, label: Tea, widget: string, i18n: true }
+                  - { name: volleyball, label: Volleyball, widget: string, i18n: true }
+                  - { name: football, label: Football, widget: string, i18n: true }
+                  - { name: hat, label: Hat, widget: string, i18n: true }
+                  - { name: pot, label: Pot, widget: string, i18n: true }
+                  - { name: milk, label: Milk, widget: string, i18n: true }
+                  - { name: code, label: Code, widget: string, i18n: true }
+                  - { name: teach, label: Teach, widget: string, i18n: true }
+                  - { name: hike, label: Hike, widget: string, i18n: true }
+              - name: footnotes
+                label: Footnotes
+                widget: object
+                i18n: true
+                fields:
+                  - { name: title, label: Title, widget: string, i18n: true }
+                  - { name: intro, label: Intro, widget: string, i18n: true }
+                  - { name: drawnTitle, label: Drawn Title, widget: string, i18n: true }
+                  - { name: drawn, label: Drawn, widget: text, i18n: true }
+                  - { name: brandsTitle, label: Brands Title, widget: string, i18n: true }
+                  - { name: brands, label: Brands, widget: string, i18n: true }
+                  - { name: trademarks, label: Trademarks, widget: text, i18n: true }
+                  - { name: typeTitle, label: Type Title, widget: string, i18n: true }
+                  - { name: type, label: Type, widget: string, i18n: true }
+                  - { name: typeVia, label: Type Via, widget: string, i18n: true }
+                  - { name: qrTitle, label: Qr Title, widget: string, i18n: true }
+                  - { name: qr, label: Qr, widget: string, i18n: true }
+              - name: resume
+                label: Resume
+                widget: object
+                i18n: true
+                fields:
+                  - { name: title, label: Title, widget: string, i18n: true }
+                  - { name: language, label: Language, widget: string, i18n: true }
 
   - name: home
     label: Home Page
@@ -128,44 +250,74 @@ collections:
         fields:
           - { name: title, label: Name, widget: string, i18n: duplicate }
           - { name: subtitle, label: Subtitle, widget: string, i18n: true }
-          - { name: subtitle_highlight, label: Subtitle Highlight, widget: string, i18n: true }
+          - { name: subtitle_highlight, label: Pronunciation Label, widget: string, i18n: true }
           - { name: location, label: Location, widget: string, i18n: true }
           - { name: description, label: Description, widget: richtext, i18n: true }
           - { name: passion, label: Passion, widget: richtext, i18n: true }
-          - { name: looking_for, label: Looking For, widget: richtext, i18n: true }
-          - name: skills
-            label: Skills Labels
-            widget: object
-            i18n: true
-            fields:
-              - { name: proficient, label: Proficient Label, widget: string, i18n: true }
-              - { name: familiar, label: Familiar Label, widget: string, i18n: true }
+          - { name: looking_for, label: Looking For (status line), widget: richtext, i18n: true }
+          - { name: featured, label: Featured Project Slugs, widget: list, field: { name: slug, label: Slug, widget: string }, i18n: duplicate }
 
-  - name: skills
-    label: Skills
-    files:
-      - name: skills
-        label: Skills
-        file: content/skills.json
-        format: json
+  - name: tracks
+    label: Hiring Tracks
+    folder: content/tracks
+    create: false
+    format: json
+    i18n:
+      structure: single_file
+    identifier_field: slug
+    summary: "{{order}}. {{title}}"
+    fields:
+      - { name: slug, label: Slug, widget: string, i18n: duplicate }
+      - { name: order, label: Order, widget: number, value_type: int, i18n: duplicate }
+      - { name: title, label: Role Title (card type), widget: string, i18n: true }
+      - { name: hire, label: Page Title, widget: string, i18n: true }
+      - { name: pitch, label: Pitch, widget: text, i18n: true }
+      - { name: resume, label: Résumé PDF, widget: file, i18n: true }
+      - { name: featured, label: Featured Project Slugs, widget: list, field: { name: slug, label: Slug, widget: string }, i18n: duplicate }
+
+  - name: projects
+    label: Projects
+    folder: content/projects
+    create: true
+    format: json
+    i18n:
+      structure: single_file
+    identifier_field: slug
+    summary: "{{name}}"
+    fields:
+      - { name: name, label: Name, widget: string, i18n: true }
+      - { name: slug, label: Slug (URL), widget: string, i18n: duplicate }
+      - { name: summary, label: One-line Outcome, widget: string, i18n: true }
+      - { name: description, label: Description, widget: richtext, required: false, i18n: true }
+      - name: story
+        label: Case Study
+        widget: object
+        required: false
+        i18n: true
         fields:
-          - name: proficient
-            label: Proficient Skills
-            widget: list
-            fields:
-              - { name: title, label: Title, widget: string }
-              - { name: icon, label: Icon Key, widget: string, required: false }
-              - { name: icon_class, label: Font Awesome Class, widget: string, required: false }
-          - name: familiar
-            label: Familiar Skills
-            widget: list
-            fields:
-              - { name: title, label: Title, widget: string }
-              - { name: icon, label: Icon Key, widget: string, required: false }
-              - { name: icon_class, label: Font Awesome Class, widget: string, required: false }
+          - { name: problem, label: Problem, widget: richtext, required: false, i18n: true }
+          - { name: did, label: What I Did, widget: richtext, required: false, i18n: true }
+          - { name: with, label: Who I Worked With, widget: richtext, required: false, i18n: true }
+          - { name: result, label: Result, widget: richtext, required: false, i18n: true }
+      - { name: image, label: Image, widget: image, required: false, i18n: duplicate }
+      - name: links
+        label: Links
+        widget: list
+        required: false
+        i18n: true
+        fields:
+          - { name: label, label: Label, widget: string, i18n: true }
+          - { name: url, label: URL, widget: string, i18n: duplicate }
+      - { name: stack, label: Tools, widget: list, field: { name: tool, label: Tool, widget: string }, i18n: duplicate }
+      - { name: tracks, label: Tracks, widget: select, multiple: true, options: [web, game, qa, software], i18n: duplicate }
+      - { name: start, label: Start (YYYY-MM), widget: string, required: false, i18n: duplicate }
+      - { name: end, label: End (YYYY-MM, empty means ongoing), widget: string, required: false, i18n: duplicate }
+      - { name: when, label: Dates Override (free text), widget: string, required: false, i18n: true }
+      - { name: role, label: Role, widget: string, required: false, i18n: true }
+      - { name: team, label: Team, widget: string, required: false, i18n: true }
 
   - name: experience
-    label: Work Experience
+    label: Experience
     folder: content/experience
     create: true
     format: json
@@ -174,11 +326,16 @@ collections:
     identifier_field: title
     summary: "{{title}} - {{location}}"
     fields:
+      - { name: kind, label: Kind, widget: select, options: [job, education, volunteering, other], i18n: duplicate }
       - { name: title, label: Title, widget: string, i18n: true }
-      - { name: location, label: Location, widget: string, i18n: true }
-      - { name: date, label: Date, widget: string, i18n: true }
-      - { name: current, label: Current Role, widget: boolean, i18n: duplicate }
+      - { name: location, label: Organization and Place, widget: string, i18n: true }
+      - { name: start, label: Start (YYYY-MM), widget: string, required: false, i18n: duplicate }
+      - { name: end, label: End (YYYY-MM, empty means ongoing), widget: string, required: false, i18n: duplicate }
+      - { name: expected, label: End Date Is Expected, widget: boolean, required: false, i18n: duplicate }
       - { name: description, label: Description, widget: richtext, i18n: true }
+      - { name: tracks, label: Tracks, widget: select, multiple: true, required: false, options: [web, game, qa, software], i18n: duplicate }
+      - { name: project, label: Case Study Slug, widget: string, required: false, i18n: duplicate }
+      - { name: link, label: External Link, widget: string, required: false, i18n: duplicate }
 
   - name: events
     label: Events and Competitions
@@ -191,31 +348,10 @@ collections:
     summary: "{{name}} - {{time}}"
     fields:
       - { name: name, label: Name, widget: string, i18n: true }
-      - { name: location, label: Location, widget: string, i18n: true }
-      - { name: time, label: Date, widget: string, i18n: true }
+      - { name: location, label: Location, widget: string, required: false, i18n: true }
+      - { name: time, label: Date (as shown), widget: string, i18n: true }
+      - { name: date, label: Date for Sorting (YYYY-MM), widget: string, i18n: duplicate }
       - { name: summary, label: Summary, widget: richtext, i18n: true }
       - { name: image, label: Image, widget: image, required: false, i18n: duplicate }
       - { name: link, label: External Link, widget: string, required: false, i18n: duplicate }
-
-  - name: projects
-    label: Projects
-    folder: content/projects
-    create: true
-    format: json
-    i18n:
-      structure: single_file
-    identifier_field: name
-    summary: "{{name}}"
-    fields:
-      - { name: name, label: Name, widget: string, i18n: true }
-      - { name: description, label: Description, widget: richtext, i18n: true }
-      - { name: image, label: Image, widget: image, i18n: duplicate }
-      - { name: link, label: Project Link, widget: string, i18n: duplicate }
-      - name: tags
-        label: Technologies and Skills
-        widget: list
-        i18n: true
-        fields:
-          - { name: title, label: Title, widget: string, i18n: true }
-          - { name: icon, label: Icon Key, widget: string, required: false, i18n: duplicate }
-          - { name: icon_class, label: Font Awesome Class, widget: string, required: false, i18n: duplicate }
+      - { name: project, label: Case Study Slug, widget: string, required: false, i18n: duplicate }

@@ -1,66 +1,74 @@
 {
   "en": {
     "name": "IEAC Official Website",
+    "slug": "ieac-official-website",
+    "summary": "I solo'd the council's site in 6 weeks. It serves 11 societies, the spam stopped, and it has had 6,000+ impressions.",
     "description": "<p>For the <strong>International and Ethnic Associations Council (IEAC)</strong>, I solo'd the development of their official website.</p><p>The goal was to create a dynamic and responsive platform that serves as an information hub for the council, catering to diverse communities and promoting cultural inclusivity.</p>",
-    "tags": [
+    "story": {
+      "problem": "The council's old site had an outdated design, no way to update it, and a spam problem: explicit comments flooded the comments tab. It also had no page for each society, which kept the council from finding sponsors for its events. They asked me for my services at a low price.",
+      "did": "I said yes because they needed it, and I took the low price as a chance to learn the stack I was using. I redesigned the site, improved the UX, and added anti-spam and CSRF protection. I built an admin back end so the council can add or remove information, pass and publish by-laws, change team members, add posts and events, and edit site details and translations. The council had money trouble, so I looked for the cheapest hosting that still had strong specs. AWS EC2 was expensive and Hetzner was the cheapest I found, so I moved the site there. The move was easy because the code was in a repository and the data in MongoDB. I only had to change firewall settings and set up the Linux server.",
+      "with": "I worked directly with the General Manager, who isn't technical. We went out to eat many times to talk about changes. I had to push to get him into meetings, so I made sure any issue that needed him took no more than 5 minutes of his time.",
+      "result": "The anti-spam and CSRF protection stopped the spam altogether. The site covers 11 societies, took 6 weeks (about 60 hours), and has had over 6,000 impressions since launch, as of October 2026. The council still uses it."
+    },
+    "image": "/media/ieac.png",
+    "links": [
       {
-        "title": "HTML",
-        "icon_class": "fa-brands fa-html5"
-      },
-      {
-        "title": "CSS",
-        "icon_class": "fa-brands fa-css3"
-      },
-      {
-        "title": "JavaScript",
-        "icon_class": "fa-brands fa-js"
-      },
-      {
-        "title": "Express",
-        "icon": "express"
-      },
-      {
-        "title": "MongoDB",
-        "icon": "mongodb"
-      },
-      {
-        "title": "Hetzner VPS",
-        "icon": "hetzner"
+        "label": "Visit ieac.ca",
+        "url": "https://ieac.ca"
       }
     ],
-    "image": "/media/ieac.png",
-    "link": "https://ieac.ca"
+    "stack": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Webpack",
+      "Hetzner"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2023-12",
+    "end": "2024-12",
+    "role": "Full-stack web developer",
+    "team": "Solo, working with the council's General Manager"
   },
   "fr": {
     "name": "Site officiel IEAC",
+    "slug": "ieac-official-website",
+    "summary": "J'ai réalisé seul le site du conseil en 6 semaines. Il sert 11 associations, le pourriel a cessé, et il compte plus de 6 000 impressions.",
     "description": "<p>Pour le <strong>Conseil international et multiethnique (IEAC)</strong>, j'ai développé seul leur site officiel.</p><p>L'objectif était de créer une plateforme dynamique et réactive qui serve de centre d'information pour le conseil, répondant aux diverses communautés et promouvant l'inclusion culturelle.</p>",
-    "tags": [
+    "story": {
+      "problem": "L'ancien site du conseil avait un design dépassé, aucun moyen de le mettre à jour et un problème de pourriel : des commentaires explicites inondaient l'onglet des commentaires. Il n'y avait pas non plus de page pour chaque association, ce qui empêchait le conseil de trouver des commanditaires pour ses événements. Ils m'ont demandé mes services à petit prix.",
+      "did": "J'ai dit oui parce qu'ils en avaient besoin, et j'ai pris le petit prix comme une chance d'apprendre la pile que j'utilisais. J'ai refait le design, amélioré l'expérience utilisateur et ajouté une protection anti-pourriel et CSRF. J'ai créé un back end d'administration pour que le conseil puisse ajouter ou retirer de l'information, adopter et publier des règlements, changer les membres de l'équipe, ajouter des publications et des événements, et modifier les détails du site et les traductions. Le conseil avait des problèmes d'argent, alors j'ai cherché l'hébergement le moins cher qui avait quand même de bonnes spécifications. AWS EC2 coûtait cher et Hetzner était le moins cher que j'ai trouvé, alors j'y ai déménagé le site. Le déménagement a été simple parce que le code était dans un dépôt et les données dans MongoDB. J'ai seulement eu à changer les paramètres du pare-feu et à configurer le serveur Linux.",
+      "with": "J'ai travaillé directement avec le directeur général, qui n'est pas technique. Nous sommes allés manger ensemble plusieurs fois pour parler des changements. Je devais insister pour qu'il vienne aux rencontres, alors je m'assurais que chaque problème qui avait besoin de lui lui prenne au plus 5 minutes.",
+      "result": "La protection anti-pourriel et CSRF a complètement arrêté le pourriel. Le site couvre 11 associations, a pris 6 semaines (environ 60 heures) et compte plus de 6 000 impressions depuis son lancement, en date d'octobre 2026. Le conseil l'utilise toujours."
+    },
+    "image": "/media/ieac.png",
+    "links": [
       {
-        "title": "HTML",
-        "icon_class": "fa-brands fa-html5"
-      },
-      {
-        "title": "CSS",
-        "icon_class": "fa-brands fa-css3"
-      },
-      {
-        "title": "JavaScript",
-        "icon_class": "fa-brands fa-js"
-      },
-      {
-        "title": "Express",
-        "icon": "express"
-      },
-      {
-        "title": "MongoDB",
-        "icon": "mongodb"
-      },
-      {
-        "title": "Hetzner VPS",
-        "icon": "hetzner"
+        "label": "Visiter ieac.ca",
+        "url": "https://ieac.ca"
       }
     ],
-    "image": "/media/ieac.png",
-    "link": "https://ieac.ca"
+    "stack": [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Webpack",
+      "Hetzner"
+    ],
+    "tracks": [
+      "web"
+    ],
+    "start": "2023-12",
+    "end": "2024-12",
+    "role": "Développeur web full-stack",
+    "team": "Seul, avec le directeur général du conseil"
   }
 }

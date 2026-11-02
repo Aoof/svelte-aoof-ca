@@ -1,3 +1,256 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Design tokens. The contract lives in DESIGN.md; change both together. */
+:root {
+  --ground: #f1eeff;
+  --raise: #ffffff;
+  --sunk: #e2dcff;
+  --line: #111111;
+  --ink: #111111;
+  --ink-quiet: #4a4650;
+
+  /* Pinkish red. Fills carry black text; --key-ink is the text-safe shade. */
+  --key: #ff4d79;
+  --key-hover: #ff7a9c;
+  --key-ink: #c4124a;
+  --key-soft: #ffd3df;
+  --on-key: #111111;
+  --pink: var(--key);
+  --pink-hover: var(--key-hover);
+
+  --accent: var(--key);
+  --accent-ink: var(--key-ink);
+  --on-accent: #111111;
+
+  --hard: 5px 5px 0 #111;
+  --hard-small: 3px 3px 0 #111;
+  --border: 3px solid #111;
+
+  --font: 'Archivo Variable', system-ui, sans-serif;
+  --t-small: 0.875rem;
+  --t-body: 1.0625rem;
+  --t-lead: 1.3125rem;
+  --t-h2: clamp(1.6rem, 1.1rem + 2vw, 2.6rem);
+  --t-title: clamp(2.25rem, 0.75rem + 7vw, 5.5rem);
+
+  --gutter: 1.25rem;
+  --page: 70rem;
+  --measure: 62ch;
+  --section: clamp(4rem, 2.5rem + 6vw, 7.5rem);
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  color-scheme: light;
+}
+
+/* Track themes: one secondary colour each, used for shapes, markers and tiles. */
+[data-track='web'] {
+  --accent: #5b7cff;
+  --accent-ink: #1f3fd6;
+}
+
+[data-track='game'] {
+  --accent: #b57bff;
+  --accent-ink: #6b2bd9;
+}
+
+[data-track='qa'] {
+  --accent: #2ee59d;
+  --accent-ink: #087f45;
+}
+
+[data-track='software'] {
+  --accent: #ffc933;
+  --accent-ink: #8a5700;
+}
+
+html {
+  background-color: var(--ground);
+  background-image: radial-gradient(#11111122 1.2px, transparent 1.3px);
+  background-size: 18px 18px;
+  color: var(--ink);
+  font-family: var(--font);
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  font-size: var(--t-body);
+  line-height: 1.6;
+  font-stretch: 100%;
+  font-weight: 400;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-stretch: 125%;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h2 {
+  font-size: var(--t-h2);
+}
+
+h3 {
+  font-size: var(--t-lead);
+  font-stretch: 112%;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration-color: var(--key);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--key);
+  border-radius: 2px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: #111;
+  color: #fff;
+}
+
+/* Shared building blocks */
+.wrap {
+  width: min(var(--page), 100% - 2 * var(--gutter));
+  margin-inline: auto;
+}
+
+.meta {
+  font-stretch: 75%;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: var(--ink-quiet);
+  font-size: 1rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.6rem 1.25rem;
+  border: var(--border);
+  border-radius: 8px;
+  background: var(--key);
+  color: var(--on-key);
+  box-shadow: var(--hard-small);
+  font: inherit;
+  font-stretch: 112%;
+  font-weight: 800;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 120ms var(--ease),
+    box-shadow 120ms var(--ease),
+    background-color 150ms;
+}
+
+.btn:hover {
+  background: var(--key-hover);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 #111;
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 #111;
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-quiet {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.25rem;
+  background: none;
+  border: 0;
+  color: var(--ink);
+  font: inherit;
+  font-stretch: 112%;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: var(--key);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.3em;
+  cursor: pointer;
+}
+
+/* Rich text that comes from the content files */
+.prose {
+  max-width: var(--measure);
+}
+
+.prose > * + * {
+  margin-top: 1em;
+}
+
+.prose strong,
+.prose .keyword {
+  font-weight: 700;
+}
+
+.prose a {
+  font-weight: 500;
+}
+
+/* Neo-brutalist blocks */
+.block-card {
+  border: var(--border);
+  border-radius: 10px;
+  background: var(--raise);
+  box-shadow: var(--hard);
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+}

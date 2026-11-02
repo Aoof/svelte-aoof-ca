@@ -1,17 +1,17 @@
 {
-  "lang": [
-    "en",
-    "fr"
-  ],
   "brand": "aoof.ca",
   "navigation": {
-    "home": "HOME",
-    "about": "WORK",
-    "events": "EVENTS",
-    "projects": "PROJECTS",
-    "contact": "CONTACT",
-    "resume": "RESUME",
-    "language": "FR"
+    "home": "Home",
+    "work": "Work",
+    "experience": "Experience",
+    "events": "Events",
+    "contact": "Contact",
+    "resume": "Résumé",
+    "language": "FR",
+    "menu": "Menu",
+    "close": "Close",
+    "skip": "Skip to content",
+    "footnotes": "Footnotes"
   },
   "contact": {
     "title": "Contact Information",
@@ -25,53 +25,153 @@
     "linkedin": "https://www.linkedin.com/in/aoof/",
     "discord": "https://discord.gg"
   },
-  "resume": {
-    "english": "/media/resume_en.pdf",
-    "french": "/media/resume_fr.pdf"
-  },
   "ui": {
-    "about": {
-      "workExperienceTitle": "Work Experience",
-      "current": "Current",
-      "websiteTitle": "Other Experiences",
-      "websiteDescription": "Throughout my life I've gathered more experience from tinkering around and picking up projects; non-profit, for profit, contracts and jobs, than I have from school. It is true that school encouraged me to practice, and I did make lots of cool things, but real experience comes from professional work. Please take a look at my projects and events as I would consider many of them \"professional work.\"",
-      "eventsCompetitionsTitle": "Events and Competitions",
-      "eventsCompetitionsDescription": "Events I have volunteered in or attended, and competitions I have participated in.",
-      "eventsSearchLabel": "Search events",
-      "eventsSearchPlaceholder": "Search by name, place, or year",
-      "eventsNoResults": "No events match your search.",
-      "linkedinPost": "LinkedIn Post"
+    "common": {
+      "present": "present",
+      "expected": "expected",
+      "readMore": "Read the case study",
+      "caseStudy": "Case study",
+      "linkedinPost": "LinkedIn post",
+      "emailMe": "Email me"
+    },
+    "home": {
+      "handTitle": "Pick a role",
+      "featuredTitle": "Recent work",
+      "seeAll": "See all work",
+      "interestsLabel": "Things I like"
+    },
+    "track": {
+      "resume": "Download the résumé (PDF)",
+      "featuredTitle": "Featured work",
+      "moreTitle": "More work",
+      "experienceTitle": "Experience",
+      "toolsTitle": "Tools I used for this work",
+      "ctaTitle": "Want to talk?",
+      "ctaText": "Send me an email. I'll answer it myself.",
+      "otherRoles": "Looking for something else?"
+    },
+    "work": {
+      "title": "Work",
+      "intro": "Every project I can show. Filter by the role it backs up.",
+      "filterLabel": "Filter by role",
+      "all": "All",
+      "empty": "Nothing here yet."
+    },
+    "case": {
+      "back": "All work",
+      "role": "Role",
+      "when": "When",
+      "team": "Team",
+      "tools": "Tools",
+      "problem": "Problem",
+      "did": "What I did",
+      "with": "Who I worked with",
+      "result": "Result",
+      "more": "More"
+    },
+    "experience": {
+      "title": "Experience",
+      "intro": "Jobs, school and volunteering on one timeline.",
+      "jobs": "Jobs",
+      "education": "Education",
+      "volunteering": "Volunteering",
+      "other": "Other work",
+      "otherNote": "Websites I helped with outside of work and school."
+    },
+    "events": {
+      "title": "Events and competitions",
+      "intro": "Events I have volunteered in or attended, and competitions I have participated in.",
+      "searchLabel": "Search events",
+      "searchPlaceholder": "Search by name, place, or year",
+      "noResults": "No events match your search."
     },
     "contact": {
-      "form": {
-        "title": "Contact Form",
-        "email": "Email address :",
-        "emailPlaceholder": "Enter your email here",
-        "message": "Message :",
-        "messagePlaceholder": "Enter your message here",
-        "send": "Send",
-        "submitting": "Submitting...",
-        "success": "Message sent successfully",
-        "error": "Failed to send message"
-      }
+      "title": "Contact",
+      "intro": "Email is the fastest way to reach me for work. I am mostly active on Discord, so that works too.",
+      "detailsTitle": "Reach me directly",
+      "email": "Email",
+      "discord": "Discord",
+      "location": "Location",
+      "formTitle": "Send a message",
+      "emailLabel": "Your email address",
+      "messageLabel": "Message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "sent": "Message sent. I'll get back to you soon.",
+      "error": "Something went wrong. Please try again, or email me directly.",
+      "required": "This field is required.",
+      "invalidEmail": "Enter a valid email address."
+    },
+    "card": {
+      "scan": "Scan to see my work",
+      "showFront": "Show the front of the card",
+      "showBack": "Show the back of the card",
+      "flip": "Flip the card",
+      "copyEmail": "Copy email",
+      "copied": "Copied",
+      "saveContact": "Save contact",
+      "print": "Print the card"
+    },
+    "seo": {
+      "home": "Abdulrahman Mousa (aoof) is a Montreal developer and QA tester looking for a Summer 2027 internship and part-time work in web development and QA.",
+      "work": "Projects by Abdulrahman Mousa in web, games, QA and software, each with what he did and who he worked with.",
+      "experience": "Jobs, education and volunteering of Abdulrahman Mousa on one timeline.",
+      "events": "Hackathons, game jams and awards from Abdulrahman Mousa.",
+      "contact": "Email, Discord, LinkedIn and GitHub for Abdulrahman Mousa, plus a contact form.",
+      "card": "A printable business card for Abdulrahman Mousa, with a QR code to this role's page.",
+      "footnotes": "Where the icons, logos, type and QR code on aoof.ca come from."
+    },
+    "interests": {
+      "coffee": "Coffee",
+      "cat": "Cats",
+      "movies": "Movies",
+      "anime": "Anime",
+      "music": "Music",
+      "flower": "Flowers",
+      "leaf": "Greens",
+      "tea": "Tea",
+      "volleyball": "Volleyball",
+      "football": "Football",
+      "hat": "One Piece",
+      "pot": "Cooking",
+      "milk": "Milk",
+      "code": "Coding",
+      "teach": "Teaching",
+      "hike": "Hiking"
+    },
+    "footnotes": {
+      "title": "Footnotes",
+      "intro": "Where the pictures and parts of this site come from.",
+      "drawnTitle": "Icons drawn for this site",
+      "drawn": "These stand for things I like: coffee, tea, milk, cats, movies, anime, music, flowers, greens, volleyball, football, One Piece, cooking, coding, teaching, hiking and hunting bugs.",
+      "brandsTitle": "Tool logos",
+      "brands": "The logos next to my tools come from",
+      "trademarks": "Each logo belongs to its owner. They're here to show what I've worked with.",
+      "typeTitle": "Type",
+      "type": "The text is set in",
+      "typeVia": "served from this site through",
+      "qrTitle": "QR code",
+      "qr": "The QR code on the business card is made with"
     },
     "resume": {
-      "title": "Resume",
-      "prompt": "Would you like to download or view the resume?",
-      "preview": "Preview",
-      "download": "Download"
+      "title": "Which résumé would you like to download?",
+      "language": "Language"
     }
   },
   "fr": {
     "brand": "aoof.ca",
     "navigation": {
-      "home": "ACCUEIL",
-      "about": "TRAVAIL",
-      "events": "EVENEMENTS",
-      "projects": "PROJETS",
-      "contact": "CONTACT",
+      "home": "Accueil",
+      "work": "Travaux",
+      "experience": "Expérience",
+      "events": "Événements",
+      "contact": "Contact",
       "resume": "CV",
-      "language": "EN"
+      "language": "EN",
+      "menu": "Menu",
+      "close": "Fermer",
+      "skip": "Aller au contenu",
+      "footnotes": "Notes"
     },
     "contact": {
       "title": "Contact",
@@ -85,41 +185,137 @@
       "linkedin": "https://www.linkedin.com/in/aoof/",
       "discord": "https://discord.gg"
     },
-    "resume": {
-      "english": "/media/resume_en.pdf",
-      "french": "/media/resume_fr.pdf"
-    },
     "ui": {
-      "about": {
-        "workExperienceTitle": "Expérience professionnelle",
-        "current": "Actuel",
-        "websiteTitle": "À propos de ce site web",
-        "websiteDescription": "Tout au long de ma vie, j'ai acquis plus d'expérience en bricolant et en me lançant dans des projets; associatifs, lucratifs, contrats et emplois, qu'à l'école. Il est vrai que l'école m'a encouragé à pratiquer, et j'ai réalisé beaucoup de choses intéressantes, mais la véritable expérience vient du travail professionnel. Merci de jeter un œil à mes projets et événements, car je considère que bon nombre d'entre eux relèvent du « travail professionnel. »",
-        "eventsCompetitionsTitle": "Événements et compétitions",
-        "eventsCompetitionsDescription": "Des événements auxquels j'ai participé en tant que bénévole ou en tant que spectateur, ainsi que des compétitions auxquelles j'ai pris part.",
-        "eventsSearchLabel": "Rechercher des événements",
-        "eventsSearchPlaceholder": "Rechercher par nom, lieu ou année",
-        "eventsNoResults": "Aucun événement ne correspond à votre recherche.",
-        "linkedinPost": "Publication LinkedIn"
+      "common": {
+        "present": "aujourd'hui",
+        "expected": "prévu",
+        "readMore": "Lire l'étude de cas",
+        "caseStudy": "Étude de cas",
+        "linkedinPost": "Publication LinkedIn",
+        "emailMe": "Écrivez-moi"
+      },
+      "home": {
+        "handTitle": "Choisissez un rôle",
+        "featuredTitle": "Travaux récents",
+        "seeAll": "Voir tous les travaux",
+        "interestsLabel": "Ce que j'aime"
+      },
+      "track": {
+        "resume": "Télécharger le CV (PDF)",
+        "featuredTitle": "Travaux en vedette",
+        "moreTitle": "Plus de travaux",
+        "experienceTitle": "Expérience",
+        "toolsTitle": "Outils utilisés pour ces travaux",
+        "ctaTitle": "On se parle ?",
+        "ctaText": "Envoyez-moi un courriel. Je répondrai moi-même.",
+        "otherRoles": "Vous cherchez autre chose ?"
+      },
+      "work": {
+        "title": "Travaux",
+        "intro": "Tous les projets que je peux montrer. Filtrez selon le rôle qu’ils appuient.",
+        "filterLabel": "Filtrer par rôle",
+        "all": "Tous",
+        "empty": "Rien ici pour l'instant."
+      },
+      "case": {
+        "back": "Tous les travaux",
+        "role": "Rôle",
+        "when": "Quand",
+        "team": "Équipe",
+        "tools": "Outils",
+        "problem": "Problème",
+        "did": "Ce que j'ai fait",
+        "with": "Avec qui j'ai travaillé",
+        "result": "Résultat",
+        "more": "Plus"
+      },
+      "experience": {
+        "title": "Expérience",
+        "intro": "Emplois, études et bénévolat sur une seule ligne du temps.",
+        "jobs": "Emplois",
+        "education": "Formation",
+        "volunteering": "Bénévolat",
+        "other": "Autres travaux",
+        "otherNote": "Des sites web auxquels j'ai contribué en dehors du travail et de l'école."
+      },
+      "events": {
+        "title": "Événements et compétitions",
+        "intro": "Des événements auxquels j'ai participé en tant que bénévole ou en tant que spectateur, ainsi que des compétitions auxquelles j'ai pris part.",
+        "searchLabel": "Rechercher des événements",
+        "searchPlaceholder": "Rechercher par nom, lieu ou année",
+        "noResults": "Aucun événement ne correspond à votre recherche."
       },
       "contact": {
-        "form": {
-          "title": "Formulaire de contact",
-          "email": "Adresse email :",
-          "emailPlaceholder": "Entrez votre adresse email ici",
-          "message": "Message :",
-          "messagePlaceholder": "Entrez votre message ici",
-          "send": "Envoyer",
-          "submitting": "Envoi en cours...",
-          "success": "Message envoyé avec succès",
-          "error": "Échec de l'envoi du message"
-        }
+        "title": "Contact",
+        "intro": "Le courriel est le moyen le plus rapide de me joindre pour le travail. Je suis surtout actif sur Discord, alors c'est possible aussi.",
+        "detailsTitle": "Me joindre directement",
+        "email": "Courriel",
+        "discord": "Discord",
+        "location": "Lieu",
+        "formTitle": "Envoyer un message",
+        "emailLabel": "Votre adresse courriel",
+        "messageLabel": "Message",
+        "send": "Envoyer le message",
+        "sending": "Envoi en cours...",
+        "sent": "Message envoyé. Je vous répondrai bientôt.",
+        "error": "Une erreur s'est produite. Réessayez, ou écrivez-moi directement.",
+        "required": "Ce champ est obligatoire.",
+        "invalidEmail": "Entrez une adresse courriel valide."
+      },
+      "card": {
+        "scan": "Scannez pour voir mes projets",
+        "showFront": "Afficher le recto de la carte",
+        "showBack": "Afficher le verso de la carte",
+        "flip": "Retourner la carte",
+        "copyEmail": "Copier le courriel",
+        "copied": "Copié",
+        "saveContact": "Enregistrer le contact",
+        "print": "Imprimer la carte"
+      },
+      "seo": {
+        "home": "Abdulrahman Mousa (aoof), développeur et testeur AQ à Montréal, cherche un stage pour l'été 2027 et du travail à temps partiel en développement web et en AQ.",
+        "work": "Projets d'Abdulrahman Mousa en web, jeux, AQ et logiciels, avec ce qu'il a fait et avec qui il a travaillé.",
+        "experience": "Emplois, formation et bénévolat d'Abdulrahman Mousa sur une seule ligne du temps.",
+        "events": "Hackathons, game jams et prix d'Abdulrahman Mousa.",
+        "contact": "Courriel, Discord, LinkedIn et GitHub d'Abdulrahman Mousa, avec un formulaire de contact.",
+        "card": "Une carte professionnelle imprimable d'Abdulrahman Mousa, avec un code QR vers la page de ce rôle.",
+        "footnotes": "D'où viennent les icônes, logos, polices et codes QR de aoof.ca."
+      },
+      "interests": {
+        "coffee": "Café",
+        "cat": "Chats",
+        "movies": "Films",
+        "anime": "Anime",
+        "music": "Musique",
+        "flower": "Fleurs",
+        "leaf": "Plantes",
+        "tea": "Thé",
+        "volleyball": "Volleyball",
+        "football": "Football",
+        "hat": "One Piece",
+        "pot": "Cuisine",
+        "milk": "Lait",
+        "code": "Programmation",
+        "teach": "Enseignement",
+        "hike": "Randonnée"
+      },
+      "footnotes": {
+        "title": "Notes",
+        "intro": "D'où viennent les images et les pièces de ce site.",
+        "drawnTitle": "Icônes dessinées pour ce site",
+        "drawn": "Elles représentent ce que j'aime : le café, le thé, le lait, les chats, les films, l'anime, la musique, les fleurs, les plantes, le volleyball, le football, One Piece, la cuisine, la programmation, l'enseignement, la randonnée et la chasse aux bogues.",
+        "brandsTitle": "Logos des outils",
+        "brands": "Les logos à côté de mes outils viennent de",
+        "trademarks": "Chaque logo appartient à son propriétaire. Ils sont là pour montrer ce avec quoi j'ai travaillé.",
+        "typeTitle": "Typographie",
+        "type": "Le texte est composé en",
+        "typeVia": "servie par ce site grâce à",
+        "qrTitle": "Code QR",
+        "qr": "Le code QR de la carte professionnelle est créé avec"
       },
       "resume": {
-        "title": "CV",
-        "prompt": "Souhaitez-vous télécharger ou consulter le CV ?",
-        "preview": "Aperçu",
-        "download": "Télécharger"
+        "title": "Quel CV souhaitez-vous télécharger ?",
+        "language": "Langue"
       }
     }
   }
