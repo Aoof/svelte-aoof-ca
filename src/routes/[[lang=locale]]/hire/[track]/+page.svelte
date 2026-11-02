@@ -16,7 +16,13 @@
   const icons: Record<string, string> = { web: 'coffee', game: 'hat', qa: 'cat', software: 'code' };
 </script>
 
-<SEO title={track.hire} description={track.pitch} {lang} path={`/hire/${track.slug}`} />
+<SEO
+  title={track.hire}
+  description={track.pitch}
+  {lang}
+  path={`/hire/${track.slug}`}
+  image={`/og/${track.slug}.png`}
+/>
 
 <div data-track={track.slug}>
   <section class="wrap head">
