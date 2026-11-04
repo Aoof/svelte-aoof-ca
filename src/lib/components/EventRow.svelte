@@ -1,5 +1,6 @@
 <script lang="ts">
   import Icon from './Icon.svelte';
+  import OptimizedImage from './OptimizedImage.svelte';
   import { href } from '$lib/i18n';
   import type { Event, Locale, Strings } from '$lib/content/types';
 
@@ -14,7 +15,14 @@
 <li class="card" data-track={tracks[slot]}>
   <div class="thumb" class:placeholder={!event.image}>
     {#if event.image}
-      <img src={event.image} alt="" width="640" height="360" loading="lazy" decoding="async" />
+      <OptimizedImage
+        src={event.image}
+        variants={event.imageVariants}
+        alt={event.name}
+        width={640}
+        height={360}
+        sizes="(min-width: 40rem) 24rem, 100vw"
+      />
     {:else}
       <Icon name={icons[slot]} size={56} />
     {/if}
@@ -57,7 +65,11 @@
     background: var(--sunk);
   }
 
-  .thumb img {
+  .thumb :global(picture) {
+    display: contents;
+  }
+
+  .thumb :global(img) {
     display: block;
     width: 100%;
     height: 100%;

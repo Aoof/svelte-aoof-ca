@@ -1,5 +1,14 @@
 import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import type { EntryGenerator, PageServerLoad } from './$types';
+import { loadContent } from '$lib/server/content';
+
+export const entries: EntryGenerator = async () => {
+  const { projects } = await loadContent('en');
+  return projects.flatMap(({ slug }) => [
+    { lang: undefined, slug },
+    { lang: 'fr', slug }
+  ]);
+};
 
 export const load: PageServerLoad = async ({ params, parent }) => {
   const { content } = await parent();

@@ -8,6 +8,7 @@
     lang,
     path = '/',
     image = '/og/default.png',
+    imageSize,
     jsonLd
   }: {
     title?: string;
@@ -15,6 +16,7 @@
     lang: Locale;
     path?: string;
     image?: string;
+    imageSize?: { width: number; height: number };
     jsonLd?: Record<string, unknown>;
   } = $props();
 
@@ -44,6 +46,9 @@
   {#if image.startsWith('/og/')}
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+  {:else if imageSize}
+    <meta property="og:image:width" content={String(imageSize.width)} />
+    <meta property="og:image:height" content={String(imageSize.height)} />
   {/if}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={fullTitle} />

@@ -41,6 +41,22 @@ export interface ProjectLink {
   url: string;
 }
 
+export interface ImageSet {
+  webp: string;
+  avif: string;
+  fallback: string;
+  /** Pixel width of this variant */
+  width: number;
+}
+
+export interface ImageVariants {
+  thumb: ImageSet;
+  hero: ImageSet;
+  /** Intrinsic size of the original upload */
+  width: number;
+  height: number;
+}
+
 export interface Project {
   name: string;
   slug: string;
@@ -48,6 +64,7 @@ export interface Project {
   description?: string;
   story?: Story;
   image?: string;
+  imageVariants?: ImageVariants;
   links: ProjectLink[];
   stack: string[];
   tracks: string[];
@@ -84,6 +101,7 @@ export interface Event {
   summary: string;
   link?: string;
   image?: string;
+  imageVariants?: ImageVariants;
   project?: string;
 }
 

@@ -1,7 +1,16 @@
 import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
+import type { EntryGenerator, PageServerLoad } from './$types';
 import type { Project } from '$lib/content/types';
+import { loadContent } from '$lib/server/content';
 import { trackQr } from '$lib/qr';
+
+export const entries: EntryGenerator = async () => {
+  const { tracks } = await loadContent('en');
+  return tracks.flatMap(({ slug }) => [
+    { lang: undefined, track: slug },
+    { lang: 'fr', track: slug }
+  ]);
+};
 
 export const load: PageServerLoad = async ({ params, parent }) => {
   const { content, lang } = await parent();

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import OptimizedImage from '$lib/components/OptimizedImage.svelte';
   import SEO from '$lib/components/SEO.svelte';
   import { href, period } from '$lib/i18n';
 
@@ -28,7 +29,11 @@
   description={project.summary}
   {lang}
   path={`/work/${project.slug}`}
-  image={project.image}
+  image={project.imageVariants?.hero.fallback ?? project.image}
+  imageSize={project.imageVariants && {
+    width: project.imageVariants.hero.width,
+    height: Math.round((project.imageVariants.hero.width * project.imageVariants.height) / project.imageVariants.width)
+  }}
 />
 
 <article data-track={project.tracks[0]}>
@@ -62,7 +67,16 @@
 
   {#if project.image}
     <div class="wrap shot">
-      <img src={project.image} alt="" width="1120" height="700" decoding="async" />
+      <OptimizedImage
+        src={project.image}
+        variants={project.imageVariants}
+        alt={project.name}
+        width={1120}
+        height={700}
+        sizes="(min-width: 75rem) 70rem, 100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
     </div>
   {/if}
 
@@ -135,7 +149,11 @@
     padding-top: 2.5rem;
   }
 
-  .shot img {
+  .shot :global(picture) {
+    display: contents;
+  }
+
+  .shot :global(img) {
     display: block;
     width: 100%;
     max-height: 36rem;

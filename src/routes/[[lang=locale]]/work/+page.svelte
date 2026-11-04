@@ -1,12 +1,23 @@
 <script lang="ts">
   import SEO from '$lib/components/SEO.svelte';
   import ProjectRow from '$lib/components/ProjectRow.svelte';
+  import { page } from '$app/state';
   import { href } from '$lib/i18n';
 
   let { data } = $props();
 
   const lang = $derived(data.lang);
   const ui = $derived(data.content.settings.ui);
+
+  // The page is prerendered, so the query string only exists once the browser is running.
+  let wanted = $state<string | null>(null);
+  $effect(() => {
+    wanted = page.url.searchParams.get('track');
+  });
+  const active = $derived(data.content.tracks.some((track) => track.slug === wanted) ? wanted : null);
+  const projects = $derived(
+    active ? data.content.projects.filter((project) => project.tracks.includes(active)) : data.content.projects
+  );
 </script>
 
 <SEO title={ui.work.title} description={ui.work.intro} {lang} path="/work" />
@@ -16,11 +27,11 @@
   <p class="intro">{ui.work.intro}</p>
 
   <nav class="filters" aria-label={ui.work.filterLabel}>
-    <a href={href(lang, '/work')} aria-current={data.active ? undefined : 'true'}>{ui.work.all}</a>
+    <a href={href(lang, '/work')} aria-current={active ? undefined : 'true'}>{ui.work.all}</a>
     {#each data.content.tracks as track (track.slug)}
       <a
         href={`${href(lang, '/work')}?track=${track.slug}`}
-        aria-current={data.active === track.slug ? 'true' : undefined}
+        aria-current={active === track.slug ? 'true' : undefined}
       >
         {track.title}
       </a>
@@ -29,9 +40,9 @@
 </section>
 
 <section class="wrap">
-  {#if data.projects.length}
+  {#if projects.length}
     <ul class="list">
-      {#each data.projects as project (project.slug)}
+      {#each projects as project (project.slug)}
         <ProjectRow {project} {lang} ui={ui.common} />
       {/each}
     </ul>

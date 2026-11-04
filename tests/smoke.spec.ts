@@ -120,3 +120,15 @@ for (const route of ['/', ...tracks.map((slug) => `/hire/${slug}`)]) {
     });
   }
 }
+
+test('work page filters by track on the client', async ({ page }) => {
+  await page.goto('/work');
+  const all = await page.locator('ul.list > li').count();
+  await page.goto('/work?track=qa');
+  const filter = page.locator('.filters a[aria-current="true"]');
+  await expect(filter).toHaveCount(1);
+  await expect(filter).not.toHaveText(/^\s*all\s*$/i);
+  const qa = await page.locator('ul.list > li').count();
+  expect(qa).toBeGreaterThan(0);
+  expect(qa).toBeLessThan(all);
+});

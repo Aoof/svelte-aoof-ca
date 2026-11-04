@@ -1,5 +1,6 @@
 import { readFile, readdir } from 'node:fs/promises';
 import path from 'node:path';
+import { dev } from '$app/environment';
 import DOMPurify from 'isomorphic-dompurify';
 import { marked } from 'marked';
 import { newestFirst } from '$lib/i18n';
@@ -7,6 +8,7 @@ import type {
   Event,
   Experience,
   HomeContent,
+  ImageVariants,
   Locale,
   Project,
   SiteSettings,
@@ -15,9 +17,19 @@ import type {
 } from '$lib/content/types';
 
 const contentRoot = path.join(process.cwd(), 'content');
+const manifestPath = path.join(process.cwd(), 'static', 'media', 'optimized', 'manifest.json');
 
 async function readJson<T>(filePath: string): Promise<T> {
   return JSON.parse(await readFile(filePath, 'utf8')) as T;
+}
+
+let manifest: Promise<Record<string, ImageVariants>> | undefined;
+
+/** Variants come from scripts/optimize-images.js; without them (plain `vite dev`) images fall back to the original. */
+async function resolveImage(image: string | undefined): Promise<ImageVariants | undefined> {
+  if (!image) return undefined;
+  manifest ??= readJson<Record<string, ImageVariants>>(manifestPath).catch(() => ({}));
+  return (await manifest)[image];
 }
 
 /** Files with the English copy at the root and the French copy under `fr`. */
@@ -57,7 +69,15 @@ function richStory(story: Story | undefined): Story | undefined {
 
 const kindOrder = { job: 0, education: 1, volunteering: 2, other: 3 } as const;
 
-export async function loadContent(lang: Locale) {
+const cache = new Map<Locale, ReturnType<typeof build>>();
+
+export function loadContent(lang: Locale) {
+  if (dev) return build(lang);
+  if (!cache.has(lang)) cache.set(lang, build(lang));
+  return cache.get(lang)!;
+}
+
+async function build(lang: Locale) {
   const [settings, home, tracks, projects, experience, events] = await Promise.all([
     readLocalized<SiteSettings>('settings', lang),
     readLocalized<HomeContent>('home', lang),
@@ -76,20 +96,31 @@ export async function loadContent(lang: Locale) {
       looking_for: rich(home.looking_for)
     } satisfies HomeContent,
     tracks: [...tracks].sort((a, b) => a.order - b.order),
-    projects: projects
-      .map((project): Project => ({
-        ...project,
-        description: rich(project.description),
-        story: richStory(project.story)
-      }))
-      .sort(newestFirst),
+    projects: (
+      await Promise.all(
+        projects.map(
+          async (project): Promise<Project> => ({
+            ...project,
+            description: rich(project.description),
+            story: richStory(project.story),
+            imageVariants: await resolveImage(project.image)
+          })
+        )
+      )
+    ).sort(newestFirst),
     experience: experience
       .map((entry) => ({ ...entry, description: rich(entry.description) }))
       .sort((a, b) => kindOrder[a.kind] - kindOrder[b.kind] || newestFirst(a, b)),
-    events: events
-      .map((event) => ({ ...event, summary: rich(event.summary) }))
-      .sort((a, b) => b.date.localeCompare(a.date))
+    events: (
+      await Promise.all(
+        events.map(async (event) => ({
+          ...event,
+          summary: rich(event.summary),
+          imageVariants: await resolveImage(event.image)
+        }))
+      )
+    ).sort((a, b) => b.date.localeCompare(a.date))
   };
 }
 
-export type SiteContent = Awaited<ReturnType<typeof loadContent>>;
+export type SiteContent = Awaited<ReturnType<typeof build>>;

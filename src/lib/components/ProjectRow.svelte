@@ -1,5 +1,6 @@
 <script lang="ts">
   import Icon from './Icon.svelte';
+  import OptimizedImage from './OptimizedImage.svelte';
   import ToolList from './ToolList.svelte';
   import { href, period } from '$lib/i18n';
   import type { Locale, Project, Strings } from '$lib/content/types';
@@ -18,7 +19,14 @@
   <div class="row" data-track={first}>
     <div class="thumb" class:placeholder={!project.image}>
       {#if project.image}
-        <img src={project.image} alt="" width="640" height="400" loading="lazy" decoding="async" />
+        <OptimizedImage
+          src={project.image}
+          variants={project.imageVariants}
+          alt={project.name}
+          width={640}
+          height={400}
+          sizes="(min-width: 56rem) 15rem, (min-width: 34rem) 11rem, 100vw"
+        />
       {:else}
         <Icon name={trackIcons[first] ?? 'coffee'} size={56} />
       {/if}
@@ -69,7 +77,11 @@
     background: var(--sunk);
   }
 
-  .thumb img {
+  .thumb :global(picture) {
+    display: contents;
+  }
+
+  .thumb :global(img) {
     display: block;
     width: 100%;
     height: 100%;
