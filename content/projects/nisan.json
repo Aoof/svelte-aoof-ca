@@ -1,0 +1,78 @@
+{
+  "en": {
+    "name": "NISAN",
+    "slug": "nisan",
+    "summary": "A flood and wetland map for a river basin in Mexico that brings several satellites together, built in two days at the NASA Space Apps Challenge.",
+    "description": "<p>NISAN is a map of flood risk and wetland water for the lower Coatzacoalcos basin in Veracruz, Mexico. Search a place or tap the map and it tells you whether water is likely to reach that spot in the next few days, why, and what to do. You can also look back over the last four months to see how the area's rivers, lagoons and wetlands have grown and shrunk, as seen from space.</p>",
+    "story": {
+      "problem": "The challenge asked us to use NISAR radar data to map how wetlands and floodplains grow and shrink, and to use that history to predict where water will go next. Several satellites already watch the basin we picked, but each one sees a different part of the water cycle, and the data sits in separate archives and formats that mostly specialists can read.",
+      "did": "I joined the team once I got to the venue and built the frontend: a MapLibre map in TypeScript that turns all of that data into a plain answer. You get a risk level, the signals behind it and what to do, with the charts, raw layers and downloads one step away for anyone who wants them. There's an Overview for anyone checking a spot, an Authorities view that ranks the zones and exports a short brief, and a time bar that runs from four months of satellite passes to a month of forecast. Every reading shows its age, because some satellites only pass every few days or weeks.",
+      "with": "There were three of us and no leader. We talked constantly, researched the data sources together and all worked on the adapters that bring each satellite's data into the app.",
+      "result": "We submitted a working MVP at the end of the two days. It covers one test basin and puts radar water maps, NISAR imagery, terrain, soil moisture, water levels and river and rain forecasts on one map. Next we want to add more basins."
+    },
+    "links": [
+      {
+        "label": "See the code",
+        "url": "https://github.com/Aoof/nisan-wetland-analysis"
+      },
+      {
+        "label": "See our Space Apps project",
+        "url": "https://www.spaceappschallenge.org/2026/find-a-team/latteam/?tab=project"
+      }
+    ],
+    "stack": [
+      "TypeScript",
+      "MapLibre GL",
+      "Vite",
+      "Python",
+      "NASA Earthdata",
+      "NISAR"
+    ],
+    "tracks": [
+      "web",
+      "software"
+    ],
+    "start": "2026-11",
+    "end": "2026-11",
+    "role": "Frontend developer",
+    "team": "Team of three, NASA Space Apps Challenge"
+  },
+  "fr": {
+    "name": "NISAN",
+    "slug": "nisan",
+    "summary": "Une carte des inondations et des milieux humides pour un bassin versant au Mexique qui réunit plusieurs satellites, construite en deux jours au NASA Space Apps Challenge.",
+    "description": "<p>NISAN est une carte du risque d'inondation et de l'eau des milieux humides pour le bas bassin du Coatzacoalcos, à Veracruz, au Mexique. Cherchez un lieu ou touchez la carte, et elle vous dit si l'eau risque d'atteindre cet endroit dans les prochains jours, pourquoi, et quoi faire. Vous pouvez aussi remonter sur les quatre derniers mois pour voir comment les rivières, les lagunes et les milieux humides de la région ont grandi et rétréci, vus de l'espace.</p>",
+    "story": {
+      "problem": "Le défi nous demandait d'utiliser les données radar de NISAR pour cartographier comment les milieux humides et les plaines inondables grandissent et rétrécissent, puis de nous servir de cet historique pour prédire où l'eau ira ensuite. Plusieurs satellites observent déjà le bassin que nous avons choisi, mais chacun voit une partie différente du cycle de l'eau, et les données sont dispersées dans des archives et des formats que surtout des spécialistes savent lire.",
+      "did": "J'ai rejoint l'équipe en arrivant sur place et j'ai construit le frontend : une carte MapLibre en TypeScript qui transforme toutes ces données en une réponse simple. On obtient un niveau de risque, les signaux qui l'expliquent et quoi faire, avec les graphiques, les couches brutes et les téléchargements à un clic pour qui en veut plus. Il y a une vue d'ensemble pour quiconque vérifie un endroit, une vue Autorités qui classe les zones et exporte un court bulletin, et une barre de temps qui va de quatre mois de passages satellites à un mois de prévisions. Chaque donnée indique son âge, parce que certains satellites ne repassent qu'aux quelques jours ou semaines.",
+      "with": "Nous étions trois, sans chef. Nous communiquions sans arrêt, nous avons fait la recherche sur les sources de données ensemble et nous avons tous travaillé sur les adaptateurs qui amènent les données de chaque satellite dans l'application.",
+      "result": "Nous avons remis un MVP fonctionnel à la fin des deux jours. Il couvre un bassin de test et réunit sur une seule carte les cartes d'eau radar, l'imagerie NISAR, le relief, l'humidité du sol, les niveaux d'eau et les prévisions de pluie et de débit des rivières. Nous voulons maintenant ajouter d'autres bassins."
+    },
+    "links": [
+      {
+        "label": "Voir le code",
+        "url": "https://github.com/Aoof/nisan-wetland-analysis"
+      },
+      {
+        "label": "Voir notre projet Space Apps",
+        "url": "https://www.spaceappschallenge.org/2026/find-a-team/latteam/?tab=project"
+      }
+    ],
+    "stack": [
+      "TypeScript",
+      "MapLibre GL",
+      "Vite",
+      "Python",
+      "NASA Earthdata",
+      "NISAR"
+    ],
+    "tracks": [
+      "web",
+      "software"
+    ],
+    "start": "2026-11",
+    "end": "2026-11",
+    "role": "Développeur frontend",
+    "team": "Équipe de trois, NASA Space Apps Challenge"
+  }
+}
