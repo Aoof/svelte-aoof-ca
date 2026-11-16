@@ -1,6 +1,6 @@
 {
   "en": {
-    "name": "Athenae",
+    "name": "Athenae Initiative",
     "slug": "athenae",
     "summary": "The first website for a brand-new non-profit, in French and English, with a CMS the client edits herself.",
     "description": "",
@@ -42,7 +42,7 @@
     "team": "Solo, with the initiative's co-founder"
   },
   "fr": {
-    "name": "Athenae",
+    "name": "Initiative Athènae",
     "slug": "athenae",
     "summary": "Le premier site d'un tout nouvel organisme à but non lucratif, en français et en anglais, avec un CMS que la cliente modifie elle-même.",
     "description": "",
