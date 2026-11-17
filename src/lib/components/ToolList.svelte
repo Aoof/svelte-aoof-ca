@@ -6,7 +6,7 @@
 </script>
 
 <ul class="tools">
-  {#each tools as tool (tool)}
+  {#each tools as tool, i (`${tool}-${i}`)}
     <li>
       {#if brandFor(tool)}<Icon name={tool} size={16} />{/if}
       <span>{tool}</span>

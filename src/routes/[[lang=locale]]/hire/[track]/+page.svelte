@@ -75,7 +75,7 @@
     <section class="wrap block">
       <h2>{ui.track.experienceTitle}</h2>
       <ul class="list">
-        {#each data.experience as entry (entry.title + entry.location)}
+        {#each data.experience as entry (entry.title + entry.location + entry.start)}
           <TimelineRow {entry} {lang} ui={ui.common} />
         {/each}
       </ul>

@@ -154,3 +154,10 @@ test('media files have clean slug names and content only points at files that ex
     }
   }
 });
+
+test('events page lists every event, even two with the same name', async ({ page }) => {
+  await page.goto('/events');
+  await expect(page.locator('h1').first()).toBeVisible();
+  const expected = slugs('events').length;
+  await expect(page.locator('main li')).toHaveCount(expected);
+});

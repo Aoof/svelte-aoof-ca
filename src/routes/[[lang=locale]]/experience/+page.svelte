@@ -75,7 +75,7 @@
     <h2 id="h-other">{ui.experience.other}</h2>
     <p class="note">{ui.experience.otherNote}</p>
     <ul class="others">
-      {#each other as entry (entry.title)}
+      {#each other as entry (entry.title + entry.link)}
         <li class="block-card">
           <h3>
             {#if entry.link}

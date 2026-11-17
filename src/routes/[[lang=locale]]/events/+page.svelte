@@ -31,7 +31,7 @@
 <section class="wrap">
   {#if shown.length}
     <ul class="list">
-      {#each shown as event, index (event.name)}
+      {#each shown as event, index (`${event.date}-${event.name}`)}
         <EventRow {event} {lang} ui={ui.common} {index} />
       {/each}
     </ul>
