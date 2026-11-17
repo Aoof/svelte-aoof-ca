@@ -1,0 +1,30 @@
+{
+  "en": {
+    "kind": "job",
+    "title": "Web Developer and Designer",
+    "location": "Festival International Bach Montréal",
+    "start": "2026-04",
+    "end": "2026-09",
+    "expected": false,
+    "description": "People use the festival's site to browse and pick concerts. The year before, a whole team built an interactive experience that answers visitors' questions about each concert. For 2026 the clients expected about the same thing, so instead of repeating it I built it so they can change and add questions themselves in the years after.\n\n- Improved the Ul and UX and built a CSV import, then loaded about 222 questions, each with its own video and English and French text. It's live on every 2026 concert: \n- ﻿﻿Integrated the feature into the site's existing architecture and added user tracking for the festival's marketing and affiliate programs.\n- ﻿﻿Worked out the CSV format with the animation team, and kept the General Manager and Marketing Manager in the loop with quick reviews whenever the plan changed.",
+    "tracks": [
+      "web"
+    ],
+    "project": "",
+    "link": "https://festivalbachmontreal.com/programmation"
+  },
+  "fr": {
+    "kind": "job",
+    "title": "Développeur et concepteur Web",
+    "location": "Festival International Bach Montréal",
+    "start": "2026-04",
+    "end": "2026-09",
+    "expected": false,
+    "description": "Les gens utilisent le site du festival pour parcourir et choisir des concerts. L'année précédente, toute une équipe a créé une expérience interactive qui répond aux questions des visiteurs sur chaque concert. Pour 2026, les clients s'attendaient à peu près à la même chose, donc au lieu de le répéter, je l'ai construit afin qu'ils puissent changer et ajouter des questions eux-mêmes dans les années qui ont suivi.\n\nAmélioration de l'Ul et de l'UX et construction d'une importation CSV, puis chargement d'environ 222 questions, chacune avec sa propre vidéo et son propre texte en anglais et en français. C'est en direct à chaque concert de 2026 :\n\nIntégré la fonctionnalité dans l'architecture existante du site et ajout du suivi des utilisateurs pour les programmes de marketing et d'affiliation du festival.\n\nJ'ai élaboré le format CSV avec l'équipe d'animation et j'ai tenu le directeur général et le directeur marketing au courant avec des examens rapides chaque fois que le plan changeait.",
+    "tracks": [
+      "web"
+    ],
+    "project": "",
+    "link": "https://festivalbachmontreal.com/programmation"
+  }
+}
