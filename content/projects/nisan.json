@@ -10,6 +10,7 @@
       "with": "There were three of us and no leader. We talked constantly, researched the data sources together and all worked on the adapters that bring each satellite's data into the app.",
       "result": "We submitted a working MVP at the end of the two days. It covers one test basin and puts radar water maps, NISAR imagery, terrain, soil moisture, water levels and river and rain forecasts on one map. Next we want to add more basins."
     },
+    "image": "/media/Screenshot 2026-11-17 161558.png",
     "links": [
       {
         "label": "See the code",
@@ -34,6 +35,7 @@
     ],
     "start": "2026-11",
     "end": "2026-11",
+    "when": "",
     "role": "Frontend developer",
     "team": "Team of three, NASA Space Apps Challenge"
   },
@@ -48,6 +50,7 @@
       "with": "Nous étions trois, sans chef. Nous communiquions sans arrêt, nous avons fait la recherche sur les sources de données ensemble et nous avons tous travaillé sur les adaptateurs qui amènent les données de chaque satellite dans l'application.",
       "result": "Nous avons remis un MVP fonctionnel à la fin des deux jours. Il couvre un bassin de test et réunit sur une seule carte les cartes d'eau radar, l'imagerie NISAR, le relief, l'humidité du sol, les niveaux d'eau et les prévisions de pluie et de débit des rivières. Nous voulons maintenant ajouter d'autres bassins."
     },
+    "image": "/media/Screenshot 2026-11-17 161558.png",
     "links": [
       {
         "label": "Voir le code",
@@ -72,6 +75,7 @@
     ],
     "start": "2026-11",
     "end": "2026-11",
+    "when": "",
     "role": "Développeur frontend",
     "team": "Équipe de trois, NASA Space Apps Challenge"
   }
