@@ -1,0 +1,30 @@
+{
+  "en": {
+    "kind": "volunteering",
+    "title": "Web Development Lead",
+    "location": "Athenae Initiative",
+    "start": "2026-06",
+    "end": "",
+    "expected": false,
+    "description": "- ﻿﻿Lead web development for Athenae, a non-profit that encourages people to practise the humanities through free public events. Built the bilingual (English and French) website in SvelteKit, Svelte 5, TypeScript and Tailwind CSS on Cloudflare; it is live at athenaeinitiative.com and the initiative uses it to publish events and articles.\n- ﻿﻿Set up Sveltia CMS so the team edits articles, events, page text and social links without touching code, with changes saved directly to the repository.\n- ﻿﻿Built the pitch, volunteer, partner and contact forms with Valibot validation and ALTCHA spam protection, and made the notification emails they send match the site's design.\n- ﻿﻿Built Athenae Mail, an email app for the team on Cloudflare Workers, D1 and R2: magic-link sign-in, undo-send, inbound mail, delivery webhooks and retries, sending through Resend. Added a branded email signature that each person can preview and adjust in Settings.\n- ﻿﻿Tested the website with Vitest and the mail app with Vitest and Playwright, and deployed both to production on Cloudflare.",
+    "tracks": [
+      "web"
+    ],
+    "project": "",
+    "link": "https://athenaeinitiative.com/"
+  },
+  "fr": {
+    "kind": "volunteering",
+    "title": "Lead du développement Web",
+    "location": "Initiative Athènae",
+    "start": "2026-06",
+    "end": "",
+    "expected": false,
+    "description": "- Diriger le développement web pour Athenae, une organisation à but non lucratif qui encourage les gens à pratiquer les sciences humaines par le biais d'événements publics gratuits. Construit le site web bilingue (anglais et français) en SvelteKit, Svelte 5, TypeScript et Tailwind CSS sur Cloudflare ; il est en ligne sur athenaeinitiative.com et l'initiative l'utilise pour publier des événements et des articles.\n\n- Configurez Sveltia CMS afin que l'équipe modifie les articles, les événements, le texte de la page et les liens sociaux sans toucher au code, avec les modifications enregistrées directement dans le référentiel.\n\n- Construire le pitch, les formulaires de bénévolat, de partenaire et de contact avec la validation Valibot et la protection contre le spam ALTCHA, et fait en sorte que les e-mails de notification qu'ils envoient correspondent à la conception du site.\n\n- Construit Athenae Mail, une application de messagerie pour l'équipe sur Cloudflare Workers, D1 et R2 : connexion en lien magique, annulation, courrier entrant, webhooks de livraison et tentatives, envoi via Resend. Ajout d'une signature électronique de marque que chaque personne peut prévisualiser et ajuster dans Paramètres.\n- Testé le site Web avec Vitest et l'application de messagerie avec Vitest et Playwright, et déployé les deux en production sur Cloudflare.",
+    "tracks": [
+      "web"
+    ],
+    "project": "",
+    "link": "https://athenaeinitiative.com/"
+  }
+}
