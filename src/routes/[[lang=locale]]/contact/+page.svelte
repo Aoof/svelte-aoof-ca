@@ -18,11 +18,17 @@
     const email = String(fields.get('email') ?? '').trim();
     const message = String(fields.get('message') ?? '').trim();
 
+    // Web3Forms ignores submissions that fill this hidden field, which only bots do.
+    if (String(fields.get('botcheck') ?? '')) return;
+
     errors = {
       email: !email ? ui.required : !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email) ? ui.invalidEmail : undefined,
       message: !message ? ui.required : undefined
     };
-    if (errors.email || errors.message) return;
+    if (errors.email || errors.message) {
+      form.querySelector<HTMLElement>(errors.email ? '#email' : '#message')?.focus();
+      return;
+    }
 
     status = 'sending';
     try {
@@ -31,8 +37,8 @@
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({ access_key: PUBLIC_WEB3_ACCESSKEY, email, message })
       });
-      const result = await response.json();
-      if (!result.success) throw new Error(result.message);
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.success) throw new Error(result.message);
       status = 'sent';
       form.reset();
     } catch {
@@ -52,6 +58,8 @@
   <form class="form" novalidate {onsubmit}>
     <h2>{ui.formTitle}</h2>
 
+    <input class="trap" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
     <div class="field">
       <label for="email">{ui.emailLabel}</label>
       <input
@@ -59,10 +67,12 @@
         name="email"
         type="email"
         autocomplete="email"
+        maxlength="254"
+        required
         aria-invalid={errors.email ? 'true' : undefined}
         aria-describedby={errors.email ? 'email-error' : undefined}
       />
-      {#if errors.email}<p class="error" id="email-error">{errors.email}</p>{/if}
+      {#if errors.email}<p class="error" id="email-error" role="alert">{errors.email}</p>{/if}
     </div>
 
     <div class="field">
@@ -71,10 +81,12 @@
         id="message"
         name="message"
         rows="6"
+        maxlength="5000"
+        required
         aria-invalid={errors.message ? 'true' : undefined}
         aria-describedby={errors.message ? 'message-error' : undefined}
       ></textarea>
-      {#if errors.message}<p class="error" id="message-error">{errors.message}</p>{/if}
+      {#if errors.message}<p class="error" id="message-error" role="alert">{errors.message}</p>{/if}
     </div>
 
     <button class="btn" type="submit" disabled={status === 'sending'}>
@@ -158,12 +170,21 @@
     font: inherit;
   }
 
+  .trap {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
   [aria-invalid='true'] {
-    border-color: var(--pink);
+    border-color: var(--key-ink);
+    border-width: 2px;
   }
 
   .error {
-    color: var(--pink);
+    color: var(--key-ink);
     font-weight: 600;
   }
 
@@ -177,7 +198,7 @@
   }
 
   .status.bad {
-    color: var(--pink);
+    color: var(--key-ink);
   }
 
   .details ul {

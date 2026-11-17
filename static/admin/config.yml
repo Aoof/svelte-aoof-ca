@@ -78,6 +78,14 @@ collections:
                   - { name: caseStudy, label: Case Study, widget: string, i18n: true }
                   - { name: linkedinPost, label: Linkedin Post, widget: string, i18n: true }
                   - { name: emailMe, label: Email Me, widget: string, i18n: true }
+                  - { name: now, label: Now, widget: string, i18n: true }
+                  - { name: showMore, label: Show More, widget: string, i18n: true }
+                  - { name: showLess, label: Show Less, widget: string, i18n: true }
+                  - { name: visitSite, label: Visit Site, widget: string, i18n: true }
+                  - { name: yr, label: Year, widget: string, i18n: true }
+                  - { name: yrs, label: Years, widget: string, i18n: true }
+                  - { name: mo, label: Month, widget: string, i18n: true }
+                  - { name: mos, label: Months, widget: string, i18n: true }
               - name: home
                 label: Home
                 widget: object
@@ -137,6 +145,7 @@ collections:
                   - { name: volunteering, label: Volunteering, widget: string, i18n: true }
                   - { name: other, label: Other, widget: string, i18n: true }
                   - { name: otherNote, label: Other Note, widget: string, i18n: true }
+                  - { name: jumpTo, label: Jump To, widget: string, i18n: true }
               - name: events
                 label: Events
                 widget: object

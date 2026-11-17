@@ -9,7 +9,7 @@ const adminHtml = `<!doctype html>
     <title>aoof.ca CMS</title>
   </head>
   <body>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <script src="https://unpkg.com/@sveltia/cms@0.268.0/dist/sveltia-cms.js" integrity="sha384-oIOMCV/sQ71HTkYLNgdWyv8+AqPL308WEKhfiqBzwwjS2BqeaFMZCgQeEebsP02k" crossorigin="anonymous"></script>
   </body>
 </html>`;
 

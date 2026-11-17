@@ -1,5 +1,6 @@
 <script lang="ts">
   import { href } from '$lib/i18n';
+  import { jsonForScript } from '$lib/content/safe';
   import type { Locale } from '$lib/content/types';
 
   let {
@@ -24,7 +25,7 @@
   const fullTitle = $derived(title ? `${title} | Abdulrahman Mousa` : 'Abdulrahman Mousa (aoof)');
   const url = $derived(origin + href(lang, path));
   const picture = $derived(image.startsWith('http') ? image : origin + image);
-  const ld = $derived(jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}<\/script>` : '');
+  const ld = $derived(jsonLd ? `<script type="application/ld+json">${jsonForScript(jsonLd)}<\/script>` : '');
 </script>
 
 <svelte:head>

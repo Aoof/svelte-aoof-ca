@@ -90,6 +90,10 @@ export interface Experience {
   tracks: string[];
   project?: string;
   link?: string;
+  /** Set by the loader: the intro plus the first bullets, then the rest behind a toggle */
+  descriptionLead?: string;
+  descriptionMore?: string;
+  moreCount?: number;
 }
 
 export interface Event {

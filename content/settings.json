@@ -32,7 +32,15 @@
       "readMore": "Read the case study",
       "caseStudy": "Case study",
       "linkedinPost": "LinkedIn post",
-      "emailMe": "Email me"
+      "emailMe": "Email me",
+      "now": "Now",
+      "showMore": "Show {n} more",
+      "showLess": "Show less",
+      "visitSite": "Visit the site",
+      "yr": "yr",
+      "yrs": "yrs",
+      "mo": "mo",
+      "mos": "mos"
     },
     "home": {
       "handTitle": "Pick a role",
@@ -76,7 +84,8 @@
       "education": "Education",
       "volunteering": "Volunteering",
       "other": "Other work",
-      "otherNote": "Websites I helped with outside of work and school."
+      "otherNote": "Websites I helped with outside of work and school.",
+      "jumpTo": "Jump to"
     },
     "events": {
       "title": "Events and competitions",
@@ -192,7 +201,15 @@
         "readMore": "Lire l'étude de cas",
         "caseStudy": "Étude de cas",
         "linkedinPost": "Publication LinkedIn",
-        "emailMe": "Écrivez-moi"
+        "emailMe": "Écrivez-moi",
+        "now": "En cours",
+        "showMore": "Afficher {n} de plus",
+        "showLess": "Afficher moins",
+        "visitSite": "Voir le site",
+        "yr": "an",
+        "yrs": "ans",
+        "mo": "mois",
+        "mos": "mois"
       },
       "home": {
         "handTitle": "Choisissez un rôle",
@@ -236,7 +253,8 @@
         "education": "Formation",
         "volunteering": "Bénévolat",
         "other": "Autres travaux",
-        "otherNote": "Des sites web auxquels j'ai contribué en dehors du travail et de l'école."
+        "otherNote": "Des sites web auxquels j'ai contribué en dehors du travail et de l'école.",
+        "jumpTo": "Aller à"
       },
       "events": {
         "title": "Événements et compétitions",

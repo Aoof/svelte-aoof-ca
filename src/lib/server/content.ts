@@ -4,6 +4,7 @@ import { dev } from '$app/environment';
 import DOMPurify from 'isomorphic-dompurify';
 import { marked } from 'marked';
 import { newestFirst } from '$lib/i18n';
+import { safeUrl } from '$lib/content/safe';
 import type {
   Event,
   Experience,
@@ -50,7 +51,11 @@ async function readEntries<T>(collection: string, lang: Locale): Promise<T[]> {
 /** Content editors write Markdown or HTML; visitors only ever get sanitized HTML. */
 function rich(value: string | undefined): string {
   if (!value) return '';
-  const withKeywords = value.replace(/;\[(.*?)\]/g, '<strong>$1</strong>');
+  // Byte-order marks and zero-width characters sneak in when text is pasted into the CMS.
+  const clean = value
+    .replace(/[\uFEFF\u200B-\u200D\u2060]/g, '')
+    .replace(/(\n- [^\n]*)\n{2,}(?=- )/g, '$1\n');
+  const withKeywords = clean.replace(/;\[(.*?)\]/g, '<strong>$1</strong>');
   const html = marked.parse(withKeywords, { async: false }) as string;
   return DOMPurify.sanitize(html).replace(
     /<a (?=[^>]*href="https?:\/\/)/g,
@@ -65,6 +70,20 @@ function richStory(story: Story | undefined): Story | undefined {
     if (story[key]) result[key] = rich(story[key]);
   }
   return Object.keys(result).length ? result : undefined;
+}
+
+/** Long entries show the intro and two bullets; the remaining bullets go behind a toggle. */
+function splitBullets(html: string): { lead: string; more: string; moreCount: number } {
+  const list = html.match(/<ul>([\s\S]*?)<\/ul>/);
+  const items = list?.[1].match(/<li>[\s\S]*?<\/li>/g) ?? [];
+  if (!list || items.length < 4) return { lead: html, more: '', moreCount: 0 };
+  const before = html.slice(0, list.index);
+  const after = html.slice((list.index ?? 0) + list[0].length);
+  return {
+    lead: `${before}<ul>${items.slice(0, 2).join('')}</ul>`,
+    more: `<ul>${items.slice(2).join('')}</ul>${after}`,
+    moreCount: items.length - 2
+  };
 }
 
 const kindOrder = { job: 0, education: 1, volunteering: 2, other: 3 } as const;
@@ -87,6 +106,12 @@ async function build(lang: Locale) {
     readEntries<Event>('events', lang)
   ]);
 
+  settings.social = {
+    github: safeUrl(settings.social.github),
+    linkedin: safeUrl(settings.social.linkedin),
+    discord: safeUrl(settings.social.discord)
+  };
+
   return {
     settings,
     home: {
@@ -95,7 +120,7 @@ async function build(lang: Locale) {
       passion: rich(home.passion),
       looking_for: rich(home.looking_for)
     } satisfies HomeContent,
-    tracks: [...tracks].sort((a, b) => a.order - b.order),
+    tracks: tracks.map((track) => ({ ...track, resume: safeUrl(track.resume) })).sort((a, b) => a.order - b.order),
     projects: (
       await Promise.all(
         projects.map(
@@ -103,19 +128,32 @@ async function build(lang: Locale) {
             ...project,
             description: rich(project.description),
             story: richStory(project.story),
+            links: (project.links ?? []).map((link) => ({ ...link, url: safeUrl(link.url) })).filter((link) => link.url),
             imageVariants: await resolveImage(project.image)
           })
         )
       )
     ).sort(newestFirst),
     experience: experience
-      .map((entry) => ({ ...entry, description: rich(entry.description) }))
+      .map((entry) => {
+        const description = rich(entry.description);
+        const { lead, more, moreCount } = splitBullets(description);
+        return {
+          ...entry,
+          description,
+          descriptionLead: lead,
+          descriptionMore: more,
+          moreCount,
+          link: safeUrl(entry.link)
+        };
+      })
       .sort((a, b) => kindOrder[a.kind] - kindOrder[b.kind] || newestFirst(a, b)),
     events: (
       await Promise.all(
         events.map(async (event) => ({
           ...event,
           summary: rich(event.summary),
+          link: safeUrl(event.link),
           imageVariants: await resolveImage(event.image)
         }))
       )
