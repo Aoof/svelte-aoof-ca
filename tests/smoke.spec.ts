@@ -132,3 +132,25 @@ test('work page filters by track on the client', async ({ page }) => {
   expect(qa).toBeGreaterThan(0);
   expect(qa).toBeLessThan(all);
 });
+
+test('media files have clean slug names and content only points at files that exist', () => {
+  const slug = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+  const files = readdirSync(path.join('static', 'media'), { withFileTypes: true })
+    .filter((entry) => entry.isFile())
+    .map((entry) => entry.name);
+  for (const file of files) {
+    const { name } = path.parse(file);
+    expect(slug.test(name), `${file} is not a slug name`).toBe(true);
+  }
+
+  for (const folder of ['projects', 'events']) {
+    for (const slugName of slugs(folder)) {
+      const entry = JSON.parse(readFileSync(path.join('content', folder, `${slugName}.json`), 'utf8'));
+      for (const lang of ['en', 'fr']) {
+        const image: string | undefined = entry[lang].image;
+        if (!image) continue;
+        expect(files, `${folder}/${slugName} ${lang} image`).toContain(image.replace('/media/', ''));
+      }
+    }
+  }
+});

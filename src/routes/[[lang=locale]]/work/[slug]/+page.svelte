@@ -8,7 +8,7 @@
   const lang = $derived(data.lang);
   const ui = $derived({ ...data.content.settings.ui.common, ...data.content.settings.ui.case });
   const project = $derived(data.project);
-  const when = $derived(project.when ?? period(lang, project.start, project.end, { present: ui.present }));
+  const when = $derived(project.when || period(lang, project.start, project.end, { present: ui.present }));
   const facts = $derived(
     [
       { label: ui.role, value: project.role },

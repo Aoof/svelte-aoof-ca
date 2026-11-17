@@ -128,6 +128,8 @@ async function build(lang: Locale) {
             ...project,
             description: rich(project.description),
             story: richStory(project.story),
+            when: project.when || undefined,
+            image: project.image || undefined,
             links: (project.links ?? []).map((link) => ({ ...link, url: safeUrl(link.url) })).filter((link) => link.url),
             imageVariants: await resolveImage(project.image)
           })

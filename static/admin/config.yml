@@ -10,6 +10,17 @@ backend:
 media_folder: static/media
 public_folder: /media
 
+# Uploads are renamed to clean slugs, like "My Photo (1).PNG" -> my-photo-1.png.
+media_library:
+  name: default
+  config:
+    slugify_filename: true
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
 i18n:
   structure: single_file_default_root
   locales: [en, fr]

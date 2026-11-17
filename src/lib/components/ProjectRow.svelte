@@ -8,7 +8,7 @@
   let { project, lang, ui }: { project: Project; lang: Locale; ui: Strings } = $props();
 
   const when = $derived(
-    project.when ?? period(lang, project.start, project.end, { present: ui.present })
+    project.when || period(lang, project.start, project.end, { present: ui.present })
   );
   const first = $derived(project.tracks[0] ?? 'web');
   const trackIcons: Record<string, string> = { web: 'coffee', game: 'hat', qa: 'cat', software: 'code' };

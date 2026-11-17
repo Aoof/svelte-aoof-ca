@@ -10,7 +10,7 @@
       "with": "I built it with Shayan Delbari and Vy Nguyen. When a DTO didn't match, we messaged each other to explain the issue, then called to decide which fix to go with.",
       "result": "Perfect grade. The app covered every required competency and was the best-looking one in our batch for the class. It has role-based login for doctors, receptionists and administrators, appointment booking, patient records, doctor scheduling, reports and in-app notifications."
     },
-    "image": "/media/ClinicManagement.png",
+    "image": "/media/clinicmanagement.png",
     "links": [
       {
         "label": "See the code",
@@ -45,7 +45,7 @@
       "with": "Je l'ai construite avec Shayan Delbari et Vy Nguyen. Quand un DTO ne correspondait pas, nous nous écrivions pour expliquer le problème, puis nous nous appelions pour décider de la solution.",
       "result": "Note parfaite. L'application remplissait toutes les compétences exigées et était la plus belle de notre groupe pour ce cours. Elle a une connexion par rôle pour les médecins, les réceptionnistes et les administrateurs, la prise de rendez-vous, les dossiers de patients, l'horaire des médecins, des rapports et des notifications intégrées."
     },
-    "image": "/media/ClinicManagement.png",
+    "image": "/media/clinicmanagement.png",
     "links": [
       {
         "label": "Voir le code",
