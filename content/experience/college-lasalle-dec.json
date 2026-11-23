@@ -6,7 +6,7 @@
     "start": "2024-08",
     "end": "2027-08",
     "expected": true,
-    "description": "I'm at a 90% average. The program is called Techniques de l'informatique (420.B0).",
+    "description": "Holding a 90% average in Techniques de l'informatique (420.B0).",
     "tracks": [
       "web",
       "game",
@@ -21,7 +21,7 @@
     "start": "2024-08",
     "end": "2027-08",
     "expected": true,
-    "description": "Ma moyenne est de 90 %. Le programme s'appelle Techniques de l'informatique (420.B0).",
+    "description": "Moyenne de 90 % en Techniques de l'informatique (420.B0).",
     "tracks": [
       "web",
       "game",
