@@ -105,9 +105,10 @@
   .widget {
     display: grid;
     gap: 1.25rem;
-    justify-items: start;
+    justify-items: stretch;
+    justify-self: center;
     width: 100%;
-    max-width: 26rem;
+    max-width: 24rem;
   }
 
   .card {
@@ -149,6 +150,14 @@
     color: #111;
     box-shadow: 5px 5px 0 #111;
     backface-visibility: hidden;
+  }
+
+  .face:not(.rear-face)::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 1.5cqw;
+    background: var(--accent);
   }
 
   .rear-face {
@@ -219,6 +228,7 @@
     border: 2px solid #111;
     border-radius: 1cqw;
     background: var(--accent);
+    box-shadow: 1px 1px 0 #111;
     font-stretch: 112%;
     font-weight: 800;
     font-size: 3.6cqw;
@@ -280,6 +290,7 @@
   .actions {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 0.25rem 1.25rem;
   }

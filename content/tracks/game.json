@@ -2,7 +2,7 @@
   "en": {
     "slug": "game",
     "order": 2,
-    "title": "Game Developer – Unity, C#, Godot, Gameplay Programming",
+    "title": "Game Developer",
     "hire": "Hire a Game Developer",
     "pitch": "Gameplay programmer specializing in Unity (C#) and Godot (GDScript). Built HoldEmUp poker game with opponent AI – ranked top 2% of 2,175 entries in Brackey's 2026.2 Game Jam. Also created My House Is Built For You and Operation Redacted. Seeking game development internships and contract work.",
     "resume": "/media/amousa-resume-base-gamedev-en.pdf",
@@ -15,7 +15,7 @@
   "fr": {
     "slug": "game",
     "order": 2,
-    "title": "Développeur Jeux – Unity, C#, Godot, Gameplay",
+    "title": "Développeur de Jeux",
     "hire": "Embaucher un Développeur de Jeux",
     "pitch": "Programmeur gameplay spécialisé Unity (C#) et Godot (GDScript). Créateur de HoldEmUp (poker avec IA adverse) – top 2% sur 2 175 au Brackey's 2026.2. Aussi My House Is Built For You et Operation Redacted. Cherche stage développement jeux et contrats.",
     "resume": "/media/amousa-resume-base-gamedev-fr.pdf",

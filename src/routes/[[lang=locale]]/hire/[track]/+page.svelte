@@ -49,8 +49,7 @@
 
   // Breadcrumbs
   const breadcrumbs = $derived([
-    { name: 'Home', url: href(lang, '/') },
-    { name: 'Hire', url: '#' }, // No general hire page, using # as placeholder
+    { name: settings.navigation.home, url: href(lang, '/') },
     { name: track.hire, url: trackUrl }
   ]);
 </script>

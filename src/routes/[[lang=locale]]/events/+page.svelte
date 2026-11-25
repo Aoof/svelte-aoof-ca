@@ -29,10 +29,9 @@
         '@context': 'https://schema.org',
         '@type': 'Event',
         name: event.name,
-        description: event.summary,
+        description: event.summary.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim(),
         url: eventUrl,
         image: eventImage,
-        startDate: event.date + '-01', // Convert YYYY-MM to YYYY-MM-DD
         location: {
           '@type': 'Place',
           name: event.location
@@ -50,7 +49,7 @@
 
   // Breadcrumbs
   const breadcrumbs = $derived([
-    { name: 'Home', url: href(lang, '/') },
+    { name: data.content.settings.navigation.home, url: href(lang, '/') },
     { name: ui.events.title, url: eventsUrl }
   ]);
 </script>

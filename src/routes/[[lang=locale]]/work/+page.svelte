@@ -21,12 +21,12 @@
 
   // Breadcrumbs
   const breadcrumbs = $derived([
-    { name: 'Home', url: href(lang, '/') },
+    { name: data.content.settings.navigation.home, url: href(lang, '/') },
     { name: ui.work.title, url: href(lang, '/work') }
   ]);
 </script>
 
-<SEO title={ui.work.title} description={ui.work.intro} {lang} path="/work" breadcrumbs={breadcrumbs} />
+<SEO title={ui.work.title} description={ui.seo.work} {lang} path="/work" breadcrumbs={breadcrumbs} />
 
 <section class="wrap head">
   <h1>{ui.work.title}</h1>

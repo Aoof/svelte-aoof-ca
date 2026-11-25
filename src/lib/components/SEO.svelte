@@ -28,15 +28,6 @@
   const url = $derived(origin + href(lang, path));
   const picture = $derived(image.startsWith('http') ? image : origin + image);
 
-  // Handle both single object and array of JSON-LD objects
-  const ldArray = $derived(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []);
-  const ldScripts = $derived(
-    ldArray.length > 0
-      ? ldArray.map((ld) => `<script type="application/ld+json">${jsonForScript(ld)}<\/script>`).join('\n')
-      : ''
-  );
-
-  // Generate BreadcrumbList schema if breadcrumbs provided
   const breadcrumbLd = $derived(
     breadcrumbs && breadcrumbs.length > 0
       ? {
@@ -50,6 +41,13 @@
           }))
         }
       : null
+  );
+
+  const ldArray = $derived(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []);
+  const ldScripts = $derived(
+    [...ldArray, ...(breadcrumbLd ? [breadcrumbLd] : [])]
+      .map((ld) => `<script type="application/ld+json">${jsonForScript(ld)}<\/script>`)
+      .join('\n')
   );
 </script>
 
@@ -82,7 +80,4 @@
   <meta name="twitter:image" content={picture} />
   <meta name="twitter:image:alt" content={fullTitle} />
   {#if ldScripts}{@html ldScripts}{/if}
-  {#if breadcrumbLd}
-    <script type="application/ld+json">{jsonForScript(breadcrumbLd)}</script>
-  {/if}
 </svelte:head>

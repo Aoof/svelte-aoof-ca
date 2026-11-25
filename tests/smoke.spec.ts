@@ -32,6 +32,19 @@ for (const prefix of ['', '/fr']) {
       expect(response?.status()).toBe(200);
       await expect(page.locator('h1').first()).toBeVisible();
       await expect(page.locator('html')).toHaveAttribute('lang', prefix ? 'fr' : 'en');
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        'href',
+        `https://aoof.ca${url === '/' ? '/' : url}`
+      );
+      await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /\S+/);
+      await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute(
+        'href',
+        `https://aoof.ca${route === '/' ? '/' : route}`
+      );
+      await expect(page.locator('link[rel="alternate"][hreflang="fr"]')).toHaveAttribute(
+        'href',
+        `https://aoof.ca${route === '/' ? '/fr' : `/fr${route}`}`
+      );
     });
 
     for (const width of widths) {
@@ -45,6 +58,16 @@ for (const prefix of ['', '/fr']) {
       });
     }
   }
+}
+
+for (const [prefix, labels] of [
+  ['', ['Web Developer', 'Game Developer', 'QA Tester', 'Software Developer']],
+  ['/fr', ['Développeur Web', 'Développeur de Jeux', 'Testeur AQ', 'Développeur Logiciel']]
+] as const) {
+  test(`role chooser uses concise labels ${prefix || 'en'}`, async ({ page }) => {
+    await page.goto(`${prefix}/`);
+    await expect(page.locator('.tiles .name')).toHaveText(labels);
+  });
 }
 
 test('each track resume link resolves', async ({ request }) => {
@@ -69,16 +92,81 @@ test('old URLs redirect', async ({ request }) => {
 test('the business card flips and has a QR code', async ({ page }) => {
   await page.goto('/hire/web');
   const card = page.locator('button.card');
+  await expect(page.locator('.card .role')).toHaveText('Web Developer');
   await expect(card).toHaveAttribute('aria-pressed', 'false');
   await card.click();
   await expect(card).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.card .qr svg')).toHaveCount(1);
 });
 
+test('work page uses its SEO summary', async ({ page }) => {
+  const settings = JSON.parse(readFileSync(path.join('content', 'settings.json'), 'utf8'));
+  await page.goto('/work');
+  await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', settings.ui.seo.work);
+});
+
+test('hire breadcrumb structured data uses real page URLs', async ({ page }) => {
+  for (const [path, home, hire] of [
+    ['/hire/web', 'Home', 'Hire a Web Developer'],
+    ['/fr/hire/web', 'Accueil', 'Embaucher un Développeur Web']
+  ] as const) {
+    await page.goto(path);
+    const breadcrumb = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+      scripts
+        .map((script) => JSON.parse(script.textContent ?? ''))
+        .find((schema) => schema['@type'] === 'BreadcrumbList')
+    );
+    expect(breadcrumb.itemListElement.map((item: { item: string }) => item.item)).toEqual([
+      `https://aoof.ca${path.startsWith('/fr') ? '/fr' : '/'}`,
+      `https://aoof.ca${path}`
+    ]);
+    expect(breadcrumb.itemListElement.map((item: { name: string }) => item.name)).toEqual([home, hire]);
+  }
+});
+
+test('event structured data does not invent day-level dates from month-only content', async ({ page }) => {
+  await page.goto('/events');
+  const events = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+    scripts
+      .map((script) => JSON.parse(script.textContent ?? ''))
+      .filter((schema) => schema['@type'] === 'Event')
+  );
+  expect(events.length).toBeGreaterThan(0);
+  for (const event of events) {
+    expect(event.startDate).toBeUndefined();
+    expect(event.description).not.toMatch(/<[^>]*>/);
+  }
+});
+
+test('project structured data does not claim unknown day-level dates', async ({ page }) => {
+  await page.goto('/work/holdemup');
+  const work = await page.locator('script[type="application/ld+json"]').evaluateAll((scripts) =>
+    scripts
+      .map((script) => JSON.parse(script.textContent ?? ''))
+      .find((schema) => schema['@type'] === 'CreativeWork')
+  );
+  expect(work.datePublished).toBeUndefined();
+  expect(work.dateModified).toBeUndefined();
+});
+
 test('save contact downloads a vCard', async ({ request }) => {
   const response = await request.get('/card/web.vcf');
   expect(response.status()).toBe(200);
-  expect(await response.text()).toContain('BEGIN:VCARD');
+  const card = await response.text();
+  expect(card).toContain('BEGIN:VCARD');
+  expect(card).toContain('TITLE:Web Developer');
+});
+
+test('robots and sitemap expose the public localized pages', async ({ request }) => {
+  const [robots, sitemap] = await Promise.all([request.get('/robots.txt'), request.get('/sitemap.xml')]);
+  expect(robots.status()).toBe(200);
+  expect(await robots.text()).toContain('Sitemap: https://aoof.ca/sitemap.xml');
+  expect(sitemap.status()).toBe(200);
+  const xml = await sitemap.text();
+  expect(xml).toContain('<loc>https://aoof.ca/</loc>');
+  expect(xml).toContain('<loc>https://aoof.ca/fr</loc>');
+  expect(xml).toContain('<loc>https://aoof.ca/hire/web</loc>');
+  expect(xml).toContain('hreflang="fr" href="https://aoof.ca/fr/hire/web"');
 });
 
 for (const [prefix, lang, button] of [['', 'en', 'Résumé'], ['/fr', 'fr', 'CV']] as const) {

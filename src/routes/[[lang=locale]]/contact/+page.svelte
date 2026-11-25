@@ -49,7 +49,7 @@
 
   // Breadcrumbs
   const breadcrumbs = $derived([
-    { name: 'Home', url: href(lang, '/') },
+    { name: settings.navigation.home, url: href(lang, '/') },
     { name: ui.title, url: href(lang, '/contact') }
   ]);
 </script>

@@ -11,7 +11,7 @@
 
   // Breadcrumbs
   const breadcrumbs = $derived([
-    { name: 'Home', url: href(lang, '/') },
+    { name: data.content.settings.navigation.home, url: href(lang, '/') },
     { name: ui.footnotes.title, url: href(lang, '/footnotes') }
   ]);
 </script>

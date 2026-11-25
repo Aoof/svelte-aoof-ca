@@ -40,15 +40,13 @@
       name: 'Abdulrahman Mousa',
       url: 'https://aoof.ca'
     },
-    datePublished: project.start,
-    dateModified: project.end || project.start,
     keywords: project.stack.join(', '),
     inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA'
   });
 
   // Breadcrumbs for structured data
   const breadcrumbs = $derived([
-    { name: 'Home', url: href(lang, '/') },
+    { name: data.content.settings.navigation.home, url: href(lang, '/') },
     { name: data.content.settings.ui.work.title, url: href(lang, '/work') },
     { name: project.name, url: projectUrl }
   ]);

@@ -34,7 +34,7 @@
 
   // Breadcrumbs for home page
   const breadcrumbs = $derived([
-    { name: 'Home', url: href(lang, '/') }
+    { name: settings.navigation.home, url: href(lang, '/') }
   ]);
 </script>
 
@@ -190,6 +190,7 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    min-width: 0;
     min-height: 5.5rem;
     padding: 0.9rem 1.1rem;
     border: var(--border);
@@ -205,6 +206,10 @@
     transition:
       translate 120ms var(--ease),
       box-shadow 120ms var(--ease);
+  }
+
+  .tiles .name {
+    min-width: 0;
   }
 
   .badge {
