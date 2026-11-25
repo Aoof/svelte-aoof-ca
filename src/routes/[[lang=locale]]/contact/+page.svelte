@@ -1,6 +1,7 @@
 <script lang="ts">
   import SEO from '$lib/components/SEO.svelte';
   import { PUBLIC_WEB3_ACCESSKEY } from '$env/static/public';
+  import { href } from '$lib/i18n';
 
   let { data } = $props();
 
@@ -45,9 +46,15 @@
       status = 'error';
     }
   }
+
+  // Breadcrumbs
+  const breadcrumbs = $derived([
+    { name: 'Home', url: href(lang, '/') },
+    { name: ui.title, url: href(lang, '/contact') }
+  ]);
 </script>
 
-<SEO title={ui.title} description={settings.ui.seo.contact} {lang} path="/contact" />
+<SEO title={ui.title} description={settings.ui.seo.contact} {lang} path="/contact" breadcrumbs={breadcrumbs} />
 
 <section class="wrap layout">
   <div class="head">

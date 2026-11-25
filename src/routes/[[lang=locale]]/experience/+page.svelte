@@ -1,6 +1,7 @@
 <script lang="ts">
   import SEO from '$lib/components/SEO.svelte';
   import ExperienceCard from '$lib/components/ExperienceCard.svelte';
+  import { href } from '$lib/i18n';
 
   let { data } = $props();
 
@@ -30,9 +31,15 @@
     ...sections.map((section) => ({ id: section.kind, label: section.title })),
     ...(other.length ? [{ id: 'other', label: ui.experience.other }] : [])
   ]);
+
+  // Breadcrumbs
+  const breadcrumbs = $derived([
+    { name: 'Home', url: href(lang, '/') },
+    { name: ui.experience.title, url: href(lang, '/experience') }
+  ]);
 </script>
 
-<SEO title={ui.experience.title} description={ui.seo.experience} {lang} path="/experience" />
+<SEO title={ui.experience.title} description={ui.seo.experience} {lang} path="/experience" breadcrumbs={breadcrumbs} />
 
 <section class="wrap head">
   <h1>{ui.experience.title}</h1>

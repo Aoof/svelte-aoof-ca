@@ -2,9 +2,9 @@
   "en": {
     "slug": "qa",
     "order": 3,
-    "title": "QA tester",
-    "hire": "Hire a QA tester",
-    "pitch": "I did functional and linguistic QA on 10+ games for PlayStation, Xbox and Nintendo at Altagram. Being a developer helps me reproduce, isolate and write up bugs so other people can reproduce them too.",
+    "title": "QA Tester – Functional & Linguistic QA, PlayStation/Xbox/Nintendo",
+    "hire": "Hire a QA Tester",
+    "pitch": "Experienced functional and linguistic QA tester with 10+ AAA titles shipped for PlayStation, Xbox, and Nintendo at Altagram. Developer background enables precise bug reproduction, isolation, and documentation. Worked on Aska, Lonely Mountains: Snow Riders, Planet of Lana II. Available for QA contracts and testing roles.",
     "resume": "/media/amousa-resume-base-qa-en.pdf",
     "featured": [
       "aska",
@@ -15,9 +15,9 @@
   "fr": {
     "slug": "qa",
     "order": 3,
-    "title": "Testeur AQ",
-    "hire": "Embauchez un testeur AQ",
-    "pitch": "J'ai fait de l'AQ fonctionnelle et linguistique sur plus de 10 jeux pour PlayStation, Xbox et Nintendo chez Altagram. Mon expérience de développeur m'aide à reproduire, isoler et documenter les bogues pour que les autres puissent les reproduire aussi.",
+    "title": "Testeur AQ – AQ Fonctionnelle & Linguistique, PlayStation/Xbox/Nintendo",
+    "hire": "Embaucher un Testeur AQ",
+    "pitch": "Testeur AQ fonctionnel et linguistique expérimenté avec 10+ titres AAA livrés pour PlayStation, Xbox et Nintendo chez Altagram. Formation développeur pour reproduction précise, isolation et documentation des bogues. Projets : Aska, Lonely Mountains: Snow Riders, Planet of Lana II. Disponible pour contrats AQ et postes de test.",
     "resume": "/media/amousa-resume-base-qa-fr.pdf",
     "featured": [
       "aska",

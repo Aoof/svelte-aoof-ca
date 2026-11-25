@@ -47,7 +47,8 @@ Disallow: /
 User-agent: *
 Allow: /
 
-# Prevent indexing of any error pages or non-existent routes
+# Prevent indexing of CMS admin and error pages
+Disallow: /admin/
 Disallow: /*?*error*
 Disallow: /*?*404*
 

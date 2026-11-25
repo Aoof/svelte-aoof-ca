@@ -2,9 +2,9 @@
   "en": {
     "slug": "software",
     "order": 4,
-    "title": "Software developer",
-    "hire": "Hire a software developer",
-    "pitch": "I build multi-tier desktop apps in C#, .NET and Java, and I tutor others in them. Clinic Management, my course team project, got a perfect grade.",
+    "title": "Software Developer – C#, .NET, Java, Desktop Applications",
+    "hire": "Hire a Software Developer",
+    "pitch": "Software developer building multi-tier desktop applications in C#, .NET, and Java. Also a programming tutor. Clinic Management System (team project) achieved perfect grade. Other projects: Vehicle Management System, Montreal Pools Scraper. Seeking software development internships and contract positions.",
     "resume": "/media/amousa-resume-base-software-en.pdf",
     "featured": [
       "clinic-management",
@@ -15,9 +15,9 @@
   "fr": {
     "slug": "software",
     "order": 4,
-    "title": "Développeur logiciel",
-    "hire": "Embauchez un développeur logiciel",
-    "pitch": "Je crée des applications de bureau multicouches en C#, .NET et Java, et j'en enseigne la programmation. Clinic Management, mon projet d'équipe de cours, a obtenu la note parfaite.",
+    "title": "Développeur Logiciel – C#, .NET, Java, Applications Desktop",
+    "hire": "Embaucher un Développeur Logiciel",
+    "pitch": "Développeur logiciel créant des applications desktop multicouches en C#, .NET et Java. Également tuteur en programmation. Clinic Management System (projet d'équipe) – note parfaite. Autres projets : Vehicle Management System, Montreal Pools Scraper. Cherche stage développement logiciel et contrats.",
     "resume": "/media/amousa-resume-base-software-fr.pdf",
     "featured": [
       "clinic-management",

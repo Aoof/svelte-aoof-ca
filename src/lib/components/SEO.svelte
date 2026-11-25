@@ -10,7 +10,8 @@
     path = '/',
     image = '/og/default.png',
     imageSize,
-    jsonLd
+    jsonLd,
+    breadcrumbs
   }: {
     title?: string;
     description: string;
@@ -18,14 +19,38 @@
     path?: string;
     image?: string;
     imageSize?: { width: number; height: number };
-    jsonLd?: Record<string, unknown>;
+    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+    breadcrumbs?: { name: string; url: string }[];
   } = $props();
 
   const origin = 'https://aoof.ca';
   const fullTitle = $derived(title ? `${title} | Abdulrahman Mousa` : 'Abdulrahman Mousa (aoof)');
   const url = $derived(origin + href(lang, path));
   const picture = $derived(image.startsWith('http') ? image : origin + image);
-  const ld = $derived(jsonLd ? `<script type="application/ld+json">${jsonForScript(jsonLd)}<\/script>` : '');
+
+  // Handle both single object and array of JSON-LD objects
+  const ldArray = $derived(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []);
+  const ldScripts = $derived(
+    ldArray.length > 0
+      ? ldArray.map((ld) => `<script type="application/ld+json">${jsonForScript(ld)}<\/script>`).join('\n')
+      : ''
+  );
+
+  // Generate BreadcrumbList schema if breadcrumbs provided
+  const breadcrumbLd = $derived(
+    breadcrumbs && breadcrumbs.length > 0
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: breadcrumbs.map((crumb, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: crumb.name,
+            item: crumb.url.startsWith('http') ? crumb.url : origin + crumb.url
+          }))
+        }
+      : null
+  );
 </script>
 
 <svelte:head>
@@ -56,5 +81,8 @@
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={picture} />
   <meta name="twitter:image:alt" content={fullTitle} />
-  {#if ld}{@html ld}{/if}
+  {#if ldScripts}{@html ldScripts}{/if}
+  {#if breadcrumbLd}
+    <script type="application/ld+json">{jsonForScript(breadcrumbLd)}</script>
+  {/if}
 </svelte:head>

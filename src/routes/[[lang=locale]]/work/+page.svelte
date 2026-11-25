@@ -18,9 +18,15 @@
   const projects = $derived(
     active ? data.content.projects.filter((project) => project.tracks.includes(active)) : data.content.projects
   );
+
+  // Breadcrumbs
+  const breadcrumbs = $derived([
+    { name: 'Home', url: href(lang, '/') },
+    { name: ui.work.title, url: href(lang, '/work') }
+  ]);
 </script>
 
-<SEO title={ui.work.title} description={ui.work.intro} {lang} path="/work" />
+<SEO title={ui.work.title} description={ui.work.intro} {lang} path="/work" breadcrumbs={breadcrumbs} />
 
 <section class="wrap head">
   <h1>{ui.work.title}</h1>

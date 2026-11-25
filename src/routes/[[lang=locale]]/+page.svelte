@@ -31,9 +31,14 @@
     address: { '@type': 'PostalAddress', addressLocality: 'Montreal', addressRegion: 'QC', addressCountry: 'CA' },
     sameAs: [settings.social.linkedin, settings.social.github]
   });
+
+  // Breadcrumbs for home page
+  const breadcrumbs = $derived([
+    { name: 'Home', url: href(lang, '/') }
+  ]);
 </script>
 
-<SEO description={ui.seo.home} {lang} path="/" jsonLd={person} />
+<SEO description={ui.seo.home} {lang} path="/" jsonLd={person} breadcrumbs={breadcrumbs} />
 
 <section class="intro wrap">
   <div class="text">

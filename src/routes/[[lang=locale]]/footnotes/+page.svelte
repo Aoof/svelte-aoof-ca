@@ -1,15 +1,22 @@
 <script lang="ts">
   import SEO from '$lib/components/SEO.svelte';
   import Icon from '$lib/components/Icon.svelte';
+  import { href } from '$lib/i18n';
 
   let { data } = $props();
 
   const lang = $derived(data.lang);
   const ui = $derived(data.content.settings.ui);
   const drawn = ['coffee', 'tea', 'milk', 'cat', 'movies', 'anime', 'music', 'flower', 'leaf', 'volleyball', 'football', 'hat', 'pot', 'code', 'teach', 'hike', 'bug'];
+
+  // Breadcrumbs
+  const breadcrumbs = $derived([
+    { name: 'Home', url: href(lang, '/') },
+    { name: ui.footnotes.title, url: href(lang, '/footnotes') }
+  ]);
 </script>
 
-<SEO title={ui.footnotes.title} description={ui.seo.footnotes} {lang} path="/footnotes" />
+<SEO title={ui.footnotes.title} description={ui.seo.footnotes} {lang} path="/footnotes" breadcrumbs={breadcrumbs} />
 
 <section class="wrap">
   <h1>{ui.footnotes.title}</h1>

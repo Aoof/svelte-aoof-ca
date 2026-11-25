@@ -22,6 +22,36 @@
       .filter((key) => project.story?.[key])
       .map((key) => ({ title: ui[key], html: project.story![key]! }))
   );
+
+  const origin = 'https://aoof.ca';
+  const projectUrl = $derived(origin + href(lang, `/work/${project.slug}`));
+  const projectImage = $derived(origin + (project.imageVariants?.hero.fallback ?? project.image));
+
+  // JSON-LD for CreativeWork (project/case study)
+  const projectJsonLd = $derived({
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.name,
+    description: project.summary,
+    url: projectUrl,
+    image: projectImage,
+    author: {
+      '@type': 'Person',
+      name: 'Abdulrahman Mousa',
+      url: 'https://aoof.ca'
+    },
+    datePublished: project.start,
+    dateModified: project.end || project.start,
+    keywords: project.stack.join(', '),
+    inLanguage: lang === 'fr' ? 'fr-CA' : 'en-CA'
+  });
+
+  // Breadcrumbs for structured data
+  const breadcrumbs = $derived([
+    { name: 'Home', url: href(lang, '/') },
+    { name: data.content.settings.ui.work.title, url: href(lang, '/work') },
+    { name: project.name, url: projectUrl }
+  ]);
 </script>
 
 <SEO
@@ -34,6 +64,8 @@
     width: project.imageVariants.hero.width,
     height: Math.round((project.imageVariants.hero.width * project.imageVariants.height) / project.imageVariants.width)
   }}
+  jsonLd={projectJsonLd}
+  breadcrumbs={breadcrumbs}
 />
 
 <article data-track={project.tracks[0]}>

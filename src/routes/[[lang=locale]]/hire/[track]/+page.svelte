@@ -14,6 +14,45 @@
   const ui = $derived(settings.ui);
   const track = $derived(data.track);
   const icons: Record<string, string> = { web: 'coffee', game: 'hat', qa: 'cat', software: 'code' };
+
+  const origin = 'https://aoof.ca';
+  const trackUrl = $derived(origin + href(lang, `/hire/${track.slug}`));
+
+  // JSON-LD for Service (hiring page)
+  const trackJsonLd = $derived({
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: track.hire,
+    description: track.pitch,
+    url: trackUrl,
+    image: origin + `/og/${track.slug}.png`,
+    provider: {
+      '@type': 'Person',
+      name: 'Abdulrahman Mousa',
+      url: 'https://aoof.ca',
+      email: settings.contact.email
+    },
+    areaServed: {
+      '@type': 'Place',
+      name: 'Montreal, QC, Canada'
+    },
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: trackUrl,
+      availableLanguage: {
+        '@type': 'Language',
+        name: lang === 'fr' ? 'French' : 'English'
+      }
+    },
+    keywords: data.stack.join(', ')
+  });
+
+  // Breadcrumbs
+  const breadcrumbs = $derived([
+    { name: 'Home', url: href(lang, '/') },
+    { name: 'Hire', url: '#' }, // No general hire page, using # as placeholder
+    { name: track.hire, url: trackUrl }
+  ]);
 </script>
 
 <SEO
@@ -22,6 +61,8 @@
   {lang}
   path={`/hire/${track.slug}`}
   image={`/og/${track.slug}.png`}
+  jsonLd={trackJsonLd}
+  breadcrumbs={breadcrumbs}
 />
 
 <div data-track={track.slug}>

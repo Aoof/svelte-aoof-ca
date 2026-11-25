@@ -1,6 +1,7 @@
 <script lang="ts">
   import SEO from '$lib/components/SEO.svelte';
   import EventRow from '$lib/components/EventRow.svelte';
+  import { href } from '$lib/i18n';
 
   let { data } = $props();
 
@@ -15,9 +16,53 @@
       `${event.name} ${event.location} ${event.time} ${event.date}`.toLowerCase().includes(needle)
     );
   });
+
+  const origin = 'https://aoof.ca';
+  const eventsUrl = $derived(origin + href(lang, '/events'));
+
+  // Generate JSON-LD for each event
+  const eventJsonLd = $derived(
+    data.content.events.map((event) => {
+      const eventUrl = event.link || eventsUrl;
+      const eventImage = event.image ? origin + event.image : undefined;
+      return {
+        '@context': 'https://schema.org',
+        '@type': 'Event',
+        name: event.name,
+        description: event.summary,
+        url: eventUrl,
+        image: eventImage,
+        startDate: event.date + '-01', // Convert YYYY-MM to YYYY-MM-DD
+        location: {
+          '@type': 'Place',
+          name: event.location
+        },
+        organizer: {
+          '@type': 'Person',
+          name: 'Abdulrahman Mousa',
+          url: 'https://aoof.ca'
+        },
+        eventStatus: 'https://schema.org/EventScheduled',
+        eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode'
+      };
+    })
+  );
+
+  // Breadcrumbs
+  const breadcrumbs = $derived([
+    { name: 'Home', url: href(lang, '/') },
+    { name: ui.events.title, url: eventsUrl }
+  ]);
 </script>
 
-<SEO title={ui.events.title} description={ui.seo.events} {lang} path="/events" />
+<SEO
+  title={ui.events.title}
+  description={ui.seo.events}
+  {lang}
+  path="/events"
+  jsonLd={eventJsonLd}
+  breadcrumbs={breadcrumbs}
+/>
 
 <section class="wrap head">
   <h1>{ui.events.title}</h1>

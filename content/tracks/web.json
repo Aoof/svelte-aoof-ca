@@ -2,9 +2,9 @@
   "en": {
     "slug": "web",
     "order": 1,
-    "title": "Web developer",
-    "hire": "Hire a web developer",
-    "pitch": "I build and ship full websites in SvelteKit, TypeScript and Node.js. I solo'd a council's site and built the concert feature for a music festival.",
+    "title": "Web Developer – SvelteKit, TypeScript, Node.js",
+    "hire": "Hire a Web Developer",
+    "pitch": "I build and ship full-stack websites and web apps using SvelteKit, TypeScript, Node.js, and modern web technologies. Solo developer for the Festival Bach Montreal concert feature (222 bilingual Q&As with video). Also built Athenae and IEAC official website. Available for freelance, contract, and internship roles.",
     "resume": "/media/amousa-resume-base-web-en.pdf",
     "featured": [
       "festival-bach-montreal",
@@ -15,9 +15,9 @@
   "fr": {
     "slug": "web",
     "order": 1,
-    "title": "Développeur web",
-    "hire": "Embauchez un développeur web",
-    "pitch": "Je crée et mets en ligne des sites web complets en SvelteKit, TypeScript et Node.js. J'ai réalisé seul le site d'un conseil et la fonctionnalité de concerts d'un festival de musique.",
+    "title": "Développeur Web – SvelteKit, TypeScript, Node.js",
+    "hire": "Embaucher un Développeur Web",
+    "pitch": "Je crée et déploie des sites web et applications full-stack avec SvelteKit, TypeScript, Node.js et les technologies web modernes. Développeur solo pour la fonctionnalité concerts du Festival Bach Montréal (222 Q&A bilingues avec vidéo). Aussi créateur d'Athenae et du site officiel IEAC. Disponible pour freelance, contrats et stages.",
     "resume": "/media/amousa-resume-base-web-fr.pdf",
     "featured": [
       "festival-bach-montreal",

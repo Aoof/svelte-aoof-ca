@@ -122,13 +122,13 @@
       "print": "Print the card"
     },
     "seo": {
-      "home": "Abdulrahman Mousa (aoof) is a Montreal developer and QA tester looking for a Summer 2027 internship and part-time work in web development and QA.",
-      "work": "Projects by Abdulrahman Mousa in web, games, QA and software, each with what he did and who he worked with.",
-      "experience": "Jobs, education and volunteering of Abdulrahman Mousa on one timeline.",
-      "events": "Hackathons, game jams and awards from Abdulrahman Mousa.",
-      "contact": "Email, Discord, LinkedIn and GitHub for Abdulrahman Mousa, plus a contact form.",
-      "card": "A printable business card for Abdulrahman Mousa, with a QR code to this role's page.",
-      "footnotes": "Where the icons, logos, type and QR code on aoof.ca come from."
+      "home": "Abdulrahman Mousa (aoof) – Montreal Web Developer, Game Developer & QA Tester. Seeking Summer 2027 internship & part-time work. Specializing in SvelteKit, TypeScript, Node.js, Unity, C#.",
+      "work": "Portfolio of Abdulrahman Mousa: Web, Game, QA & Software projects with case studies. Built with SvelteKit, TypeScript, Unity, PHP, Node.js. Includes client work, hackathon projects & open source.",
+      "experience": "Work experience timeline of Abdulrahman Mousa: Web Developer at Festival Bach Montreal, QA Tester at Altagram, Programming Tutor, Web Development Lead. Education: Computer Science Technology at Collège LaSalle.",
+      "events": "Hackathons, game jams & competitions: ConUHacks, Global Game Jam, Brackeys Game Jam, MIGS, Fusion Festival. Awards & participation details for Abdulrahman Mousa.",
+      "contact": "Contact Abdulrahman Mousa (aoof): Email, Discord, LinkedIn, GitHub. Montreal-based developer available for web development, game development & QA testing contracts.",
+      "card": "Printable business card for Abdulrahman Mousa – Web, Game & QA roles. Includes QR code linking to role-specific portfolio page.",
+      "footnotes": "Attribution for icons, logos, fonts & QR code library used on aoof.ca. Archivo font, Simple Icons, node-qrcode, custom SVG icons."
     },
     "interests": {
       "coffee": "Coffee",
@@ -291,13 +291,13 @@
         "print": "Imprimer la carte"
       },
       "seo": {
-        "home": "Abdulrahman Mousa (aoof), développeur et testeur AQ à Montréal, cherche un stage pour l'été 2027 et du travail à temps partiel en développement web et en AQ.",
-        "work": "Projets d'Abdulrahman Mousa en web, jeux, AQ et logiciels, avec ce qu'il a fait et avec qui il a travaillé.",
-        "experience": "Emplois, formation et bénévolat d'Abdulrahman Mousa sur une seule ligne du temps.",
-        "events": "Hackathons, game jams et prix d'Abdulrahman Mousa.",
-        "contact": "Courriel, Discord, LinkedIn et GitHub d'Abdulrahman Mousa, avec un formulaire de contact.",
-        "card": "Une carte professionnelle imprimable d'Abdulrahman Mousa, avec un code QR vers la page de ce rôle.",
-        "footnotes": "D'où viennent les icônes, logos, polices et codes QR de aoof.ca."
+        "home": "Abdulrahman Mousa (aoof) – Développeur Web, Développeur Jeux & Testeur AQ à Montréal. Cherche stage été 2027 et travail temps partiel. Spécialisé SvelteKit, TypeScript, Node.js, Unity, C#.",
+        "work": "Portfolio d'Abdulrahman Mousa : projets Web, Jeux, AQ & Logiciels avec études de cas. Réalisés en SvelteKit, TypeScript, Unity, PHP, Node.js. Projets clients, hackathons & open source.",
+        "experience": "Parcours professionnel d'Abdulrahman Mousa : Développeur Web au Festival Bach Montréal, Testeur AQ chez Altagram, Tuteur Programmation, Lead Développement Web. Formation : Techniques de l'informatique au Collège LaSalle.",
+        "events": "Hackathons, game jams & compétitions : ConUHacks, Global Game Jam, Brackeys Game Jam, MIGS, Festival Fusion. Prix & participations d'Abdulrahman Mousa.",
+        "contact": "Contactez Abdulrahman Mousa (aoof) : Courriel, Discord, LinkedIn, GitHub. Développeur montréalais disponible pour contrats développement web, jeux & tests AQ.",
+        "card": "Carte professionnelle imprimable d'Abdulrahman Mousa – rôles Web, Jeux & AQ. Inclut code QR vers la page de portfolio du rôle.",
+        "footnotes": "Attribution icônes, logos, polices & bibliothèque QR sur aoof.ca. Police Archivo, Simple Icons, node-qrcode, icônes SVG personnalisées."
       },
       "interests": {
         "coffee": "Café",
