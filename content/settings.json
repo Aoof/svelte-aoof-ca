@@ -1,4 +1,8 @@
 {
+  "lang": [
+    "en",
+    "fr"
+  ],
   "brand": "aoof.ca",
   "navigation": {
     "home": "Home",
@@ -17,7 +21,7 @@
     "title": "Contact Information",
     "subtitle": "Mostly active on Discord but feel free to reach out on one of the following.",
     "discord": "aoof",
-    "email": "aoof.mousa@gmail.com",
+    "email": "info@aoof.ca",
     "location": "Montreal Quebec, Canada"
   },
   "social": {
@@ -186,7 +190,7 @@
       "title": "Contact",
       "subtitle": "Surtout actif sur Discord mais n'hésitez pas à me contacter sur l'un des suivants.",
       "discord": "aoof",
-      "email": "aoof.mousa@gmail.com",
+      "email": "info@aoof.ca",
       "location": "Montréal, Québec, Canada"
     },
     "social": {
